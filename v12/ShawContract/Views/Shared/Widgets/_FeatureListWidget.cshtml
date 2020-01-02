@@ -1,0 +1,242 @@
+﻿@using ShawContract.Models.InlineEditors
+@using ShawContract.Models.Widgets.FeatureListWidget
+@using System.Text.RegularExpressions
+@using System.Text
+
+@model ShawContract.Models.Widgets.FeatureListWidget.FeatureListWidgetViewModel
+
+@{
+    var editMode = Context.Kentico().PageBuilder().EditMode;
+}
+
+<section class="widget feature-list now-viewable">
+
+    <div class="row">
+        <div class="col-sm-8 offset-sm-2 text-center">
+            <p class="subtitle">
+                @if (editMode)
+                {
+                    Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                    {
+                        PropertyName = nameof(FeatureListWidgetProperties.Subtitle),
+                        Text = Model.Subtitle,
+                        EnableFormatting = false
+                    });
+                }
+                else
+                {
+                    @Regex.Replace(Model.Subtitle ?? "", "<.*?>", String.Empty);
+                }
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-8 offset-sm-2 text-center">
+            <h2 class="title">
+                @if (editMode)
+                {
+                    Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                    {
+                        PropertyName = nameof(FeatureListWidgetProperties.Title),
+                        Text = Model.Title,
+                        EnableFormatting = false
+                    });
+                }
+                else
+                {
+                    @Regex.Replace(Model.Title ?? "", "<.*?>", String.Empty);
+                }
+            </h2>
+        </div>
+    </div>
+
+    <div class="row">
+
+        @if (!string.IsNullOrWhiteSpace(Model.Description1) &&
+                 !string.IsNullOrWhiteSpace(Model.LinkUrl1) &&
+                 !string.IsNullOrWhiteSpace(Model.SecondaryTitle1) &&
+                 !string.IsNullOrWhiteSpace(Model.Icon1))
+        {
+            <div class="col-lg-4 feature-card">
+
+                <div class="row">
+                    <div class="col-sm-8 offset-sm-2 text-center">
+                        <i class="@Model.Icon1 red-regular" aria-hidden="true"></i>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8 offset-sm-2 text-center">
+                        <a style="text-decoration: none" class="heading" href="@Model.LinkUrl1">@Model.SecondaryTitle1</a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8 offset-sm-2 text-center">
+                        <p class="description">
+                            @Model.Description1
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        }
+
+        @if (!string.IsNullOrWhiteSpace(Model.Description2) &&
+                 !string.IsNullOrWhiteSpace(Model.LinkUrl2) &&
+                 !string.IsNullOrWhiteSpace(Model.SecondaryTitle2) &&
+                 !string.IsNullOrWhiteSpace(Model.Icon2))
+        {
+            <div class="col-lg-4 feature-card">
+
+                <div class="row">
+                    <div class="col-sm-8 offset-sm-2 text-center">
+                        <i class="@Model.Icon2 red-regular" aria-hidden="true"></i>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8 offset-sm-2 text-center">
+                        <a class="heading" href="@Model.LinkUrl2">@Model.SecondaryTitle2</a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8 offset-sm-2 text-center">
+                        <p class="description">
+                            @Model.Description2
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        }
+
+        @if (!string.IsNullOrWhiteSpace(Model.Description3) &&
+             !string.IsNullOrWhiteSpace(Model.LinkUrl3) &&
+             !string.IsNullOrWhiteSpace(Model.SecondaryTitle3) &&
+                 !string.IsNullOrWhiteSpace(Model.Icon3))
+        {
+            <div class="col-lg-4 feature-card">
+
+                <div class="row">
+                    <div class="col-sm-8 offset-sm-2 text-center">
+                        <i class="@Model.Icon3 red-regular" aria-hidden="true"></i>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8 offset-sm-2 text-center">
+                        <a class="heading" href="@Model.LinkUrl3">@Model.SecondaryTitle3</a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8 offset-sm-2 text-center">
+                        <p class="description">
+                            @Model.Description3
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        }
+
+        @if (!string.IsNullOrWhiteSpace(Model.Description4) &&
+             !string.IsNullOrWhiteSpace(Model.LinkUrl4) &&
+             !string.IsNullOrWhiteSpace(Model.SecondaryTitle4) &&
+                 !string.IsNullOrWhiteSpace(Model.Icon4))
+        {
+            <div class="col-lg-4 feature-card">
+
+                <div class="row">
+                    <div class="col-sm-8 offset-sm-2 text-center">
+                        <i class="@Model.Icon4 red-regular" aria-hidden="true"></i>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8 offset-sm-2 text-center">
+                        <a class="heading" href="@Model.LinkUrl4">@Model.SecondaryTitle4</a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8 offset-sm-2 text-center">
+                        <p class="description">
+                            @Model.Description4
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        }
+
+        @if (!string.IsNullOrWhiteSpace(Model.Description5) &&
+             !string.IsNullOrWhiteSpace(Model.LinkUrl5) &&
+             !string.IsNullOrWhiteSpace(Model.SecondaryTitle5) &&
+             !string.IsNullOrWhiteSpace(Model.Icon5))
+        {
+            <div class="col-lg-4 feature-card">
+
+                <div class="row">
+                    <div class="col-sm-8 offset-sm-2 text-center">
+                        <i class="@Model.Icon5 red-regular" aria-hidden="true"></i>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8 offset-sm-2 text-center">
+                        <a class="heading" href="@Model.LinkUrl5">@Model.SecondaryTitle5</a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8 offset-sm-2 text-center">
+                        <p class="description">
+                            @Model.Description5
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        }
+
+        @if (!string.IsNullOrWhiteSpace(Model.Description6) &&
+             !string.IsNullOrWhiteSpace(Model.LinkUrl6) &&
+             !string.IsNullOrWhiteSpace(Model.SecondaryTitle6) &&
+             !string.IsNullOrWhiteSpace(Model.Icon6))
+        {
+            <div class="col-lg-4 feature-card">
+
+                <div class="row">
+                    <div class="col-sm-8 offset-sm-2 text-center">
+                        <i class="@Model.Icon6 red-regular" aria-hidden="true"></i>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8 offset-sm-2 text-center">
+                        <a class="heading" href="@Model.LinkUrl6">@Model.SecondaryTitle6</a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8 offset-sm-2 text-center">
+                        <p class="description">
+                            @Model.Description6
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        }
+    </div>
+</section>

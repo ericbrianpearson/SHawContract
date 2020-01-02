@@ -1,0 +1,111 @@
+﻿@using ShawContract.Utils
+@using ShawContract.Models.Widgets.WidgetShared;
+@using ShawContract.Models.Widgets.QuoteBoxWidget;
+@using ShawContract.Models.InlineEditors;
+@using System.Text.RegularExpressions;
+
+@model ShawContract.Models.Widgets.QuoteBoxWidget.QuoteBoxWidgetViewModel
+
+@{
+    var editMode = Context.Kentico().PageBuilder().EditMode;
+    var imageUrl = Model.ImageUrl ?? "https://placehold.it/785x539";
+    var imagePosition = Model.ImageAlignment == "right" ? "order-md-12" : "order-md-1";
+    var quotePosition = Model.ImageAlignment == "right" ? "order-md-1" : "order-md-12";
+}
+
+<section class="widget quote-box now-viewable">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-8 @quotePosition">
+                <div class="text-area">
+                    <p class="the-quote">
+                        <i class="fas fa-quote-left" aria-hidden="true"></i>
+                        @if (editMode)
+                        {
+                            Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                            {
+                                PropertyName = nameof(QuoteBoxWidgetProperties.Quote),
+                                Text = Model.Quote,
+                                EnableFormatting = false
+                            });
+                        }
+                        else
+                        {
+                            @Regex.Replace(Model.Quote ?? "", "<.*?>", String.Empty)
+                        }
+                    </p>
+                    <p class="the-attribution">
+                        @if (editMode)
+                        {
+                            Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                            {
+                                PropertyName = nameof(QuoteBoxWidgetProperties.Attribution),
+                                Text = Model.Attribution,
+                                EnableFormatting = false
+                            });
+                        }
+                        else
+                        {
+                            @Regex.Replace(Model.Attribution ?? "", "<.*?>", String.Empty)
+                        }
+                    </p>
+                    <p class="the-link">
+                        <a href="#">
+                            <span>
+                                @if (editMode)
+                                {
+                                    Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                                    {
+                                        PropertyName = nameof(QuoteBoxWidgetProperties.ButtonText),
+                                        Text = Model.ButtonText,
+                                        EnableFormatting = false
+                                    });
+                                }
+                                else
+                                {
+                                    @Regex.Replace(Model.ButtonText ?? "", "<.*?>", String.Empty)
+                                }
+                            </span>
+                            <i class="fal fa-arrow-circle-right" aria-hidden="true"></i>
+                        </a>
+                        <span>
+                            @if (editMode)
+                            {
+                                Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                                {
+                                    PropertyName = nameof(QuoteBoxWidgetProperties.ButtonUrl),
+                                    Text = Model.ButtonUrl,
+                                    EnableFormatting = false
+                                });
+                            }
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 @imagePosition d-md-none d-sm-none d-xs-none d-lg-block d-xl-block">
+                <div class="img-box">
+                    <img src="https://placehold.it/387x539" alt="quote-attribution" class="author-img">
+                    <p class="photo-credits">
+                        @if (editMode)
+                        {
+                            Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                            {
+                                PropertyName = nameof(QuoteBoxWidgetProperties.PhotoCredit),
+                                Text = Model.PhotoCredit,
+                                EnableFormatting = false
+                            });
+                        }
+                        else
+                        {
+                            @Regex.Replace(Model.PhotoCredit ?? "", "<.*?>", String.Empty)
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

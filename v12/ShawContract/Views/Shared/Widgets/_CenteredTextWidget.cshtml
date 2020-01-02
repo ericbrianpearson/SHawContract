@@ -1,0 +1,71 @@
+﻿@using System.Text.RegularExpressions
+@using ShawContract.Models.InlineEditors
+@using ShawContract.Models.Widgets.CenteredTextWidget
+@model ShawContract.Models.Widgets.CenteredTextWidget.CenteredTextWidgetViewModel
+
+@{
+    var editMode = Context.Kentico().PageBuilder().EditMode;
+}
+<div class="container">
+    <section class="widget centered-description">
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2 text-center">
+                <p class="subtitle">
+                    @if (editMode)
+                    {
+                        Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                        {
+                            PropertyName = nameof(CenteredTextWidgetProperties.Subtitle),
+                            Text = Model.Subtitle,
+                            EnableFormatting = false
+                        });
+                    }
+                    else
+                    {
+                        @Regex.Replace(Model.Subtitle ?? "", "<.*?>", String.Empty)
+                    }
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2 text-center">
+                <h2 class="title">
+                    @if (editMode)
+                    {
+                        Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                        {
+                            PropertyName = nameof(CenteredTextWidgetProperties.Title),
+                            Text = Model.Title,
+                            EnableFormatting = false
+                        });
+                    }
+                    else
+                    {
+                        @Regex.Replace(Model.Title ?? "", "<.*?>", String.Empty)
+                    }
+                </h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2 text-center">
+                <p class="description">
+                    @if (editMode)
+                    {
+                        Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                        {
+                            PropertyName = nameof(CenteredTextWidgetProperties.Description),
+                            Text = Model.Description,
+                            EnableFormatting = false
+                        });
+                    }
+                    else
+                    {
+                        @Regex.Replace(Model.Description ?? "", "<.*?>", String.Empty)
+                    }
+                </p>
+            </div>
+        </div>
+    </section>
+</div>

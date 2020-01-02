@@ -1,0 +1,25 @@
+﻿@if (Request.IsAuthenticated)
+{
+    var name = string.Empty;
+    var claims = ((System.Security.Claims.ClaimsIdentity)User.Identity).Claims;
+    if (claims != null && claims.Count(a => a.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname") == 1)
+    {
+        name = claims.Single(a => a.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname").Value;
+    }
+    <text>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a id="profile-link">Hi @name </a>
+            </li>
+            <li>
+                &nbsp; @Html.ActionLink("Sign out", "SignOut", "Account")
+            </li>
+        </ul>
+    </text>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Sign in", "SignIn", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

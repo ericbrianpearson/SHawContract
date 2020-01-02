@@ -1,0 +1,45 @@
+.widget {
+    &.bullet-list-img {
+
+        .content-padding {
+            padding: 10rem 5rem;
+        }
+
+        .mark {
+            margin: 10px 0;
+        }
+
+        .heading {
+            color: $red-regular;
+            font-size: 2.4rem;
+            font-weight: $medium;
+            margin: 0 0 1.5rem 0;
+        }
+
+        .bullet-list {
+            padding-left: 2rem;
+
+            li {
+                font-size: 1.6rem;
+                margin: 0 0 1rem 0;
+
+                a {
+                    transition: $standard-transition;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: $laptop-size) {
+
+    .widget {
+        &.bullet-list-img {
+            
+            .content-padding {
+                padding: 1rem 0;
+            }
+
+        }
+    }
+}

@@ -1,0 +1,513 @@
+﻿@model ShawContract.Models.PageViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>ShawContract Template</title>
+
+    <link href="https://api.machinelogic.io/mvc/images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+    <link href="https://api.machinelogic.io/mvc/images/favicon.ico" type="image/x-icon" rel="icon" />
+
+    <link rel="canonical" href="/" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Css/Vendors/bootstrap.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/scss/shawcontract.css")" rel="stylesheet" />
+
+    <script src="https://kit.fontawesome.com/0244929327.js" crossorigin="anonymous"></script>
+
+    @RenderSection("Styles", required: false)
+
+    <script>
+        !function () {
+            var analytics = window.analytics = window.analytics || []; if (!analytics.initialize) if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice."); else {
+                analytics.invoked = !0; analytics.methods = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset", "group", "track", "ready", "alias", "debug", "page", "once", "off", "on"]; analytics.factory = function (t) { return function () { var e = Array.prototype.slice.call(arguments); e.unshift(t); analytics.push(e); return analytics } }; for (var t = 0; t < analytics.methods.length; t++) { var e = analytics.methods[t]; analytics[e] = analytics.factory(e) } analytics.load = function (t, e) { var n = document.createElement("script"); n.type = "text/javascript"; n.async = !0; n.src = "https://cdn.segment.com/analytics.js/v1/" + t + "/analytics.min.js"; var a = document.getElementsByTagName("script")[0]; a.parentNode.insertBefore(n, a); analytics._loadOptions = e }; analytics.SNIPPET_VERSION = "4.1.0";
+                analytics.load("QRcWMAZ3nFToL0xZgFFXYJYJ39S6281U");
+                analytics.page();
+            }
+        }();
+    </script>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <nav class="secondary">
+        <ul class="list-unstyled">
+
+            @foreach (var item in Model.SecondaryMenuItems)
+            {
+            <li>
+                <a @(item.IsClickable ? item.OpenInNewTab ? "href=" + item.PageReference + " target=\"_blank\"" : "href=" + item.PageReference : string.Empty)>
+                    @item.DisplayName
+                </a>
+            </li>
+            }
+            <li><a href="#">language: en-us</a></li>
+            <li></li>
+        </ul>
+    </nav>
+
+    <nav class="navbar navbar-expand-lg justify-content-center fixed-top primary">
+        <a class="navbar-brand" href="/">
+            <img class="logo black" alt="ShawContract - Commercial Flooring"
+                 src="https://api.machinelogic.io/mvc/images/logo-black.svg" />
+        </a>
+        <button class="navbar-toggler ml-1" type="button" data-toggle="collapse" data-target="#collapsingPrimaryNavbar">
+            <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
+        </button>
+        <div class="navbar-collapse collapse justify-content-between align-items-center w-100" id="collapsingPrimaryNavbar">
+            <ul class="navbar-nav navbar-center mx-auto text-center">
+
+                @foreach (var menuItem in Model.HeaderMenuItems)
+                {
+
+                    var navClasses = "nav-item dropdown ";
+                    var idName = "DropDown";
+                    var dropDownDivClasses = "dropdown-menu ";
+                    var dropDownUlClasses = "list-unstyled ";
+                    if (!string.IsNullOrEmpty(menuItem.CustomCSSClass))
+                    {
+                        navClasses += menuItem.CustomCSSClass + "-nav";
+                        idName = menuItem.CustomCSSClass + "DropDown";
+                    }
+                    if (!string.IsNullOrEmpty(menuItem.DropDownCSSClass))
+                    {
+                        dropDownUlClasses += menuItem.DropDownCSSClass;
+                        if (menuItem.DropDownCSSClass.StartsWith("wide"))
+                        {
+                            dropDownDivClasses += "wide";
+
+                        }
+                    }
+                    <li class="@navClasses">
+                        <a class="nav-link" href="#" id="@idName" role="button" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">@menuItem.DisplayName</a>
+
+                        @if (menuItem.SubItems.Count() > 0)
+                        {
+                            <div class="@dropDownDivClasses" aria-labelledby="@idName">
+                                <ul class="@dropDownUlClasses">
+                                    @foreach (var subItem in menuItem.SubItems)
+                                    {
+                                        <li>
+                                            <a @(subItem.IsClickable ? subItem.OpenInNewTab ? "href=" + subItem.PageReference + " target=\"_blank\"" : "href=" + subItem.PageReference : string.Empty)>
+                                                @subItem.DisplayName
+                                            </a>
+                                            @if (subItem.SubItems.Count() > 0)
+                                            {
+                                                <ul class="list-unstyled">
+                                                    @foreach (var subSubItem in subItem.SubItems)
+                                                    {
+                                                        <li>
+                                                            <a @(subSubItem.IsClickable ? subSubItem.OpenInNewTab ? "href=" + subSubItem.PageReference + " target=\"_blank\"" : "href=" + subSubItem.PageReference : string.Empty)>
+                                                                @subSubItem.DisplayName
+                                                            </a>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            }
+                                        </li>
+                                    }
+                                </ul>
+                                <a class="btn nav-cta" href="@menuItem.DropDownButtonLink">@menuItem.DropDownButtonText</a>
+                            </div>
+                        }
+                    </li>
+                }
+
+                <li class="nav-item dropdown search-nav">
+                    <a class="nav-link" href="#" id="searchDropDown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">
+                        <i class="far fa-search"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right wide" aria-labelledby="searchDropDown">
+                        Search Dropdown
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right flex-row justify-content-center flex-nowrap">
+                <li class="nav-item dropdown profile-nav">
+                    <a class="nav-link" href="#" id="profileDropDown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">
+                        <i class="far fa-user-alt" aria-label="View Your Profile"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropDown">
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button class="btn btn-login">
+                                    <i class="fab fa-google"></i> Sign in with <strong class="medium">Google</strong>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button class="btn btn-login">
+                                    <i class="fab fa-linkedin-in"></i> Sign in with <strong class="medium">LinkedIn</strong>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button class="btn btn-login">
+                                    <i class="fab fa-microsoft"></i> Sign in with <strong class="medium">Microsoft</strong>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button class="btn btn-login">
+                                    <i class="far fa-lock-alt"></i> Sign in with <strong class="medium">
+                                        Shaw
+                                        Contract
+                                    </strong>
+                                </button>
+                            </div>
+                        </div>
+
+                        <hr class="" />
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button class="btn btn-after-login"><i class="far fa-receipt"></i> My Previous Orders</button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button class="btn btn-after-login"><i class="far fa-phone-alt"></i> My Account Representative</button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button class="btn btn-after-login"><i class="far fa-cog"></i> My Settings</button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown board-nav">
+                    <a class="nav-link" href="#" id="boardDropDown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">
+                        <i class="far fa-heart" aria-label="View Your Product Boards"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="boardDropDown">
+
+                        <div class="row mb-4">
+                            <div class="col-sm-12">
+                                <button class="btn btn-primary">Create New Board</button>
+                            </div>
+                        </div>
+
+                        <div class="cart-item-box">
+
+                            <select class="form-control select-white mb-3 mt-2" id="boardNavSelect">
+                                <option>Board Name 1</option>
+                                <option>Board Name 2</option>
+                                <option>Board Name 3</option>
+                                <option>Board Name 4</option>
+                                <option>Board Name 5</option>
+                            </select>
+
+                            <div class="media cart-item">
+                                <a class="style-img" href="#"><img class="mr-3" src="https://placehold.it/60x60" alt="Style Name"></a>
+                                <div class="media-body">
+                                    <div class="row">
+                                        <div class="col-sm-9">
+                                            <p class="style-name"><a href="#">Style Name Number</a></p>
+                                            <p class="color-name">Color Name Number</p>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <button class="btn remove-style-sample"><i class="fal fa-times"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="media cart-item">
+                                <a class="style-img" href="#"><img class="mr-3" src="https://placehold.it/60x60" alt="Style Name"></a>
+                                <div class="media-body">
+                                    <div class="row">
+                                        <div class="col-sm-9">
+                                            <p class="style-name"><a href="#">Style Name Number</a></p>
+                                            <p class="color-name">Color Name Number</p>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <button class="btn remove-style-sample"><i class="fal fa-times"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="media cart-item">
+                                <a class="style-img" href="#"><img class="mr-3" src="https://placehold.it/60x60" alt="Style Name"></a>
+                                <div class="media-body">
+                                    <div class="row">
+                                        <div class="col-sm-9">
+                                            <p class="style-name"><a href="#">Style Name Number</a></p>
+                                            <p class="color-name">Color Name Number</p>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <button class="btn remove-style-sample"><i class="fal fa-times"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3 mt-5">
+                            <div class="col-sm-12">
+                                <button class="btn btn-secondary"><i class="fal fa-paper-plane"></i> Share This Board</button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <p class="last-updated">Last Updated: 5 minutes ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown cart-nav">
+                    <a class="nav-link" href="#" id="cartDropDown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">
+                        <i class="far fa-shopping-cart" aria-label="View Your Cart"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="cartDropDown">
+
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <p class="dropdown-title">Sample Request</p>
+                            </div>
+                            <div class="col-sm-5 text-right">
+                                <a class="dropdown-link" href="#">View Cart <i class="far fa-angle-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="cart-item-box">
+
+                            <div class="media cart-item">
+                                <a class="style-img" href="#"><img class="mr-3" src="https://placehold.it/60x60" alt="Style Name"></a>
+                                <div class="media-body">
+                                    <div class="row">
+                                        <div class="col-sm-9">
+                                            <p class="style-name"><a href="#">Style Name Number</a></p>
+                                            <p class="color-name">Color Name Number</p>
+                                            <p class="quantity"><strong>Quantity:</strong> <span>3</span></p>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <button class="btn remove-style-sample"><i class="fal fa-times"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="media cart-item">
+                                <a class="style-img" href="#"><img class="mr-3" src="https://placehold.it/60x60" alt="Style Name"></a>
+                                <div class="media-body">
+                                    <div class="row">
+                                        <div class="col-sm-9">
+                                            <p class="style-name"><a href="#">Style Name Number</a></p>
+                                            <p class="color-name">Color Name Number</p>
+                                            <p class="quantity"><strong>Quantity:</strong> <span>3</span></p>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <button class="btn remove-style-sample"><i class="fal fa-times"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="media cart-item">
+                                <a class="style-img" href="#"><img class="mr-3" src="https://placehold.it/60x60" alt="Style Name"></a>
+                                <div class="media-body">
+                                    <div class="row">
+                                        <div class="col-sm-9">
+                                            <p class="style-name"><a href="#">Style Name Number</a></p>
+                                            <p class="color-name">Color Name Number</p>
+                                            <p class="quantity"><strong>Quantity:</strong> <span>3</span></p>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <button class="btn remove-style-sample"><i class="fal fa-times"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-5 mt-4">
+                            <div class="col-sm-5">
+                                <p class="cart-total">
+                                    Total: <strong>5 Items</strong>
+                                </p>
+                            </div>
+                            <div class="col-sm-7">
+                                <button class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+
+                        <div class="row mt-6">
+                            <div class="col-sm-7">
+                                <p class="dropdown-title">Recent Requests</p>
+                            </div>
+                            <div class="col-sm-5 text-right">
+                                <a class="dropdown-link" href="#">View All <i class="far fa-angle-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="cart-item-box">
+
+                            <div class="media cart-item">
+                                <a class="style-img" href="#"><img class="mr-3" src="https://placehold.it/60x60" alt="Style Name"></a>
+                                <div class="media-body">
+                                    <div class="row">
+                                        <div class="col-sm-9">
+                                            <p class="style-name"><a href="#">Order Number <span class="regular">Date</span></a></p>
+                                            <p class="quantity">Total Items: <strong>4</strong></p>
+                                            <p class="status positive"><i class="far fa-check-square"></i> Shipped</p>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <a class="view-order" href="#"><i class="far fa-eye"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="media cart-item">
+                                <a class="style-img" href="#"><img class="mr-3" src="https://placehold.it/60x60" alt="Style Name"></a>
+                                <div class="media-body">
+                                    <div class="row">
+                                        <div class="col-sm-9">
+                                            <p class="style-name"><a href="#">Order Number <span class="regular">Date</span></a></p>
+                                            <p class="quantity">Total Items: <strong>4</strong></p>
+                                            <p class="status positive"><i class="far fa-check-square"></i> Shipped</p>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <a class="view-order" href="#"><i class="far fa-eye"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            @Html.Partial("_LoginPartial")
+        </div>
+    </nav>
+
+    
+    @RenderBody()
+
+    <footer class="footer mt-auto py-3 primary">
+        <div class="container">
+            <div class="row pt-5 pb-4">
+                <div class="col-lg-9">
+                    <img class="logo white mb-5" alt="ShawContract - Commercial Flooring" src="https://api.machinelogic.io/mvc/images/logo-white.svg" />
+                    @if (Model.FooterMenuItems.Count() > 0)
+                    {
+                        <nav class="tertiary-links">
+                            <ul class="list-unstyled">
+                                @foreach (var footerItem in Model.FooterMenuItems)
+                                {
+                                    <li>
+                                        <a @(footerItem.IsClickable ? footerItem.OpenInNewTab ? "href=" + footerItem.PageReference + " target=\"_blank\"" : "href=" + footerItem.PageReference : string.Empty)>
+                                            @footerItem.DisplayName
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </nav>
+                    }
+
+                    <nav class="legal-links">
+                        <ul class="list-unstyled">
+                            <li>
+                                <span>
+                                    &copy; 2019 Shaw Industries Group, Inc., a Berkshire
+                                    Hathaway Company
+                                </span>
+                            </li>
+                            <li><a href="#">Privacy Statement</a></li>
+                            <li><a href="#">Terms of Use</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3">
+                    <div class="product-launch-newsletter mb-4">
+                        <label class="mb-2">Get notified of new product launches!</label>
+                        <div class="input-group mb-0">
+                            <input type="text" class="form-control" placeholder="Enter Email Address"
+                                   aria-label="Enter your email address to sign-up for new product notifications" />
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button">
+                                    <i class="far fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="error"></div>
+                    </div>
+                    <nav class="social-links">
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="https://www.facebook.com/ShawContract" class="social" target="_blank">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/ShawContract" class="social" target="_blank">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.pinterest.com/ShawContract/" class="social" target="_blank">
+                                    <i class="fab fa-pinterest-p"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.youtube.com/user/ShawContractGroup1" class="social" target="_blank">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/ShawContract/" class="social" target="_blank">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/company/ShawContract/" class="social" target="_blank">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="row float-right">
+                <small>
+                    @System.IO.File.GetLastWriteTime(typeof(ShawContract.MvcApplication).Assembly.Location);
+                </small>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://api.machinelogic.io/mvc/js/jquery-3.3.1.slim.min.js"></script>
+    <script>
+        window.jQuery ||
+            document.write('<script src="https://api.machinelogic.io/mvc/js/jquery-slim.min.js"><\/script>');
+    </script>
+    <script src="https://api.machinelogic.io/mvc/js/bootstrap.bundle.min.js"></script>
+    <script src="https://api.machinelogic.io/mvc/js/ShawContract.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

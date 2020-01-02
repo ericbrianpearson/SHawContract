@@ -1,0 +1,311 @@
+﻿@using ShawContract.Models.InlineEditors
+@using ShawContract.Models.Widgets.BulletListWidget
+@using System.Text.RegularExpressions
+
+@using ShawContract.Models.Widgets.WidgetShared;
+@model ShawContract.Models.Widgets.BulletListWidget.BulletListWidgetViewModel
+
+@{
+    var editMode = Context.Kentico().PageBuilder().EditMode;
+    var bulletListPosition = Model.ImageAlignment == "right" ? "col-md-4 order-md-1" : "col-md-4 order-md-12";
+    var imagePosition = Model.ImageAlignment == "right" ? "col-md-8 order-md-12" : "col-md-8 order-md-1";
+    var imageUrl = string.IsNullOrEmpty(Model.MainImage) ? "https://placehold.it/785x539" : Model.MainImage;
+}
+
+<div class="container">
+    <section class="widget bullet-list-img now-viewable">
+        <div class="row">
+
+            <div class="@imagePosition">
+                <div class="img-box">
+                    <img src="@imageUrl" alt="image title" class="bullet-img">
+                    <p class="photo-credits">
+                        @if (editMode)
+                        {
+                            Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                            {
+                                PropertyName = nameof(BulletListWidgetProperties.PhotoCredit),
+                                Text = Model.PhotoCredit,
+                                EnableFormatting = false
+                            });
+                        }
+                        else
+                        {
+                            @Regex.Replace(Model.PhotoCredit ?? "", "<.*?>", String.Empty);
+                        }
+                    </p>
+                </div>
+            </div>
+            <div class="@bulletListPosition">
+                <div class="content-padding">
+                    <div class="mark red"></div>
+                    <p class="heading">
+                        @if (editMode)
+                        {
+                            Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                            {
+                                PropertyName = nameof(BulletListWidgetProperties.Title),
+                                Text = Model.Title,
+                                EnableFormatting = false
+                            });
+                        }
+                        else
+                        {
+                            @Regex.Replace(Model.Title ?? "", "<.*?>", String.Empty);
+                        }
+                    </p>
+                    <ul class="bullet-list">
+
+                        @if (editMode)
+                        {
+                            <li>
+                                @{Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                                    {
+                                        PropertyName = nameof(BulletListWidgetProperties.Text),
+                                        Text = Model.Text,
+                                        EnableFormatting = false
+                                    });
+                                }
+                            </li>
+                            <li>
+                                @{Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                                    {
+                                        PropertyName = nameof(BulletListWidgetProperties.Text1),
+                                        Text = Model.Text1,
+                                        EnableFormatting = false
+                                    });
+                                }
+                            </li>
+                            <li>
+                                @{Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                                    {
+                                        PropertyName = nameof(BulletListWidgetProperties.Text2),
+                                        Text = Model.Text2,
+                                        EnableFormatting = false
+                                    });
+                                }
+                            </li>
+                            <li>
+                                @{Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                                    {
+                                        PropertyName = nameof(BulletListWidgetProperties.Text3),
+                                        Text = Model.Text3,
+                                        EnableFormatting = false
+                                    });
+                                }
+                            </li>
+                            <li>
+                                @{Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                                    {
+                                        PropertyName = nameof(BulletListWidgetProperties.Text4),
+                                        Text = Model.Text4,
+                                        EnableFormatting = false
+                                    });
+                                }
+                            </li>
+                            <li>
+                                @{Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                                    {
+                                        PropertyName = nameof(BulletListWidgetProperties.Text5),
+                                        Text = Model.Text5,
+                                        EnableFormatting = false
+                                    });
+                                }
+                            </li>
+                            <li>
+                                @{Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                                    {
+                                        PropertyName = nameof(BulletListWidgetProperties.Text6),
+                                        Text = Model.Text6,
+                                        EnableFormatting = false
+                                    });
+                                }
+                            </li>
+                            <li>
+                                @{Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                                    {
+                                        PropertyName = nameof(BulletListWidgetProperties.Text7),
+                                        Text = Model.Text7,
+                                        EnableFormatting = false
+                                    });
+                                }
+                            </li>
+                            <li>
+                                @{Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                                    {
+                                        PropertyName = nameof(BulletListWidgetProperties.Text8),
+                                        Text = Model.Text8,
+                                        EnableFormatting = false
+                                    });
+                                }
+                            </li>
+                            <li>
+                                @{Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                                    {
+                                        PropertyName = nameof(BulletListWidgetProperties.Text9),
+                                        Text = Model.Text9,
+                                        EnableFormatting = false
+                                    });
+                                }
+                            </li>
+                        }
+                        else
+                        {
+                            if (!string.IsNullOrEmpty(Model.Text))
+                            {
+                                <li>
+                                    @{var url = Regex.Replace(Model.Url ?? "", "<.*?>", String.Empty);
+                                        if (!string.IsNullOrEmpty(url))
+                                        {
+                                            <a href="@url">@Html.Raw(Model.Text)</a>
+                                        }
+                                        else
+                                        {
+                                            @Html.Raw(Model.Text)
+                                        }
+                                    }
+                                </li>
+                            }
+
+                            if (!string.IsNullOrEmpty(Model.Text1))
+                            {
+                                <li>
+                                    @{var url = Regex.Replace(Model.Url1 ?? "", "<.*?>", String.Empty);
+                                        if (!string.IsNullOrEmpty(url))
+                                        {
+                                            <a href="@url">@Html.Raw(Model.Text1)</a>
+                                        }
+                                        else
+                                        {
+                                            @Html.Raw(Model.Text1)
+                                        }
+                                    }
+                                </li>
+                            }
+                            if (!string.IsNullOrEmpty(Model.Text2))
+                            {
+                                <li>
+                                    @{var url = Regex.Replace(Model.Url2 ?? "", "<.*?>", String.Empty);
+                                        if (!string.IsNullOrEmpty(url))
+                                        {
+                                            <a href="@url">@Html.Raw(Model.Text2)</a>
+                                        }
+                                        else
+                                        {
+                                            @Html.Raw(Model.Text2)
+                                        }
+                                    }
+                                </li>
+                            }
+                            if (!string.IsNullOrEmpty(Model.Text3))
+                            {
+                                <li>
+                                    @{var url = Regex.Replace(Model.Url3 ?? "", "<.*?>", String.Empty);
+                                        if (!string.IsNullOrEmpty(url))
+                                        {
+                                            <a href="@url">@Html.Raw(Model.Text3)</a>
+                                        }
+                                        else
+                                        {
+                                            @Html.Raw(Model.Text3)
+                                        }
+                                    }
+                                </li>
+                            }
+                            if (!string.IsNullOrEmpty(Model.Text4))
+                            {
+                                <li>
+                                    @{var url = Regex.Replace(Model.Url4 ?? "", "<.*?>", String.Empty);
+                                        if (!string.IsNullOrEmpty(url))
+                                        {
+                                            <a href="@url">@Html.Raw(Model.Text4)</a>
+                                        }
+                                        else
+                                        {
+                                            @Html.Raw(Model.Text4)
+                                        }
+                                    }
+                                </li>
+                            }
+                            if (!string.IsNullOrEmpty(Model.Text5))
+                            {
+                                <li>
+                                    @{var url = Regex.Replace(Model.Url5 ?? "", "<.*?>", String.Empty);
+                                        if (!string.IsNullOrEmpty(url))
+                                        {
+                                            <a href="@url">@Html.Raw(Model.Text5)</a>
+                                        }
+                                        else
+                                        {
+                                            @Html.Raw(Model.Text5)
+                                        }
+                                    }
+                                </li>
+                            }
+                            if (!string.IsNullOrEmpty(Model.Text6))
+                            {
+                                <li>
+                                    @{var url = Regex.Replace(Model.Url6 ?? "", "<.*?>", String.Empty);
+                                        if (!string.IsNullOrEmpty(url))
+                                        {
+                                            <a href="@url">@Html.Raw(Model.Text6)</a>
+                                        }
+                                        else
+                                        {
+                                            @Html.Raw(Model.Text6)
+                                        }
+                                    }
+                                </li>
+                            }
+                            if (!string.IsNullOrEmpty(Model.Text7))
+                            {
+                                <li>
+                                    @{var url = Regex.Replace(Model.Url7 ?? "", "<.*?>", String.Empty);
+                                        if (!string.IsNullOrEmpty(url))
+                                        {
+                                            <a href="@url">@Html.Raw(Model.Text7)</a>
+                                        }
+                                        else
+                                        {
+                                            @Html.Raw(Model.Text7)
+                                        }
+                                    }
+                                </li>
+                            }
+                            if (!string.IsNullOrEmpty(Model.Text8))
+                            {
+                                <li>
+                                    @{var url = Regex.Replace(Model.Url8 ?? "", "<.*?>", String.Empty);
+                                        if (!string.IsNullOrEmpty(url))
+                                        {
+                                            <a href="@url">@Html.Raw(Model.Text8)</a>
+                                        }
+                                        else
+                                        {
+                                            @Html.Raw(Model.Text8)
+                                        }
+                                    }
+                                </li>
+                            }
+                            if (!string.IsNullOrEmpty(Model.Text9))
+                            {
+                                <li>
+                                    @{var url = Regex.Replace(Model.Url9 ?? "", "<.*?>", String.Empty);
+                                        if (!string.IsNullOrEmpty(url))
+                                        {
+                                            <a href="@url">@Html.Raw(Model.Text9)</a>
+                                        }
+                                        else
+                                        {
+                                            @Html.Raw(Model.Text9)
+                                        }
+                                    }
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

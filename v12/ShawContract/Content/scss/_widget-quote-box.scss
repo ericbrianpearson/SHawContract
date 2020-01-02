@@ -1,0 +1,73 @@
+.widget {
+    &.quote-box {
+        background-color: $white;
+        transition: $medium-transition;
+
+        .text-area {
+            padding: 13rem 2rem 0 6.5rem;
+        }
+
+        p {
+            &.the-quote {
+                color: $white;
+                font-size: 2.4rem;
+                font-weight: $regular;
+                margin: 0 0 2.6rem 0;
+                position: relative;
+
+                .fa-quote-left {
+                    left: -30px;
+                    opacity: .4;
+                    position: absolute;
+                    top: -25px;
+                }
+            }
+
+            &.the-attribution {
+                color: $white;
+                font-size: 2.2rem;
+                font-weight: $semibold;
+                margin: 0 0 4rem 0;
+            }
+
+            &.the-link {
+                a {
+                    color: $white;
+                    display: inline-block;
+                    font-size: 2rem;
+                    font-weight: $regular;  
+                    text-decoration: none;
+                    
+                    i { margin-left: 1rem; }
+
+                    span {
+                        border-bottom: solid 1px rgba(255,255,255,0.5);
+                        transition: $standard-transition;                        
+                    }
+
+                    &:hover {
+                        span {
+                            border-bottom: solid 1px rgba(255,255,255,1);
+                        }
+                    }
+                }
+            }
+        }
+
+        &.now-viewable {
+            background-color: $red-regular;
+        }
+
+        @media (max-width: $below-desktop-size) {
+            .text-area {
+                padding: 8rem 0 0 6rem;
+            }
+        }
+
+        @media (max-width: $below-laptop-size) {
+            .text-area {
+                padding: 10rem 5rem 6rem 8rem;
+            }
+        }
+    }
+}

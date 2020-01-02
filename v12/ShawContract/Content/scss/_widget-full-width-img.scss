@@ -1,0 +1,63 @@
+.widget {
+    &.full-width-img {
+        position: relative;
+
+        .gray-stripe {
+            background-color: $white;
+            height: 486px;
+            position: absolute; top: 7rem; left: 0; z-index: 1;
+            transition: $medium-transition;
+            width: 100%;
+        }
+
+        .img-box {
+            position: relative;
+            z-index: 2;
+
+            .full-img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        .card {
+            position: absolute;
+            bottom: 5rem;
+            left: 5rem;
+            width: 52rem;
+        }
+
+        &.right {
+            .card {
+                left: unset;
+                right: 5rem;
+            }
+        }
+
+        &.now-viewable {
+            .gray-stripe {
+                background-color: $gray-semilight;
+            }
+        }
+
+        @media (max-width: $below-tablet-size) {
+            &.right {
+                .card {
+                    position: relative;
+                    bottom: unset;
+                    left: unset;
+                    right: unset;
+                    width: 100%;
+                }
+            }
+
+            .card {
+                position: relative;
+                bottom: unset;
+                left: unset;
+                right: unset;
+                width: 100%;
+            }            
+        }
+    }
+}

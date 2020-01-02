@@ -1,0 +1,55 @@
+.widget {
+    &.button-collection {
+        
+        .description {
+            color: $black;
+            font-size: 2.4rem;
+            font-weight: $regular;
+            margin: 0 0 3rem 0;            
+        }
+
+        .button-list {
+            li {
+                a {
+                    color: $blue-regular;
+                    border: solid 1px $blue-regular;
+                    display: inline-block;
+                    font-size: 1.4rem;
+                    margin: 0 0 1.5rem 0;
+                    padding: 15px 40px;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    transition: $standard-transition;
+
+                    &:hover {
+                        background-color: $red-regular;
+                        border-color: $red-regular;
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: $below-tablet-size) {
+    .widget {
+        &.button-collection {
+            .title {
+                font-size: 3rem;
+            }
+
+            .description {
+                font-size: 2rem;
+            }
+
+            .button-list {
+                li {
+                    a {
+                        margin: 0 0 1rem 0;
+                    }
+                }
+            }    
+        }
+    }
+}

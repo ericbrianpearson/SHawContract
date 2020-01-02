@@ -1,0 +1,105 @@
+﻿@using ShawContract.Models.InlineEditors
+@using ShawContract.Models.Widgets.DoubleImageWidget
+@using System.Text.RegularExpressions
+@using ShawContract.Models.Widgets.WidgetShared;
+@model ShawContract.Models.Widgets.DoubleImageWidget.DoubleImageWidgetViewModel
+
+@{
+    var editMode = Context.Kentico().PageBuilder().EditMode;
+    var smallImageUrl = string.IsNullOrEmpty(Model.SmallImage) ? "https://placehold.it/387x274/a3d1d0" : Model.SmallImage;
+    var largeImageUrl = string.IsNullOrEmpty(Model.LargeImage) ? "https://placehold.it/775x539" : Model.LargeImage;
+}
+
+<section class="widget double-floating-img now-viewable">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="relative-wrapper">
+                    <div class="img-box">
+                        <img class="" src="@largeImageUrl" alt="description">
+                        <p class="photo-credits left">
+                            @if (editMode)
+                            {
+                                Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                                {
+                                    PropertyName = nameof(DoubleImageWidgetProperties.LargeImagePhotoCredit),
+                                    Text = Model.LargeImagePhotoCredit,
+                                    EnableFormatting = false
+                                });
+                            }
+                            else
+                            {
+                                @Regex.Replace(Model.LargeImagePhotoCredit ?? "", "<.*?>", String.Empty);
+                            }
+                        </p>
+                    </div>
+                    <div class="ghost-box"></div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card info-card text-left">
+                    <div class="card-body">
+                        <div class="mark"></div>
+                        <h5 class="card-title">
+                            @if (editMode)
+                            {
+                                Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                                {
+                                    PropertyName = nameof(DoubleImageWidgetProperties.Title),
+                                    Text = Model.Title,
+                                    EnableFormatting = false
+                                });
+                            }
+                            else
+                            {
+                                @Regex.Replace(Model.Title ?? "", "<.*?>", String.Empty);
+                            }
+                        </h5>
+                        <p class="card-text">
+                            @if (editMode)
+                            {
+                                Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                                {
+                                    PropertyName = nameof(DoubleImageWidgetProperties.Description),
+                                    Text = Model.Description,
+                                    EnableFormatting = true
+                                });
+                            }
+                            else
+                            {
+                                @Html.Raw(Model.Description)
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-5 offset-lg-6 d-xs-none d-sm-none d-md-none d-lg-block d-xl-block">
+                <div class="relative-wrapper">
+                    <div class="shift-box">
+                        <div class="img-box">
+                            <img class="" src="@smallImageUrl" alt="description">
+                            <p class="photo-credits">
+                                @if (editMode)
+                                {
+                                    Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                                    {
+                                        PropertyName = nameof(DoubleImageWidgetProperties.SmallImagePhotoCredit),
+                                        Text = Model.SmallImagePhotoCredit,
+                                        EnableFormatting = false
+                                    });
+                                }
+                                else
+                                {
+                                    @Regex.Replace(Model.SmallImagePhotoCredit ?? "", "<.*?>", String.Empty);
+                                }
+                            </p>
+                        </div>
+                    </div>
+                    <div class="push-box"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

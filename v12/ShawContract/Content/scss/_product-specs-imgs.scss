@@ -1,0 +1,197 @@
+.product-specs-imgs {
+
+    .product-left {
+
+        .product-rendering-swap-area {
+            font-size: inherit;
+        }
+
+        .feature-photo {
+            font-size: inherit;
+        }
+
+    }
+
+    .product-right {
+
+        h1 {
+            &.style-name {
+                font-size: 3.2rem;
+                font-weight: $regular;
+
+                margin: 0 0 1.5rem 0;
+                padding: 0;
+            }
+        }
+
+        p {
+            color: $black;
+            font-size: 1.6rem;
+            padding: 0;
+            margin: 0;
+
+            &.style-number {
+                font-size: 1.4rem;
+                font-weight: $medium;
+            }
+            &.collection-name {
+                font-size: 1.6rem;
+                font-weight: $medium;
+            }
+            &.size-info {
+                font-size: 1.6rem;
+            }
+            &.color-info {
+                font-size: 1.6rem;
+
+                .btn-sup {
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+            &.color-options {
+                font-size: 1.4rem;
+                margin: 0 0 5px 0;
+
+                &:last-child { margin: 0; }
+            }
+
+            strong { font-weight: $medium; }
+        }
+
+        .product-specs {
+            .color-button-list {
+                ul {
+                    li {
+                        display: inline-block;
+                        height: 62px;
+                        margin: 0 2px 0 0;
+                        overflow: hidden;
+                        padding: 0;
+                        width: 62px;
+
+                        .btn-choose-color {
+                            border: solid 0 transparent;
+                            border-radius: 0;
+                            display: block;
+                            height: 62px;
+                            margin: 0;
+                            overflow: hidden;
+                            padding: 0;
+                            width: 62px;
+
+                            &.active, &:hover {
+                                border: solid 2px $red-regular;
+
+                                img {
+                                    height: 58px; width: 58px;
+                                }
+                            }
+
+                            img { height: 62px; width: 62px;}
+                        }
+                    }
+                }
+            }
+
+            .color-options-box {
+                background: $gray-semilight;
+                border-style: none;
+                margin: 10px 0;
+                padding: 2px 5px;
+            }
+
+            .social-share-icons {
+                li {
+                    display: inline-block;
+                    margin: 0 5px 0 0;
+
+                    .btn-share-social {
+                        color: $gray-regular;
+                        font-size: 1.6rem;
+                        transition: $standard-transition;
+
+                        &:hover {
+                            background-color: $red-regular;
+                            color: $white;
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+
+        .product-spec-accordion {
+
+            .card { 
+                border-style: none; 
+                border-bottom: solid 1px #D8D8D8;
+
+                &:last-child { border-style: none; }
+            }
+
+            p {
+                font-size: 1.4rem;
+                margin: 0 0 15px 0;
+            }
+
+            .card-header {
+                background: $white;
+                border-style: none;
+
+                .btn-link {
+                    color: $black;
+                    display: block;
+                    font-size: 1.8rem;
+                    text-align: left;
+                    width: 100%;
+
+                    i {
+                        color: $black;
+                        float: right;
+                        font-size: 1.8rem;
+                        margin: 6px 0 0 0;
+
+                        &.open {
+                            display: none;
+                        }
+                        &.close {
+                            display: block;
+                            opacity: 1;
+                        }
+                    }
+
+                    &.collapsed {
+                        i {
+                            &.open {
+                                display: block;
+                            }
+                            &.close {
+                                display: none;
+                            }                            
+                        }
+                    }
+                }
+            }
+
+            .card-body {
+                padding: .5rem 2rem 2rem 2rem;
+
+                ul {
+                    margin: 0 0 15px 0;
+
+                    li {
+                        font-size: 1.4rem;
+                        margin-bottom: 5px;
+    
+                        strong {
+                            font-weight: $medium;
+                        }
+                    }                    
+                }
+            }
+        }
+
+    }
+
+}

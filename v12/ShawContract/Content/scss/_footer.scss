@@ -1,0 +1,130 @@
+footer {
+    &.primary {
+        background: $black;
+        color: $white;
+
+        flex-shrink: none;
+        font-size: 1.4rem;
+
+        .logo {
+            color: $white;
+        }
+
+        nav {
+
+            ul {
+                &.list-unstyled {
+
+                    margin: 0 0 .6rem 0;
+                    padding: 0;
+
+                    li {
+                        display: inline-block;
+                    }
+                }
+            }
+
+            &.tertiary-links {
+                a {
+                    color: $gray-regular;
+                    font-size: 1.4rem;
+                    font-weight: $regular;
+                    padding: 0 1.5rem 0 0;
+                    transition: $standard-transition;
+
+                    &:hover {
+                        color: $white;
+                    }
+                }
+            }
+
+            &.legal-links {
+                li {
+                    color: $gray-semibold;
+                    font-size: 1.3rem;
+                    font-weight: $regular;
+
+                    a {
+                        border-left: solid 1px $gray-semibold;
+                        color: $gray-semibold;
+                        font-size: 1.3rem;
+                        font-weight: $regular;
+                        padding: 0 .6rem 0 .9rem;
+
+                        &:hover {
+                            color: $white;
+                        }                        
+                    }
+
+                    span {
+                        display: inline-block;
+                        padding: 0 .5rem 0 0;
+                    }
+                }
+            }
+
+            &.social-links {
+                a.social {
+                    background: $white;
+                    border-radius: 30px;
+                    color: $black;
+                    display: block;
+                    font-size: 1.5rem;
+                    height: 25px;
+                    margin: 0 .5rem .7rem 0;
+                    opacity: .6;
+                    padding: 2px;
+                    text-align: center;
+                    transition: $standard-transition;
+                    width: 25px;
+
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+            }
+
+        }
+
+        .product-launch-newsletter {
+            label {
+                color: $gray-regular;
+                display: block;
+                font-size: 1.35rem;
+            }
+            .input-group {
+                input[type="text"] {
+                    background: $gray-bold;
+                    border-radius: 0;
+                    border: solid 1px $gray-bold;
+                    color: $white;
+                    font-size: 1.4rem;
+                    font-weight: $regular;
+                    margin-right: .5rem;
+                    opacity: 1;
+                    padding: 1.6rem 1.2rem; 
+                }
+
+                .btn {
+                    border: solid 1px $gray-regular;
+                    border-radius: 0;
+                    color: $gray-regular;
+                    font-size: 1.4rem;
+                    padding: 0 1.2rem;
+                    transition: $standard-transition;
+
+                    &:hover {
+                        background: $white;
+                        border-color: $white;
+                        color: $black;
+                        font-weight: $semibold;
+                    }
+                }
+            }
+
+            .error {
+                padding: .2rem 0;
+            }
+        }
+    }
+}

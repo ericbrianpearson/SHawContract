@@ -1,0 +1,105 @@
+﻿@using ShawContract.Utils
+@using ShawContract.Models.Widgets.WidgetShared;
+@using ShawContract.Models.Widgets.FullWidthPhotoWidget;
+@using ShawContract.Models.InlineEditors;
+@using System.Text.RegularExpressions;
+
+@model ShawContract.Models.Widgets.FullWidthPhotoWidget.FullWidthPhotoViewModel
+
+@{
+    var editMode = Context.Kentico().PageBuilder().EditMode;
+    var imageUrl = Url.KenticoImageUrl(Model.ImageUrl) ?? "https://placehold.it/785x539";
+    var imagePosition = Model.TextBoxAlignment == "right" ? "img-right" : string.Empty;
+
+}
+<style>
+    .img-right {
+        margin-left: 45rem;
+    }
+</style>
+
+<section class="widget full-width-img now-viewable">
+    <div class="gray-stripe"></div>
+    <div class="container">
+        <div class="img-box">
+            <img class="full-img" src="@imageUrl" alt="description">
+            <p class="photo-credits">
+                @if (editMode)
+                {
+                    Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                    {
+                        PropertyName = nameof(FullWidthPhotoWidgetProperties.PhotoCredit),
+                        Text = Model.PhotoCredit,
+                        EnableFormatting = false
+                    });
+                }
+                else
+                {
+                    @Regex.Replace(Model.PhotoCredit ?? "", "<.*?>", String.Empty)
+                }
+            </p>
+
+            <div class="col-lg-8 card info-card @imagePosition">
+                <div class="card-body">
+                    <div class="mark"></div>
+                    <h5 class="card-title">
+                        @if (editMode)
+                        {
+                            Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                            {
+                                PropertyName = nameof(FullWidthPhotoWidgetProperties.Title),
+                                Text = Model.Title,
+                                EnableFormatting = false
+                            });
+                        }
+                        else
+                        {
+                            @Regex.Replace(Model.Title ?? "", "<.*?>", String.Empty)
+                        }
+                    </h5>
+                    <p class="card-text">
+                        @if (editMode)
+                        {
+                            Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                            {
+                                PropertyName = nameof(FullWidthPhotoWidgetProperties.Description),
+                                Text = Model.Description,
+                                EnableFormatting = false
+                            });
+                        }
+                        else
+                        {
+                            @Regex.Replace(Model.Description ?? "", "<.*?>", String.Empty)
+                        }
+                    </p>
+                    <a href="@Model.ButtonUrl" class="btn btn-card">
+
+                        @if (editMode)
+                        {
+                            Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                            {
+                                PropertyName = nameof(FullWidthPhotoWidgetProperties.ButtonText),
+                                Text = Model.ButtonText,
+                                EnableFormatting = false
+                            });
+                        }
+                        else
+                        {
+                            @Regex.Replace(Model.ButtonText ?? "", "<.*?>", String.Empty)
+                        }
+
+                        @if (editMode)
+                        {
+                            Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                            {
+                                PropertyName = nameof(FullWidthPhotoWidgetProperties.ButtonUrl),
+                                Text = Model.ButtonUrl,
+                                EnableFormatting = false
+                            });
+                        }
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

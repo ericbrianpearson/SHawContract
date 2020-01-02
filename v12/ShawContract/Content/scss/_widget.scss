@@ -1,0 +1,36 @@
+.widget {
+    margin: 7rem 0 8.5rem 0;
+
+    .mark {
+        background-color: $blue-regular;
+        height: 2px;
+        margin: 10px auto;
+        padding: 0;
+        width: 45px;
+
+        &.red {
+            background-color: $red-regular;
+        }
+    }    
+
+    .subtitle {
+        color: $red-regular;
+        font-size: 1.4rem;
+        font-weight: $regular;
+        margin: 0 0 .5rem 0;
+        text-transform: uppercase;       
+    }
+
+    .title {
+        color: $black;
+        font-size: 3.6rem;
+        font-weight: $regular;
+        margin: 0 0 2rem 0;
+    }    
+
+    .photo-credits {
+        color: $black;
+        font-size: 1.4rem;
+        font-weight: $regular;
+    }
+}

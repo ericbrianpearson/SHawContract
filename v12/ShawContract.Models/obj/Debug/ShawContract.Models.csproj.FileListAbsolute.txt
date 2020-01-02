@@ -1,0 +1,9 @@
+C:\_Projects\Shaw.ShawContract\v12\ShawContract.Models\bin\Debug\ShawContract.Models.dll.config
+C:\_Projects\Shaw.ShawContract\v12\ShawContract.Models\bin\Debug\ShawContract.Models.dll
+C:\_Projects\Shaw.ShawContract\v12\ShawContract.Models\bin\Debug\ShawContract.Models.pdb
+C:\_Projects\Shaw.ShawContract\v12\ShawContract.Models\bin\Debug\Newtonsoft.Json.dll
+C:\_Projects\Shaw.ShawContract\v12\ShawContract.Models\bin\Debug\Newtonsoft.Json.xml
+C:\_Projects\Shaw.ShawContract\v12\ShawContract.Models\obj\Debug\ShawContract.Models.csproj.CoreCompileInputs.cache
+C:\_Projects\Shaw.ShawContract\v12\ShawContract.Models\obj\Debug\ShawContract.Models.csproj.CopyComplete
+C:\_Projects\Shaw.ShawContract\v12\ShawContract.Models\obj\Debug\ShawContract.Models.dll
+C:\_Projects\Shaw.ShawContract\v12\ShawContract.Models\obj\Debug\ShawContract.Models.pdb

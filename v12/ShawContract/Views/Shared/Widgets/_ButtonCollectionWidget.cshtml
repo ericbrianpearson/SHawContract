@@ -1,0 +1,83 @@
+﻿@using ShawContract.Models.Widgets.ButtonCollectionWidget
+@using ShawContract.Models.InlineEditors
+@using System.Text.RegularExpressions
+@model ShawContract.Models.Widgets.ButtonCollectionWidget.ButtonCollectionWidgetViewModel
+
+@{
+    var editMode = Context.Kentico().PageBuilder().EditMode;
+}
+
+<div class="container">
+    <section class="widget button-collection">
+
+        <div class="mark"></div>
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2 text-center">
+                <h2 class="title">
+                    @if (editMode)
+                    {
+                        Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel()
+                        {
+                            PropertyName = nameof(ButtonCollectionWidgetProperties.Title),
+                            Text = Model.Title,
+                            EnableFormatting = false
+                        });
+                    }
+                    else
+                    {
+                        @Regex.Replace(Model.Title ?? "", "<.*?>", String.Empty)
+
+                    }
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2 text-center">
+                <p class="description">
+                    @if (editMode)
+                    {
+                        Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel()
+                        {
+                            PropertyName = nameof(ButtonCollectionWidgetProperties.Text),
+                            Text = Model.Text,
+                            EnableFormatting = true
+
+                        });
+                    }
+                    else
+                    {
+                        @Html.Raw(Model.Text);
+                    }
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2 text-center">
+                <ul class="list-unstyled button-list">
+                    @if (!string.IsNullOrWhiteSpace(Model.Button1Text) && !string.IsNullOrWhiteSpace(Model.Button1Url))
+                    {
+                        <li><a href="@Model.Button1Url">@Model.Button1Text</a></li>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(Model.Button2Text) && !string.IsNullOrWhiteSpace(Model.Button2Url))
+                    {
+                        <li><a href="@Model.Button2Url">@Model.Button2Text</a></li>
+
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(Model.Button3Text) && !string.IsNullOrWhiteSpace(Model.Button3Url))
+                    {
+                        <li><a href="@Model.Button1Url">@Model.Button1Text</a></li>
+
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(Model.Button4Text) && !string.IsNullOrWhiteSpace(Model.Button4Url))
+                    {
+                        <li><a href="@Model.Button4Url">@Model.Button4Text</a></li>
+
+                    }
+                </ul>
+            </div>
+        </div>
+    </section>
+</div>

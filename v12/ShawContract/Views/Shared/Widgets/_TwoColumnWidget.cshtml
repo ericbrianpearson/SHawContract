@@ -1,0 +1,72 @@
+﻿@using ShawContract.Models.Widgets.TwoColumnWidget
+@using System.Text.RegularExpressions
+@using ShawContract.Models.InlineEditors
+
+@model ShawContract.Models.Widgets.TwoColumnWidget.TwoColumnWidgetViewModel
+
+@{
+    bool editMode = Context.Kentico().PageBuilder().EditMode;
+}
+
+<div class="container">
+    <section class="widget two-column now-viewable">
+
+        <div class="mark"></div>
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2 text-center">
+                <h2 class="title">
+                    @if (editMode)
+                    {
+                        Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                        {
+                            PropertyName = nameof(TwoColumnWidgetProperties.Title),
+                            Text = Model.Title,
+                            EnableFormatting = false
+                        });
+                    }
+                    else
+                    {
+                        @Regex.Replace(Model.Title ?? "", "<.*?>", String.Empty)
+                    }
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5 offset-sm-1">
+                <p class="description">
+                    @if (editMode)
+                    {
+                        Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                        {
+                            PropertyName = nameof(TwoColumnWidgetProperties.ContentLeft),
+                            Text = Model.ContentLeft,
+                            EnableFormatting = true
+                        });
+                    }
+                    else
+                    {
+                        @Html.Raw(Model.ContentLeft)
+                    }
+                </p>
+            </div>
+
+            <div class="col-sm-5 offset-sm-1">
+                <p class="description">
+                    @if (editMode)
+                    {
+                        Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                        {
+                            PropertyName = nameof(TwoColumnWidgetProperties.ContentRight),
+                            Text = Model.ContentRight,
+                            EnableFormatting = true
+                        });
+                    }
+                    else
+                    {
+                        @Html.Raw(Model.ContentRight)
+                    }
+                </p>
+            </div>
+        </div>
+    </section>
+</div>

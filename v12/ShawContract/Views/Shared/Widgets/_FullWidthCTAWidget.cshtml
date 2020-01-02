@@ -1,0 +1,75 @@
+﻿@using ShawContract.Models.InlineEditors
+@using ShawContract.Models.Widgets.FullWidthCTAWidget
+@using System.Text.RegularExpressions
+
+@model ShawContract.Models.Widgets.FullWidthCTAWidget.FullWidthCTAWidgetViewModel
+
+@{
+    bool editMode = Context.Kentico().PageBuilder().EditMode;
+}
+
+<section class="widget cta-block">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2 text-center">
+                <h2 class="title">
+                    @if (editMode)
+                    {
+                        Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                        {
+                            PropertyName = nameof(FullWidthCTAWidgetProperties.Title),
+                            Text = Model.Title,
+                            EnableFormatting = false
+                        });
+                    }
+                    else
+                    {
+                        @Regex.Replace(Model.Title ?? "", "<.*?>", String.Empty)
+                    }
+                </h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2 text-center">
+                <p class="description">
+                    @if (editMode)
+                    {
+                        Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                        {
+                            PropertyName = nameof(FullWidthCTAWidgetProperties.Description),
+                            Text = Model.Description,
+                            EnableFormatting = true
+                        });
+                    }
+                    else
+                    {
+                        @Html.Raw(Model.Description)
+                    }
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2 text-center">
+                <a class="cta-link" href="@Model.ButtonUrl">
+                    @if (editMode)
+                    {
+                        Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                        {
+                            PropertyName = nameof(FullWidthCTAWidgetProperties.ButtonLinkText),
+                            Text = Model.ButtonText,
+                            EnableFormatting = false
+                        });
+                    }
+                    else
+                    {
+                        @Regex.Replace(Model.ButtonText ?? "", "<.*?>", String.Empty)
+                    }
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="color-bar"><span></span></div>
+</section>

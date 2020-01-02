@@ -1,0 +1,50 @@
+// TRANSITION
+$standard-transition: all linear 0.3s;
+$medium-transition: all linear 1.3s;
+
+// FONT RELATED
+$fontStack: "Poppins", Arial, sans-serif;
+$regular: 400;
+$medium: 500;
+$semibold: 600;
+$letter-spacing: 2px;
+
+// OVERRIDING BOOTSTRAP VARIABLES
+$h1-font-size: 2.4rem;
+$h2-font-size: 2rem;
+$h3-font-size: 1.8rem;
+$h4-font-size: 1.6rem;
+$h5-font-size: 1.4rem;
+
+// SCREEN SIZES
+$larger-desktop-size: 1441px;
+$desktop-size: 1200px;
+$larger-laptop-size: 1024px;
+$laptop-size: 992px;
+$tablet-size: 768px;
+$mobile-size: 576px;
+
+$below-desktop-size: 1439px;
+$below-desktop-size: 1199px;
+$bellow-larger-laptop-size: 1024px;
+$below-laptop-size: 991px;
+$below-tablet-size: 767px;
+$below-mobile-size: 575px;
+
+// COLORS
+$black: #000;
+$white: #fff;
+
+$gray-light: #fafafa;
+$gray-semilight: #f2f2f2;
+$gray-regular: #a2a2a2;
+$gray-semibold: #757575;
+$gray-bold: #414141;
+
+$blue-regular: #127392;
+$green-regular: #07815c;
+$red-regular: #f15a59;
+$yellow-regular: #fece40;
+
+$error-bg: #fdebeb;
+$error-border: #f15a59; 

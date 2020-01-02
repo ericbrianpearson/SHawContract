@@ -1,0 +1,2594 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Kentico.Kontent.Delivery</name>
+    </assembly>
+    <members>
+        <member name="T:Kentico.Kontent.Delivery.DeliveryClientBuilder">
+            <summary>
+            A builder of <see cref="T:Kentico.Kontent.Delivery.IDeliveryClient"/> instances.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClientBuilder.WithProjectId(System.String)">
+            <summary>
+            Use project identifier.
+            </summary>
+            <param name="projectId">The identifier of a Kentico Kontent project.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClientBuilder.WithProjectId(System.Guid)">
+            <summary>
+            Use project identifier.
+            </summary>
+            <param name="projectId">The identifier of a Kentico Kontent project.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClientBuilder.WithOptions(System.Func{Kentico.Kontent.Delivery.Builders.DeliveryOptions.IDeliveryOptionsBuilder,Kentico.Kontent.Delivery.DeliveryOptions})">
+            <summary>
+            Use additional configuration.
+            </summary>
+            <param name="buildDeliveryOptions">A delegate that creates an instance of the <see cref="T:Kentico.Kontent.Delivery.DeliveryOptions"/> using the specified <see cref="T:Kentico.Kontent.Delivery.DeliveryOptionsBuilder"/>.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.Builders.DeliveryClient.IDeliveryClientBuilder">
+            <summary>
+            A builder abstraction of mandatory setup of <see cref="T:Kentico.Kontent.Delivery.IDeliveryClient"/> instances.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Builders.DeliveryClient.IDeliveryClientBuilder.BuildWithProjectId(System.String)">
+            <seealso cref="M:Kentico.Kontent.Delivery.DeliveryClientBuilder.WithProjectId(System.String)"/>>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Builders.DeliveryClient.IDeliveryClientBuilder.BuildWithProjectId(System.Guid)">
+            <seealso cref="M:Kentico.Kontent.Delivery.DeliveryClientBuilder.WithProjectId(System.Guid)"/>>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Builders.DeliveryClient.IDeliveryClientBuilder.BuildWithDeliveryOptions(System.Func{Kentico.Kontent.Delivery.Builders.DeliveryOptions.IDeliveryOptionsBuilder,Kentico.Kontent.Delivery.DeliveryOptions})">
+            <seealso cref="M:Kentico.Kontent.Delivery.DeliveryClientBuilder.WithOptions(System.Func{Kentico.Kontent.Delivery.Builders.DeliveryOptions.IDeliveryOptionsBuilder,Kentico.Kontent.Delivery.DeliveryOptions})"/>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.Builders.DeliveryClient.IOptionalClientSetup">
+            <summary>
+            A builder abstraction of optional setup of <see cref="T:Kentico.Kontent.Delivery.IDeliveryClient"/> instances.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Builders.DeliveryClient.IOptionalClientSetup.WithHttpClient(System.Net.Http.HttpClient)">
+            <summary>
+            Use a custom HTTP client.
+            </summary>
+            <param name="httpClient">A custom HTTP client.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Builders.DeliveryClient.IOptionalClientSetup.WithContentLinkUrlResolver(Kentico.Kontent.Delivery.IContentLinkUrlResolver)">
+            <summary>
+            Use a custom object to provide URL for content links in rich text elements.
+            </summary>
+            <param name="contentLinkUrlResolver">An instance of the <see cref="T:Kentico.Kontent.Delivery.IContentLinkUrlResolver"/>.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Builders.DeliveryClient.IOptionalClientSetup.WithInlineContentItemsResolver``1(Kentico.Kontent.Delivery.InlineContentItems.IInlineContentItemsResolver{``0})">
+            <summary>
+            Use an object to transform linked items and components of the specified type in rich text elements to a valid HTML fragment.
+            </summary>
+            <typeparam name="T">The type of the linked item or component to transform.</typeparam>
+            <param name="inlineContentItemsResolver">An instance of the <see cref="T:Kentico.Kontent.Delivery.InlineContentItems.IInlineContentItemsResolver`1"/>.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Builders.DeliveryClient.IOptionalClientSetup.WithInlineContentItemsProcessor(Kentico.Kontent.Delivery.InlineContentItems.IInlineContentItemsProcessor)">
+            <summary>
+            Use a custom object to transform HTML content of rich text elements.
+            </summary>
+            <param name="inlineContentItemsProcessor">An instance of the <see cref="T:Kentico.Kontent.Delivery.InlineContentItems.IInlineContentItemsProcessor"/>.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Builders.DeliveryClient.IOptionalClientSetup.WithModelProvider(Kentico.Kontent.Delivery.IModelProvider)">
+            <summary>
+            Use a custom provider to convert JSON data into objects.
+            </summary>
+            <param name="modelProvider">An instance of the <see cref="T:Kentico.Kontent.Delivery.IModelProvider"/>.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Builders.DeliveryClient.IOptionalClientSetup.WithTypeProvider(Kentico.Kontent.Delivery.ITypeProvider)">
+            <summary>
+            Use a custom provider to map content type codenames to content type objects.
+            </summary>
+            <param name="typeProvider">An instance of the <see cref="T:Kentico.Kontent.Delivery.ITypeProvider"/>.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Builders.DeliveryClient.IOptionalClientSetup.WithRetryPolicyProvider(Kentico.Kontent.Delivery.RetryPolicy.IRetryPolicyProvider)">
+            <summary>
+            Use a custom provider to create retry polices for HTTP requests.
+            </summary>
+            <param name="retryPolicyProvider">An instance of the <see cref="T:Kentico.Kontent.Delivery.RetryPolicy.IRetryPolicyProvider"/>.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Builders.DeliveryClient.IOptionalClientSetup.WithPropertyMapper(Kentico.Kontent.Delivery.IPropertyMapper)">
+            <summary>
+            Use a custom mapper to determine relationships between elements of a content item and properties of a model that represents this item.
+            </summary>
+            <param name="propertyMapper">An instance of the <see cref="T:Kentico.Kontent.Delivery.IPropertyMapper"/>.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.Builders.DeliveryClient.IDeliveryClientBuild">
+            <summary>
+            A builder abstraction of the last step in the setup of <see cref="T:Kentico.Kontent.Delivery.IDeliveryClient"/> instances.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Builders.DeliveryClient.IDeliveryClientBuild.Build">
+            <summary>
+            Returns a new instance of the <see cref="T:Kentico.Kontent.Delivery.IDeliveryClient"/>.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.Builders.DeliveryOptions.IDeliveryOptionsBuilder">
+            <summary>
+            A builder abstraction of mandatory setup of <see cref="N:Kentico.Kontent.Delivery.Builders.DeliveryOptions"/> instances.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Builders.DeliveryOptions.IDeliveryOptionsBuilder.WithProjectId(System.String)">
+            <summary>
+            Use project identifier.
+            </summary>
+            <param name="projectId">The identifier of a Kentico Kontent project.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Builders.DeliveryOptions.IDeliveryOptionsBuilder.WithProjectId(System.Guid)">
+            <summary>
+            Use project identifier.
+            </summary>
+            <param name="projectId">The identifier of a Kentico Kontent project.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.Builders.DeliveryOptions.IDeliveryApiConfiguration">
+            <summary>
+            A builder abstraction of API setup of <see cref="N:Kentico.Kontent.Delivery.Builders.DeliveryOptions"/> instances.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Builders.DeliveryOptions.IDeliveryApiConfiguration.UseProductionApi">
+            <summary>
+            Use Production API with secure access disabled to retrieve content.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Builders.DeliveryOptions.IDeliveryApiConfiguration.UseProductionApi(System.String)">
+            <summary>
+            Use Production API with secure access enabled to retrieve content.
+            </summary>
+            <param name="secureAccessApiKey">An API key for secure access.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Builders.DeliveryOptions.IDeliveryApiConfiguration.UsePreviewApi(System.String)">
+            <summary>
+            Use Preview API to retrieve content.
+            </summary>
+            <param name="previewApiKey">A Preview API key.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.Builders.DeliveryOptions.IOptionalDeliveryConfiguration">
+            <summary>
+            A builder abstraction of optional setup of <see cref="N:Kentico.Kontent.Delivery.Builders.DeliveryOptions"/> instances.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Builders.DeliveryOptions.IOptionalDeliveryConfiguration.DisableRetryPolicy">
+            <summary>
+            Disable retry policy for HTTP requests.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Builders.DeliveryOptions.IOptionalDeliveryConfiguration.WaitForLoadingNewContent">
+            <summary>
+            Provide content that is always up-to-date.
+            We recommend to wait for new content when you have received a webhook notification.
+            However, the request might take longer than usual to complete.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Builders.DeliveryOptions.IOptionalDeliveryConfiguration.IncludeTotalCount">
+            <summary>
+            Include the total number of items matching the search criteria in the response.
+            This behavior can also be enabled for individual requests with the <see cref="T:Kentico.Kontent.Delivery.IncludeTotalCountParameter"/>.
+            Please note that using this option might increase the response time.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Builders.DeliveryOptions.IOptionalDeliveryConfiguration.WithDefaultRetryPolicyOptions(Kentico.Kontent.Delivery.DefaultRetryPolicyOptions)">
+            <summary>
+            Change configuration of the default retry policy.
+            </summary>
+            <param name="retryPolicyOptions">Configuration of the default retry policy.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Builders.DeliveryOptions.IOptionalDeliveryConfiguration.WithCustomEndpoint(System.String)">
+            <summary>
+            Use a custom format for the Production or Preview API endpoint address.
+            The project identifier will be inserted at the position of the first format item "{0}".
+            </summary>
+            <remarks>
+            While both HTTP and HTTPS protocols are supported, we recommend always using HTTPS.
+            </remarks>
+            <param name="customEndpoint">A custom format for the Production API endpoint address.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Builders.DeliveryOptions.IOptionalDeliveryConfiguration.WithCustomEndpoint(System.Uri)">
+            <summary>
+            Use a custom format for the Production or Preview API endpoint address.
+            The project identifier will be inserted at the position of the first format item "{0}".
+            </summary>
+            <remarks>
+            While both HTTP and HTTPS protocols are supported, we recommend always using HTTPS.
+            </remarks>
+            <param name="customEndpoint">A custom endpoint URI.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.Builders.DeliveryOptions.IDeliveryOptionsBuild">
+            <summary>
+            A builder abstraction of the last step in setup of <see cref="N:Kentico.Kontent.Delivery.Builders.DeliveryOptions"/> instances.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Builders.DeliveryOptions.IDeliveryOptionsBuild.Build">
+            <summary>
+            Returns a new instance of the <see cref="N:Kentico.Kontent.Delivery.Builders.DeliveryOptions"/> class.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.DeliveryOptionsBuilder">
+            <summary>
+            A builder of <see cref="T:Kentico.Kontent.Delivery.DeliveryOptions"/> instances.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryOptionsBuilder.CreateInstance">
+            <summary>
+            Creates a new instance of the <see cref="T:Kentico.Kontent.Delivery.DeliveryOptionsBuilder"/> class.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.DeliveryOptionsValidator">
+            <summary>
+            Validates instances of the <see cref="T:Kentico.Kontent.Delivery.DeliveryOptions"/> class.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryOptionsValidator.Validate(Kentico.Kontent.Delivery.DeliveryOptions)">
+            <summary>
+            Validates an instance of the <see cref="T:Kentico.Kontent.Delivery.DeliveryOptions"/> class if it is compatible with <see cref="T:Kentico.Kontent.Delivery.DeliveryClient"/>.
+            If the configuration is not valid, an exception is thrown.
+            </summary>
+            <param name="deliveryOptions">An instance of the <see cref="T:Kentico.Kontent.Delivery.DeliveryOptions"/> class.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.ImageTransformation.ImageCompression">
+            <summary>
+            Types of image compression.
+            </summary>
+        </member>
+        <member name="F:Kentico.Kontent.Delivery.ImageTransformation.ImageCompression.Lossless">
+            <summary>
+            Allows the original data to be perfectly reconstructed from the compressed data.
+            </summary>
+        </member>
+        <member name="F:Kentico.Kontent.Delivery.ImageTransformation.ImageCompression.Lossy">
+            <summary>
+            Irreversible compression where partial data are discarded.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.ImageTransformation.ImageFitMode">
+            <summary>
+            Specifies the possible modes for fit transformation.
+            </summary>
+        </member>
+        <member name="F:Kentico.Kontent.Delivery.ImageTransformation.ImageFitMode.Clip">
+            <summary>
+            Resizes the image to fit within the width and height boundaries without cropping or distorting the image.
+            </summary>
+        </member>
+        <member name="F:Kentico.Kontent.Delivery.ImageTransformation.ImageFitMode.Scale">
+            <summary>
+            Scales the image to fit the constraining dimensions exactly.
+            </summary>
+        </member>
+        <member name="F:Kentico.Kontent.Delivery.ImageTransformation.ImageFitMode.Crop">
+            <summary>
+            Resizes the image to fill the width and height dimensions and crops any excess image data.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.ImageTransformation.ImageFormat">
+            <summary>
+            Supported image formats.
+            </summary>
+        </member>
+        <member name="F:Kentico.Kontent.Delivery.ImageTransformation.ImageFormat.Gif">
+            <summary>
+            Graphics Interchange Format.
+            </summary>
+        </member>
+        <member name="F:Kentico.Kontent.Delivery.ImageTransformation.ImageFormat.Png">
+            <summary>
+            Portable Network Graphics.
+            </summary>
+        </member>
+        <member name="F:Kentico.Kontent.Delivery.ImageTransformation.ImageFormat.Png8">
+            <summary>
+            Portable Network Graphics palette variant with 8-bit transparency and 256 colors.
+            </summary>
+        </member>
+        <member name="F:Kentico.Kontent.Delivery.ImageTransformation.ImageFormat.Jpg">
+            <summary>
+            JPEG.
+            </summary>
+        </member>
+        <member name="F:Kentico.Kontent.Delivery.ImageTransformation.ImageFormat.Pjpg">
+            <summary>
+            Progressive JPEG.
+            </summary>
+        </member>
+        <member name="F:Kentico.Kontent.Delivery.ImageTransformation.ImageFormat.Webp">
+            <summary>
+            WebP.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder">
+            <summary>
+            Provides a builder for Image Transformations for Kentico Kontent Delivery API.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder.Url">
+            <summary>
+            Gets the <see cref="T:System.Uri"/> instance with applied transformations.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder.#ctor(System.Uri)">
+            <summary>
+            Initializes a new instance of the ImageUrlBuilder class with the specified URI
+            </summary>
+            <param name="assetUrl">An asset URI. </param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="assetUrl" /> is null. </exception>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the ImageUrlBuilder class with the specified string URI.
+            </summary>
+            <param name="assetUrl">A string representing asset URI. </param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="assetUrl" /> is null. </exception>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder.WithWidth(System.Double)">
+            <summary>
+            The width transformation enables dynamic width resizing based on pixels and percent values.
+            </summary>
+            <param name="width">A required image width.</param>
+            <returns>The same <see cref="T:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder" /> instance. </returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder.WithHeight(System.Double)">
+            <summary>
+            The height transformation enables dynamic height resizing based on pixels and percent values.
+            </summary>
+            <param name="height">A required image height. </param>
+            <returns>The same <see cref="T:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder" /> instance. </returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder.WithFitMode(System.String)">
+            <summary>
+            The fit transformation controls how the output image is fit to its target dimensions after resizing.
+            </summary>
+            <param name="fitMode">Specifies the mode for the transformation. </param>
+            <returns>The same <see cref="T:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder" /> instance. </returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder.WithFitMode(Kentico.Kontent.Delivery.ImageTransformation.ImageFitMode)">
+            <summary>
+            The fit transformation controls how the output image is fit to its target dimensions after resizing.
+            </summary>
+            <param name="fitMode">Specifies the mode for the transformation. </param>
+            <returns>The same <see cref="T:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder" /> instance. </returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder.WithDpr(System.Double)">
+            <summary>
+            The dpr transformation is used to serve correctly sized images for devices that expose a device pixel ratio.
+            </summary>
+            <param name="dpr">A required DPR value. </param>
+            <returns>The same <see cref="T:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder" /> instance. </returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder.WithRectangleCrop(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Applies the crop transformation that removes pixels from an image outside the specified rectangle.
+            </summary>
+            <param name="x">Rectangle offset on the X-axis. </param>
+            <param name="y">Rectangle offset on the Y-axis.</param>
+            <param name="width">Rectangle width. </param>
+            <param name="height">Rectangle height. </param>
+            <returns>The same <see cref="T:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder" /> instance. </returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder.WithFocalPointCrop(System.Double,System.Double,System.Double)">
+            <summary>
+            Applies the crop transformation centered on the specified point.
+            </summary>
+            <param name="x">Focal point X coordinate. </param>
+            <param name="y">Focal point Y coordinate. </param>
+            <param name="z">Zoom of the transformation. </param>
+            <returns>The same <see cref="T:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder" /> instance. </returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder.WithFormat(System.String)">
+            <summary>
+            The format transformation enables the source image to be converted (a.k.a., "transcoded") from one encoded format to another. This is very useful when the source image has been saved in a sub-optimal file format that hinders performance.
+            </summary>
+            <param name="format">The output image format. </param>
+            <returns>The same <see cref="T:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder" /> instance. </returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder.WithFormat(Kentico.Kontent.Delivery.ImageTransformation.ImageFormat)">
+            <summary>
+            The format transformation enables the source image to be converted (a.k.a., "transcoded") from one encoded format to another. This is very useful when the source image has been saved in a sub-optimal file format that hinders performance.
+            </summary>
+            <param name="format">Target image file type. </param>
+            <returns>The same <see cref="T:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder" /> instance. </returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder.WithQuality(System.Double)">
+            <summary>
+            Applies the quality parameter that enables control over the compression level for lossy file-formatted images.
+            </summary>
+            <param name="quality">The required quality of the image. </param>
+            <returns>The same <see cref="T:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder" /> instance. </returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder.WithCompression(Kentico.Kontent.Delivery.ImageTransformation.ImageCompression)">
+            <summary>
+            Specifies the compression mode for the WebP image transformations.
+            </summary>
+            <param name="compression">Specifies the lossy or lossless compression. </param>
+            <returns>The same <see cref="T:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder" /> instance. </returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder.WithAutomaticFormat">
+            <summary>
+            Enables WebP image support.
+            </summary>
+            <returns>The same <see cref="T:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder" /> instance. </returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder.WithAutomaticFormat(Kentico.Kontent.Delivery.ImageTransformation.ImageFormat)">
+            <summary>
+            Enables WebP image support with format for non supporting WebP browsers.
+            </summary>
+            <param name="backupFormat">Image format for non supporting browsers. </param>
+            <returns>The same <see cref="T:Kentico.Kontent.Delivery.ImageTransformation.ImageUrlBuilder" /> instance. </returns>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.DefaultRetryPolicyOptions">
+            <summary>
+            Represents configuration of the <see cref="T:Kentico.Kontent.Delivery.RetryPolicy.DefaultRetryPolicy"/> that performs retries using a randomized exponential back off scheme to determine the interval between retries.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DefaultRetryPolicyOptions.DeltaBackoff">
+            <summary>
+            Gets or sets the back-off interval between retries.
+            The default value is 1 second.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DefaultRetryPolicyOptions.MaxCumulativeWaitTime">
+            <summary>
+            Gets or sets the maximum cumulative wait time.
+            If the cumulative wait time exceeds this value, the client will stop retrying and return the error to the application.
+            The default value is 30 seconds.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.DeliveryOptions">
+            <summary>
+            Represents configuration of the <see cref="T:Kentico.Kontent.Delivery.DeliveryClient"/>.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryOptions.ProductionEndpoint">
+            <summary>
+            Gets or sets the format of the Production API endpoint address.
+            The project identifier will be inserted at the position of the first format item "{0}".
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryOptions.PreviewEndpoint">
+            <summary>
+            Gets or sets the format of the Preview API endpoint address.
+            The project identifier will be inserted at the position of the first format item "{0}".
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryOptions.ProjectId">
+            <summary>
+            Gets or sets the project identifier.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryOptions.PreviewApiKey">
+            <summary>
+            Gets or sets the API key that is used to retrieve content with the Preview API.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryOptions.UsePreviewApi">
+            <summary>
+            Gets or sets a value that determines if the Preview API is used to retrieve content.
+            If the Preview API is used the <see cref="P:Kentico.Kontent.Delivery.DeliveryOptions.PreviewApiKey"/> must be set.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryOptions.WaitForLoadingNewContent">
+            <summary>
+            Gets or sets a value that determines if the client provides content that is always up-to-date.
+            We recommend to wait for new content when you have received a webhook notification.
+            However, the request might take longer than usual to complete.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryOptions.UseSecureAccess">
+            <summary>
+            Gets or sets a value that determines if the client sends the secure access API key to retrieve content with the Production API.
+            This key is required to retrieve content when secure access is enabled.
+            To retrieve content when secure access is enabled the <see cref="P:Kentico.Kontent.Delivery.DeliveryOptions.SecureAccessApiKey"/> must be set.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryOptions.SecureAccessApiKey">
+            <summary>
+            Gets or sets the API key that is used to retrieve content with the Production API when secure access is enabled.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryOptions.EnableRetryPolicy">
+            <summary>
+            Gets or sets a value that determines whether a retry policy is used to make HTTP requests.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryOptions.DefaultRetryPolicyOptions">
+            <summary>
+            Gets or sets configuration of the default retry policy.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryOptions.IncludeTotalCount">
+            <summary>
+            Gets or sets a value that determines if the client includes the total number of items matching the search criteria in response.
+            This behavior can also be enabled for individual requests with the <see cref="T:Kentico.Kontent.Delivery.IncludeTotalCountParameter"/>.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.ContentLink">
+            <summary>
+            Represents a link to a content item in a Rich text element.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ContentLink.Id">
+            <summary>
+            Gets the identifier of the linked content item.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ContentLink.Codename">
+            <summary>
+            Gets the codename of the linked content item.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ContentLink.UrlSlug">
+            <summary>
+            Gets the URL slug of the linked content item, if available; otherwise, <c>null</c>.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ContentLink.ContentTypeCodename">
+            <summary>
+            Gets the content type codename of the linked content item.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.IContentLinkUrlResolver">
+            <summary>
+            Defines the contract to resolve content links in Rich text element values.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IContentLinkUrlResolver.ResolveLinkUrl(Kentico.Kontent.Delivery.ContentLink)">
+            <summary>
+            Returns a URL of the linked content item.
+            </summary>
+            <param name="link">The link to a content item that needs to be resolved.</param>
+            <returns>The URL of the linked content item, if possible; otherwise, <c>null</c>.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IContentLinkUrlResolver.ResolveBrokenLinkUrl">
+            <summary>
+            Returns a URL of the linked content item that is not available.
+            </summary>
+            <returns>The URL of the linked content item that is not available, if possible; otherwise, <c>null</c>.</returns>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.DeliveryClient">
+            <summary>
+            Executes requests against the Kentico Kontent Delivery API.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClient.#ctor(Microsoft.Extensions.Options.IOptions{Kentico.Kontent.Delivery.DeliveryOptions},System.Net.Http.HttpClient,Kentico.Kontent.Delivery.IContentLinkUrlResolver,Kentico.Kontent.Delivery.InlineContentItems.IInlineContentItemsProcessor,Kentico.Kontent.Delivery.IModelProvider,Kentico.Kontent.Delivery.RetryPolicy.IRetryPolicyProvider,Kentico.Kontent.Delivery.ITypeProvider,Kentico.Kontent.Delivery.IPropertyMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.DeliveryClient"/> class for retrieving content of the specified project.
+            </summary>
+            <param name="deliveryOptions">The settings of the Kentico Kontent project.</param>
+            <param name="httpClient">A custom HTTP client instance</param>
+            <param name="contentLinkUrlResolver">An instance of an object that can resolve links in rich text elements</param>
+            <param name="contentItemsProcessor">An instance of an object that can resolve linked items in rich text elements</param>
+            <param name="modelProvider">An instance of an object that can JSON responses into strongly typed CLR objects</param>
+            <param name="retryPolicyProvider">A provider of a retry policy.</param>
+            <param name="typeProvider">An instance of an object that can map Kentico Kontent content types to CLR types</param>
+            <param name="propertyMapper">An instance of an object that can map Kentico Kontent content item fields to model properties</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClient.GetItemJsonAsync(System.String,System.String[])">
+            <summary>
+            Returns a content item as JSON data. By default, retrieves one level of modular content.
+            </summary>
+            <param name="codename">The codename of a content item.</param>
+            <param name="parameters">An array that contains zero or more query parameters, for example, for projection or setting the depth of linked items.</param>
+            <returns>The <see cref="T:Newtonsoft.Json.Linq.JObject"/> instance that represents the content item with the specified codename.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClient.GetItemsJsonAsync(System.String[])">
+            <summary>
+            Returns content items as JSON data. By default, retrieves one level of linked items.
+            </summary>
+            <param name="parameters">An array that contains zero or more query parameters, for example, for filtering, ordering, or setting the depth of linked items.</param>
+            <returns>The <see cref="T:Newtonsoft.Json.Linq.JObject"/> instance that represents the content items. If no query parameters are specified, all content items are returned.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClient.GetItemAsync(System.String,Kentico.Kontent.Delivery.IQueryParameter[])">
+            <summary>
+            Returns a content item. By default, retrieves one level of linked items.
+            </summary>
+            <param name="codename">The codename of a content item.</param>
+            <param name="parameters">An array that contains zero or more query parameters, for example, for projection or setting the depth of linked items.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryItemResponse"/> instance that contains the content item with the specified codename.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClient.GetItemAsync``1(System.String,Kentico.Kontent.Delivery.IQueryParameter[])">
+            <summary>
+            Gets a strongly typed content item by its codename. By default, retrieves one level of linked items.
+            </summary>
+            <typeparam name="T">Type of the model. (Or <see cref="T:System.Object"/> if the return type is not yet known.)</typeparam>
+            <param name="codename">The codename of a content item.</param>
+            <param name="parameters">An array that contains zero or more query parameters, for example, for projection or setting the depth of linked items.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryItemResponse`1"/> instance that contains the content item with the specified codename.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClient.GetItemAsync(System.String,System.Collections.Generic.IEnumerable{Kentico.Kontent.Delivery.IQueryParameter})">
+            <summary>
+            Returns a content item. By default, retrieves one level of linked items.
+            </summary>
+            <param name="codename">The codename of a content item.</param>
+            <param name="parameters">A collection of query parameters, for example, for projection or setting the depth of linked items.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryItemResponse"/> instance that contains the content item with the specified codename.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClient.GetItemAsync``1(System.String,System.Collections.Generic.IEnumerable{Kentico.Kontent.Delivery.IQueryParameter})">
+            <summary>
+            Gets a strongly typed content item by its codename. By default, retrieves one level of linked items.
+            </summary>
+            <typeparam name="T">Type of the model. (Or <see cref="T:System.Object"/> if the return type is not yet known.)</typeparam>
+            <param name="codename">The codename of a content item.</param>
+            <param name="parameters">A collection of query parameters, for example, for projection or setting the depth of linked items.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryItemResponse`1"/> instance that contains the content item with the specified codename.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClient.GetItemsAsync(Kentico.Kontent.Delivery.IQueryParameter[])">
+            <summary>
+            Returns content items that match the optional filtering parameters. By default, retrieves one level of linked items.
+            </summary>
+            <param name="parameters">An array that contains zero or more query parameters, for example, for filtering, ordering, or setting the depth of linked items.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryItemListingResponse"/> instance that contains the content items. If no query parameters are specified, all content items are returned.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClient.GetItemsAsync(System.Collections.Generic.IEnumerable{Kentico.Kontent.Delivery.IQueryParameter})">
+            <summary>
+            Returns content items that match the optional filtering parameters. By default, retrieves one level of linked items.
+            </summary>
+            <param name="parameters">A collection of query parameters, for example, for filtering, ordering, or setting the depth of linked items.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryItemListingResponse"/> instance that contains the content items. If no query parameters are specified, all content items are returned.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClient.GetItemsAsync``1(Kentico.Kontent.Delivery.IQueryParameter[])">
+            <summary>
+            Returns strongly typed content items that match the optional filtering parameters. By default, retrieves one level of linked items.
+            </summary>
+            <typeparam name="T">Type of the model. (Or <see cref="T:System.Object"/> if the return type is not yet known.)</typeparam>
+            <param name="parameters">An array that contains zero or more query parameters, for example, for filtering, ordering, or setting the depth of linked items.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryItemListingResponse`1"/> instance that contains the content items. If no query parameters are specified, all content items are returned.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClient.GetItemsAsync``1(System.Collections.Generic.IEnumerable{Kentico.Kontent.Delivery.IQueryParameter})">
+            <summary>
+            Returns strongly typed content items that match the optional filtering parameters. By default, retrieves one level of linked items.
+            </summary>
+            <typeparam name="T">Type of the model. (Or <see cref="T:System.Object"/> if the return type is not yet known.)</typeparam>
+            <param name="parameters">A collection of query parameters, for example, for filtering, ordering, or setting the depth of linked items.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryItemListingResponse`1"/> instance that contains the content items. If no query parameters are specified, all content items are returned.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClient.GetItemsFeed(Kentico.Kontent.Delivery.IQueryParameter[])">
+            <summary>
+            Returns a feed that is used to traverse through content items matching the optional filtering parameters.
+            </summary>
+            <param name="parameters">An array of query parameters, for example, for filtering or ordering.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryItemsFeed"/> instance that can be used to enumerate through content items. If no query parameters are specified, all content items are enumerated.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClient.GetItemsFeed(System.Collections.Generic.IEnumerable{Kentico.Kontent.Delivery.IQueryParameter})">
+            <summary>
+            Returns a feed that is used to traverse through content items matching the optional filtering parameters.
+            </summary>
+            <param name="parameters">A collection of query parameters, for example, for filtering or ordering.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryItemsFeed"/> instance that can be used to enumerate through content items. If no query parameters are specified, all content items are enumerated.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClient.GetItemsFeed``1(Kentico.Kontent.Delivery.IQueryParameter[])">
+            <summary>
+            Returns a feed that is used to traverse through strongly typed content items matching the optional filtering parameters.
+            </summary>
+            <typeparam name="T">Type of the model. (Or <see cref="T:System.Object"/> if the return type is not yet known.)</typeparam>
+            <param name="parameters">An array of query parameters, for example, for filtering or ordering.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryItemsFeed`1"/> instance that can be used to enumerate through content items. If no query parameters are specified, all content items are enumerated.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClient.GetItemsFeed``1(System.Collections.Generic.IEnumerable{Kentico.Kontent.Delivery.IQueryParameter})">
+            <summary>
+            Returns a feed that is used to traverse through strongly typed content items matching the optional filtering parameters.
+            </summary>
+            <typeparam name="T">Type of the model. (Or <see cref="T:System.Object"/> if the return type is not yet known.)</typeparam>
+            <param name="parameters">A collection of query parameters, for example, for filtering or ordering.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryItemsFeed`1"/> instance that can be used to enumerate through content items. If no query parameters are specified, all content items are enumerated.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClient.GetTypeJsonAsync(System.String)">
+            <summary>
+            Returns a content type as JSON data.
+            </summary>
+            <param name="codename">The codename of a content type.</param>
+            <returns>The <see cref="T:Newtonsoft.Json.Linq.JObject"/> instance that represents the content type with the specified codename.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClient.GetTypesJsonAsync(System.String[])">
+            <summary>
+            Returns content types as JSON data.
+            </summary>
+            <param name="parameters">An array that contains zero or more query parameters, for example, for paging.</param>
+            <returns>The <see cref="T:Newtonsoft.Json.Linq.JObject"/> instance that represents the content types. If no query parameters are specified, all content types are returned.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClient.GetTypeAsync(System.String)">
+            <summary>
+            Gets a content type by its codename.
+            </summary>
+            <param name="codename">The codename of a content type.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryTypeResponse"/> instance that contains the content type with the specified codename.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClient.GetTypesAsync(Kentico.Kontent.Delivery.IQueryParameter[])">
+            <summary>
+            Returns content types that match the optional filtering parameters.
+            </summary>
+            <param name="parameters">An array that contains zero or more query parameters, for example, for paging.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryTypeListingResponse"/> instance that contains the content types. If no query parameters are specified, all content types are returned.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClient.GetTypesAsync(System.Collections.Generic.IEnumerable{Kentico.Kontent.Delivery.IQueryParameter})">
+            <summary>
+            Returns content types that match the optional filtering parameters.
+            </summary>
+            <param name="parameters">A collection of query parameters, for example, for paging.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryTypeListingResponse"/> instance that contains the content types. If no query parameters are specified, all content types are returned.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClient.GetContentElementAsync(System.String,System.String)">
+            <summary>
+            Returns a content type element.
+            </summary>
+            <param name="contentTypeCodename">The codename of the content type.</param>
+            <param name="contentElementCodename">The codename of the content type element.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryElementResponse"/> instance that contains the specified content type element.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClient.GetTaxonomyJsonAsync(System.String)">
+            <summary>
+            Returns a taxonomy group as JSON data.
+            </summary>
+            <param name="codename">The codename of a taxonomy group.</param>
+            <returns>The <see cref="T:Newtonsoft.Json.Linq.JObject"/> instance that represents the taxonomy group with the specified codename.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClient.GetTaxonomiesJsonAsync(System.String[])">
+            <summary>
+            Returns taxonomy groups as JSON data.
+            </summary>
+            <param name="parameters">An array that contains zero or more query parameters, for example, for paging.</param>
+            <returns>The <see cref="T:Newtonsoft.Json.Linq.JObject"/> instance that represents the taxonomy groups. If no query parameters are specified, all taxonomy groups are returned.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClient.GetTaxonomyAsync(System.String)">
+            <summary>
+            Returns a taxonomy group.
+            </summary>
+            <param name="codename">The codename of a taxonomy group.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryTaxonomyResponse"/> instance that contains the taxonomy group with the specified codename.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClient.GetTaxonomiesAsync(Kentico.Kontent.Delivery.IQueryParameter[])">
+            <summary>
+            Returns taxonomy groups.
+            </summary>
+            <param name="parameters">An array that contains zero or more query parameters, for example, for paging.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryTaxonomyListingResponse"/> instance that represents the taxonomy groups. If no query parameters are specified, all taxonomy groups are returned.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryClient.GetTaxonomiesAsync(System.Collections.Generic.IEnumerable{Kentico.Kontent.Delivery.IQueryParameter})">
+            <summary>
+            Returns taxonomy groups.
+            </summary>
+            <param name="parameters">A collection of query parameters, for example, for paging.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryTaxonomyListingResponse"/> instance that represents the taxonomy groups. If no query parameters are specified, all taxonomy groups are returned.</returns>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.DeliveryException">
+            <summary>
+            Represents an error response from the Kentico Kontent Delivery API.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryException.StatusCode">
+            <summary>
+            Gets the HTTP status code of the response.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryException.Message">
+            <summary>
+            Gets the error message from the response.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryException.#ctor(System.Net.Http.HttpResponseMessage,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.DeliveryException"/> class with information from an error response.
+            </summary>
+            <param name="response">The unsuccessful response.</param>
+            <param name="responseStr">The error response.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.IDeliveryClient">
+            <summary>
+            Defines members necessary for retrieving content and its metadata from the Kentico Kontent Delivery service.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryClient.GetItemJsonAsync(System.String,System.String[])">
+            <summary>
+            Returns a content item as JSON data. By default, retrieves one level of modular content.
+            </summary>
+            <param name="codename">The codename of a content item.</param>
+            <param name="parameters">An array that contains zero or more query parameters, for example, for projection or setting the depth of linked items.</param>
+            <returns>The <see cref="T:Newtonsoft.Json.Linq.JObject"/> instance that represents the content item with the specified codename.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryClient.GetItemsJsonAsync(System.String[])">
+            <summary>
+            Returns content items as JSON data. By default, retrieves one level of linked items.
+            </summary>
+            <param name="parameters">An array that contains zero or more query parameters, for example, for filtering, ordering, or setting the depth of linked items.</param>
+            <returns>The <see cref="T:Newtonsoft.Json.Linq.JObject"/> instance that represents the content items. If no query parameters are specified, all content items are returned.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryClient.GetItemAsync(System.String,Kentico.Kontent.Delivery.IQueryParameter[])">
+            <summary>
+            Returns a content item. By default, retrieves one level of linked items.
+            </summary>
+            <param name="codename">The codename of a content item.</param>
+            <param name="parameters">An array that contains zero or more query parameters, for example, for projection or setting the depth of linked items.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryItemResponse"/> instance that contains the content item with the specified codename.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryClient.GetItemAsync``1(System.String,Kentico.Kontent.Delivery.IQueryParameter[])">
+            <summary>
+            Returns a strongly typed content item. By default, retrieves one level of linked items.
+            </summary>
+            <typeparam name="T">Type of the model. (Or <see cref="T:System.Object"/> if the return type is not yet known.)</typeparam>
+            <param name="codename">The codename of a content item.</param>
+            <param name="parameters">An array that contains zero or more query parameters, for example, for projection or setting the depth of linked items.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryItemResponse`1"/> instance that contains the content item with the specified codename.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryClient.GetItemAsync(System.String,System.Collections.Generic.IEnumerable{Kentico.Kontent.Delivery.IQueryParameter})">
+            <summary>
+            Returns a content item. By default, retrieves one level of linked items.
+            </summary>
+            <param name="codename">The codename of a content item.</param>
+            <param name="parameters">A collection of query parameters, for example, for projection or setting the depth of linked items.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryItemResponse"/> instance that contains the content item with the specified codename.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryClient.GetItemAsync``1(System.String,System.Collections.Generic.IEnumerable{Kentico.Kontent.Delivery.IQueryParameter})">
+            <summary>
+            Returns a strongly typed content item. By default, retrieves one level of linked items.
+            </summary>
+            <typeparam name="T">Type of the model. (Or <see cref="T:System.Object"/> if the return type is not yet known.)</typeparam>
+            <param name="codename">The codename of a content item.</param>
+            <param name="parameters">A collection of query parameters, for example, for projection or setting the depth of linked items.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryItemResponse`1"/> instance that contains the content item with the specified codename.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryClient.GetItemsAsync(Kentico.Kontent.Delivery.IQueryParameter[])">
+            <summary>
+            Returns content items that match the optional filtering parameters. By default, retrieves one level of linked items.
+            </summary>
+            <param name="parameters">An array that contains zero or more query parameters, for example, for filtering, ordering, or setting the depth of linked items.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryItemListingResponse"/> instance that contains the content items. If no query parameters are specified, all content items are returned.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryClient.GetItemsAsync(System.Collections.Generic.IEnumerable{Kentico.Kontent.Delivery.IQueryParameter})">
+            <summary>
+            Returns content items that match the optional filtering parameters. By default, retrieves one level of linked items.
+            </summary>
+            <param name="parameters">A collection of query parameters, for example, for filtering, ordering, or setting the depth of linked items.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryItemListingResponse"/> instance that contains the content items. If no query parameters are specified, all content items are returned.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryClient.GetItemsAsync``1(Kentico.Kontent.Delivery.IQueryParameter[])">
+            <summary>
+            Returns strongly typed content items that match the optional filtering parameters. By default, retrieves one level of linked items.
+            </summary>
+            <typeparam name="T">Type of the model. (Or <see cref="T:System.Object"/> if the return type is not yet known.)</typeparam>
+            <param name="parameters">An array that contains zero or more query parameters, for example, for filtering, ordering, or setting the depth of linked items.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryItemListingResponse`1"/> instance that contains the content items. If no query parameters are specified, all content items are returned.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryClient.GetItemsAsync``1(System.Collections.Generic.IEnumerable{Kentico.Kontent.Delivery.IQueryParameter})">
+            <summary>
+            Returns strongly typed content items that match the optional filtering parameters. By default, retrieves one level of linked items.
+            </summary>
+            <typeparam name="T">Type of the model. (Or <see cref="T:System.Object"/> if the return type is not yet known.)</typeparam>
+            <param name="parameters">A collection of query parameters, for example, for filtering, ordering, or setting the depth of linked items.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryItemListingResponse`1"/> instance that contains the content items. If no query parameters are specified, all content items are returned.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryClient.GetItemsFeed(Kentico.Kontent.Delivery.IQueryParameter[])">
+            <summary>
+            Returns a feed that is used to traverse through content items matching the optional filtering parameters.
+            </summary>
+            <param name="parameters">A collection of query parameters, for example, for filtering or ordering.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.IDeliveryItemsFeed"/> instance that can be used to enumerate through content items. If no query parameters are specified, all content items are enumerated.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryClient.GetItemsFeed(System.Collections.Generic.IEnumerable{Kentico.Kontent.Delivery.IQueryParameter})">
+            <summary>
+            Returns a feed that is used to traverse through content items matching the optional filtering parameters.
+            </summary>
+            <param name="parameters">A collection of query parameters, for example, for filtering or ordering.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.IDeliveryItemsFeed"/> instance that can be used to enumerate through content items. If no query parameters are specified, all content items are enumerated.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryClient.GetItemsFeed``1(Kentico.Kontent.Delivery.IQueryParameter[])">
+            <summary>
+            Returns a feed that is used to traverse through strongly typed content items matching the optional filtering parameters.
+            </summary>
+            <typeparam name="T">Type of the model. (Or <see cref="T:System.Object"/> if the return type is not yet known.)</typeparam>
+            <param name="parameters">A collection of query parameters, for example, for filtering or ordering.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.IDeliveryItemsFeed`1"/> instance that can be used to enumerate through content items. If no query parameters are specified, all content items are enumerated.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryClient.GetItemsFeed``1(System.Collections.Generic.IEnumerable{Kentico.Kontent.Delivery.IQueryParameter})">
+            <summary>
+            Returns a feed that is used to traverse through strongly typed content items matching the optional filtering parameters.
+            </summary>
+            <typeparam name="T">Type of the model. (Or <see cref="T:System.Object"/> if the return type is not yet known.)</typeparam>
+            <param name="parameters">A collection of query parameters, for example, for filtering or ordering.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.IDeliveryItemsFeed`1"/> instance that can be used to enumerate through content items. If no query parameters are specified, all content items are enumerated.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryClient.GetTypeJsonAsync(System.String)">
+            <summary>
+            Returns a content type as JSON data.
+            </summary>
+            <param name="codename">The codename of a content type.</param>
+            <returns>The <see cref="T:Newtonsoft.Json.Linq.JObject"/> instance that represents the content type with the specified codename.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryClient.GetTypesJsonAsync(System.String[])">
+            <summary>
+            Returns content types as JSON data.
+            </summary>
+            <param name="parameters">An array that contains zero or more query parameters, for example, for paging.</param>
+            <returns>The <see cref="T:Newtonsoft.Json.Linq.JObject"/> instance that represents the content types. If no query parameters are specified, all content types are returned.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryClient.GetTypeAsync(System.String)">
+            <summary>
+            Returns a content type.
+            </summary>
+            <param name="codename">The codename of a content type.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryTypeResponse"/> instance that contains the content type with the specified codename.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryClient.GetTypesAsync(Kentico.Kontent.Delivery.IQueryParameter[])">
+            <summary>
+            Returns content types.
+            </summary>
+            <param name="parameters">An array that contains zero or more query parameters, for example, for paging.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryTypeListingResponse"/> instance that represents the content types. If no query parameters are specified, all content types are returned.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryClient.GetTypesAsync(System.Collections.Generic.IEnumerable{Kentico.Kontent.Delivery.IQueryParameter})">
+            <summary>
+            Returns content types.
+            </summary>
+            <param name="parameters">A collection of query parameters, for example, for paging.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryTypeListingResponse"/> instance that represents the content types. If no query parameters are specified, all content types are returned.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryClient.GetContentElementAsync(System.String,System.String)">
+            <summary>
+            Returns a content type element.
+            </summary>
+            <param name="contentTypeCodename">The codename of the content type.</param>
+            <param name="contentElementCodename">The codename of the content type element.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryElementResponse"/> instance that contains the specified content type element.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryClient.GetTaxonomyJsonAsync(System.String)">
+            <summary>
+            Returns a taxonomy group as JSON data.
+            </summary>
+            <param name="codename">The codename of a taxonomy group.</param>
+            <returns>The <see cref="T:Newtonsoft.Json.Linq.JObject"/> instance that represents the taxonomy group with the specified codename.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryClient.GetTaxonomiesJsonAsync(System.String[])">
+            <summary>
+            Returns taxonomy groups as JSON data.
+            </summary>
+            <param name="parameters">An array that contains zero or more query parameters, for example, for paging.</param>
+            <returns>The <see cref="T:Newtonsoft.Json.Linq.JObject"/> instance that represents the taxonomy groups. If no query parameters are specified, all taxonomy groups are returned.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryClient.GetTaxonomyAsync(System.String)">
+            <summary>
+            Returns a taxonomy group.
+            </summary>
+            <param name="codename">The codename of a taxonomy group.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryTaxonomyResponse"/> instance that contains the taxonomy group with the specified codename.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryClient.GetTaxonomiesAsync(Kentico.Kontent.Delivery.IQueryParameter[])">
+            <summary>
+            Returns taxonomy groups.
+            </summary>
+            <param name="parameters">An array that contains zero or more query parameters, for example, for paging.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryTaxonomyListingResponse"/> instance that represents the taxonomy groups. If no query parameters are specified, all taxonomy groups are returned.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryClient.GetTaxonomiesAsync(System.Collections.Generic.IEnumerable{Kentico.Kontent.Delivery.IQueryParameter})">
+            <summary>
+            Returns taxonomy groups.
+            </summary>
+            <param name="parameters">A collection of query parameters, for example, for paging.</param>
+            <returns>The <see cref="T:Kentico.Kontent.Delivery.DeliveryTaxonomyListingResponse"/> instance that represents the taxonomy groups. If no query parameters are specified, all taxonomy groups are returned.</returns>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.InlineContentItems.IInlineContentItemsProcessor">
+            <summary>
+            Interface implemented for processing inline content items in HTML
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.InlineContentItems.IInlineContentItemsProcessor.Process(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Processes HTML input and returns it with inline content items replaced with resolvers output.
+            </summary>
+            <param name="value">HTML code</param>
+            <param name="usedContentItems">Content items referenced as inline content items</param>
+            <returns>HTML with inline content items replaced with resolvers output</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.InlineContentItems.IInlineContentItemsProcessor.RemoveAll(System.String)">
+            <summary>
+            Removes all content items from given HTML content.
+            </summary>
+            <param name="value">HTML content</param>
+            <returns>HTML without inline content items</returns>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.InlineContentItems.IInlineContentItemsResolver`1">
+            <summary>
+            An interface, implemented to be registered as resolver for specific content type of inline content item
+            </summary>
+            <typeparam name="T">Content type to be resolved</typeparam>
+            <seealso cref="T:Kentico.Kontent.Delivery.InlineContentItems.ITypelessInlineContentItemsResolver"/>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.InlineContentItems.IInlineContentItemsResolver`1.Resolve(`0)">
+            <summary>
+            Method implementing the resolving of inline content item. Result should be valid HTML code
+            </summary>
+            <param name="data">Content item to be resolved</param>
+            <returns>HTML code</returns>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.InlineContentItems.InlineContentItemsProcessor">
+            <summary>
+            Processor responsible for parsing HTML input and resolving inline content items referenced in them using registered resolvers
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.InlineContentItems.InlineContentItemsProcessor.#ctor(System.Collections.Generic.IEnumerable{Kentico.Kontent.Delivery.InlineContentItems.ITypelessInlineContentItemsResolver})">
+            <summary>
+            Inline content item processor, going through HTML and replacing content items marked as object elements with output of resolvers.
+            </summary>
+            <remarks>
+            The collection of resolvers may contain a custom <see cref="T:System.Object"/> resolver used when no content type specific resolver was registered,
+            a custom resolver for <see cref="T:Kentico.Kontent.Delivery.UnretrievedContentItem"/>s used when an item was not retrieved from Delivery API, 
+            and a resolver for <see cref="T:Kentico.Kontent.Delivery.UnknownContentItem"/> that a <see cref="T:Kentico.Kontent.Delivery.IModelProvider"/> was unable to strongly type.
+            If these resolvers are not specified using <see cref="T:Kentico.Kontent.Delivery.DeliveryClientBuilder"/> or the <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> registration
+            (<see cref="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDeliveryInlineContentItemsResolver``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)"/>),
+            the default implementations resulting in warning messages will be used.
+            </remarks>
+            <param name="inlineContentItemsResolvers">Collection of inline content item resolvers.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.InlineContentItems.InlineContentItemsProcessor.Process(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Processes HTML input and returns it with inline content items replaced with resolvers output.
+            </summary>
+            <param name="value">HTML code</param>
+            <param name="inlineContentItemMap">Content items referenced as inline content items</param>
+            <returns>HTML with inline content items replaced with resolvers output</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.InlineContentItems.InlineContentItemsProcessor.RemoveAll(System.String)">
+            <summary>
+            Removes all content items from given HTML content.
+            </summary>
+            <param name="value">HTML content</param>
+            <returns>HTML without inline content items</returns>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.InlineContentItems.ITypelessInlineContentItemsResolver">
+            <summary>
+            An interface, implemented to be registered in an collection passed to <see cref="T:Kentico.Kontent.Delivery.InlineContentItems.InlineContentItemsProcessor"/>.
+            Such collection provide the processor with generic resolvers for otherwise specific content type of inline content item.
+            </summary>
+            <seealso cref="T:Kentico.Kontent.Delivery.InlineContentItems.IInlineContentItemsResolver`1"/>
+            <remarks>
+            The <see cref="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDeliveryInlineContentItemsResolver``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,Kentico.Kontent.Delivery.InlineContentItems.IInlineContentItemsResolver{``0})"/> or <see cref="M:Kentico.Kontent.Delivery.Builders.DeliveryClient.IOptionalClientSetup.WithInlineContentItemsResolver``1(Kentico.Kontent.Delivery.InlineContentItems.IInlineContentItemsResolver{``0})"/>
+            (in <see cref="T:Kentico.Kontent.Delivery.DeliveryClientBuilder"/>) should always be used to create new instances of this interface. This interface allows other than <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/>
+            containers to register dependencies required for <see cref="T:Kentico.Kontent.Delivery.InlineContentItems.InlineContentItemsProcessor"/> instantiation.
+            </remarks>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.InlineContentItems.ITypelessInlineContentItemsResolver.ContentItemType">
+            <summary>
+            Type of an inline content item.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.InlineContentItems.ITypelessInlineContentItemsResolver.ResolveItem(System.Object)">
+            <summary>
+            Transformation function resolving an inline content item of a given inline content item.
+            </summary>
+            <param name="item">An inline content item of given <see cref="P:Kentico.Kontent.Delivery.InlineContentItems.ITypelessInlineContentItemsResolver.ContentItemType"/></param>
+            <returns>String representation of the <paramref name="item"/></returns>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.InlineContentItems.ReplaceWithWarningAboutRegistrationResolver">
+            <summary>
+            /// Resolver which is replacing content items in richtext with warning message about content type resolver not being registered. Used as default for default resolver on Preview environment.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.InlineContentItems.ReplaceWithWarningAboutRegistrationResolver.Resolve(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.InlineContentItems.ReplaceWithWarningAboutUnretrievedItemResolver">
+            <summary>
+            Resolver which is replacing content items in richtext with warning message about insufficient depth for content item. Used as default for unretrieved content items resolver on Preview environment.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.InlineContentItems.ReplaceWithWarningAboutUnretrievedItemResolver.Resolve(Kentico.Kontent.Delivery.UnretrievedContentItem)">
+            <inheritdoc />
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.InlineContentItems.RichTextContentElements">
+            <summary>
+            Structure holding identifier of specific richtext element used in content item.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.InlineContentItems.TypelessInlineContentItemsResolver">
+            <summary>
+            Strips an <see cref="T:Kentico.Kontent.Delivery.InlineContentItems.IInlineContentItemsResolver`1"/> of its generic type, so it can be used generically by <see cref="T:Kentico.Kontent.Delivery.InlineContentItems.InlineContentItemsProcessor"/>.
+            </summary>
+            <remarks>
+            This class can be used with other container than <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> to register dependencies required for
+            <see cref="T:Kentico.Kontent.Delivery.InlineContentItems.InlineContentItemsProcessor"/> instantiation. The <see cref="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDeliveryInlineContentItemsResolver``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,Kentico.Kontent.Delivery.InlineContentItems.IInlineContentItemsResolver{``0})"/>
+            or <see cref="M:Kentico.Kontent.Delivery.Builders.DeliveryClient.IOptionalClientSetup.WithInlineContentItemsResolver``1(Kentico.Kontent.Delivery.InlineContentItems.IInlineContentItemsResolver{``0})"/> should always be used with <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/>
+            or <see cref="T:Kentico.Kontent.Delivery.DeliveryClientBuilder"/> respectively.
+            </remarks>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.InlineContentItems.TypelessInlineContentItemsResolver.Create``1(Kentico.Kontent.Delivery.InlineContentItems.IInlineContentItemsResolver{``0})">
+            <summary>
+            Creates new instance of <see cref="T:Kentico.Kontent.Delivery.InlineContentItems.TypelessInlineContentItemsResolver"/> for given <paramref name="resolver"/>.
+            </summary>
+            <typeparam name="TContentItem">Content item type the <paramref name="resolver"/> works with</typeparam>
+            <param name="resolver">Resolver for specific content type of inline content item</param>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.InlineContentItems.TypelessInlineContentItemsResolver.ContentItemType">
+            <inheritdoc cref="P:Kentico.Kontent.Delivery.InlineContentItems.ITypelessInlineContentItemsResolver.ContentItemType"/>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.InlineContentItems.TypelessInlineContentItemsResolver.ResolveItem(System.Object)">
+            <inheritdoc cref="M:Kentico.Kontent.Delivery.InlineContentItems.ITypelessInlineContentItemsResolver.ResolveItem(System.Object)"/>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.Asset">
+            <summary>
+            Represents a digital asset, such as a document or image.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.Asset.Name">
+            <summary>
+            Gets the name of the asset.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.Asset.Description">
+            <summary>
+            Gets the description of the asset.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.Asset.Type">
+            <summary>
+            Gets the media type of the asset, for example "image/jpeg".
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.Asset.Size">
+            <summary>
+            Gets the asset size in bytes.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.Asset.Url">
+            <summary>
+            Gets the URL of the asset.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.Asset.Width">
+            <summary>
+            Gets the width of the asset
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.Asset.Height">
+            <summary>
+            Gets the height of the asset
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Asset.#ctor(System.String,System.String,System.Int32,System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.Asset"/> class.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.ContentItem">
+            <summary>
+            Represents a content item.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ContentItem.System">
+            <summary>
+            Gets the system attributes of the content item.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ContentItem.Elements">
+            <summary>
+            Gets the dynamic view of the JSON response where elements and their properties can be retrieved by name, for example <c>item.Elements.description.value</c>;
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ContentItem.#ctor(Newtonsoft.Json.Linq.JToken,Newtonsoft.Json.Linq.JToken,Kentico.Kontent.Delivery.IContentLinkUrlResolver,Kentico.Kontent.Delivery.IModelProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.ContentItem"/> class with the specified JSON data.
+            </summary>
+            <param name="source">The JSON data of the content item to deserialize.</param>
+            <param name="linkedItemsSource">The JSON data of linked items to deserialize.</param>
+            <param name="contentLinkUrlResolver">An instance of an object that can resolve links in rich text elements</param>
+            <param name="modelProvider">An instance of an object that can JSON responses into strongly typed CLR objects</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ContentItem.CastTo``1">
+            <summary>
+            Casts the item to a model.
+            </summary>
+            <typeparam name="T">Type of the model.</typeparam>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ContentItem.GetString(System.String)">
+            <summary>
+            Gets a string value from an element and resolves content links in Rich text element values.
+            To resolve content links an instance of <see cref="T:Kentico.Kontent.Delivery.IContentLinkUrlResolver"/> must be set to the <see cref="T:Kentico.Kontent.Delivery.IDeliveryClient"/> instance.
+            </summary>
+            <param name="elementCodename">The codename of the element.</param>
+            <returns>The <see cref="T:System.String"/> value of the element with the specified codename, if available; otherwise, <c>null</c>.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ContentItem.GetNumber(System.String)">
+            <summary>
+            Returns the <see cref="T:System.Decimal"/> value of the specified Number element.
+            </summary>
+            <param name="elementCodename">The codename of the element.</param>
+            <returns>The <see cref="T:System.Decimal"/> value of the element with the specified codename, if available; otherwise, <c>null</c>.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ContentItem.GetDateTime(System.String)">
+            <summary>
+            Returns the <see cref="T:System.DateTime"/> value of the specified Date and time element.
+            </summary>
+            <param name="elementCodename">The codename of the element.</param>
+            <returns>The <see cref="T:System.DateTime"/> value of the element with the specified codename, if available; otherwise, <c>null</c>.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ContentItem.GetLinkedItems(System.String)">
+            <summary>
+            Returns a collection of linked content items by the element name.
+            </summary>
+            <param name="elementCodename">The codename of the element.</param>
+            <returns>A collection of content items that are assigned to the element with the specified codename.</returns>
+            <remarks>
+            The collection contains only content items that are included in the response from the Delivery API as linked items.
+            For more information see the <c>Linked Items</c> topic in the Delivery API documentation.
+            </remarks>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ContentItem.GetAssets(System.String)">
+            <summary>
+            Returns a collection of assets that were uploaded to the specified Asset element.
+            </summary>
+            <param name="elementCodename">The codename of the element.</param>
+            <returns>A collection of assets that were uploaded to the element with the specified codename.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ContentItem.GetOptions(System.String)">
+            <summary>
+            Returns a collection of options that were selected in the specified Multiple choice element.
+            </summary>
+            <param name="elementCodename">The codename of the element.</param>
+            <returns>A list of selected options of the element with the specified codename.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ContentItem.GetTaxonomyTerms(System.String)">
+            <summary>
+            Returns a collection of taxonomy terms that are assigned to the specified Taxonomy element.
+            </summary>
+            <param name="elementCodename">The codename of the element.</param>
+            <returns>A collection of taxonomy terms that are assigned to the element with the specified codename.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ContentItem.GetElementValue``1(System.String)">
+            <summary>
+            Returns a value of the specified element.
+            </summary>
+            <typeparam name="T">The type of the element value.</typeparam>
+            <param name="elementCodename">The codename of the element.</param>
+            <returns>A value of the element with the specified codename.</returns>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ContentItem.GetElement(System.String)">
+            <summary>
+            Returns the specified element.
+            </summary>
+            <param name="elementCodename">The codename of the element.</param>
+            <returns>The element with the specified codename.</returns>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.ContentItemSystemAttributes">
+            <summary>
+            Represents system attributes of a content item.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ContentItemSystemAttributes.Id">
+            <summary>
+            Gets the identifier of the content item.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ContentItemSystemAttributes.Name">
+            <summary>
+            Gets the name of the content item.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ContentItemSystemAttributes.Codename">
+            <summary>
+            Gets the codename of the content item.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ContentItemSystemAttributes.Type">
+            <summary>
+            Gets the codename of the content type, for example "article".
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ContentItemSystemAttributes.SitemapLocation">
+            <summary>
+            Gets a list of codenames of sitemap items to which the content item is assigned.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ContentItemSystemAttributes.LastModified">
+            <summary>
+            Gets the time the content item was last modified.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ContentItemSystemAttributes.Language">
+            <summary>
+            Gets the language of the content item.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ContentItemSystemAttributes.#ctor(System.String,System.String,System.String,System.String,System.Collections.Generic.IReadOnlyList{System.String},System.DateTime,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.ContentItemSystemAttributes"/> class.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.Pagination">
+            <summary>
+            Represents information about a page.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.Pagination.Skip">
+            <summary>
+            Gets the requested number of items to skip.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.Pagination.Limit">
+            <summary>
+            Gets the requested page size.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.Pagination.Count">
+            <summary>
+            Gets the number of retrieved items.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.Pagination.TotalCount">
+            <summary>
+            Gets the total number of items matching the search criteria.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.Pagination.NextPageUrl">
+            <summary>
+            Gets the URL of the next page.
+            </summary>
+            <remarks>The URL of the next page, if available; otherwise, <see cref="F:System.String.Empty"/>.</remarks>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Pagination.#ctor(System.Int32,System.Int32,System.Int32,System.Nullable{System.Int32},System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.Pagination"/> class with information from a response.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.IHtmlContent">
+            <summary>
+            Represents HTML content rich text block
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.IHtmlContent.Html">
+            <summary>
+            HTML code
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.IInlineContentItem">
+            <summary>
+            Represents inline content item block within rich text
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.IInlineContentItem.ContentItem">
+            <summary>
+            Referenced content item
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.IInlineImage">
+            <summary>
+            Represents inline image block within rich text
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.IInlineImage.AltText">
+            <summary>
+            Alternate text
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.IInlineImage.Src">
+            <summary>
+            Source URL of the image
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.InlineContentItem">
+            <summary>
+            Represents inline content item. IEnumerable is implemented so that Html.DisplayFor is automatically bridged to the underlying ContentItem property.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.IRichTextBlock">
+            <summary>
+            Base interface for rich text content blocks
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.IRichTextContent">
+            <summary>
+            Represents rich text content in a form of structured data 
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.IRichTextContent.Blocks">
+            <summary>
+            List of rich text content blocks
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.TaxonomyTerm">
+            <summary>
+            Represents a taxonomy term assigned to a Taxonomy element.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.TaxonomyTerm.Name">
+            <summary>
+            Gets the name of the taxonomy term.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.TaxonomyTerm.Codename">
+            <summary>
+            Gets the codename of the taxonomy term.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.TaxonomyTerm.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.TaxonomyTerm"/> class.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.TaxonomyGroup">
+            <summary>
+            Represents a taxonomy group.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.TaxonomyGroup.System">
+            <summary>
+            Gets the system attributes of the taxonomy group.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.TaxonomyGroup.Terms">
+            <summary>
+            Gets a readonly collection that contains terms of the taxonomy group.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.TaxonomyGroup.#ctor(Newtonsoft.Json.Linq.JToken)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.TaxonomyGroup"/> class with the specified JSON data.
+            </summary>
+            <param name="source">The JSON data to deserialize.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.TaxonomyGroupSystemAttributes">
+            <summary>
+            Represents system attributes of a taxonomy group
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.TaxonomyGroupSystemAttributes.Id">
+            <summary>
+            Gets the identifier of the taxonomy group.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.TaxonomyGroupSystemAttributes.Name">
+            <summary>
+            Gets the name of the taxonomy group.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.TaxonomyGroupSystemAttributes.Codename">
+            <summary>
+            Gets the codename of the taxonomy group.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.TaxonomyGroupSystemAttributes.LastModified">
+            <summary>
+            Gets the time the taxonomy group was last modified.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.TaxonomyGroupSystemAttributes.#ctor(System.String,System.String,System.String,System.DateTime)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.TaxonomyGroupSystemAttributes"/> class.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.TaxonomyTermDetails">
+            <summary>
+            Represents a taxonomy term with child terms.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.TaxonomyTermDetails.Name">
+            <summary>
+            Gets the name of the taxonomy term.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.TaxonomyTermDetails.Codename">
+            <summary>
+            Gets the codename of the taxonomy term.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.TaxonomyTermDetails.Terms">
+            <summary>
+            Gets a readonly collection that contains child terms of the taxonomy term.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.TaxonomyTermDetails.#ctor(Newtonsoft.Json.Linq.JToken)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.TaxonomyTermDetails"/> class.
+            </summary>
+            <param name="source">The JSON data to deserialize.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.ContentType">
+            <summary>
+            Represents a content type.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ContentType.System">
+            <summary>
+            Gets the system attributes of the content type.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ContentType.Elements">
+            <summary>
+            Gets a dictionary that contains elements of the content type index by their codename.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ContentType.#ctor(Newtonsoft.Json.Linq.JToken)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.ContentType"/> class with the specified JSON data.
+            </summary>
+            <param name="source">The JSON data to deserialize.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.ContentTypeSystemAttributes">
+            <summary>
+            Represents system attributes of a content type.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ContentTypeSystemAttributes.Id">
+            <summary>
+            Gets the identifier of the content type.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ContentTypeSystemAttributes.Name">
+            <summary>
+            Gets the name of the content type.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ContentTypeSystemAttributes.Codename">
+            <summary>
+            Gets the codename of the content type.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ContentTypeSystemAttributes.LastModified">
+            <summary>
+            Gets the time the content type was last modified.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ContentTypeSystemAttributes.#ctor(System.String,System.String,System.String,System.DateTime)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.ContentTypeSystemAttributes"/> class.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.ContentElement">
+            <summary>
+            Represents a content element.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ContentElement.Type">
+            <summary>
+            Gets the type of the content element, for example "multiple_choice".
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ContentElement.Name">
+            <summary>
+            Gets the name of the content element.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ContentElement.Codename">
+            <summary>
+            Gets the codename of the content element.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ContentElement.Options">
+            <summary>
+            Gets a list of predefined options for the Multiple choice content element; otherwise, an empty list.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ContentElement.TaxonomyGroup">
+            <summary>
+            Gets the codename of the taxonomy group for the Taxonomy content element; otherwise, an empty string.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ContentElement.#ctor(Newtonsoft.Json.Linq.JToken,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.ContentElement"/> class with the specified JSON data.
+            </summary>
+            <param name="source">The JSON data to deserialize.</param>
+            <param name="codename">The codename of the content element.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.MultipleChoiceOption">
+            <summary>
+            Represents an option of a Multiple choice content element.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.MultipleChoiceOption.Name">
+            <summary>
+            Gets the name of the option.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.MultipleChoiceOption.Codename">
+            <summary>
+            Gets the codename of the option.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.MultipleChoiceOption.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.MultipleChoiceOption"/> class with the specified JSON data.
+            </summary>
+            <param name="name">Name of the option.</param>
+            <param name="codename">Code name of the option.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.Filter">
+            <summary>
+            Provides the base class for filter implementations.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.Filter.ElementOrAttributePath">
+            <summary>
+            Gets the codename of a content element or system attribute, for example <c>elements.title</c> or <c>system.name</c>.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.Filter.Values">
+            <summary>
+            Gets the filter values.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.Filter.Operator">
+            <summary>
+            Gets the filter operator.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Filter.#ctor(System.String,System.String[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.Filter"/> class.
+            </summary>
+            <param name="elementOrAttributePath">The codename of a content element or system attribute, for example <c>elements.title</c> or <c>system.name</c>.</param>
+            <param name="values">The filter values.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.Filter.GetQueryStringParameter">
+            <summary>
+            Returns the query string representation of the filter.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.AllFilter">
+            <summary>
+            Represents a filter that matches a content item if the specified content element or system attribute has a value that contains all the specified values.
+            This filter is applicable to array values only, such as sitemap location or value of Linked Items, Taxonomy and Multiple choice content elements.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.AllFilter.#ctor(System.String,System.String[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.AllFilter"/> class.
+            </summary>
+            <param name="elementOrAttributePath">The codename of a content element or system attribute, for example <c>elements.title</c> or <c>system.name</c>.</param>
+            <param name="values">The filter values.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.AnyFilter">
+            <summary>
+            Represents a filter that matches a content item if the specified content element or system attribute has a value that contains any of the specified values.
+            This filter is applicable to array values only, such as sitemap location or value of Linked Items, Taxonomy and Multiple choice content elements.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.AnyFilter.#ctor(System.String,System.String[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.AnyFilter"/> class.
+            </summary>
+            <param name="elementOrAttributePath">The codename of a content element or system attribute, for example <c>elements.title</c> or <c>system.name</c>.</param>
+            <param name="values">The filter values.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.ContainsFilter">
+            <summary>
+            Represents a filter that matches a content item if the specified content element or system attribute has a value that contains the specified value.
+            This filter is applicable to array values only, such as sitemap location or value of Linked Items, Taxonomy and Multiple choice content elements.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ContainsFilter.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.ContainsFilter"/> class.
+            </summary>
+            <param name="elementOrAttributePath">The codename of a content element or system attribute, for example <c>elements.title</c> or <c>system.name</c>.</param>
+            <param name="value">The filter value.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.EqualsFilter">
+            <summary>
+            Represents a filter that matches a content item if the specified content element or system attribute has the specified value.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.EqualsFilter.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.EqualsFilter"/> class.
+            </summary>
+            <param name="elementOrAttributePath">The codename of a content element or system attribute, for example <c>elements.title</c> or <c>system.name</c>.</param>
+            <param name="value">The filter value.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.GreaterThanFilter">
+            <summary>
+            Represents a filter that matches a content item if the specified content element or system attribute has a value that is greater than the specified value.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.GreaterThanFilter.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.GreaterThanFilter"/> class.
+            </summary>
+            <param name="elementOrAttributePath">The codename of a content element or system attribute, for example <c>elements.title</c> or <c>system.name</c>.</param>
+            <param name="value">The filter value.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.GreaterThanOrEqualFilter">
+            <summary>
+            Represents a filter that matches a content item if the specified content element or system attribute has a value that is greater than or equal to the specified value.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.GreaterThanOrEqualFilter.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.GreaterThanOrEqualFilter"/> class.
+            </summary>
+            <param name="elementOrAttributePath">The codename of a content element or system attribute, for example <c>elements.title</c> or <c>system.name</c>.</param>
+            <param name="value">The filter value.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.InFilter">
+            <summary>
+            Represents a filter that matches a content item if the specified content element or system attribute has a value that matches a value in the specified list.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.InFilter.#ctor(System.String,System.String[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.InFilter"/> class.
+            </summary>
+            <param name="elementOrAttributePath">The codename of a content element or system attribute, for example <c>elements.title</c> or <c>system.name</c>.</param>
+            <param name="values">The filter values.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.LessThanFilter">
+            <summary>
+            Represents a filter that matches a content item if the specified content element or system attribute has a value that is less than the specified value.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.LessThanFilter.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.LessThanFilter"/> class.
+            </summary>
+            <param name="elementOrAttributePath">The codename of a content element or system attribute, for example <c>elements.title</c> or <c>system.name</c>.</param>
+            <param name="value">The filter value.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.LessThanOrEqualFilter">
+            <summary>
+            Represents a filter that matches a content item if the specified content element or system attribute has a value that is less than or equal to the specified value.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.LessThanOrEqualFilter.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.LessThanOrEqualFilter"/> class.
+            </summary>
+            <param name="elementOrAttributePath">The codename of a content element or system attribute, for example <c>elements.title</c> or <c>system.name</c>.</param>
+            <param name="value">The filter value.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.RangeFilter">
+            <summary>
+            Represents a filter that matches a content item if the specified content element or system attribute has a value that falls within the specified range of values (both inclusive).
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.RangeFilter.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.RangeFilter"/> class.
+            </summary>
+            <param name="elementOrAttributePath">The codename of a content element or system attribute, for example <c>elements.title</c> or <c>system.name</c>.</param>
+            <param name="lowerLimit">The lower limit of the filter range.</param>
+            <param name="upperLimit">The upper limit of the filter range.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.IQueryParameter">
+            <summary>
+            Represents a query parameter.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IQueryParameter.GetQueryStringParameter">
+            <summary>
+            Returns the query string representation of the query parameter.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.DepthParameter">
+            <summary>
+            Specifies the maximum level of recursion when retrieving linked items. If not specified, the default depth is one level.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DepthParameter.Depth">
+            <summary>
+            Gets the maximum level of recursion when retrieving linked items.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DepthParameter.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.DepthParameter"/> class using the specified depth level.
+            </summary>
+            <param name="depth">The maximum level of recursion to use when retrieving linked items.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DepthParameter.GetQueryStringParameter">
+            <summary>
+            Returns the query string representation of the query parameter.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.ElementsParameter">
+            <summary>
+            Specifies the content elements to retrieve.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ElementsParameter.ElementCodenames">
+            <summary>
+            Gets the list of codenames of content elements that should be retrieved.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ElementsParameter.#ctor(System.String[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.ElementsParameter"/> class using the specified content elements codenames.
+            </summary>
+            <param name="elementCodenames">An array that contains zero or more codenames of the content elements that should be retrieved.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ElementsParameter.GetQueryStringParameter">
+            <summary>
+            Returns the query string representation of the query parameter.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.IncludeTotalCountParameter">
+            <summary>
+            Specifies whether to include total count in the paging section.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IncludeTotalCountParameter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.IncludeTotalCountParameter"/> class.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IncludeTotalCountParameter.GetQueryStringParameter">
+            <summary>
+            Returns the query string representation of the query parameter.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.LanguageParameter">
+            <summary>
+            Specifies the language of content items to be requested.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.LanguageParameter.Language">
+            <summary>
+            Gets the language of content items to be requested.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.LanguageParameter.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.LanguageParameter"/> class using the specified language.
+            </summary>
+            <param name="language">Language of content items to be requested.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.LanguageParameter.GetQueryStringParameter">
+            <summary>
+            Returns the query string representation of the query parameter.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.LimitParameter">
+            <summary>
+            Specifies the maximum number of content items to return.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.LimitParameter.Limit">
+            <summary>
+            Gets the maximum number of content items to return.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.LimitParameter.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.LimitParameter"/> class using the specified limit.
+            </summary>
+            <param name="limit">The maximum number of content items to return.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.LimitParameter.GetQueryStringParameter">
+            <summary>
+            Returns the query string representation of the query parameter.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.OrderParameter">
+            <summary>
+            Specifies how content items are sorted.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.OrderParameter.SortOrder">
+            <summary>
+            Gets the order in which content items are sorted.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.OrderParameter.ElementOrAttributePath">
+            <summary>
+            Gets the codename of a content element or system attribute by which content items are sorted.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.OrderParameter.#ctor(System.String,Kentico.Kontent.Delivery.SortOrder)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.OrderParameter"/> class using the specified element or system attribute and sorting order.
+            </summary>
+            <param name="elementOrAttributePath">The codename of a content element or system attribute by which content items are sorted, for example <c>elements.title</c> or <c>system.name</c>.</param>
+            <param name="sortOrder">The order in which the content items are sorted.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.OrderParameter.GetQueryStringParameter">
+            <summary>
+            Returns the query string representation of the query parameter.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.SkipParameter">
+            <summary>
+            Specifies the number of content items to skip.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.SkipParameter.Skip">
+            <summary>
+            Gets the number of content items to skip.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.SkipParameter.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.SkipParameter"/> class using the specified number of items to skip.
+            </summary>
+            <param name="skip">The number of content items to skip.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.SkipParameter.GetQueryStringParameter">
+            <summary>
+            Returns the query string representation of the query parameter.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.SortOrder">
+            <summary>
+            Specifies the order in which content items are sorted.
+            </summary>
+        </member>
+        <member name="F:Kentico.Kontent.Delivery.SortOrder.Ascending">
+            <summary>
+            Content items in ascending order.
+            </summary>
+        </member>
+        <member name="F:Kentico.Kontent.Delivery.SortOrder.Descending">
+            <summary>
+            Content items in descending order.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.SystemTypeEqualsFilter">
+            <summary>
+            Represents a filter that matches a content item of the given content type.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.SystemTypeEqualsFilter.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.SystemTypeEqualsFilter"/> class.
+            </summary>
+            <param name="codename">Content type codename.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.AbstractResponse">
+            <summary>
+            Represents a successful response from Kentico Kontent Delivery API.
+            </summary>
+        </member>
+        <member name="F:Kentico.Kontent.Delivery.AbstractResponse._response">
+            <summary>
+            The successful JSON response from Kentico Kontent Delivery API.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.AbstractResponse.HasStaleContent">
+            <summary>
+            Gets a value that determines whether content is stale.
+            Stale content indicates that there is a more recent version, but it will become available later.
+            Stale content should be cached only for a limited period of time.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.AbstractResponse.ApiUrl">
+            <summary>
+            Gets the URL used to retrieve this response for debugging purposes.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.AbstractResponse.#ctor(Kentico.Kontent.Delivery.ApiResponse)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.AbstractResponse"/> class.
+            </summary>
+            <param name="response">A successful JSON response from Kentico Kontent Delivery API.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.ApiResponse">
+            <summary>
+            Represents a successful JSON response from Kentico Kontent Delivery API.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ApiResponse.Content">
+            <summary>
+            Gets JSON content.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ApiResponse.HasStaleContent">
+            <summary>
+            Gets a value that determines whether content is stale.
+            Stale content indicates that there is a more recent version, but it will become available later.
+            Stale content should be cached only for a limited period of time.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ApiResponse.ContinuationToken">
+            <summary>
+            Gets the continuation token to be used for continuing enumeration of the Kentico Kontent Delivery API.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ApiResponse.RequestUrl">
+            <summary>
+            Gets the URL used to retrieve this response for debugging purposes.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ApiResponse.#ctor(Newtonsoft.Json.Linq.JObject,System.Boolean,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.ApiResponse"/> class.
+            </summary>
+            <param name="content">JSON content.</param>
+            <param name="hasStaleContent">Specifies whether content is stale.</param>
+            <param name="continuationToken">Continuation token to be used for continuing enumeration.</param>
+            <param name="requestUrl">URL used to retrieve this response.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.DeliveryElementResponse">
+            <summary>
+            Represents a response from Kentico Kontent Delivery API that contains a content type element.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryElementResponse.Element">
+            <summary>
+            Gets the content type element.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryElementResponse.#ctor(Kentico.Kontent.Delivery.ApiResponse)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.DeliveryElementResponse"/> class.
+            </summary>
+            <param name="response">The response from Kentico Kontent Delivery API that contains a content type element.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryElementResponse.op_Implicit(Kentico.Kontent.Delivery.DeliveryElementResponse)~Kentico.Kontent.Delivery.ContentElement">
+            <summary>
+            Implicitly converts the specified <paramref name="response"/> to a content type element.
+            </summary>
+            <param name="response">The response to convert.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.DeliveryItemListingResponse">
+            <summary>
+            Represents a response from Kentico Kontent Delivery API that contains a list of content items.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryItemListingResponse.Pagination">
+            <summary>
+            Gets paging information.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryItemListingResponse.Items">
+            <summary>
+            Gets a read-only list of content items.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryItemListingResponse.LinkedItems">
+            <summary>
+            Gets the dynamic view of the JSON response where linked items and their properties can be retrieved by name, for example <c>LinkedItems.about_us.elements.description.value</c>.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryItemListingResponse.#ctor(Kentico.Kontent.Delivery.ApiResponse,Kentico.Kontent.Delivery.IModelProvider,Kentico.Kontent.Delivery.IContentLinkUrlResolver)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.DeliveryItemListingResponse"/> class.
+            </summary>
+            <param name="response">The response from Kentico Kontent Delivery API that contains a list of content items.</param>
+            <param name="modelProvider">The provider that can convert JSON responses into instances of .NET types.</param>
+            <param name="contentLinkUrlResolver">The resolver that can generate URLs for links in rich text elements.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryItemListingResponse.CastTo``1">
+            <summary>
+            Casts this response to a generic one. To succeed all items must be of the same type.
+            </summary>
+            <typeparam name="T">The object type that the items will be deserialized to.</typeparam>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.DeliveryItemResponse">
+            <summary>
+            Represents a response from Kentico Kontent Delivery API that contains a content item.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryItemResponse.Item">
+            <summary>
+            Gets the content item.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryItemResponse.LinkedItems">
+            <summary>
+            Gets the dynamic view of the JSON response where linked items and their properties can be retrieved by name, for example <c>LinkedItems.about_us.elements.description.value</c>.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryItemResponse.#ctor(Kentico.Kontent.Delivery.ApiResponse,Kentico.Kontent.Delivery.IModelProvider,Kentico.Kontent.Delivery.IContentLinkUrlResolver)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.DeliveryItemResponse"/> class.
+            </summary>
+            <param name="response">The response from Kentico Kontent Delivery API that contains a content item.</param>
+            <param name="modelProvider">The provider that can convert JSON responses into instances of .NET types.</param>
+            <param name="contentLinkUrlResolver">The resolver that can generate URLs for links in rich text elements.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryItemResponse.CastTo``1">
+            <summary>
+            Casts this response to a generic one.
+            </summary>
+            <typeparam name="T">The object type that the item will be deserialized to.</typeparam>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryItemResponse.op_Implicit(Kentico.Kontent.Delivery.DeliveryItemResponse)~Kentico.Kontent.Delivery.ContentItem">
+            <summary>
+            Implicitly converts the specified <paramref name="response"/> to a content item.
+            </summary>
+            <param name="response">The response to convert.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.DeliveryItemsFeed">
+            <summary>
+            Represents a feed that can be used to retrieve content items from Kentico Kontent Delivery API in smaller batches.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryItemsFeed.HasMoreResults">
+            <summary>
+            Indicates whether there are more batches to fetch.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryItemsFeed.#ctor(Kentico.Kontent.Delivery.DeliveryItemsFeed.GetFeedResponse)">
+            <summary>
+            Initializes a new instance of <see cref="T:Kentico.Kontent.Delivery.DeliveryItemsFeed"/> class.
+            </summary>
+            <param name="getFeedResponseAsync">Function to retrieve next batch of content items.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryItemsFeed.FetchNextBatchAsync">
+            <summary>
+            Retrieves the next feed batch if available.
+            </summary>
+            <returns>Instance of <see cref="T:Kentico.Kontent.Delivery.DeliveryItemsFeedResponse"/> class that contains a list of content items.</returns>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.DeliveryItemsFeedResponse">
+            <summary>
+            Represents a partial response from Kentico Kontent Delivery API enumeration methods that contains a list of content items.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryItemsFeedResponse.Items">
+            <summary>
+            Gets a read-only list of content items.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryItemsFeedResponse.LinkedItems">
+            <summary>
+            Gets the dynamic view of the JSON response where linked items and their properties can be retrieved by name, for example <c>LinkedItems.about_us.elements.description.value</c>.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryItemsFeedResponse.#ctor(Kentico.Kontent.Delivery.ApiResponse,Kentico.Kontent.Delivery.IModelProvider,Kentico.Kontent.Delivery.IContentLinkUrlResolver)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.DeliveryItemsFeedResponse"/> class.
+            </summary>
+            <param name="response">The response from Kentico Kontent Delivery API that contains a list of content items.</param>
+            <param name="modelProvider">The provider that can convert JSON responses into instances of .NET types.</param>
+            <param name="contentLinkUrlResolver">The resolver that can generate URLs for links in rich text elements.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryItemsFeedResponse.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection of content items.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryItemsFeedResponse.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection of content items.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryItemsFeedResponse.CastTo``1">
+            <summary>
+            Casts this response to a generic one. To succeed all items must be of the same type.
+            </summary>
+            <typeparam name="T">The object type that the items will be deserialized to.</typeparam>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.DeliveryTaxonomyListingResponse">
+            <summary>
+            Represents a response from Kentico Kontent Delivery API that contains a list of taxonomy groups.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryTaxonomyListingResponse.Pagination">
+            <summary>
+            Gets paging information.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryTaxonomyListingResponse.Taxonomies">
+            <summary>
+            Gets a read-only list of taxonomy groups.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryTaxonomyListingResponse.#ctor(Kentico.Kontent.Delivery.ApiResponse)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.DeliveryTaxonomyListingResponse"/> class.
+            </summary>
+            <param name="response">The response from Kentico Kontent Delivery API that contains a list of taxonomy groups.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.DeliveryTaxonomyResponse">
+            <summary>
+            Represents a response from Kentico Kontent Delivery API that contains a taxonomy group.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryTaxonomyResponse.Taxonomy">
+            <summary>
+            Gets the taxonomy group.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryTaxonomyResponse.#ctor(Kentico.Kontent.Delivery.ApiResponse)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.DeliveryTypeResponse"/> class.
+            </summary>
+            <param name="response">The response from Kentico Kontent Delivery API that contains a taxonomy group.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryTaxonomyResponse.op_Implicit(Kentico.Kontent.Delivery.DeliveryTaxonomyResponse)~Kentico.Kontent.Delivery.TaxonomyGroup">
+            <summary>
+            Implicitly converts the specified <paramref name="response"/> to a taxonomy group.
+            </summary>
+            <param name="response">The response to convert.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.DeliveryTypeListingResponse">
+            <summary>
+            Represents a response from Kentico Kontent Delivery API that contains a list of content types.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryTypeListingResponse.Pagination">
+            <summary>
+            Gets paging information.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryTypeListingResponse.Types">
+            <summary>
+            Gets a read-only list of content types.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryTypeListingResponse.#ctor(Kentico.Kontent.Delivery.ApiResponse)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.DeliveryTypeListingResponse"/> class.
+            </summary>
+            <param name="response">The response from Kentico Kontent Delivery API that contains a list of content types.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.DeliveryTypeResponse">
+            <summary>
+            Represents a response from Kentico Kontent Delivery API that contains a content type.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryTypeResponse.Type">
+            <summary>
+            Gets the content type.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryTypeResponse.#ctor(Kentico.Kontent.Delivery.ApiResponse)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.DeliveryTypeResponse"/> class.
+            </summary>
+            <param name="response">The response from Kentico Kontent Delivery API that contains a content type.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryTypeResponse.op_Implicit(Kentico.Kontent.Delivery.DeliveryTypeResponse)~Kentico.Kontent.Delivery.ContentType">
+            <summary>
+            Implicitly converts the specified <paramref name="response"/> to a content type.
+            </summary>
+            <param name="response">The response to convert.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.FeedResponse">
+            <summary>
+            Represents a successful response from Kentico Kontent Delivery API enumeration.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.FeedResponse.ContinuationToken">
+            <summary>
+            Gets the continuation token to be used for continuing enumeration of the Kentico Kontent Delivery API.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.FeedResponse.#ctor(Kentico.Kontent.Delivery.ApiResponse)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.FeedResponse"/> class.
+            </summary>
+            <param name="apiResponse">A successful JSON response from Kentico Kontent Delivery API.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.IDeliveryItemsFeed">
+            <summary>
+            Represents a feed that can be used to retrieve content items from Kentico Kontent Delivery API in smaller batches.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.IDeliveryItemsFeed.HasMoreResults">
+            <summary>
+            Indicates whether there are more batches to fetch.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryItemsFeed.FetchNextBatchAsync">
+            <summary>
+            Retrieves the next feed batch if available.
+            </summary>
+            <returns>Instance of <see cref="T:Kentico.Kontent.Delivery.DeliveryItemsFeedResponse"/> class that contains a list of content items.</returns>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.RetryPolicy.IRetryPolicy">
+            <summary>
+            Represents a retry policy for HTTP requests.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.RetryPolicy.IRetryPolicy.ExecuteAsync(System.Func{System.Threading.Tasks.Task{System.Net.Http.HttpResponseMessage}})">
+            <summary>
+            Invokes the specified request delegate within policy.
+            </summary>
+            <param name="sendRequest">The request delegate to invoke.</param>
+            <returns>A response message returned by <paramref name="sendRequest"/>.</returns>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.RetryPolicy.IRetryPolicyProvider">
+            <summary>
+            Provides a retry policy for <see cref="T:Kentico.Kontent.Delivery.DeliveryClient"/>.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.RetryPolicy.IRetryPolicyProvider.GetRetryPolicy">
+            <summary>
+            Returns a new instance of a retry policy.
+            </summary>
+            <returns>A new instance of a retry policy.</returns>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.DeliveryItemListingResponse`1">
+            <summary>
+            Represents a response from Kentico Kontent Delivery API that contains a list of content items.
+            </summary>
+            <typeparam name="T">The type of content items in the response.</typeparam>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryItemListingResponse`1.Pagination">
+            <summary>
+            Gets paging information.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryItemListingResponse`1.Items">
+            <summary>
+            Gets a read-only list of content items.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryItemListingResponse`1.LinkedItems">
+            <summary>
+            Gets the dynamic view of the JSON response where linked items and their properties can be retrieved by name, for example <c>LinkedItems.about_us.elements.description.value</c>.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryItemListingResponse`1.#ctor(Kentico.Kontent.Delivery.ApiResponse,Kentico.Kontent.Delivery.IModelProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.DeliveryItemListingResponse`1"/> class.
+            </summary>
+            <param name="response">The response from Kentico Kontent Delivery API that contains a list of content items.</param>
+            <param name="modelProvider">The provider that can convert JSON responses into instances of .NET types.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.DeliveryItemResponse`1">
+            <summary>
+            Represents a response from Kentico Kontent Delivery API that contains a content item.
+            </summary>
+            <typeparam name="T">The type of a content item in the response.</typeparam>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryItemResponse`1.Item">
+            <summary>
+            Gets the content item.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryItemResponse`1.LinkedItems">
+            <summary>
+            Gets the dynamic view of the JSON response where linked items and their properties can be retrieved by name, for example <c>LinkedItems.about_us.elements.description.value</c>.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryItemResponse`1.#ctor(Kentico.Kontent.Delivery.ApiResponse,Kentico.Kontent.Delivery.IModelProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.DeliveryItemResponse`1"/> class.
+            </summary>
+            <param name="response">The response from Kentico Kontent Delivery API that contains a content item.</param>
+            <param name="modelProvider">The provider that can convert JSON responses into instances of .NET types.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryItemResponse`1.op_Implicit(Kentico.Kontent.Delivery.DeliveryItemResponse{`0})~`0">
+            <summary>
+            Implicitly converts the specified <paramref name="response"/> to a content item.
+            </summary>
+            <param name="response">The response to convert.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.DeliveryItemsFeed`1">
+            <summary>
+            Represents a feed that can be used to retrieve strongly typed content items from Kentico Kontent Delivery API in smaller batches.
+            </summary>
+            <typeparam name="T">The type of content items in the feed.</typeparam>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryItemsFeed`1.HasMoreResults">
+            <summary>
+            Indicates whether there are more batches to fetch.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryItemsFeed`1.#ctor(Kentico.Kontent.Delivery.DeliveryItemsFeed{`0}.GetFeedResponse)">
+            <summary>
+            Initializes a new instance of <see cref="T:Kentico.Kontent.Delivery.DeliveryItemsFeed`1"/> class.
+            </summary>
+            <param name="getFeedResponseAsync">Function to retrieve next batch of content items.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryItemsFeed`1.FetchNextBatchAsync">
+            <summary>
+            Retrieves the next feed batch if available.
+            </summary>
+            <returns>Instance of <see cref="T:Kentico.Kontent.Delivery.DeliveryItemsFeedResponse`1"/> class that contains a list of strongly typed content items.</returns>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.DeliveryItemsFeedResponse`1">
+            <summary>
+            Represents a partial response from Kentico Kontent Delivery API enumeration methods that contains a list of content items.
+            </summary>
+            <typeparam name="T">The type of content items in the response.</typeparam>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryItemsFeedResponse`1.Items">
+            <summary>
+            Gets a read-only list of content items.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.DeliveryItemsFeedResponse`1.LinkedItems">
+            <summary>
+            Gets the dynamic view of the JSON response where linked items and their properties can be retrieved by name, for example <c>LinkedItems.about_us.elements.description.value</c>.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryItemsFeedResponse`1.#ctor(Kentico.Kontent.Delivery.ApiResponse,Kentico.Kontent.Delivery.IModelProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Kentico.Kontent.Delivery.DeliveryItemsFeedResponse`1"/> class.
+            </summary>
+            <param name="response">The response from Kentico Kontent Delivery API that contains a list of content items.</param>
+            <param name="modelProvider">The provider that can convert JSON responses into instances of .NET types.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryItemsFeedResponse`1.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection of content items.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.DeliveryItemsFeedResponse`1.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection of content items.
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.IDeliveryItemsFeed`1">
+            <summary>
+            Represents a feed that can be used to retrieve strongly typed content items from Kentico Kontent Delivery API in smaller batches.
+            </summary>
+            <typeparam name="T">The type of content items in the feed.</typeparam>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.IDeliveryItemsFeed`1.HasMoreResults">
+            <summary>
+            Indicates whether there are more batches to fetch.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IDeliveryItemsFeed`1.FetchNextBatchAsync">
+            <summary>
+            Retrieves the next feed batch if available.
+            </summary>
+            <returns>Instance of <see cref="T:Kentico.Kontent.Delivery.DeliveryItemsFeedResponse`1"/> class that contains a list of strongly typed content items.</returns>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.IPropertyValueConverter">
+            <summary>
+            Provides value conversion for the given property
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IPropertyValueConverter.GetPropertyValue(System.Reflection.PropertyInfo,Newtonsoft.Json.Linq.JToken,Kentico.Kontent.Delivery.ResolvingContext)">
+            <summary>
+            Gets the property value from property data
+            </summary>
+            <param name="property">Property info</param>
+            <param name="elementData">Source element data</param>
+            <param name="context">Context of the current resolving process</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.IModelProvider">
+            <summary>
+            Defines the contract for mapping content items to models.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IModelProvider.GetContentItemModel``1(Newtonsoft.Json.Linq.JToken,Newtonsoft.Json.Linq.JToken)">
+            <summary>
+            Builds a model based on given JSON input.
+            </summary>
+            <typeparam name="T">Strongly typed content item model.</typeparam>
+            <param name="item">Content item data.</param>
+            <param name="linkedItems">Linked items.</param>
+            <returns>Strongly typed POCO model of the generic type.</returns>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.IPropertyMapper">
+            <summary>
+            Defines the contract for mapping Kentico Kontent content item fields to model properties.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.IPropertyMapper.IsMatch(System.Reflection.PropertyInfo,System.String,System.String)">
+            <summary>
+            Determines whether the given property corresponds with a given field.
+            </summary>
+            <param name="modelProperty">CLR property to be compared with <paramref name="fieldName"/>.</param>
+            <param name="fieldName">Name of the field in <paramref name="contentType"/>.</param>
+            <param name="contentType">Content type containing <paramref name="fieldName"/>.</param>
+            <returns>TRUE if <sparamref name="modelProperty"/> is a CLR representation of <paramref name="fieldName"/> in <paramref name="contentType"/>.</returns>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.ITypeProvider">
+            <summary>
+            Defines the contract for mapping Kentico Kontent content types to CLR types.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ITypeProvider.GetType(System.String)">
+            <summary>
+            Returns a CLR type corresponding to the given content type.
+            </summary>
+            <param name="contentType">Content type identifier.</param>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.ITypeProvider.GetCodename(System.Type)">
+            <summary>
+            Returns a codename corresponding to the given content type model.
+            </summary>
+            <param name="contentType">Content type model.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.StrongTyping.ModelProvider">
+            <summary>
+            A default provider for mapping content items to models.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.StrongTyping.ModelProvider.#ctor(Kentico.Kontent.Delivery.IContentLinkUrlResolver,Kentico.Kontent.Delivery.InlineContentItems.IInlineContentItemsProcessor,Kentico.Kontent.Delivery.ITypeProvider,Kentico.Kontent.Delivery.IPropertyMapper)">
+            <summary>
+            Initializes a new instance of <see cref="T:Kentico.Kontent.Delivery.StrongTyping.ModelProvider"/>.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.StrongTyping.ModelProvider.GetContentItemModel``1(Newtonsoft.Json.Linq.JToken,Newtonsoft.Json.Linq.JToken)">
+            <summary>
+            Builds a model based on given JSON input.
+            </summary>
+            <typeparam name="T">Strongly typed content item model.</typeparam>
+            <param name="item">Content item data.</param>
+            <param name="linkedItems">Linked items.</param>
+            <returns>Strongly typed POCO model of the generic type.</returns>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.StrongTyping.PropertyMapper">
+            <summary>
+            Default provider for mapping Kentico Kontent content item fields to model properties.
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.StrongTyping.PropertyMapper.IsMatch(System.Reflection.PropertyInfo,System.String,System.String)">
+            <summary>
+            Determines whether the given property corresponds with a given field.
+            </summary>
+            <param name="modelProperty">CLR property to be compared with <paramref name="fieldName"/>.</param>
+            <param name="fieldName">Name of the field in <paramref name="contentType"/>.</param>
+            <param name="contentType">Content type containing <paramref name="fieldName"/>.</param>
+            <returns>TRUE if <paramref name="modelProperty"/> is a CLR representation of <paramref name="fieldName"/> in <paramref name="contentType"/>.</returns>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.ResolvingContext">
+            <summary>
+            Context of the current resolving process
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ResolvingContext.GetLinkedItem">
+            <summary>
+            Gets the content item within current resolving context
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.ResolvingContext.ContentLinkUrlResolver">
+            <summary>
+            Gets an instance that resolves content links in Rich text element values
+            </summary>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.UnknownContentItem">
+            <summary>
+            Type used to identify inline content items which don't have corresponding model.
+            </summary>
+        </member>
+        <member name="P:Kentico.Kontent.Delivery.UnknownContentItem.Type">
+            <summary>
+            Represents the content type that has no corresponding model
+            </summary>
+        </member>
+        <member name="M:Kentico.Kontent.Delivery.UnknownContentItem.#ctor(Newtonsoft.Json.Linq.JToken)">
+            <summary>
+            Creates an instance of <see cref="T:Kentico.Kontent.Delivery.UnknownContentItem"/> which represents content item with no corresponding model.
+            </summary>
+            <param name="elementNode">The corresponding node in JSON containing the unknown type.</param>
+        </member>
+        <member name="T:Kentico.Kontent.Delivery.UnretrievedContentItem">
+            <summary>
+            Type used to identify inline content items which were not retrieved from Deliver API.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions">
+            <summary>
+            A class which contains extension methods on <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> for registering an <see cref="T:Kentico.Kontent.Delivery.IDeliveryClient"/> instance.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDeliveryClient(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Func{Kentico.Kontent.Delivery.Builders.DeliveryOptions.IDeliveryOptionsBuilder,Kentico.Kontent.Delivery.DeliveryOptions})">
+            <summary>
+            Registers a <see cref="T:Kentico.Kontent.Delivery.IDeliveryClient"/> instance to an <see cref="T:Kentico.Kontent.Delivery.IDeliveryClient"/> interface in <see cref="T:Microsoft.Extensions.DependencyInjection.ServiceCollection"/>.
+            </summary>
+            <param name="services">A <see cref="T:Microsoft.Extensions.DependencyInjection.ServiceCollection"/> instance for registering and resolving dependencies.</param>
+            <param name="buildDeliveryOptions">A function that is provided with an instance of <see cref="T:Kentico.Kontent.Delivery.DeliveryOptionsBuilder"/>and expected to return a valid instance of <see cref="T:Kentico.Kontent.Delivery.DeliveryOptions"/>.</param>
+            <returns>The <paramref name="services"/> instance with <see cref="T:Kentico.Kontent.Delivery.IDeliveryClient"/> registered in it</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDeliveryClient(Microsoft.Extensions.DependencyInjection.IServiceCollection,Kentico.Kontent.Delivery.DeliveryOptions)">
+            <summary>
+            Registers a <see cref="T:Kentico.Kontent.Delivery.IDeliveryClient"/> instance to an <see cref="T:Kentico.Kontent.Delivery.IDeliveryClient"/> interface in <see cref="T:Microsoft.Extensions.DependencyInjection.ServiceCollection"/>.
+            </summary>
+            <param name="services">A <see cref="T:Microsoft.Extensions.DependencyInjection.ServiceCollection"/> instance for registering and resolving dependencies.</param>
+            <param name="deliveryOptions">A <see cref="T:Kentico.Kontent.Delivery.DeliveryOptions"/> instance.  Options themselves are not further validated (see <see cref="M:Kentico.Kontent.Delivery.DeliveryOptionsValidator.Validate(Kentico.Kontent.Delivery.DeliveryOptions)"/>).</param>
+            <returns>The <paramref name="services"/> instance with <see cref="T:Kentico.Kontent.Delivery.IDeliveryClient"/> registered in it</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDeliveryClient(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+            <summary>
+            Registers a <see cref="T:Kentico.Kontent.Delivery.IDeliveryClient"/> instance to an <see cref="T:Kentico.Kontent.Delivery.IDeliveryClient"/> interface in <see cref="T:Microsoft.Extensions.DependencyInjection.ServiceCollection"/>.
+            </summary>
+            <param name="services">A <see cref="T:Microsoft.Extensions.DependencyInjection.ServiceCollection"/> instance for registering and resolving dependencies.</param>
+            <param name="configuration">A set of key/value application configuration properties.</param>
+            <param name="configurationSectionName">The section name of the configuration that keeps the <see cref="T:Kentico.Kontent.Delivery.DeliveryOptions"/> properties. The default value is DeliveryOptions.</param>
+            <returns>The <paramref name="services"/> instance with <see cref="T:Kentico.Kontent.Delivery.IDeliveryClient"/> registered in it</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDeliveryInlineContentItemsResolver``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,Kentico.Kontent.Delivery.InlineContentItems.IInlineContentItemsResolver{``0})">
+            <summary>
+            Registers an <see cref="T:Kentico.Kontent.Delivery.InlineContentItems.IInlineContentItemsResolver`1"/> implementation For <seealso cref="T:Kentico.Kontent.Delivery.InlineContentItems.InlineContentItemsProcessor"/> in <see cref="T:Microsoft.Extensions.DependencyInjection.ServiceCollection"/>.
+            </summary>
+            <typeparam name="TContentItem">Type of content item that <paramref name="resolver"/> works with</typeparam>
+            <param name="services">A <see cref="T:Microsoft.Extensions.DependencyInjection.ServiceCollection"/> instance for registering and resolving dependencies.</param>
+            <param name="resolver">An <see cref="T:Kentico.Kontent.Delivery.InlineContentItems.IInlineContentItemsResolver`1"/> instance capable of resolving <typeparamref name="TContentItem"/> to a <see cref="T:System.String"/></param>
+            <returns>The <paramref name="services"/> instance with <see cref="T:Kentico.Kontent.Delivery.IDeliveryClient"/> registered in it</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDeliveryInlineContentItemsResolver``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Registers an <see cref="T:Kentico.Kontent.Delivery.InlineContentItems.IInlineContentItemsResolver`1"/> implementation for <seealso cref="T:Kentico.Kontent.Delivery.InlineContentItems.InlineContentItemsProcessor"/> in <see cref="T:Microsoft.Extensions.DependencyInjection.ServiceCollection"/>.
+            </summary>
+            <typeparam name="TContentItem">Type of content item that <typeparamref name="TInlineContentItemsResolver"/> works with</typeparam>
+            <typeparam name="TInlineContentItemsResolver">Type of an <see cref="T:Kentico.Kontent.Delivery.InlineContentItems.IInlineContentItemsResolver`1"/> instance capable of resolving <typeparamref name="TContentItem"/> to a <see cref="T:System.String"/></typeparam>
+            <returns>The <paramref name="services"/> instance with <see cref="T:Kentico.Kontent.Delivery.IDeliveryClient"/> registered in it</returns>
+            <remarks>Instance of <typeparamref name="TInlineContentItemsResolver"/> is obtained through <see cref="T:System.IServiceProvider"/> thus its dependencies might be injected.</remarks>
+        </member>
+    </members>
+</doc>

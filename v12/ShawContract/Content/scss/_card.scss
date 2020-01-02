@@ -1,0 +1,56 @@
+.card {
+    &.info-card {
+        background: transparent;
+        border: solid 8px rgba(255,255,255,0.5);
+        border-radius: 0;
+
+        .card-body {
+            background: $white;
+            border-radius: 0;
+            padding: 4rem;
+
+            .mark {
+                margin: 0 0 2rem 0;
+            }
+            .card-title {
+                color: $blue-regular;
+                font-size: 2.6rem;
+                font-weight: $medium;
+                margin: 0 0 2rem 0;
+                text-transform: capitalize;
+            }
+            .card-text {
+                color: $black;
+                font-size: 1.6rem;
+                font-weight: $regular;
+                margin: 0 0 3rem 0;
+            }
+
+            .btn-card {
+                background-color: $blue-regular;
+                border: solid 1px $blue-regular;
+                border-radius: 0;
+                color: $white;
+                display: inline-block;
+                font-size: 1.4rem;
+                font-weight: $regular;
+                letter-spacing: $letter-spacing;
+                padding: 2rem 3rem;
+                text-transform: uppercase;
+                transition: $standard-transition;
+
+                &:hover {
+                    background-color: $red-regular;
+                    border: solid 1px $red-regular;
+                }
+            }
+        }
+
+        @media (max-width: $below-tablet-size) {
+            .card-body {
+                padding: 3rem;
+            }
+        }        
+
+    }
+}

@@ -1,0 +1,24 @@
+.checkout {
+  .checkout-tabs-wrapper {
+    color: $gray-regular;
+    font-weight: $medium;
+    letter-spacing: 0.25rem;
+    line-height: 3rem;
+  }
+
+  li.is-active {
+    color: $black;
+  }
+
+  .line-with-text {
+    border-width: 2px !important;
+    line-height: 0.01em;
+    margin: 10px 0 20px;
+    text-align: center;
+
+    span {
+      background: $white;
+      padding: 0 3rem;
+    }
+  }
+}

@@ -1,0 +1,346 @@
+html, body {
+  font-family: $fontStack;
+  font-size: 10px;
+  font-weight: $regular;
+  height: 100%;
+}
+
+// HELPERS
+.regular { font-weight: $regular; }
+.medium { font-weight: $medium; }
+.semibold { font-weight: $semibold; }
+.heading-1 {font-size: 3.6rem;}
+.heading-2 {font-size: 2.4rem;}
+.heading-3 {font-size: 2rem;}
+.heading-4 {font-size: 1.8rem;}
+.heading-5 {font-size: 1.6rem;}
+.text-size-xsmall {font-size: 1.2rem;}
+.text-size-small {font-size: 1.4rem;}
+.text-size-normal {font-size: 1.6rem;}
+.text-size-large {font-size: 1.8rem;}
+.letter-spacing-normal { letter-spacing: normal !important;}
+.letter-spacing-large { letter-spacing: 2px; }
+.line-height-normal {line-height: 1.6rem; }
+.line-height-large { line-height: 3.6rem; }
+.mb-6 { margin-bottom: 6rem; }
+.mt-6 { margin-top: 6rem; }
+.pb-6 { padding-bottom: 6rem; }
+.pt-6 { padding-top: 6rem; }
+.relative-wrapper { height: 100%; position: relative; width: 100%; }
+
+// COLORS
+.black { color: $black; }
+.blue-regular { color: $blue-regular; }
+.gray-light { color: $gray-light; }
+.gray-semilight { color: $gray-semilight; }
+.gray-regular { color: $gray-regular; }
+.gray-semibold { color: $gray-semibold; }
+.gray-bold { color: $gray-bold; }
+.green-regular { color: $green-regular; }
+.red-regular { color: $red-regular; }
+.white { color: $white; }
+.yellow-regular { color: $yellow-regular; }
+
+// GENERIC LINKS
+a {
+  color: $blue-regular;
+
+  &:hover { color: $red-regular; }
+}
+
+// INPUT PLACEHOLDER
+::-webkit-input-placeholder {
+  /* Edge */
+  color: $gray-regular !important;
+}
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: $gray-regular !important;
+}
+::placeholder {
+  color: $gray-regular !important;
+}
+
+// ERROR HANDLING
+.error {
+  color: $red-regular;
+  letter-spacing: 0.3px;
+}
+.error-message {
+  align-items: center;
+  background-color: $error-bg;
+  border-radius: 0.3rem;
+  border: $error-border 0.1rem;
+  .error-text {
+    margin: 0;
+  }
+}
+
+// TITLES
+.title-section {
+    .mark {
+        background-color: $blue-regular;
+        height: 2px;
+        margin: 10px auto;
+        padding: 0;
+        width: 45px;
+
+        &.red {
+            background-color: $red-regular;
+        }
+    }    
+
+    .subtitle {
+        font-size: 1.4rem;
+        font-weight: $regular;
+        margin: 0 0 .5rem 0;
+        text-transform: uppercase;       
+    }
+
+    .title {
+        font-size: 3.6rem;
+        font-weight: $regular;
+        margin: 0 0 2rem 0;
+    }
+
+    .description {
+    font-size: 2.4rem;
+    font-weight: $regular;
+    margin: 0 0 2rem 0;
+    }
+}
+
+
+// BUTTONS
+button {
+  
+  &.btn-primary, &.btn-secondary, &.btn-tertiary {
+    border: solid 1px $white;
+    border-radius: 0;
+    color: $white;
+    font-size: 1.4rem;
+    font-weight: $regular;
+    letter-spacing: 2px;
+    padding: 8px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: $standard-transition;
+
+    &:hover {
+      background-color: $red-regular;
+      border: solid 1px $red-regular;
+      color: $white;
+    }  
+    
+    i {
+      padding: 0 .5rem;
+    }
+  }
+
+  &.btn-primary {
+    background-color: $blue-regular;
+    border: solid 1px $blue-regular;
+  }
+
+  &.btn-secondary {
+    background-color: $gray-semilight;
+    border: solid 1px $gray-semilight;
+    color: $blue-regular;
+    font-size: 1.3rem;
+  }  
+
+  &.btn-tertiary {
+    border: solid 1px $blue-regular;
+    color: $blue-regular;
+  }
+
+  &.btn-login {
+    -webkit-box-shadow: 0 0 3px 0 rgba(0,0,0,0.25);
+    box-shadow: 0 0 3px 0 rgba(0,0,0,0.25);
+
+    background-color: $blue-regular;
+    color: $white;
+    display: inline-block;
+    font-size: 1.4rem;
+
+    padding: 10px 15px;
+    margin-bottom: 10px;
+
+    text-align: left;
+    transition: $standard-transition;
+    width: 100%;
+
+    i {
+      margin-right: 12px;
+    }
+
+    &:hover {
+      background-color: $red-regular;
+      color: $white;
+    }
+  }
+
+  &.btn-after-login {
+    background-color: $white;
+    color: $black;
+    display: inline-block;
+    font-size: 1.4rem;
+    font-weight: $regular;
+
+    padding: 8px 15px;
+    margin-bottom: 5px;
+
+    text-align: left;
+    transition: $standard-transition;
+    width: 100%;
+
+    i {
+      margin-right: 12px;
+    }
+
+    &:hover {
+      background-color: $gray-light;
+    }
+  }  
+}
+
+.link-btn {
+  border: solid 1px $white;
+  border-radius: 0;
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: $regular;
+  letter-spacing: 2px;
+  padding: 8px 25px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: $standard-transition;
+
+  &:hover {
+    background-color: $red-regular;
+    border: solid 1px $red-regular;
+    color: $white;
+    text-decoration: none;    
+  }
+
+  i {
+    padding: 0 1rem;
+  }
+
+  &.lb-primary {
+    font-size: inherit;
+  }
+  &.lb-secondary {
+    font-size: inherit;
+  }
+  &.lb-tertiary {
+    border: solid 1px $blue-regular;
+    color: $blue-regular;
+
+    &:hover {
+      background-color: $red-regular;
+      border: solid 1px $red-regular;
+      color: $white;
+    }
+  }
+}
+
+// SELECT
+select {
+  &.shaw-select {
+  // height: 50px;
+  // width: 222px;
+  // font-size: 22px;
+  // margin: 0 20px;
+  // padding: 0 20px;
+  // border: 2px solid $white;
+  // color: $white;
+  // border-radius: 3px;
+  background: none !important;
+  // line-height: 25px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("../images/chevron-down.svg");
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  }
+
+  &::-ms-expand {
+    display: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &.select-white {
+    background-color: $gray-light;
+    border-style: none;
+    font-size: 1.4rem;
+  }
+}
+
+// INPUT
+.form-control-lg {
+  color: $black;
+  font-size: 1.6rem;
+  font-weight: $medium;
+  height: 5rem;
+}
+
+// RADIO BUTTONS & CHECKBOXES
+.custom-control-label::before,
+.custom-control-label::after {
+  height: 1.6rem;
+  width: 1.6rem;
+}
+.custom-control-input:checked~.custom-control-label::before {
+  background-color: $blue-regular;
+  border-color: $white;
+}
+.custom-control-input:not(:disabled):active~.custom-control-label::before {
+  background-color: $blue-regular;
+}
+.custom-control-input~.custom-control-label::before{ 
+  box-shadow: 0 0 0 0.1rem $blue-regular;
+}
+.custom-radio .custom-control-input:checked~.custom-control-label::after {
+  background-image: none;
+}
+input[type="radio"] + label, input[type="checkbox"] + label {
+  padding-left: 1rem;
+}
+
+// IMAGES
+.full-width-img {
+  height: auto;
+  width: 100%;
+}
+
+// PHOTO CREDITS
+.img-box {
+  position: relative;
+
+  img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .photo-credits {
+    bottom: -38px;
+    color: $black;
+    position: absolute;
+    right: 15px;
+
+    &.left {
+      right: unset;
+      left: 15px;
+    }
+  }  
+}
+

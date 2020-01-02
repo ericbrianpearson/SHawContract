@@ -1,0 +1,61 @@
+.widget {
+    &.cta-block {
+
+        background-color: $blue-regular;
+        padding: 6rem 0 0 0;        
+
+        .title {
+            color: $white;
+        }
+
+        .description {
+            color: $white;
+            font-size: 2.4rem;
+            font-weight: $regular;
+            margin: 0 0 3rem 0;
+        }
+
+        .cta-link {
+            background: $white;
+            color: $blue-regular;
+            display: inline-block;
+            letter-spacing: 2px;
+            margin: 0 0 6rem 0;
+            padding: 2rem 3.5rem;
+            transition: $standard-transition;
+            text-decoration: none;
+            text-transform: uppercase;
+
+            &:hover {
+                background: $red-regular;
+                color: $white;
+            }
+        }
+
+        .color-bar {
+            background: $gray-semilight;
+            height: 10px;
+            position: relative;
+            width: 100%;
+
+            span {
+                background: $red-regular;
+                display: block;
+                height: 10px;
+                left: 0;
+                position: absolute;
+                top: 0;
+                transition: $medium-transition;
+                width: 5%;
+            }
+        }
+    }
+
+    &.now-viewable {
+        .color-bar {
+            span {
+                width: 35%;
+            }
+        }        
+    }
+}
