@@ -8,8 +8,8 @@ phases:
   build:
     commands:
       - get-host
-      - nuget restore shawcontract\shawcontract.csproj
-      - msbuild shawcontract\shawcontract.csproj /p:TargetFrameworkVersion=v$env:DOTNET_FRAMEWORK /p:Configuration=Release /p:DeployIisAppPath="Default Web Site" /p:PackageAsSingleFile=false /p:OutDir=C:\codebuild\artifacts\ /t:Package
+      - nuget restore shawcontract.csproj
+      - msbuild shawcontract.csproj /p:TargetFrameworkVersion=v$env:DOTNET_FRAMEWORK /p:Configuration=Release /p:DeployIisAppPath="Default Web Site" /p:PackageAsSingleFile=false /p:OutDir=C:\codebuild\artifacts\ /t:Package
 artifacts:
   files:
     - '**/*'
