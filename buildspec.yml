@@ -3,6 +3,7 @@ version: 0.2
 env:
   variables:
     SOLUTION: ShawContract.sln
+    PROJECT: ShawContract\ShawContract
     DOTNET_FRAMEWORK: 4.6.1
 phases:
   build:
@@ -13,4 +14,4 @@ phases:
 artifacts:
   files:
     - '**/*'
-  base-directory: C:\codebuild\artifacts\_PublishedWebsites\ShawContract\ShawContract.csprog_Package\Archive\
+  base-directory: C:\codebuild\artifacts\_PublishedWebsites\${env:PROJECT}_Package\Archive\
