@@ -8,9 +8,9 @@ phases:
   build:
     commands:
       - get-host
-      - nuget restore ShawContract/ShawContract.csproj
+      - nuget restore ShawContract/ShawContract.csproj -PackagesDirectory packages
       - msbuild ShawContract/ShawContract.csprog /p:TargetFrameworkVersion=v$env:DOTNET_FRAMEWORK /p:Configuration=Release /p:DeployIisAppPath="Default Web Site" /p:PackageAsSingleFile=false /p:OutDir=C:\codebuild\artifacts\ /t:Package
 artifacts:
   files:
     - '**/*'
-  base-directory: C:\codebuild\artifacts\_PublishedWebsites\ShawContract/ShawContract.csprog_Package\Archive\
+  base-directory: C:\codebuild\artifacts\_PublishedWebsites\ShawContract\ShawContract.csprog_Package\Archive\
