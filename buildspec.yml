@@ -13,4 +13,4 @@ phases:
 artifacts:
   files:
     - '**/*'
-  base-directory: C:\codebuild\artifacts\_PublishedWebsites\ShawContract/ShawContract.csprog\_Package\Archive\
+  base-directory: C:\codebuild\artifacts\_PublishedWebsites\ShawContract/ShawContract.csprog_Package\Archive\
