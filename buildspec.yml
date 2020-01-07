@@ -2,13 +2,20 @@ version: 0.2
 
 env:
   variables:
-    PROJECT: ShawContract
+    SOLUTION: ShawContract.sln
+    PROJECT: ShawContract\ShawContract
     DOTNET_FRAMEWORK: 4.6.1
 phases:
   build:
     commands:
-      - nuget restore
-      - msbuild $env:PROJECT.csproj /p:TargetFrameworkVersion=v$env:DOTNET_FRAMEWORK /p:Configuration=Release /p:DeployIisAppPath="Default Web Site" /p:PackageAsSingleFile=false /p:OutDir=C:\codebuild\artifacts\ /t:Package
+      - Install-Package Microsoft.IdentityModel.Logging -Version 5.6.0
+      - Install-Package Microsoft.IdentityModel.Tokens -Version 5.6.0
+      - Install-Package System-Web-Helpers.dll -Version 1.0.0
+      - Install-Package Twilio.AspNet.Mvc -Version 5.33.1
+      - Install-Package Microsoft.AspNet.WebPages -Version 3.2.7
+      - Install-Package AngleSharp -Version 0.14.0-alpha-788
+      - nuget restore ShawContract\ShawContract.csproj -PackagesDirectory packages
+      - msbuild ShawContract\ShawContract.csproj /p:TargetFrameworkVersion=v$env:DOTNET_FRAMEWORK /p:Configuration=Release /p:DeployIisAppPath="Default Web Site" /p:PackageAsSingleFile=false /p:OutDir=C:\codebuild\artifacts\ /t:Package
 artifacts:
   files:
     - '**/*'
