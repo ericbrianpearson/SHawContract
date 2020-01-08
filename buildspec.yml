@@ -4,7 +4,7 @@ env:
   variables:
     SOLUTION: ShawContract.sln
     PROJECT: ShawContract\ShawContract.csproj
-    DOTNET_FRAMEWORK: 4.6.1
+    DOTNET_FRAMEWORK: 4.7.2
 phases:
   build:
     commands:
