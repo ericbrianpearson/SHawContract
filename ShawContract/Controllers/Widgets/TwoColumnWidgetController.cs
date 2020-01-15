@@ -5,8 +5,8 @@ using ShawContract.Models.Widgets.TwoColumnWidget;
 
 [assembly: RegisterWidget("ShawContract.Widget.TwoColumnWidget",
     typeof(TwoColumnWidgetController),
-    "Two column paragraph",
-    Description = "Two column paragraph",
+    "Two Column Paragraph",
+    Description = "Two Column Paragraph",
     IconClass = "icon-l-header-cols-2-footer")]
 
 namespace ShawContract.Controllers.Widgets

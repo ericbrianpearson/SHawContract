@@ -19,7 +19,7 @@
             <div class="@imagePosition">
                 <div class="img-box">
                     <img src="@imageUrl" alt="image title" class="bullet-img">
-                    <p class="photo-credits">
+                    <div class="photo-credits">
                         @if (editMode)
                         {
                             Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
@@ -31,15 +31,15 @@
                         }
                         else
                         {
-                            @Regex.Replace(Model.PhotoCredit ?? "", "<.*?>", String.Empty);
+                            @Html.Raw(Model.PhotoCredit)
                         }
-                    </p>
+                    </div>
                 </div>
             </div>
             <div class="@bulletListPosition">
                 <div class="content-padding">
                     <div class="mark red"></div>
-                    <p class="heading">
+                    <div class="heading">
                         @if (editMode)
                         {
                             Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
@@ -51,9 +51,9 @@
                         }
                         else
                         {
-                            @Regex.Replace(Model.Title ?? "", "<.*?>", String.Empty);
+                            @Html.Raw(Model.Title)
                         }
-                    </p>
+                    </div>
                     <ul class="bullet-list">
 
                         @if (editMode)

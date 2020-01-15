@@ -10,7 +10,6 @@
 
 <div class="container">
     <section class="widget two-column now-viewable">
-
         <div class="mark"></div>
         <div class="row">
             <div class="col-sm-8 offset-sm-2 text-center">
@@ -26,14 +25,14 @@
                     }
                     else
                     {
-                        @Regex.Replace(Model.Title ?? "", "<.*?>", String.Empty)
+                        @Html.Raw(Model.Title)
                     }
                 </h2>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-5 offset-sm-1">
-                <p class="description">
+                <div class="description">
                     @if (editMode)
                     {
                         Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
@@ -45,13 +44,14 @@
                     }
                     else
                     {
+
                         @Html.Raw(Model.ContentLeft)
                     }
-                </p>
+                </div>
             </div>
 
             <div class="col-sm-5 offset-sm-1">
-                <p class="description">
+                <div class="description">
                     @if (editMode)
                     {
                         Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
@@ -65,7 +65,7 @@
                     {
                         @Html.Raw(Model.ContentRight)
                     }
-                </p>
+                </div>
             </div>
         </div>
     </section>

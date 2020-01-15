@@ -6,9 +6,10 @@ using ShawContract.Controllers.Widgets;
 [assembly: RegisterWidget(
     "ShawContract.Widget.SingleFloatingImage",
     typeof(SingleFloatingImageWidgetController),
-    "SingleFloatingImageWidget",
-    Description = "Single floating image",
+    "Single Floating Image",
+    Description = "Single Floating Image",
     IconClass = "icon-l-img-2-cols-3")]
+
 namespace ShawContract.Controllers.Widgets
 {
     public class SingleFloatingImageWidgetController : WidgetController<SingleFloatingImageWidgetProperties>

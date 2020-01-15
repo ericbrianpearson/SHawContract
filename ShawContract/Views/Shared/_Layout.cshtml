@@ -34,17 +34,17 @@
     </script>
 </head>
 
-<body class="d-flex flex-column h-100">
+<body class="h-100">
     <nav class="secondary">
         <ul class="list-unstyled">
 
             @foreach (var item in Model.SecondaryMenuItems)
             {
-            <li>
-                <a @(item.IsClickable ? item.OpenInNewTab ? "href=" + item.PageReference + " target=\"_blank\"" : "href=" + item.PageReference : string.Empty)>
-                    @item.DisplayName
-                </a>
-            </li>
+                <li>
+                    <a @(item.IsClickable ? item.OpenInNewTab ? "href=" + item.PageReference + " target=\"_blank\"" : "href=" + item.PageReference : string.Empty)>
+                        @item.DisplayName
+                    </a>
+                </li>
             }
             <li><a href="#">language: en-us</a></li>
             <li></li>
@@ -139,57 +139,31 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropDown">
 
                         <div class="row">
-                            <div class="col-sm-12">
-                                <button class="btn btn-login">
-                                    <i class="fab fa-google"></i> Sign in with <strong class="medium">Google</strong>
-                                </button>
-                            </div>
+                            @Html.Partial("_LoginPartial")
                         </div>
-
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <button class="btn btn-login">
-                                    <i class="fab fa-linkedin-in"></i> Sign in with <strong class="medium">LinkedIn</strong>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <button class="btn btn-login">
-                                    <i class="fab fa-microsoft"></i> Sign in with <strong class="medium">Microsoft</strong>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <button class="btn btn-login">
-                                    <i class="far fa-lock-alt"></i> Sign in with <strong class="medium">
-                                        Shaw
-                                        Contract
-                                    </strong>
-                                </button>
-                            </div>
-                        </div>
-
                         <hr class="" />
 
                         <div class="row">
                             <div class="col-sm-12">
-                                <button class="btn btn-after-login"><i class="far fa-receipt"></i> My Previous Orders</button>
+                                <button class="btn btn-after-login"><i class="far fa-cog"></i> User Settings</button>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-sm-12">
-                                <button class="btn btn-after-login"><i class="far fa-phone-alt"></i> My Account Representative</button>
+                                <button class="btn btn-after-login"><i class="far fa-receipt"></i> Order History</button>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-sm-12">
-                                <button class="btn btn-after-login"><i class="far fa-cog"></i> My Settings</button>
+                                <button class="btn btn-after-login"><i class="far fa-heart"></i> Product Boards</button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button class="btn btn-after-login"><i class="far fa-phone-alt"></i> Account Support</button>
                             </div>
                         </div>
                     </div>
@@ -204,7 +178,10 @@
 
                         <div class="row mb-4">
                             <div class="col-sm-12">
-                                <button class="btn btn-primary">Create New Board</button>
+                                <button type="button" class="btn btn-primary w-100" data-toggle="modal"
+                                        data-target="#createNewBoardModal" aria-pressed="false" autocomplete="off">
+                                    Create New Board
+                                </button>
                             </div>
                         </div>
 
@@ -266,7 +243,7 @@
 
                         <div class="row mb-3 mt-5">
                             <div class="col-sm-12">
-                                <button class="btn btn-secondary"><i class="fal fa-paper-plane"></i> Share This Board</button>
+                                <button class="btn btn-secondary w-100"><i class="fal fa-paper-plane"></i> Share This Board</button>
                             </div>
                         </div>
 
@@ -283,130 +260,15 @@
                        aria-expanded="false">
                         <i class="far fa-shopping-cart" aria-label="View Your Cart"></i>
                     </a>
+
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="cartDropDown">
-
-                        <div class="row">
-                            <div class="col-sm-7">
-                                <p class="dropdown-title">Sample Request</p>
-                            </div>
-                            <div class="col-sm-5 text-right">
-                                <a class="dropdown-link" href="#">View Cart <i class="far fa-angle-right"></i></a>
-                            </div>
-                        </div>
-
-                        <div class="cart-item-box">
-
-                            <div class="media cart-item">
-                                <a class="style-img" href="#"><img class="mr-3" src="https://placehold.it/60x60" alt="Style Name"></a>
-                                <div class="media-body">
-                                    <div class="row">
-                                        <div class="col-sm-9">
-                                            <p class="style-name"><a href="#">Style Name Number</a></p>
-                                            <p class="color-name">Color Name Number</p>
-                                            <p class="quantity"><strong>Quantity:</strong> <span>3</span></p>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <button class="btn remove-style-sample"><i class="fal fa-times"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="media cart-item">
-                                <a class="style-img" href="#"><img class="mr-3" src="https://placehold.it/60x60" alt="Style Name"></a>
-                                <div class="media-body">
-                                    <div class="row">
-                                        <div class="col-sm-9">
-                                            <p class="style-name"><a href="#">Style Name Number</a></p>
-                                            <p class="color-name">Color Name Number</p>
-                                            <p class="quantity"><strong>Quantity:</strong> <span>3</span></p>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <button class="btn remove-style-sample"><i class="fal fa-times"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="media cart-item">
-                                <a class="style-img" href="#"><img class="mr-3" src="https://placehold.it/60x60" alt="Style Name"></a>
-                                <div class="media-body">
-                                    <div class="row">
-                                        <div class="col-sm-9">
-                                            <p class="style-name"><a href="#">Style Name Number</a></p>
-                                            <p class="color-name">Color Name Number</p>
-                                            <p class="quantity"><strong>Quantity:</strong> <span>3</span></p>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <button class="btn remove-style-sample"><i class="fal fa-times"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-5 mt-4">
-                            <div class="col-sm-5">
-                                <p class="cart-total">
-                                    Total: <strong>5 Items</strong>
-                                </p>
-                            </div>
-                            <div class="col-sm-7">
-                                <button class="btn btn-primary">Submit</button>
-                            </div>
-                        </div>
-
-                        <div class="row mt-6">
-                            <div class="col-sm-7">
-                                <p class="dropdown-title">Recent Requests</p>
-                            </div>
-                            <div class="col-sm-5 text-right">
-                                <a class="dropdown-link" href="#">View All <i class="far fa-angle-right"></i></a>
-                            </div>
-                        </div>
-
-                        <div class="cart-item-box">
-
-                            <div class="media cart-item">
-                                <a class="style-img" href="#"><img class="mr-3" src="https://placehold.it/60x60" alt="Style Name"></a>
-                                <div class="media-body">
-                                    <div class="row">
-                                        <div class="col-sm-9">
-                                            <p class="style-name"><a href="#">Order Number <span class="regular">Date</span></a></p>
-                                            <p class="quantity">Total Items: <strong>4</strong></p>
-                                            <p class="status positive"><i class="far fa-check-square"></i> Shipped</p>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <a class="view-order" href="#"><i class="far fa-eye"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="media cart-item">
-                                <a class="style-img" href="#"><img class="mr-3" src="https://placehold.it/60x60" alt="Style Name"></a>
-                                <div class="media-body">
-                                    <div class="row">
-                                        <div class="col-sm-9">
-                                            <p class="style-name"><a href="#">Order Number <span class="regular">Date</span></a></p>
-                                            <p class="quantity">Total Items: <strong>4</strong></p>
-                                            <p class="status positive"><i class="far fa-check-square"></i> Shipped</p>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <a class="view-order" href="#"><i class="far fa-eye"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @Html.Action("Cart", "CartDropDown");
                     </div>
                 </li>
             </ul>
-            @Html.Partial("_LoginPartial")
         </div>
     </nav>
 
-    
     @RenderBody()
 
     <footer class="footer mt-auto py-3 primary">
@@ -501,13 +363,18 @@
         </div>
     </footer>
 
-    <script src="https://api.machinelogic.io/mvc/js/jquery-3.3.1.slim.min.js"></script>
-    <script>
-        window.jQuery ||
-            document.write('<script src="https://api.machinelogic.io/mvc/js/jquery-slim.min.js"><\/script>');
-    </script>
-    <script src="https://api.machinelogic.io/mvc/js/bootstrap.bundle.min.js"></script>
-    <script src="https://api.machinelogic.io/mvc/js/ShawContract.js"></script>
+    @RenderPage("~/Views/Shared/_NewBoardModal.cshtml")
+    <script src="~/Content/js/jquery-3.4.1.min.js"></script>
+    <script src="~/Content/js/jquery.validate.min.js"></script>
+    <script src="~/Content/js/shipping-address-form-validation.js"></script>
+    <script src="~/Content/js/bootstrap.bundle.js"></script>
+    <script src="~/Content/js/objectFitPolyFill.basic.min.js"></script>
+    <script src="~/Content/js/toastr.js"></script>
+    <script src="~/Content/js/notifications.js"></script>
+    <script src="~/Content/js/addNewBoard.js"></script>
+    <script src="~/Content/js/copyToClipBoard.js"></script>
+    <script src="~/Content/js/editProductBoard.js"></script>
+    <script src="~/Content/js/shawcontract.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

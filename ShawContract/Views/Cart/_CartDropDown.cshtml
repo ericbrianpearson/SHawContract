@@ -1,0 +1,103 @@
+﻿@using ShawContract.Models.Cart
+
+@model  CartDropDownViewModel
+
+<div class="row">
+    <div class="col-sm-7">
+        <p class="dropdown-title">Sample Request</p>
+    </div>
+    <div class="col-sm-5 text-right">
+        <a class="dropdown-link" href='@Url.Action("Index","Cart")'>View Cart <i class="far fa-angle-right"></i></a>
+    </div>
+</div>
+<form method="post">
+    <div class="cart-item-box">
+        <input id="removeItemDropDown" type="hidden" name="removeItemDropDown" />
+        @foreach (var item in Model.CartItems)
+        {
+
+            <div class="media cart-item">
+                <a class="style-img" href="#"><img class="mr-3" src="https://placehold.it/60x60" alt="Style Name"></a>
+                <div class="media-body">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <p class="style-name"><a href="#">@item.ItemName</a></p>
+                            <p class="color-name">@item.Color</p>
+                            <p class="quantity"><strong>Quantity:</strong> <span>@item.Quantity</span></p>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="hidden" name="itemId" value="@item.ItemId" />
+                            <button type="submit" data-id="@item.ItemId" onclick="removeItem(this)" name="RemoveFromCartDropDown" class="btn remove-style-sample"><i class="fal fa-times"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+
+    <div class="row mb-5 mt-4">
+        <div class="col-sm-5">
+            <p class="cart-total">
+                Total: <strong>@Model.ItemCount</strong>
+            </p>
+        </div>
+        <div class="col-sm-7">
+            <button name="Checkout" type="submit" class="btn btn-primary w-100">Submit</button>
+        </div>
+    </div>
+</form>
+<div class="row mt-6">
+    <div class="col-sm-7">
+        <p class="dropdown-title">Recent Requests</p>
+    </div>
+    <div class="col-sm-5 text-right">
+        <a class="dropdown-link" href="#">View All <i class="far fa-angle-right"></i></a>
+    </div>
+</div>
+
+<div class="cart-item-box">
+
+    <div class="media cart-item">
+        <a class="style-img" href="#"><img class="mr-3" src="https://placehold.it/60x60" alt="Style Name"></a>
+        <div class="media-body">
+            <div class="row">
+                <div class="col-sm-9">
+                    <p class="style-name"><a href="#">Order Number <span class="regular">Date</span></a></p>
+                    <p class="quantity">Total Items: <strong>4</strong></p>
+                    <p class="status positive"><i class="far fa-check-square"></i> Shipped</p>
+                </div>
+                <div class="col-sm-2">
+                    <a class="view-order" href="#"><i class="far fa-eye"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="media cart-item">
+        <a class="style-img" href="#"><img class="mr-3" src="https://placehold.it/60x60" alt="Style Name"></a>
+        <div class="media-body">
+            <div class="row">
+                <div class="col-sm-9">
+                    <p class="style-name"><a href="#">Order Number <span class="regular">Date</span></a></p>
+                    <p class="quantity">Total Items: <strong>4</strong></p>
+                    <p class="status positive"><i class="far fa-check-square"></i> Shipped</p>
+                </div>
+                <div class="col-sm-2">
+                    <a class="view-order" href="#"><i class="far fa-eye"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script>
+    function removeItem(elem) {
+        var id = elem.attributes["data-id"].value;
+
+        $("#removeItemDropDown").val(id);
+    }
+</script>

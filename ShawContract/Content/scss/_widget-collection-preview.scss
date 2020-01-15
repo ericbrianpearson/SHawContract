@@ -1,0 +1,30 @@
+.widget {
+  &.collection-preview {
+
+    .collection-img {
+      height: 496px;
+      width: auto;
+      max-width: 100%;
+    }
+
+    .left {
+      text-align: right;
+    }
+    .right {
+      text-align: left;
+    }
+
+    .collection-link {
+      font-size: 2rem;
+      font-weight: $medium;
+      border-bottom: solid 1px $blue-regular;
+      transition: $standard-transition;
+
+      &:hover {
+        text-decoration: none;
+        border-bottom: solid 1px $red-regular;
+      }
+    }
+
+  }
+}

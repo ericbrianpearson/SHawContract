@@ -23,8 +23,17 @@ namespace ShawContract.Providers.Kentico
                .InstancePerRequest();
             builder.RegisterType<MenuGateway>().As<IMenuGateway>()
                .InstancePerRequest();
+            builder.RegisterType<ShoppingCartGateway>().As<IShoppingCartGateway>()
+                .InstancePerRequest();
             builder.RegisterType<PageContentHandler>().As<IPageContentHandler>()
               .InstancePerRequest();
+
+            return builder;
+        }
+
+        public static ContainerBuilder RegisterKenticoSources(this ContainerBuilder builder)
+        {
+            builder.RegisterSource(new CMSRegistrationSource());
 
             return builder;
         }

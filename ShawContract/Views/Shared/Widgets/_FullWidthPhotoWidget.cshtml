@@ -1,6 +1,4 @@
-﻿@using ShawContract.Utils
-@using ShawContract.Models.Widgets.WidgetShared;
-@using ShawContract.Models.Widgets.FullWidthPhotoWidget;
+﻿@using ShawContract.Models.Widgets.FullWidthPhotoWidget;
 @using ShawContract.Models.InlineEditors;
 @using System.Text.RegularExpressions;
 
@@ -8,22 +6,17 @@
 
 @{
     var editMode = Context.Kentico().PageBuilder().EditMode;
-    var imageUrl = Url.KenticoImageUrl(Model.ImageUrl) ?? "https://placehold.it/785x539";
-    var imagePosition = Model.TextBoxAlignment == "right" ? "img-right" : string.Empty;
+    var imageSource = !string.IsNullOrEmpty(Model.ImageUrl) ? Model.ImageUrl : "https://placehold.it/1110x766/a3d1d0";
+    var imagePosition = Model.TextBoxAlignment == "right" ? "right" : string.Empty;
 
 }
-<style>
-    .img-right {
-        margin-left: 45rem;
-    }
-</style>
 
-<section class="widget full-width-img now-viewable">
+<section class="widget full-width-img  @imagePosition now-viewable">
     <div class="gray-stripe"></div>
     <div class="container">
         <div class="img-box">
-            <img class="full-img" src="@imageUrl" alt="description">
-            <p class="photo-credits">
+            <img class="full-img" src="@imageSource" alt="description">
+            <div class="photo-credits">
                 @if (editMode)
                 {
                     Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
@@ -35,11 +28,11 @@
                 }
                 else
                 {
-                    @Regex.Replace(Model.PhotoCredit ?? "", "<.*?>", String.Empty)
+                    @Html.Raw(Model.PhotoCredit)
                 }
-            </p>
+            </div>
 
-            <div class="col-lg-8 card info-card @imagePosition">
+            <div class="card info-card">
                 <div class="card-body">
                     <div class="mark"></div>
                     <h5 class="card-title">
@@ -54,7 +47,7 @@
                         }
                         else
                         {
-                            @Regex.Replace(Model.Title ?? "", "<.*?>", String.Empty)
+                            @Html.Raw(Model.Title)
                         }
                     </h5>
                     <p class="card-text">
@@ -64,12 +57,12 @@
                             {
                                 PropertyName = nameof(FullWidthPhotoWidgetProperties.Description),
                                 Text = Model.Description,
-                                EnableFormatting = false
+                                EnableFormatting = true
                             });
                         }
                         else
                         {
-                            @Regex.Replace(Model.Description ?? "", "<.*?>", String.Empty)
+                            @Html.Raw(Model.Description)
                         }
                     </p>
                     <a href="@Model.ButtonUrl" class="btn btn-card">
@@ -85,17 +78,8 @@
                         }
                         else
                         {
-                            @Regex.Replace(Model.ButtonText ?? "", "<.*?>", String.Empty)
-                        }
-
-                        @if (editMode)
-                        {
-                            Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
-                            {
-                                PropertyName = nameof(FullWidthPhotoWidgetProperties.ButtonUrl),
-                                Text = Model.ButtonUrl,
-                                EnableFormatting = false
-                            });
+                            var buttonText = Regex.Replace(Model.ButtonText ?? "", "<.*?>", String.Empty);
+                            @Html.Raw(buttonText)
                         }
                     </a>
                 </div>

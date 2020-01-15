@@ -1,0 +1,75 @@
+﻿@using ShawContract.Models.Blogs
+
+@model ShawContract.Models.PageViewModel<BlogsByTagViewModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main role="main" class="primary blog-tag-page pb-0">
+    <!-- Intro Section: Start-->
+    <section class="container title-section mb-3 mb-md-5">
+        <div class="row mb-4">
+            <div class="col-12">
+                <p class="subtitle red-regular text-center">Article by tag</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h1 class=" title text-center">@Model.Data.SelectedTag.Replace('_', ' ')</h1>
+            </div>
+        </div>
+    </section>
+
+    <!-- Intro Section: Start-->
+    <!-- Blog Section: Start -->
+    <section class="blogs-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+
+                @{Html.RenderPartial("_BlogArticlesPartial", new BlogArticlesViewModel() { NodeAlias = Model.Metadata.Title, Articles = Model.Data.Articles.ToList() });}
+            </div>
+
+            @if (Model.Data.Articles.Count() > 6)
+            {
+                <div class="row justify-content-center">
+                    <div class="col-lg-2 col-sm-12">
+                        <button class="btn btn-tertiary w-100 my-5" id="load-btn" onclick="loadAll()">Load All</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+    <!-- Blog Section: End -->
+    <!--Hospitality CTA Setion: Start-->
+    <section class="widget cta-block now-viewable m-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2 text-center">
+                    <h2 class="title">@Model.Data.Cta.Title</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2 text-center">
+                    <p class="description">
+                        @Model.Data.Cta.ShortDescription
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2 text-center">
+                    <a class="cta-link" href="@Model.Data.Cta.ButtonUrl">@Model.Data.Cta.ButtonText</a>
+                </div>
+            </div>
+        </div>
+        <div class="color-bar"><span></span></div>
+    </section>
+    <!--Hospitality CTA Setion: End-->
+</main>
+
+<script>
+    function loadAll() {
+        $("#load-btn").hide();
+        $(".article-hidden").show();
+    }
+</script>

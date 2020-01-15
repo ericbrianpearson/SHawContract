@@ -10,7 +10,7 @@
     <section class="widget centered-description">
         <div class="row">
             <div class="col-sm-8 offset-sm-2 text-center">
-                <p class="subtitle">
+                <div class="subtitle">
                     @if (editMode)
                     {
                         Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
@@ -22,9 +22,9 @@
                     }
                     else
                     {
-                        @Regex.Replace(Model.Subtitle ?? "", "<.*?>", String.Empty)
+                        @Html.Raw(Model.Subtitle)
                     }
-                </p>
+                </div>
             </div>
         </div>
 
@@ -42,7 +42,7 @@
                     }
                     else
                     {
-                        @Regex.Replace(Model.Title ?? "", "<.*?>", String.Empty)
+                        @Html.Raw(Model.Title)
                     }
                 </h2>
             </div>
@@ -50,21 +50,21 @@
 
         <div class="row">
             <div class="col-sm-8 offset-sm-2 text-center">
-                <p class="description">
+                <div class="description">
                     @if (editMode)
                     {
                         Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
                         {
                             PropertyName = nameof(CenteredTextWidgetProperties.Description),
                             Text = Model.Description,
-                            EnableFormatting = false
+                            EnableFormatting = true
                         });
                     }
                     else
                     {
-                        @Regex.Replace(Model.Description ?? "", "<.*?>", String.Empty)
+                        @Html.Raw(Model.Description)
                     }
-                </p>
+                </div>
             </div>
         </div>
     </section>

@@ -1,0 +1,56 @@
+.widget {
+  &.also-like {
+
+    .product-card {
+      border-style: none;
+
+      .card-body {
+        padding: 1rem 0;
+
+        .card-title {
+          margin: 0;
+          padding: 0; 
+
+          a {
+            color: $black;
+            font-weight: $medium;
+            transition: $standard-transition;
+
+            &:hover {
+              color: $red-regular;
+            }
+          }
+        }
+      }
+
+    }
+
+    .collection-link {
+      background: none;
+      border-style: none;
+      box-shadow: none;
+      font-size: 2rem;
+      font-weight: $medium;
+      border-bottom: solid 1px $blue-regular;
+      transition: $standard-transition;
+
+      span {
+        &.more { display: none; }
+        &.less { display: block; }
+      }
+
+      &.collapsed {
+        span {
+          &.more { display: block; }
+          &.less { display: none; }
+        }        
+      }
+
+      &:hover {
+        color: $red-regular;
+        text-decoration: none;
+        border-bottom: solid 1px $red-regular;
+      }
+    }    
+  }
+}

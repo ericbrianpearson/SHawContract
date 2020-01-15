@@ -1,10 +1,4 @@
-﻿using ShawContract.Models.Widgets.FullWidthVideoWidget;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace ShawContract.Models.Widgets.FullWidthPhotoWidget
+﻿namespace ShawContract.Models.Widgets.FullWidthPhotoWidget
 {
     public class FullWidthPhotoViewModel
     {
@@ -16,6 +10,5 @@ namespace ShawContract.Models.Widgets.FullWidthPhotoWidget
         public bool HasImage { get; set; }
         public string TextBoxAlignment { get; set; }
         public string ImageUrl { get; set; }
-        public MediaLibraryViewModel MediaLibraryViewModel { get; set; }
     }
 }

@@ -10,6 +10,11 @@ using ShawContract.Infrastructure;
 using ShawContract.Providers.Kentico;
 using ShawContract.Providers.ProductBoard.Config;
 using ShawContract.Utils;
+using ShawContract.Providers.Kontent.Config;
+using ShawContract.Providers.Kontent.KontentHandler;
+using ShawContract.Providers.Kontent.Interfaces;
+using ShawContract.Application.Contracts.Gateways;
+using ShawContract.Providers.Kontent;
 
 namespace ShawContract.Config
 {
@@ -25,8 +30,8 @@ namespace ShawContract.Config
             builder.Register(c => AutoMapperConfig.RegisterAutoMappings()).As<IMapper>()
                 .InstancePerRequest();
 
-            builder.RegisterType<BlogService>().As<IBlogService>()
-               .InstancePerRequest();
+            builder.RegisterType<BlogPageGateway>().As<IBlogPageGateway>()
+                .InstancePerRequest();
 
             builder.RegisterType<PersonaService>().As<IPersonaService>()
               .InstancePerRequest();
@@ -40,11 +45,14 @@ namespace ShawContract.Config
             builder.RegisterType<GenericContentPageService>().As<IGenericContentPageService>()
                .InstancePerRequest();
 
-            builder.RegisterType<FileManagerService>().As<IFileManagerService>()
+            builder.RegisterType<ShoppingCartService>().As<IShoppingCartService>()
                 .InstancePerRequest();
 
+            builder.RegisterType<FileManagerService>().As<IFileManagerService>()
+                .InstancePerRequest(); //unnecessary ; out of scope
+
             builder.RegisterType<MediaLibraryFileService>().As<IMediaLibraryFileService>()
-                .InstancePerRequest();
+                .InstancePerRequest(); //unnecessary ; out of scope
 
             builder.RegisterType<ConfigurationService>().As<IConfigurationService>()
                 .SingleInstance();
@@ -66,7 +74,9 @@ namespace ShawContract.Config
                 .InstancePerRequest();
 
             builder.RegisterKenticoServices();
+            builder.RegisterKenticoSources();
             builder.RegisterProductBoardServices();
+            builder.RegisterKontentServices();
 
             // Set MVC DI resolver to use our Autofac container
             DependencyResolver.SetResolver(new AutofacDependencyResolver(builder.Build()));

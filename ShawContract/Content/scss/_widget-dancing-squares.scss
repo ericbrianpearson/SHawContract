@@ -1,104 +1,178 @@
 .widget {
-    &.dancing-squares {
+  &.dancing-squares {
+    overflow: hidden;
+    position: relative;
 
-        position: relative;
+    .container {
+      position: relative;
+      z-index: 2;
 
-        .container { 
-            position: relative; z-index: 2; 
-        
-            .dance-img {
-                display: inline-block;
-                height: auto;
-                max-width: 100%;
-                width: 768px;
-            }
+      .dance-img {
+        display: inline-block;
+        height: 534px;
+        max-width: 100%;
+        width: 768px;
+      }
 
-            .card {
-                position: absolute;
-                bottom: 19rem;
-                left: 5rem;
-                width: 52rem;              
-            }
-        
-        }
-
-        .dancing-boxes {
-            height: 100%; width: 100%;
-            position: absolute; top: 0; left: 0; z-index: 1;
-
-            .dancing-box {
-                
-                max-width: 100%;
-                position: absolute; bottom: 0; z-index: 10;
-                transition: $medium-transition;
-
-                &.dance-box-1 {
-                    background-color: #FAFAFA;
-                    height: 111px;
-                    width: 320px;
-                    top: 0;
-                    left: 0%;
-                    margin-left: -199px;
-                }
-                &.dance-box-2 {
-                    background-color: #F0F0F0;
-                    height: 387px;
-                    width: 853px;                    
-                    top: 54px;
-                    left: 0%;
-                    z-index: 9;
-                }
-                &.dance-box-3 {
-                    background-color: #E2E2E2;
-                    height: 92px;
-                    width: 92px;        
-                    bottom: 70px;
-                    left: 0%;   
-
-                }
-                &.dance-box-4 {
-                    background-color: #F0F0F0;
-                    height: 145px;
-                    width: 362px;
-                    bottom: -35px;
-                    right: 0%;
-                }                                                
-            }
-        }
-
-        @media (max-width: $below-laptop-size) {
-            .dancing-boxes {
-                .dancing-box {
-                    &.dance-box-1, &.dance-box-2, &.dance-box-4 { width: 300px; }
-                }
-                
-            }
-        }
-
-        @media (max-width: $below-tablet-size) {
-            .container {
-                .card {
-                    position: relative;
-                    bottom: auto;
-                    left: auto;
-                    width: 100%;
-                }
-            }
-
-            .dancing-boxes {
-                display: none;
-            }
-        }
-
-        &.now-viewable {
-            .dancing-boxes {
-                .dancing-box {
-                    &.dance-box-1 { left: 45%; }
-                    &.dance-box-2 { left: 10%; }
-                    &.dance-box-3 { left: 7%; }
-                    &.dance-box-4 { right: 8%; }                                                
-                }
-            }
-        }
+      .card {
+        position: absolute;
+        bottom: 19rem;
+        left: 5rem;
+        width: 52rem;
+      }
     }
+
+    .dancing-boxes {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+
+      .dancing-box {
+        max-width: 100%;
+        position: absolute;
+        bottom: 0;
+        z-index: 10;
+        transition: $medium-transition;
+
+        &.dance-box-1 {
+          background-color: #fafafa;
+          height: 111px;
+          width: 320px;
+          top: 0;
+          left: 0%;
+          margin-left: -199px;
+        }
+        &.dance-box-2 {
+          background-color: #f0f0f0;
+          height: 387px;
+          width: 853px;
+          top: 54px;
+          left: 0%;
+          z-index: 9;
+        }
+        &.dance-box-3 {
+          background-color: #e2e2e2;
+          height: 92px;
+          width: 92px;
+          bottom: 70px;
+          left: 0%;
+        }
+        &.dance-box-4 {
+          background-color: #f0f0f0;
+          height: 145px;
+          width: 362px;
+          bottom: -35px;
+          right: 0%;
+        }
+      }
+    }
+
+    &.left {
+      .container {
+        .content-box {
+            text-align: left !important;
+        }
+
+        .card {
+          left: auto;
+          right: 5rem;
+        }
+      }
+
+      .dancing-boxes {
+        .dancing-box {
+          &.dance-box-1 {
+            left: auto;
+            right: 0;
+            margin-right: -199px;
+          }
+          &.dance-box-2 {
+            left: auto;
+            right: 0;
+            z-index: 9;
+          }
+          &.dance-box-3 {
+            left: auto;
+            right: 0;
+          }
+          &.dance-box-4 {
+            left: 0;
+            right: auto;
+          }
+        }
+      }
+
+      &.now-viewable {
+        .dancing-boxes {
+          .dancing-box {
+            &.dance-box-1 {
+              left: auto;
+              right: 45%;
+            }
+            &.dance-box-2 {
+              left: auto;
+              right: 10%;
+            }
+            &.dance-box-3 {
+              left: auto;
+              right: 7%;
+            }
+            &.dance-box-4 {
+              left: 8%;
+              right: auto;
+            }
+          }
+        }
+      }
+    }
+
+    @media (max-width: $below-laptop-size) {
+      .dancing-boxes {
+        .dancing-box {
+          &.dance-box-1,
+          &.dance-box-2,
+          &.dance-box-4 {
+            width: 300px;
+          }
+        }
+      }
+    }
+
+    @media (max-width: $below-tablet-size) {
+      .container {
+        .card {
+          position: relative;
+          bottom: auto;
+          left: auto;
+          width: 100%;
+        }
+      }
+
+      .dancing-boxes {
+        display: none;
+      }
+    }
+
+    &.now-viewable {
+      .dancing-boxes {
+        .dancing-box {
+          &.dance-box-1 {
+            left: 45%;
+          }
+          &.dance-box-2 {
+            left: 10%;
+          }
+          &.dance-box-3 {
+            left: 7%;
+          }
+          &.dance-box-4 {
+            right: 8%;
+          }
+        }
+      }
+    }
+  }
 }

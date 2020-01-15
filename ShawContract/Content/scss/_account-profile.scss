@@ -1,0 +1,94 @@
+.account-profile {
+  .navbar {
+    position: sticky;
+    top: 10rem;
+
+    .nav-item {
+      .nav-link {
+        color: $gray-semibold;
+        transition: $standard-transition;
+
+        &:hover {
+          background-color: $gray-semilight;
+        }
+
+        &.active {
+          color: $black;
+          border-right: solid $red-regular 3px;
+          font-weight: $medium;
+        }
+      }
+    }
+  }
+
+  .order-history-card {
+    .expand-btn {
+      background-color: $white;
+      color: $blue-regular;
+      height: 4rem;
+      width: 4rem;
+
+      &:hover {
+        background-color: #f15a59;
+        border-color: #f15a59;
+        color: #fff;
+      }
+
+      & > i.fa-minus {
+        display: none;
+      }
+
+      &[aria-expanded="true"] {
+        & > i.fa-plus {
+          display: none;
+        }
+
+        & > i.fa-minus {
+          display: inline;
+        }
+      }
+    }
+
+    .product-card {
+      .card-img {
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .btn.sort-calendar-button {
+    background-color: inherit;
+    border: 0;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0;
+    &:focus {
+      outline: 0;
+      box-shadow: none;
+    }
+
+    .fa-long-arrow-alt-up {
+      transition: $standard-transition;
+    }
+
+    &.active .fa-long-arrow-alt-up {
+      transform: rotate(-180deg);
+    }
+  }
+
+  @media (max-width: $below-laptop-size) {
+    .account-profile-nav-col {
+      border-right: 0 !important;
+    }
+
+    .navbar .nav-item {
+      text-align: center;
+      .nav-link {
+        &.active {
+          border-right: 0;
+        }
+      }
+    }
+  }
+}

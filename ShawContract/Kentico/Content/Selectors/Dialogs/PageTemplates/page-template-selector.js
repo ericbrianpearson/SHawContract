@@ -13,8 +13,7 @@
     var addEventListeners = function () {
         var templateElements = selectorWrapper.querySelectorAll('.ktc-template-item');
         Array.prototype.forEach.call(templateElements, function (templateElement) {
-            templateElement.addEventListener("click", function ()
-            {
+            templateElement.addEventListener("click", function () {
                 var element = selectorWrapper.querySelector('.ktc-template-item.ktc-FlatSelectedItem');
                 if (element !== null) {
                     element.classList.remove('ktc-FlatSelectedItem');

@@ -1,0 +1,61 @@
+﻿@using ShawContract.Models.Blogs
+
+@model BlogArticlesViewModel
+
+
+<section class="blogs-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+
+            @for (int i = 0; i < Model.Articles.Count(); i++)
+            {
+                var displayArticle = i < 6 ? null : "display:none;";
+                var displayClass = i < 6 ? "col-lg-6" : "col-lg-6 article-hidden";
+
+                <div class="@displayClass" style="@displayArticle">
+                    <div class="blog-item">
+                        <a href="@Url.Action("Details", "BlogPage", new { nodeAlias = Model.NodeAlias, seoUrl = Model.Articles[i].SeoUrl })">
+                            <div class="row">
+                                <div class="col-lg-5 col-md-4 col-sm-12 remove-rp ">
+                                    <div class="image-wrapper">
+                                        <img src="@Model.Articles[i].Image.ImageUrl" alt="@Model.Articles[i].Image.AltText" title="">                                      
+                                        <div class="overleay"> </div>
+                                        <div class="content">
+                                            <h3 class="heading-3">Read</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7 col-md-8 col-sm-12 remove-lp">
+                                    <div class="information-wrapper">
+                                        <h3 class="sub-title my-4">@Model.Articles[i].Subtitle</h3>
+                                        <h2 class="title my-4">@Model.Articles[i].Title</h2>
+                                        <p class="description">
+                                            @Model.Articles[i].ShortDescription
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+
+        @if (Model.Articles.Count() > 6)
+        {
+            <div class="row justify-content-center">
+                <div class="col-lg-2 col-sm-12">
+                    <button class="btn btn-tertiary w-100 my-5" id="load-btn" onclick="loadAll()">Load All</button>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+<script>
+    function loadAll() {
+        $("#load-btn").hide();
+        $(".article-hidden").show();
+    }
+</script>
+

@@ -6,8 +6,8 @@ using ShawContract.Models.Widgets.CenteredTextWidget;
 [assembly: RegisterWidget(
     "ShawContract.Widget.CenteredTextWidget",
     typeof(CenteredTextWidgetController),
-    "CenteredTextWidget",
-    Description = "CenteredTextWidget",
+    "Centered Text",
+    Description = "Centered Text",
     IconClass = "icon-l-text")]
 
 namespace ShawContract.Controllers.Widgets

@@ -6,11 +6,12 @@ using System.Web.Mvc;
 [assembly: RegisterWidget(
     "ShawContract.Widget.ButtonCollectionWidget",
     typeof(ButtonCollectionWidgetController),
-    "ButtonCollectionWidget",
-    Description = "ButtonCollectionWidget",
+    "Button Collection Widget",
+    Description = "Button Collection",
     IconClass = "icon-l-text")]
+
 namespace ShawContract.Controllers.Widgets
-{   
+{
     public class ButtonCollectionWidgetController : WidgetController<ButtonCollectionWidgetProperties>
     {
         // GET: ButtonCollectionWidget

@@ -1,0 +1,27 @@
+.product-boards {
+  .product-board-card {
+    .image-grid-wrapper {
+      border-radius: 1.5rem;
+      border: solid $gray-semilight 1px;
+      box-shadow: 1px 1px 10px 0px #0000003b;
+      margin-bottom: 0.8rem;
+      overflow: hidden;
+
+      .image-grid {
+        align-content: flex-start;
+        display: flex;
+        flex-wrap: wrap;
+        height: 24rem;
+        margin: -0.4rem;
+        background-color: $gray-semilight;
+
+        img {
+          height: 33.33%;
+          object-fit: cover;
+          border: 1px solid $white;
+          width: 33.33%;
+        }
+      }
+    }
+  }
+}

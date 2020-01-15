@@ -1,0 +1,45 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main role="main" class="account-profile mt-3 text-size-normal">
+    <div class="row h-100 mx-0 no-gutters">
+        <div class="col-11 col-lg-10 mx-auto">
+            <div class="row no-gutters justify-content-center align-content-start align-content-lg-stretch h-100">
+                <div class="col-12 col-lg-2 account-profile-nav-col justify-content-center border-right pt-4">
+                    <nav class="navbar navbar-expand-lg navbar-light navbar-right justify-content-center justify-content-lg-between flex-wrap p-0">
+                        <h4 class="navbar-brand heading-4 semibold" href="#">Account Profile</h4>
+                        <button class="navbar-toggler ml-1 border-0 text-size-large" type="button" data-toggle="collapse"
+                                data-target="#account-profile-navbar" aria-controls="navbarTogglerDemo03" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                            <span class="black"><i class="fas fa-bars"></i></span>
+                        </button>
+                        <!-- Links -->
+                        <div class="collapse navbar-collapse mt-5" id="account-profile-navbar">
+                            <ul class="navbar-nav flex-column w-100">
+                                <li class="nav-item">
+                                    <a class="nav-link py-3" href="#"><i class="far fa-cog pr-3"></i>User Settings</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link py-3" href="#"><i class="fal fa-receipt pr-3"></i>Order History</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link py-3 active" href="#"><i class="fal fa-heart pr-3"></i>Product Boards</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link py-3" href="#"><i class="fal fa-phone-alt pr-3"></i>Account Support</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link py-3" href="#"><i class="far fa-envelope pr-3"></i></i>Print Return Label</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+
+                @RenderBody()
+
+            </div>
+        </div>
+    </div>
+</main>

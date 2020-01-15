@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   font-family: $fontStack;
   font-size: 10px;
   font-weight: $regular;
@@ -6,46 +7,134 @@ html, body {
 }
 
 // HELPERS
-.regular { font-weight: $regular; }
-.medium { font-weight: $medium; }
-.semibold { font-weight: $semibold; }
-.heading-1 {font-size: 3.6rem;}
-.heading-2 {font-size: 2.4rem;}
-.heading-3 {font-size: 2rem;}
-.heading-4 {font-size: 1.8rem;}
-.heading-5 {font-size: 1.6rem;}
-.text-size-xsmall {font-size: 1.2rem;}
-.text-size-small {font-size: 1.4rem;}
-.text-size-normal {font-size: 1.6rem;}
-.text-size-large {font-size: 1.8rem;}
-.letter-spacing-normal { letter-spacing: normal !important;}
-.letter-spacing-large { letter-spacing: 2px; }
-.line-height-normal {line-height: 1.6rem; }
-.line-height-large { line-height: 3.6rem; }
-.mb-6 { margin-bottom: 6rem; }
-.mt-6 { margin-top: 6rem; }
-.pb-6 { padding-bottom: 6rem; }
-.pt-6 { padding-top: 6rem; }
-.relative-wrapper { height: 100%; position: relative; width: 100%; }
+.regular {
+  font-weight: $regular;
+}
+.medium {
+  font-weight: $medium;
+}
+.semibold {
+  font-weight: $semibold;
+}
+.heading-1 {
+  font-size: 3.6rem !important;
+}
+.heading-2 {
+  font-size: 2.4rem !important;
+}
+.heading-3 {
+  font-size: 2rem !important;
+}
+.heading-4 {
+  font-size: 1.8rem !important;
+}
+.heading-5 {
+  font-size: 1.6rem !important;
+}
+.text-size-xsmall {
+  font-size: 1.2rem !important;
+}
+.text-size-small {
+  font-size: 1.4rem !important;
+}
+.text-size-normal {
+  font-size: 1.6rem !important;
+}
+.text-size-large {
+  font-size: 1.8rem !important;
+}
+.letter-spacing-normal {
+  letter-spacing: normal !important;
+}
+.letter-spacing-large {
+  letter-spacing: 2px !important;
+}
+.line-height-normal {
+  line-height: 1.6rem !important;
+}
+.line-height-large {
+  line-height: 3.6rem !important;
+}
+.mb-6 {
+  margin-bottom: 6rem;
+}
+.mt-6 {
+  margin-top: 6rem;
+}
+.pb-6 {
+  padding-bottom: 6rem;
+}
+.pt-6 {
+  padding-top: 6rem;
+}
+.relative-wrapper {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
 
 // COLORS
-.black { color: $black; }
-.blue-regular { color: $blue-regular; }
-.gray-light { color: $gray-light; }
-.gray-semilight { color: $gray-semilight; }
-.gray-regular { color: $gray-regular; }
-.gray-semibold { color: $gray-semibold; }
-.gray-bold { color: $gray-bold; }
-.green-regular { color: $green-regular; }
-.red-regular { color: $red-regular; }
-.white { color: $white; }
-.yellow-regular { color: $yellow-regular; }
+.black {
+  color: $black !important;
+}
+.blue-regular {
+  color: $blue-regular !important;
+}
+.gray-light {
+  color: $gray-light !important;
+}
+.gray-semilight {
+  color: $gray-semilight !important;
+}
+.gray-regular {
+  color: $gray-regular !important;
+}
+.gray-semibold {
+  color: $gray-semibold !important;
+}
+.gray-bold {
+  color: $gray-bold !important;
+}
+.green-regular {
+  color: $green-regular !important;
+}
+.red-regular {
+  color: $red-regular !important;
+}
+.white {
+  color: $white !important;
+}
+.yellow-regular {
+  color: $yellow-regular !important;
+}
+
+// BACKGROUND
+.bg-red-regular {
+  background-color: $red-regular !important;
+}
+.bg-green-regular {
+  background-color: $green-regular !important;
+}
+.bg-blue-regular {
+  background-color: $blue-regular !important;
+}
+.bg-yellow-regular {
+  background-color: $yellow-regular !important;
+}
+.bg-gray-regular {
+  background-color: $gray-regular !important;
+}
+.bg-gray-semilight {
+  background-color: $gray-semilight !important;
+}
 
 // GENERIC LINKS
 a {
   color: $blue-regular;
 
-  &:hover { color: $red-regular; }
+  &:hover {
+    color: $red-regular;
+  }
 }
 
 // INPUT PLACEHOLDER
@@ -70,7 +159,7 @@ a {
   align-items: center;
   background-color: $error-bg;
   border-radius: 0.3rem;
-  border: $error-border 0.1rem;
+  border: $error-border solid 0.1rem;
   .error-text {
     margin: 0;
   }
@@ -78,43 +167,43 @@ a {
 
 // TITLES
 .title-section {
-    .mark {
-        background-color: $blue-regular;
-        height: 2px;
-        margin: 10px auto;
-        padding: 0;
-        width: 45px;
+  .mark {
+    background-color: $blue-regular;
+    height: 2px;
+    margin: 10px auto;
+    padding: 0;
+    width: 45px;
 
-        &.red {
-            background-color: $red-regular;
-        }
-    }    
-
-    .subtitle {
-        font-size: 1.4rem;
-        font-weight: $regular;
-        margin: 0 0 .5rem 0;
-        text-transform: uppercase;       
+    &.red {
+      background-color: $red-regular;
     }
+  }
 
-    .title {
-        font-size: 3.6rem;
-        font-weight: $regular;
-        margin: 0 0 2rem 0;
-    }
+  .subtitle {
+    font-size: 1.4rem;
+    font-weight: $regular;
+    margin: 0 0 0.5rem 0;
+    text-transform: uppercase;
+  }
 
-    .description {
+  .title {
+    font-size: 3.6rem;
+    font-weight: $regular;
+    margin: 0 0 2rem 0;
+  }
+
+  .description {
     font-size: 2.4rem;
     font-weight: $regular;
     margin: 0 0 2rem 0;
-    }
+  }
 }
-
 
 // BUTTONS
 button {
-  
-  &.btn-primary, &.btn-secondary, &.btn-tertiary {
+  &.btn-primary,
+  &.btn-secondary,
+  &.btn-tertiary {
     border: solid 1px $white;
     border-radius: 0;
     color: $white;
@@ -126,14 +215,15 @@ button {
     text-transform: uppercase;
     transition: $standard-transition;
 
-    &:hover {
+    &:hover,
+    &.text-gray:hover {
       background-color: $red-regular;
       border: solid 1px $red-regular;
       color: $white;
-    }  
-    
+    }
+
     i {
-      padding: 0 .5rem;
+      padding: 0 0.5rem;
     }
   }
 
@@ -147,16 +237,21 @@ button {
     border: solid 1px $gray-semilight;
     color: $blue-regular;
     font-size: 1.3rem;
-  }  
+  }
 
   &.btn-tertiary {
     border: solid 1px $blue-regular;
     color: $blue-regular;
+
+    &.text-gray {
+      border: solid 1px $gray-regular;
+      color: $gray-regular;
+    }
   }
 
   &.btn-login {
-    -webkit-box-shadow: 0 0 3px 0 rgba(0,0,0,0.25);
-    box-shadow: 0 0 3px 0 rgba(0,0,0,0.25);
+    -webkit-box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
 
     background-color: $blue-regular;
     color: $white;
@@ -166,7 +261,8 @@ button {
     padding: 10px 15px;
     margin-bottom: 10px;
 
-    text-align: left;
+    text-align: center;
+    letter-spacing: 3px;
     transition: $standard-transition;
     width: 100%;
 
@@ -201,7 +297,15 @@ button {
     &:hover {
       background-color: $gray-light;
     }
-  }  
+  }
+
+  &.btn-black-text {
+    color: $black;
+
+    &:hover {
+      color: $white;
+    }
+  }
 }
 
 .link-btn {
@@ -220,7 +324,7 @@ button {
     background-color: $red-regular;
     border: solid 1px $red-regular;
     color: $white;
-    text-decoration: none;    
+    text-decoration: none;
   }
 
   i {
@@ -245,41 +349,189 @@ button {
   }
 }
 
+// CUSTOM SCROLLBAR
+// ONLY FOR MODERN BROWSERS (use a js library if you require it for older browsers)
+
+::-webkit-scrollbar {
+  width: 1.5rem;
+}
+body {
+  scrollbar-color: $blue-regular $gray-light;
+  scrollbar-width: thin;
+}
+::-webkit-scrollbar-track {
+  background: $gray-light;
+}
+::-webkit-scrollbar-thumb {
+  background-color: $blue-regular;
+  border-radius: 3rem;
+  border: 0.2rem solid $gray-light;
+}
+
+// FORMS
+.form-control:focus {
+  border-color: $blue-regular;
+  box-shadow: 0 0 0 0.2rem #12739240;
+}
+
 // SELECT
-select {
-  &.shaw-select {
-  // height: 50px;
-  // width: 222px;
-  // font-size: 22px;
-  // margin: 0 20px;
-  // padding: 0 20px;
-  // border: 2px solid $white;
-  // color: $white;
-  // border-radius: 3px;
-  background: none !important;
-  // line-height: 25px;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background-image: url("../images/chevron-down.svg");
-  background-position: right 10px center;
-  background-repeat: no-repeat;
-  cursor: pointer;
+
+.bootstrap-select {
+  border-radius: 5px;
+  padding: 0;
+  width: 100%;
+}
+
+// blue, white and text-center options
+// <select data-style="select-style --white text-center"></select>
+// <select data-style="select-style --blue"></select>
+// <select data-style="select-style --blue-text"></select>
+.select-style {
+  border: 1px solid #dee2e6 !important;
+  font-size: 1.8rem;
+  height: 5rem;
+  padding: 1rem 1.7rem !important;
+  transition: all 0.3s ease-out;
+
+  &.text-center {
+    .filter-option-inner {
+      text-align: center;
+    }
   }
 
+  &.--white {
+    &:hover,
+    &:focus,
+    &.bs-placeholder:hover,
+    &.bs-placeholder:focus,
+    &.bs-placeholder:active,
+    &[aria-expanded="true"] {
+      background-color: $blue-regular;
+      color: $white;
+    }
+  }
+
+  &.--blue {
+    background-color: $blue-regular;
+    color: $white;
+    &.bs-placeholder {
+      color: $white;
+    }
+
+    &.bs-placeholder:hover,
+    &.bs-placeholder:focus,
+    &.bs-placeholder:active {
+      color: $white;
+    }
+  }
+
+  &.--blue-text {
+    background-color: $white;
+    color: $blue-regular;
+
+    &.bs-placeholder:hover,
+    &.bs-placeholder:focus,
+    &.bs-placeholder:active {
+      color: $blue-regular;
+    }
+  }
+}
+
+//SELECT OPTIONS
+.bootstrap-select > .dropdown-menu ul li a {
+  font-size: 1.8rem;
+  transition: color, background 0.3s ease-out;
+}
+
+.bootstrap-select > .select-style {
+  &.text-center + .dropdown-menu {
+    & ul li a {
+      text-align: center;
+    }
+  }
+
+  &.--white + .dropdown-menu {
+    background-color: $white;
+    & ul li a {
+      background-color: $white;
+      color: $black;
+
+      &:hover,
+      &:focus,
+      &.active:hover,
+      &.active:focus {
+        background-color: $blue-regular;
+        color: $white;
+      }
+    }
+  }
+
+  &.--blue + .dropdown-menu {
+    background-color: $blue-regular;
+
+    & ul li a {
+      background-color: $blue-regular;
+      color: $white;
+
+      &:hover,
+      &:focus,
+      &.active:hover,
+      &.active:focus {
+        background-color: $white;
+        color: $blue-regular;
+      }
+    }
+  }
+
+  &.--blue-text + .dropdown-menu {
+    background-color: $white;
+
+    & ul li a {
+      background-color: $white;
+      color: $blue-regular;
+
+      &:hover,
+      &:focus,
+      &.active:hover,
+      &.active:focus {
+        background-color: $blue-regular;
+        color: $white;
+      }
+    }
+  }
+}
+
+.select-style + .dropdown-menu {
+  z-index: 999999999;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 6px 18px 3px;
+}
+
+//SELECT ICON
+.bootstrap-select {
+  .select-style::after {
+    border: 0;
+    font-family: "Font Awesome 5 Pro";
+    font-weight: normal;
+    content: "\f078";
+    vertical-align: middle;
+  }
+
+  &.dropup .select-style::after {
+    border: 0;
+    font-family: "Font Awesome 5 Pro";
+    font-weight: normal;
+    content: "\f077";
+    vertical-align: middle;
+  }
+}
+
+select {
   &::-ms-expand {
     display: none;
   }
 
   &:focus {
     outline: none;
-  }
-
-  &.select-white {
-    background-color: $gray-light;
-    border-style: none;
-    font-size: 1.4rem;
   }
 }
 
@@ -297,24 +549,31 @@ select {
   height: 1.6rem;
   width: 1.6rem;
 }
-.custom-control-input:checked~.custom-control-label::before {
+.custom-control-input:checked ~ .custom-control-label::before {
   background-color: $blue-regular;
-  border-color: $white;
+  border: 0;
 }
-.custom-control-input:not(:disabled):active~.custom-control-label::before {
+.custom-control-input:not(:disabled):active ~ .custom-control-label::before {
   background-color: $blue-regular;
 }
-.custom-control-input~.custom-control-label::before{ 
+.custom-control-input ~ .custom-control-label::before {
   box-shadow: 0 0 0 0.1rem $blue-regular;
 }
-.custom-radio .custom-control-input:checked~.custom-control-label::after {
+.custom-radio .custom-control-input:checked ~ .custom-control-label::after {
   background-image: none;
 }
-input[type="radio"] + label, input[type="checkbox"] + label {
+input[type="radio"] + label,
+input[type="checkbox"] + label {
   padding-left: 1rem;
 }
 
 // IMAGES
+[data-object-fit] {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
 .full-width-img {
   height: auto;
   width: 100%;
@@ -322,11 +581,11 @@ input[type="radio"] + label, input[type="checkbox"] + label {
 
 // PHOTO CREDITS
 .img-box {
+  height: 100%;
   position: relative;
 
   img {
     display: block;
-    height: auto;
     max-width: 100%;
     width: 100%;
   }
@@ -341,6 +600,21 @@ input[type="radio"] + label, input[type="checkbox"] + label {
       right: unset;
       left: 15px;
     }
-  }  
+  }
 }
 
+.widget.left .img-box {
+  .photo-credits {
+    left: 15px;
+    right: auto;
+  }
+}
+
+// TOAST NOTIFICATION
+
+#toast-container {
+  .toast {
+    width: 31rem;
+    font-size: 1.4rem;
+  }
+}

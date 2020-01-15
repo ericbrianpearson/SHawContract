@@ -1,0 +1,209 @@
+﻿@using ShawContract.Models
+@using ShawContract.Models.Cart
+
+@model PageViewModel<CartViewModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    string visibility = !string.IsNullOrEmpty(Model.Data.ErrorMessage) ? "visibile" : "hidden";
+}
+
+<main role="main" class="primary flex-shrink-0 checkout">
+
+    <section class="container">
+        <div class="title-section border-bottom pb-3 pb-md-5">
+            <div class="mark"></div>
+            <div class="row justify-content-center">
+                <div class="col-md-9 text-center">
+                    <h1 class="title heading-1">
+                        @Model.Data.Title
+                    </h1>
+                    <p class="heading-3">
+                        @Model.Data.Description
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <section class="form-wrapper col-12 col-lg-11 mx-auto px-3 pt-6">
+            <form method="post" class="needs-validation" novalidate>
+                <div class="mb-2 py-0 py-md-3 border-bottom">
+                    <ul class="list-group list-group-horizontal flex-fill justify-content-between">
+                        <li class="col-6 text-left list-group-item border-0 px-0 heading-3">
+                            Product Info
+                        </li>
+                        <li class="col-3 text-center list-group-item border-0 px-0 heading-3 d-none d-md-inline-block">
+                            Quantity
+                        </li>
+                        <li class="col-6 col-md-3 text-right list-group-item border-0 px-0 heading-3">
+                            <button name="RemoveAllFromCart" class="bg-transparent text-danger text-size-small border-danger border rounded-lg p-2 px-sm-5">
+                                CLEAR CART
+                            </button>
+                            <input id="removeItemId" type="hidden" name="removeItemId" />
+                        </li>
+                    </ul>
+                </div>
+                @foreach (var item in Model.Data.CartItems)
+                {
+                    <div id="@item.ItemId" class="card checkout-product-card py-4">
+                        <div class="row">
+                            <div class="col-12 col-md-2 mb-3 mb-md-0">
+                                <a href="#">
+                                    <img src="https://placehold.it/387x539" class="card-img img-fluid" alt="...">
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-10">
+                                <div class="row">
+                                    <div class="col-12 col-md-5">
+                                        <h4 class="card-title heading-4">
+                                            <a href="#" class="text-decoration-none black">
+                                                @item.ItemName
+                                            </a>
+                                        </h4>
+                                        <p class="card-text text-size-normal  text-muted">Road Trip: 75105</p>
+                                        <div class="form-group">
+                                            <label for="country-field" class="text-size-xsmall text-muted">
+                                                Sample Type
+                                            </label>
+                                            <div class="selectWrapper" click="">
+                                                @Html.DropDownList("Sample Type", item.SampleTypes, new { @class = "shaw-select custom-select form-control-lg w-75" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <div class="form-group d-md-flex justify-content-md-center">
+                                            <label for="country-field" class="text-size-xsmall text-muted d-md-none">
+                                                Quantity
+                                            </label>
+                                            <div class="selectWrapper">
+                                                @Html.DropDownList("Quantity", Model.Data.QuantityDropdown, new { @class = "quantityDropDown shaw-select custom-select form-control-lg px-5" })
+                                                <input id="quantity" type="hidden" name="quantitySum" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-4 d-flex justify-content-center justify-content-md-end">
+                                        <button onclick="removeItem(this)" name="RemoveFromCart" data-id="@item.ItemId" class="remove-from-cart close text-danger p-4 mr-md-5" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                @*Error Markup*@
+                                @*<div class="row error-row show-error">
+                                        <div class="col">
+                                            <div class="error text-size-xsmall">
+                                                <div class="row semibold">
+                                                    <div class="col">
+                                                        This item is no longer in stock from our website.
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        If you continue with your order a Shaw Contract associate will reach out to assist you.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <div style="visibility: @visibility" class="error error-message p-4 my-5">
+                    <p class="error-text text-size-large">
+                        <span class="pr-4">Error: </span>
+                        @Model.Data.ErrorMessage
+                    </p>
+                </div>
+                <div class="row d-flex justify-content-between mt-6 pb-3 pb-md-5 border-bottom">
+                    <div class="col-12 col-lg-3 col-md-4 my-3">
+                        <button class="btn btn-tertiary letter-spacing-normal w-100 h-100 py-4">Back to Products</button>
+                    </div>
+                    <div class="col-12 col-lg-3 col-md-4 my-3">
+                        <button name="Checkout" type="submit" onclick="getQuantity()"
+                                class="btn btn-primary letter-spacing-normal w-100 h-100 px-5 py-4">
+                            Checkout
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <section class="related-products">
+            <h2 class="heading-2 py-5 text-center">
+                You May Also Like
+            </h2>
+            <div class="related-products-grid d-flex flex-wrap justify-content-around">
+                <div class="card border-0 m-3">
+                    <img src="https://placehold.it/387x539" class="card-img-top" alt="...">
+                    <div class="card-body pl-0">
+                        <h4 class="card-title heading-4">
+                            <a href="#" class="stretched-link text-decoration-none black">Diffuse 24x24 59575</a>
+                        </h4>
+                        <p class="card-text text-size-small">
+                            Passport 75597
+                        </p>
+                    </div>
+                </div>
+                <div class="card border-0 m-3">
+                    <img src="https://placehold.it/240x240" class="card-img-top" alt="...">
+                    <div class="card-body pl-0">
+                        <h4 class="card-title heading-4">
+                            <a href="#" class="stretched-link text-decoration-none black">Diffuse 24x24 59575</a>
+                        </h4>
+                        <p class="card-text text-size-small">
+                            Passport 75597
+                        </p>
+                    </div>
+                </div>
+                <div class="card border-0 m-3">
+                    <img src="https://placehold.it/387x539" class="card-img-top" alt="...">
+                    <div class="card-body pl-0">
+                        <h4 class="card-title heading-4">
+                            <a href="#" class="stretched-link text-decoration-none black">Diffuse 24x24 59575</a>
+                        </h4>
+                        <p class="card-text text-size-small">
+                            Passport 75597
+                        </p>
+                    </div>
+                </div>
+                <div class="card border-0 m-3">
+                    <img src="https://placehold.it/387x539" class="card-img-top" alt="...">
+                    <div class="card-body pl-0">
+                        <h4 class="card-title heading-4">
+                            <a href="#" class="stretched-link text-decoration-none black">Diffuse 24x24 59575</a>
+                        </h4>
+                        <p class="card-text text-size-small">
+                            Passport 75597
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script>
+    function removeItem(elem) {
+
+        var id = elem.attributes["data-id"].value;
+
+        $("#removeItemId").val(id);
+    }
+    function getQuantity() {
+
+        var quantity = $(".quantityDropDown");
+        var sum = 0;
+        for (var i = 0; i < quantity.length; i++) {
+            sum = sum + +quantity[i].value
+        }
+
+        $("#quantity").val(sum);
+    }
+</script>

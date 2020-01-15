@@ -1,0 +1,617 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<main role="main" class="primary flex-shrink-0">
+
+    <section class="container product-specs-imgs">
+        <div class="row">
+
+            <div class="col-md-7 product-left mb-5">
+
+                <div id="product_detail_view_swap" class="product-rendering-swap-area">
+
+                    <div class="row">
+
+                        <div id="swatch_view" class="col-sm-12 maximized swappable">
+                            <div class="control-area">
+                                <div class="controls">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <button class="btn btn-control download-this" data-download="images/sc-black.svg"><i class="far fa-cloud-download"></i></button>
+                                            <label>Download Asset</label>
+                                        </li>
+                                        <li>
+                                            <button class="btn btn-control save-to-board" data-product="5T233" data-color="01100"><i class="far fa-heart"></i></button>
+                                            <label>Save to Board</label>
+                                        </li>
+                                        <li>
+                                            <button class="btn btn-control rotate-img"><i class="fas fa-undo"></i></button>
+                                            <label>Rotate Asset</label>
+                                        </li>
+                                        <li>
+                                            <button class="btn btn-control multi-tile-view"><i class="fas fa-th-large"></i></button>
+                                            <label>Multi-Tile View</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="img-area with-background">
+                                    <img src="http://scrl.img.trykcloudstatic.com/designs/5T175/colors/72500/tiles/9x36/1?pixels=500" alt="" class="single-tile-img rectangle" />
+                                </div>
+                                <div class="preview-area">
+                                    <img src="https://placehold.it/357x249" />
+                                    <button class="btn-maximize">View Swatch</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="room_view" class="col-sm-6 order-6 minimized swappable">
+                            <div class="control-area">
+                                <div class="controls">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <button class="btn btn-control download-this" data-download="images/sc-black.svg"><i class="far fa-cloud-download"></i></button>
+                                            <label>Download File</label>
+                                        </li>
+                                        <li>
+                                            <button class="btn btn-control save-to-board" data-product="5T233" data-color="01100"><i class="far fa-heart"></i></button>
+                                            <label>Save to Board</label>
+                                        </li>
+                                        <li>
+                                            <button class="btn btn-control">
+                                                <div class="relative-wrapper">
+                                                    <i class="fad fa-th"></i>
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item heading">Installation Method</li>
+                                                        <li class="list-group-item"><a class="install-method mon" href="https://placehold.it/735x513/fece40">Monolithic</a></li>
+                                                        <li class="list-group-item"><a class="install-method her" href="https://placehold.it/735x513/127392">Herringbone</a></li>
+                                                        <li class="list-group-item"><a class="install-method bri" href="https://placehold.it/735x513/07815c">Brick</a></li>
+                                                        <li class="list-group-item"><a class="install-method ash" href="https://placehold.it/735x513/f15a59">Ashlar</a></li>
+                                                        <li class="list-group-item"><a class="install-method sta" href="images/big-room.png">Stagger</a></li>
+                                                    </ul>
+                                                </div>
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button class="btn btn-control">
+                                                <div class="relative-wrapper">
+                                                    <i class="far fa-door-open"></i>
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item heading">Room Scenes</li>
+                                                        <li class="list-group-item"><a class="install-method mon" href="https://placehold.it/735x513/fece40">Monolithic</a></li>
+                                                        <li class="list-group-item"><a class="install-method her" href="https://placehold.it/735x513/127392">Herringbone</a></li>
+                                                    </ul>
+                                                </div>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="img-area">
+                                    <img src="images/big-room.png" alt="" class="full-width-img" />
+                                </div>
+
+                                <div class="preview-area">
+                                    <img src="images/room-scene.png" />
+                                    <button class="btn-maximize">View Room Scene</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="install_view" class="col-sm-6 order-6 minimized swappable">
+                            <div class="control-area">
+
+                                <div class="controls">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <button class="btn btn-control download-this" data-download="images/sc-black.svg"><i class="far fa-cloud-download"></i></button>
+                                            <label>Download File</label>
+                                        </li>
+                                        <li>
+                                            <button class="btn btn-control save-to-board" data-product="5T233" data-color="01100"><i class="far fa-heart"></i></button>
+                                            <label>Save to Board</label>
+                                        </li>
+                                        <li>
+                                            <button class="btn btn-control">
+                                                <div class="relative-wrapper">
+                                                    <i class="fad fa-th"></i>
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item heading">Installation Method</li>
+                                                        <li class="list-group-item"><a class="install-method mon" href="https://placehold.it/735x513/fece40">Monolithic</a></li>
+                                                        <li class="list-group-item"><a class="install-method her" href="https://placehold.it/735x513/127392">Herringbone</a></li>
+                                                        <li class="list-group-item"><a class="install-method bri" href="https://placehold.it/735x513/07815c">Brick</a></li>
+                                                        <li class="list-group-item"><a class="install-method ash" href="https://placehold.it/735x513/f15a59">Ashlar</a></li>
+                                                        <li class="list-group-item"><a class="install-method sta" href="images/install-view.png">Stagger</a></li>
+                                                    </ul>
+                                                </div>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="img-area">
+                                    <img src="images/install-view.png" alt="" class="full-width-img" />
+                                </div>
+
+                                <div class="preview-area">
+                                    <img src="images/swatch.png" />
+                                    <button class="btn-maximize">View Install</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="feature-photo">
+                    <div class="control-area">
+                        <div class="controls">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <button class="btn btn-control download-this" data-download="images/sc-black.svg"><i class="far fa-cloud-download"></i></button>
+                                    <label>Download File</label>
+                                </li>
+                                <li>
+                                    <button class="btn btn-control save-to-board" data-product="5T233" data-color="01100"><i class="far fa-heart"></i></button>
+                                    <label>Save to Board</label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="img-area">
+                            <img src="https://placehold.it/738x513/efefef" alt="" class="full-width-img" />
+                        </div>
+                    </div>
+                </div>
+
+                <div id="product_detail_loader" class="assets-loader">
+                    <div class="progress">
+                        <div id="product_detail_progress" class="progress-bar" role="progressbar" style="width: 5%;"
+                             aria-valuenow="5" aria-valuemin="0" aria-valuemax="100">Loading Image Assets...</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-5 product-right mb-5">
+
+                <div class="product-specs">
+
+                    <p class="style-number">Style: 5T309</p>
+                    <h1 class="style-name">Observe Color Tile</h1>
+                    <p class="collection-name"><strong>Collection:</strong> <a href="#">Living System</a></p>
+                    <p class="size-info"><strong>Size:</strong> 9"x36" | 22.86 cm x 91.44 cm</p>
+
+                    <div class="quick-ship">
+                        <p class="mb-1"><strong>Available Quick Ship Options:</strong></p>
+                        <div class="row">
+                            <div class="col-sm-1"><img src="images/QuickShip2500XS.png" alt=""></div>
+                            <div class="col-sm-11">
+                                <p class="info">2 weeks - up to 2,500 square yards from US</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-1"><img src="images/QuickShipInStockXS.png" alt=""></div>
+                            <div class="col-sm-11">
+                                <p class="info">Immediately - In Stock from US</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <p class="see-color">Quick ship varies by color option. See below for additional details.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="product-color-divide">
+
+                    <div class="color-label-toggler">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <div class="custom-switch custom-switch-label-io">
+                                    <input class="custom-switch-input" id="product_color_label_switch" type="checkbox">
+                                    <label class="custom-switch-btn" for="product_color_label_switch"></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-10">
+                                <p class="color-label-text">Show All Color Name / Number Labels</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="product_color_picker" class="color-button-list mb-4 mt-4">
+                        <ul class="list-unstyled">
+                            <li>
+                                <button class="btn btn-choose-color active" data-toggle="tooltip" data-html="true"
+                                        data-placement="top"
+                                        title="&lt;span class=&quot;product-name&quot;&gt; Product Name &lt;/span&gt; &lt;span class=&quot;product-number&quot;&gt; 5T333 &lt;img class=&quot;quick-ship-img&quot; src=&quot;images/QuickShip2500XS.png&quot;&gt; &lt;/span&gt;">
+                                    <img class="color-img" src="https://placehold.it/140x140" alt="">
+                                    <img class="quick-ship-img" src="images/QuickShip2500XS.png">
+                                </button>
+                                <p class="color-info color-name">Color Name</p>
+                                <p class="color-info">Color Number</p>
+                            </li>
+
+                            <li>
+                                <button class="btn btn-choose-color" data-toggle="tooltip" data-html="true" data-placement="top"
+                                        title="&lt;span class=&quot;product-name&quot;&gt; Product Name &lt;/span&gt; &lt;span class=&quot;product-number&quot;&gt; 5T333 &lt;/span&gt;">
+                                    <img class="color-img" src="https://placehold.it/140x140" alt="">
+                                </button>
+                                <p class="color-info color-name">Color Name</p>
+                                <p class="color-info">Color Number</p>
+                            </li>
+
+                            <li>
+                                <button class="btn btn-choose-color" data-toggle="tooltip" data-html="true" data-placement="top"
+                                        title="&lt;span class=&quot;product-name&quot;&gt; Product Name &lt;/span&gt; &lt;span class=&quot;product-number&quot;&gt; 5T333 &lt;/span&gt;">
+                                    <img class="color-img" src="https://placehold.it/140x140" alt="">
+                                </button>
+                                <p class="color-info color-name">Color Name</p>
+                                <p class="color-info">Color Number</p>
+                            </li>
+
+                            <li>
+                                <button class="btn btn-choose-color" data-toggle="tooltip" data-html="true" data-placement="top"
+                                        title="&lt;span class=&quot;product-name&quot;&gt; Product Name &lt;/span&gt; &lt;span class=&quot;product-number&quot;&gt; 5T333 &lt;/span&gt;">
+                                    <img class="color-img" src="https://placehold.it/140x140" alt="">
+                                </button>
+                                <p class="color-info color-name">Color Name</p>
+                                <p class="color-info">Color Number</p>
+                            </li>
+
+                            <li>
+                                <button class="btn btn-choose-color" data-toggle="tooltip" data-html="true" data-placement="top"
+                                        title="&lt;span class=&quot;product-name&quot;&gt; Product Name &lt;/span&gt; &lt;span class=&quot;product-number&quot;&gt; 5T333 &lt;/span&gt;">
+                                    <img class="color-img" src="https://placehold.it/140x140" alt="">
+                                </button>
+                                <p class="color-info color-name">Color Name</p>
+                                <p class="color-info">Color Number</p>
+                            </li>
+
+                            <li>
+                                <button class="btn btn-choose-color" data-toggle="tooltip" data-html="true" data-placement="top"
+                                        title="&lt;span class=&quot;product-name&quot;&gt; Product Name &lt;/span&gt; &lt;span class=&quot;product-number&quot;&gt; 5T333 &lt;img class=&quot;quick-ship-img&quot; src=&quot;images/QuickShipInStockXS.png&quot;&gt; &lt;/span&gt;">
+                                    <img class="color-img" src="https://placehold.it/140x140" alt="">
+                                    <img class="quick-ship-img" src="images/QuickShipInStockXS.png">
+                                </button>
+                                <p class="color-info color-name">Color Name</p>
+                                <p class="color-info">Color Number</p>
+                            </li>
+
+                            <li>
+                                <button class="btn btn-choose-color" data-toggle="tooltip" data-html="true" data-placement="top"
+                                        title="&lt;span class=&quot;product-name&quot;&gt; Product Name &lt;/span&gt; &lt;span class=&quot;product-number&quot;&gt; 5T333 &lt;/span&gt;">
+                                    <img class="color-img" src="https://placehold.it/140x140" alt="">
+                                </button>
+                                <p class="color-info color-name">Color Name</p>
+                                <p class="color-info">Color Number</p>
+                            </li>
+
+                            <li>
+                                <button class="btn btn-choose-color" data-toggle="tooltip" data-html="true" data-placement="top"
+                                        title="&lt;span class=&quot;product-name&quot;&gt; Product Name &lt;/span&gt; &lt;span class=&quot;product-number&quot;&gt; 5T333 &lt;/span&gt;">
+                                    <img class="color-img" src="https://placehold.it/140x140" alt="">
+                                </button>
+                                <p class="color-info color-name">Color Name</p>
+                                <p class="color-info">Color Number</p>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <p class="color-info">
+                        <strong>Color:</strong>
+                        Fragile Coral 05865 <span class="ml-3">
+                            v3<button type="button" class="btn btn-sup" data-toggle="modal"
+                                      data-target="#productColorNameVersion">
+                                <i class="far fa-info-circle"></i>
+                            </button>
+                        </span>
+                    </p>
+
+                    <div class="row mb-5 mt-4">
+                        <div class="col-xl-6">
+                            <button class="btn btn-primary w-100 mb-3">Order Samples</button>
+                        </div>
+                        <div class="col-xl-6">
+                            <button class="btn btn-tertiary w-100 mb-3"><i class="far fa-heart"></i> Save to Board</button>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <ul class="list-unstyled social-share-icons">
+                                <li><button class="btn btn-share-social"><i class="fab fa-facebook-square"></i></button></li>
+                                <li>
+                                    <button class="btn btn-share-social"><i class="fab fa-twitter"></i></button>
+                                </li>
+                                <li>
+                                    <button class="btn btn-share-social"><i class="fab fa-pinterest"></i></button>
+                                </li>
+                                <li>
+                                    <button class="btn btn-share-social"><i class="fas fa-envelope"></i></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4 mb-5">
+                        <div class="col-sm-12">
+                            <p class="short-description">
+                                Designed to create subtle shifts in color gradation and build pattern scale across
+                                the floor. The system's integral patterns and colors can be combined and recombined,
+                                giving an endless variety of choices to create aesthetic cohesion in your space.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="accordion product-spec-accordion" id="accordionProductSpecs">
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne"
+                                        aria-expanded="false" aria-controls="collapseOne">
+                                    Features
+
+                                    <i class="far fa-plus-circle open"></i>
+                                    <i class="far fa-minus-circle close"></i>
+                                </button>
+
+                            </div>
+
+                            <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                 data-parent="#accordionProductSpecs">
+                                <div class="card-body">
+
+                                    <ul class="list-unstyled">
+                                        <li class="media">
+                                            <a href="#"><img class="mr-3" src="https://placehold.it/65x65" alt="Headline Text"></a>
+                                            <div class="media-body">
+                                                <p class="mt-0 mb-1"><strong>Headline Text</strong></p>
+                                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
+                                                <a class="link-url" href="#">Link Text</a>
+                                            </div>
+                                        </li>
+                                        <li class="media">
+                                            <div class="media-body">
+                                                <p class="mt-0 mb-1"><strong>Headline Text</strong></p>
+                                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
+                                                <a class="link-url" href="#">Link Text</a>
+                                            </div>
+                                        </li>
+                                        <li class="media">
+                                            <div class="media-body">
+                                                <p class="mt-0 mb-1"><strong>Headline Text</strong></p>
+                                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingTwo">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo"
+                                        aria-expanded="false" aria-controls="collapseTwo">
+                                    Specifications
+
+                                    <i class="far fa-plus-circle open"></i>
+                                    <i class="far fa-minus-circle close"></i>
+                                </button>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                 data-parent="#accordionProductSpecs">
+                                <div class="card-body">
+                                    <p>
+                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                        richardson ad squid.
+                                    </p>
+
+                                    <ul class="list-unstyled">
+                                        <li><strong>Collection:</strong> <a href="#">Living Systems</a></li>
+                                        <li><strong>Style:</strong> Observe Color Tile 5T309</li>
+                                        <li><strong>Size:</strong> 9"x36" | 22.86 cm x 91.44 cm</li>
+                                        <li><strong>Construction:</strong> Multi-level pattern loop</li>
+                                        <li><strong>Type:</strong> Tile</li>
+                                        <li><strong>Backing:</strong> Ecoworx<sup>&reg;</sup> Tile</li>
+                                        <li><strong>Fiber:</strong> Eco Solution Q<sup>&reg;</sup> Nylon</li>
+                                        <li><strong>Tufted Weight:</strong> 24.0 oz/yd2</li>
+                                        <li><strong>Warranty:</strong> <a href="#">Lifetime</a></li>
+                                    </ul>
+
+                                    <a class="link-btn lb-tertiary mt-1 mb-3" href="#">
+                                        <i class="far fa-file-pdf"></i> View Full
+                                        Spec
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingThree">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                        data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Documents and Brochures
+
+                                    <i class="far fa-plus-circle open"></i>
+                                    <i class="far fa-minus-circle close"></i>
+                                </button>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                 data-parent="#accordionProductSpecs">
+                                <div class="card-body">
+
+                                    <ul class="list-unstyled">
+                                        <li class="media">
+                                            <a href="#"><img class="mr-3" src="https://placehold.it/65x65" alt="Headline Text"></a>
+                                            <div class="media-body">
+                                                <p class="mt-0 mb-1"><strong>Headline Text</strong></p>
+                                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
+                                                <a class="link-url" href="#">Link Text</a>
+                                            </div>
+                                        </li>
+                                        <li class="media">
+                                            <div class="media-body">
+                                                <p class="mt-0 mb-1"><strong>Headline Text</strong></p>
+                                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
+                                                <a class="link-url" href="#">Link Text</a>
+                                            </div>
+                                        </li>
+                                        <li class="media">
+                                            <div class="media-body">
+                                                <p class="mt-0 mb-1"><strong>Headline Text</strong></p>
+                                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <div class="modal fade" id="productColorNameVersion" tabindex="-1" role="dialog"
+         aria-labelledby="productColorNameVersionLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productColorNameVersionLabel">Version Info</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="widget collection-preview">
+        <div class="container">
+
+            <div class="mark"></div>
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2 text-center">
+                    <h2 class="title">Living Systems</h2>
+                </div>
+            </div>
+            <div class="row mt-4 mb-5">
+                <div class="left col-lg-7">
+                    <a href="#"><img class="collection-img" alt="Living Systems" src="https://placehold.it/718x496" /></a>
+                </div>
+                <div class="right col-lg-5 d-xl-block d-lg-block d-md-none d-sm-none d-none">
+                    <a href="#"><img class="collection-img" alt="Living Systems" src="https://placehold.it/397x496" /></a>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-sm-8 offset-sm-2 text-center">
+                    <a href="#" class="collection-link blue-regular">Explore Living Systems Collection</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="widget also-like">
+        <div class="container">
+
+            <div class="mark"></div>
+            <div class="row mb-4">
+                <div class="col-sm-8 offset-sm-2 text-center">
+                    <h2 class="title">You May Also Like:</h2>
+                </div>
+            </div>
+
+            <div class="row mb-5">
+
+                <div class="col-sm-4">
+                    <div class="card product-card">
+                        <a href="#"><img class="card-img-top" src="https://placehold.it/286x180" alt="Product Name"></a>
+                        <div class="card-body">
+                            <p class="card-title"><a href="#">Product Name</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="card product-card">
+                        <a href="#"><img class="card-img-top" src="https://placehold.it/286x180" alt="Product Name"></a>
+                        <div class="card-body">
+                            <p class="card-title"><a href="#">Product Name</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="card product-card">
+                        <a href="#"><img class="card-img-top" src="https://placehold.it/286x180" alt="Product Name"></a>
+                        <div class="card-body">
+                            <p class="card-title"><a href="#">Product Name</a></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="alsoLikeCollapse" class="collapse">
+                <div class="row mb-5">
+
+                    <div class="col-sm-4">
+                        <div class="card product-card">
+                            <a href="#"><img class="card-img-top" src="https://placehold.it/286x180" alt="Product Name"></a>
+                            <div class="card-body">
+                                <p class="card-title"><a href="#">Product Name</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="card product-card">
+                            <a href="#"><img class="card-img-top" src="https://placehold.it/286x180" alt="Product Name"></a>
+                            <div class="card-body">
+                                <p class="card-title"><a href="#">Product Name</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="card product-card">
+                            <a href="#"><img class="card-img-top" src="https://placehold.it/286x180" alt="Product Name"></a>
+                            <div class="card-body">
+                                <p class="card-title"><a href="#">Product Name</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="row mt-5 load-more-row">
+                <div class="col-sm-8 offset-sm-2 text-center">
+                    <button class="collection-link blue-regular" data-toggle="collapse" data-target="#alsoLikeCollapse">
+                        <span class="more">Show More</span> <span class="less">Show Less</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</main>

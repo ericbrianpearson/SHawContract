@@ -9,8 +9,8 @@ using System.Web.Mvc;
 [assembly: RegisterWidget(
     "ShawContract.Widget.FullWidthVideoWidget",
     typeof(FullWidthVideoWidgetController),
-    "FullWidthVideoWidget",
-    Description = "FullWidthVideoWidget",
+    "Full Width Video ",
+    Description = "Full Width Video ",
     IconClass = "icon-pictures")]
 
 namespace ShawContract.Controllers.Widgets
@@ -33,19 +33,13 @@ namespace ShawContract.Controllers.Widgets
             bool hasImage = false;
             string imageUrl = null;
 
-            if (properties.ImageGuid != Guid.Empty)
-            {
-                hasImage = true;
-                imageUrl = MediaLibraryFileService.GetMediaLibrary(properties.ImageGuid).DirectUrl;
-            }
-
             return PartialView("Widgets/_FullWidthVideoWidget", new FullWidthVideoWidgetViewModel
             {
                 HasImage = hasImage,
                 Title = properties.Title,
                 Description = properties.Description,
                 VideoUrl = Regex.Replace(properties.VideoUrl ?? "", "<.*?>", string.Empty),
-                ImageUrl = imageUrl,
+                ImageUrl = properties.ImageUrl,
                 PhotoCredit = properties.PhotoCredit,
                 MediaLibraryViewModel = new MediaLibraryViewModel
                 {

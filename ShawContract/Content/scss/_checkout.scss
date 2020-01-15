@@ -21,4 +21,67 @@
       padding: 0 3rem;
     }
   }
+
+  .continue-btn {
+    height: 50px;
+  }
+
+  .checkout-product-card {
+    border: none;
+    border-bottom: 1px solid $gray-semilight;
+
+    .close {
+      font-size: 3.6rem;
+    }
+
+    img {
+      max-height: 16.5rem;
+      object-fit: cover;
+    }
+
+    .error-row {
+      display: none;
+      &.show-error {
+        display: block;
+      }
+    }
+
+    .bootstrap-select .dropdown-toggle {
+      font-size: 1.4rem;
+    }
+
+    .close {
+      font-weight: normal;
+    }
+  }
+
+  .bootstrap-select.account-manager-select {
+    min-width: 280px;
+    width: auto;
+    width: fit-content;
+
+    button.select-style {
+      height: 100%;
+    }
+
+    .image-wrapper {
+      border-radius: 10rem;
+      border: 1px transparent;
+      overflow: hidden;
+      height: 7.5rem;
+      width: 7.5rem;
+
+      .img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+
+  @media screen and (min-width: $mobile-size) {
+    .bootstrap-select.account-manager-select {
+      min-width: 380px;
+    }
+  }
 }

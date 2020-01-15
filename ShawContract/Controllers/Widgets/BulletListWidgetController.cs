@@ -12,8 +12,8 @@ using ShawContract.Models.Widgets.BulletListWidget;
 [assembly: RegisterWidget(
     "ShawContract.Widget.BulletListWidget",
     typeof(BulletListWidgetController),
-    "BulletListWidget",
-    Description = "BulletListWidget",
+    "Bullet List",
+    Description = "Bullet List",
     IconClass = "icon-list-bullets")]
 
 namespace ShawContract.Controllers.Widgets

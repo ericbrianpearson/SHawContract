@@ -1,50 +1,68 @@
 .widget {
-    &.double-floating-img {
-
-        .card {
-            &.info-card {
-                .card-body {
-                    padding: 4rem 2rem;
-                }
-            }
+  &.double-floating-img {
+    .card {
+      &.info-card {
+        .card-body {
+          padding: 4rem 2rem;
         }
-
-        .ghost-box {
-            background: $gray-semilight;
-            height: 274px;
-            width: 387px;
-            position: absolute; bottom: -15rem; right: 0;
-            transition: $medium-transition;
-        }
-
-        .img-box { z-index: 2; }
-
-        .push-box {
-            height: 15rem;
-        }
-
-        .shift-box {
-            position: absolute; left: 3rem; top: -18rem; z-index: 3;
-            transition: $medium-transition;
-        }
-
-        &.now-viewable {
-            .ghost-box { right: -3rem; }
-
-            .shift-box { left: 0; }
-        }
-
-        @media (max-width: $below-desktop-size) {
-            .shift-box {
-                top: -7rem;
-            }
-        }
-
-        @media (max-width: $below-desktop-size) {
-            margin: 7rem 0;
-            .card.info-card { margin-top: 1.5rem; }
-            .ghost-box, .push-box { display: none; }
-        }
-
+      }
     }
+
+    .ghost-box {
+      background: $gray-semilight;
+      height: 274px;
+      width: 387px;
+      position: absolute;
+      bottom: -15rem;
+      right: 0;
+      transition: $medium-transition;
+    }
+
+    .img-box {
+      z-index: 2;
+      .small-image {
+        width: 387px;
+        height: 274px;
+      }
+    }
+
+    .push-box {
+      height: 15rem;
+    }
+
+    .shift-box {
+      position: absolute;
+      left: 3rem;
+      top: -18rem;
+      z-index: 3;
+      transition: $medium-transition;
+    }
+
+    &.now-viewable {
+      .ghost-box {
+        right: -3rem;
+      }
+
+      .shift-box {
+        left: 0;
+      }
+    }
+
+    @media (max-width: $below-desktop-size) {
+      .shift-box {
+        top: -7rem;
+      }
+    }
+
+    @media (max-width: $below-desktop-size) {
+      margin: 7rem 0;
+      .card.info-card {
+        margin-top: 1.5rem;
+      }
+      .ghost-box,
+      .push-box {
+        display: none;
+      }
+    }
+  }
 }

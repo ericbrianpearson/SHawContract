@@ -6,18 +6,18 @@
 
 @{
     var editMode = Context.Kentico().PageBuilder().EditMode;
-    var imageAlignment = Model.ImageAlignment == "right" ? "col-sm-12 text-right" : "col-sm-12 text-left";
-    var image = Model.ImageUrl ?? "https://placehold.it/768x534";
+    var imageAlignment = Model.ImageAlignment == "right" ? "widget dancing-squares now-viewable" : "widget dancing-squares now-viewable left";
+    var image = !string.IsNullOrEmpty(Model.ImageUrl) ? Model.ImageUrl : "https://placehold.it/768x534";
+
 }
 
-<section class="widget dancing-squares now-viewable">
+<section class="@imageAlignment">
     <div class="container">
-        <div class="@imageAlignment">
+        <div class="col-sm-12 text-right">
             <div class="content-box">
-
                 <div class="img-box">
-                    <img class="dance-img mt-5" src="@image" alt="description">
-                    <p class="photo-credits">
+                    <img class="dance-img mt-5" src="@image" alt="description" data-object-fit />
+                    <div class="photo-credits">
                         @if (editMode)
                         {
                             Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel()
@@ -29,9 +29,9 @@
                         }
                         else
                         {
-                            @Regex.Replace(Model.Title ?? "", "<.*?>", String.Empty)
+                            @Html.Raw(Model.PhotoCredit)
                         }
-                    </p>
+                    </div>
                 </div>
 
                 <div class="card info-card text-left">
@@ -49,10 +49,10 @@
                             }
                             else
                             {
-                                @Regex.Replace(Model.Title ?? "", "<.*?>", String.Empty)
+                                @Html.Raw(Model.Title)
                             }
                         </h5>
-                        <p class="card-text">
+                        <div class="card-text">
                             @if (editMode)
                             {
                                 Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel()
@@ -66,7 +66,7 @@
                             {
                                 @Html.Raw(Model.Description)
                             }
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>

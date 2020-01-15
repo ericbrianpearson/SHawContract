@@ -25,7 +25,7 @@
                     }
                     else
                     {
-                        @Regex.Replace(Model.Title ?? "", "<.*?>", String.Empty)
+                        @Html.Raw(Model.Title)
                     }
                 </h2>
             </div>
@@ -33,7 +33,7 @@
 
         <div class="row">
             <div class="col-sm-8 offset-sm-2 text-center">
-                <p class="description">
+                <div class="description">
                     @if (editMode)
                     {
                         Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
@@ -47,7 +47,7 @@
                     {
                         @Html.Raw(Model.Description)
                     }
-                </p>
+                </div>
             </div>
         </div>
 
@@ -65,7 +65,8 @@
                     }
                     else
                     {
-                        @Regex.Replace(Model.ButtonText ?? "", "<.*?>", String.Empty)
+                        var buttonText = Regex.Replace(Model.ButtonText ?? "", "<.*?>", String.Empty);
+                        @Html.Raw(buttonText)
                     }
                 </a>
             </div>

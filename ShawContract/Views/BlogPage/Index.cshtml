@@ -1,0 +1,76 @@
+﻿@using ShawContract.Models.Blogs
+@using Kentico.PageBuilder.Web.Mvc
+@using Kentico.Web.Mvc
+
+@model ShawContract.Models.PageViewModel<BlogPageViewModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<main role="main" class="primary blog-list-page pb-0">
+
+    @section Styles {
+        @Html.Kentico().PageBuilderStyles()
+    }
+
+    <div class="section">
+        <div class="container">
+            <div class="kn-system-messages"></div>
+            @Html.Kentico().EditableArea("top")
+        </div>
+    </div>
+
+    @section Scripts {
+        @Html.Kentico().PageBuilderScripts()
+    }
+
+    <section class="filter-wrapper">
+        <span>I am a</span>
+
+        <select class="personas-dropdown">
+            @foreach (var persona in Model.Data.Personas)
+            {
+                <option class="dropdown-option" value="@persona.Codename">@persona.Name</option>
+            }
+        </select>
+        <span>looking to</span>
+        <select class="segment-dropdown">
+            @foreach (var segment in Model.Data.Segments)
+            {
+                <option class="dropdown-option" value="@segment.Codename">@segment.Name</option>
+            }
+        </select>
+        <button class="btn filter-btn" type="button" id="filter-btn" onclick="filter()">show me</button>
+    </section>
+    @{ Html.RenderPartial("_BlogArticlesPartial", new BlogArticlesViewModel() { NodeAlias = Model.Metadata.Title, Articles = Model.Data.Articles.ToList() }); }
+
+</main>
+
+<script type="text/javascript">
+    function loadAll() {
+        $("#load-btn").hide();
+        $(".article-hidden").show();
+    }
+
+    function filter() {
+        var persona = $(".personas-dropdown option:selected").val();
+        var segment = $(".segment-dropdown option:selected").val();
+
+        $.ajax({
+            url: '@Url.Action("Filter", "BlogPage", new { nodeAlias = Model.Metadata.Title, })' + '/' + persona + '/' + segment,
+                type: "GET",
+                dataType: "html",
+                async: true,
+        success: function (data) {
+            $('.blogs-wrapper').html(data);
+        }
+        });
+    }
+</script>
+
+
+
+

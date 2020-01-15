@@ -9,13 +9,6 @@ $medium: 500;
 $semibold: 600;
 $letter-spacing: 2px;
 
-// OVERRIDING BOOTSTRAP VARIABLES
-$h1-font-size: 2.4rem;
-$h2-font-size: 2rem;
-$h3-font-size: 1.8rem;
-$h4-font-size: 1.6rem;
-$h5-font-size: 1.4rem;
-
 // SCREEN SIZES
 $larger-desktop-size: 1441px;
 $desktop-size: 1200px;
@@ -47,4 +40,11 @@ $red-regular: #f15a59;
 $yellow-regular: #fece40;
 
 $error-bg: #fdebeb;
-$error-border: #f15a59; 
+$error-border: #f15a59;
+
+// DROP SHADOW
+@mixin standard-box-shadow($opacity: 0.65) {
+  -webkit-box-shadow: 1px 1px 7px 0px rgba(117, 117, 117, $opacity);
+  -moz-box-shadow: 1px 1px 7px 0px rgba(117, 117, 117, $opacity);
+  box-shadow: 1px 1px 7px 0px rgba(117, 117, 117, $opacity);
+}

@@ -4,12 +4,11 @@
     @Html.Kentico().PageBuilderStyles()
 }
 
-<div class="section">
-    <div class="container">
-        <div class="kn-system-messages"></div>
-        @Html.Kentico().EditableArea("top")
-    </div>
-</div>
+<main role="main" class="primary flex-shrink-0">
+
+    <div class="kn-system-messages"></div>
+    @Html.Kentico().EditableArea("top")
+</main>
 
 @section Scripts {
     @Html.Kentico().PageBuilderScripts()

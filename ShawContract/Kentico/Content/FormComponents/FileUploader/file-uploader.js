@@ -1,7 +1,6 @@
 ﻿window.kentico = window.kentico || {};
 window.kentico._forms = window.kentico._forms || {};
 window.kentico._forms.formFileUploaderComponent = (function (document) {
-
     function disableElements(form) {
         form.fileUploaderDisabledElements = [];
         var elements = form.elements;
@@ -108,7 +107,6 @@ window.kentico._forms.formFileUploaderComponent = (function (document) {
             var file = fileInput.files[0];
             if (file !== undefined) {
                 if (file.size > config.maxFileSize * 1024) {
-
                     fileInput.value = null;
                     tempFileIdentifierInput.value = "";
                     originalFileNameInput = "";

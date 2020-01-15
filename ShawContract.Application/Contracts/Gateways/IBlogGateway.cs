@@ -2,10 +2,16 @@
 using System.Threading.Tasks;
 using ShawContract.Application.Models;
 
+
 namespace ShawContract.Application.Contracts.Gateways
 {
     public interface IBlogGateway
     {
-        Task<IEnumerable<Blog>> GetAllBlogsAsync();
+        Task<IEnumerable<BlogPreview>> GetAllBlogsAsync();
+        Task<Blog> GetBlogAsync(string seoUrl);
+        Task<Taxonomy> GetTaxonomyAsync();
+        Task<IEnumerable<BlogPreview>> FilterByTagsAsync(string persona, string segment);
+        Task<IEnumerable<BlogPreview>> ArticlesByPersonaAsync(string persona);
+        Task<IEnumerable<BlogPreview>> ArticlesBySegmentAsync(string segment);
     }
 }

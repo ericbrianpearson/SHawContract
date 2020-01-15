@@ -1,0 +1,43 @@
+
+
+.tooltip {
+
+  .tooltip-inner {
+    background: $gray-bold;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: $regular;
+    padding: 20px 25px;
+    @include standard-box-shadow();
+
+    .product-name {
+      font-size: 1.4rem;
+    }
+    .product-number {
+      display: block;
+      font-size: 1.6rem;
+      font-weight: $medium;
+
+      img {
+        height: 15px; 
+        margin-left: 4px;
+        width: auto;
+      }
+    }
+  }
+
+}
+
+.bs-tooltip-auto[x-placement^=bottom] .arrow::before, .bs-tooltip-bottom .arrow::before {
+  border-bottom-color: $gray-bold !important;
+}
+.bs-tooltip-auto[x-placement^=top] .arrow::before, .bs-tooltip-top .arrow::before {
+  border-top-color: $gray-bold !important;
+}
+.bs-tooltip-auto[x-placement^=left] .arrow::before, .bs-tooltip-left .arrow::before {
+  border-left-color: $gray-bold !important;
+}
+.bs-tooltip-auto[x-placement^=right] .arrow::before, .bs-tooltip-right .arrow::before {
+  border-right-color: $gray-bold !important;
+}

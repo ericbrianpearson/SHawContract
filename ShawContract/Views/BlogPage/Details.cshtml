@@ -1,0 +1,137 @@
+﻿@using Kentico.Web.Mvc
+@using Kentico.PageBuilder.Web.Mvc
+
+@using ShawContract.Models.Blogs
+
+@model ShawContract.Models.PageViewModel<ShawContract.Models.Blogs.BlogDetailsViewModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main role="main" class="blog-page-wrapper primary pb-0">
+
+    <article class="container blog-article text-size-large line-height-large my-4">
+        <section class="title-section mb-3 mb-md-5">
+            <div class="row">
+                <div class="col-sm-8 red-regular offset-sm-2 text-center">
+                    <p class="subtitle">@Model.Data.Article.SubTitle</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2 text-center">
+                    <h1 class="title heading-1">@Model.Data.Article.Title</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2 text-center">
+                    <p class="description">
+                        @Model.Data.Article.ShortDescription
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        @Html.Raw(Model.Data.Article.LongDescription)
+
+        <section class="article-tags mb-3 mb-md-5">
+            <div class="row">
+                <div class="col justify-content-center d-flex flex-wrap">
+                    @foreach (var persona in Model.Data.Article.ArticleBaseSnippetPersonas)
+                    {
+                        <button class="btn btn-tertiary m-3 px-4" type="button" onclick="location.href='@Url.Action("TaggedArticles", "BlogPage", new {nodeAlias = Model.Metadata.Title, type = nameof(Model.Data.Article.ArticleBaseSnippetPersonas), tag = persona.Codename })'">
+                           @persona.Name
+                        </button>
+                    }
+                    @foreach (var segment in Model.Data.Article.ArticleBaseSnippetSegments)
+                    {
+                        <button class="btn btn-tertiary m-3 px-4" type="button" onclick="location.href='@Url.Action("TaggedArticles", "BlogPage", new {nodeAlias = Model.Metadata.Title, type = nameof(Model.Data.Article.ArticleBaseSnippetSegments), tag = segment.Codename })'">
+                            @segment.Name
+                        </button>
+                    }
+                </div>
+            </div>
+        </section>
+
+        <section class="article-date border-top">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 p-0 text-center text-md-left">
+                    <p class="text-muted">
+                        @string.Join(", ", Model.Data.Article.LastModified.ToString("MMMM dd"), Model.Data.Article.LastModified.ToString("yyyy"))
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 d-flex justify-content-md-end justify-content-center p-0">
+                    <ul class="article social-links list-unstyled">
+                        <li>
+                            <a class="social" href="https://facebook.com/sharer/sharer.php?u=@Request.Url.AbsoluteUri"
+                                target="_blank" rel="noopener" aria-label="Facebook">
+                                <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="social"
+                                href="https://twitter.com/intent/tweet/?text=@Model.Data.Article.SeoFriendlyName&amp;url=@Request.Url.AbsoluteUri"
+                                target="_blank" rel="noopener" aria-label="Twitter">
+                                <i class="fab fa-twitter" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="social"
+                                href="mailto:?subject=@Model.Data.Article.SeoFriendlyName&amp;body=@Request.Url.AbsoluteUri"
+                                target="_self" rel="noopener" aria-label="E-Mail">
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="social"
+                                href="https://pinterest.com/pin/create/button/?url=@Request.Url.AbsoluteUri&amp;media=@Request.Url.AbsoluteUri&amp;description=@Model.Data.Article.SeoFriendlyName"
+                                target="_blank" rel="noopener" aria-label="Pinterest">
+                                <i class="fab fa-pinterest-p" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="social"
+                                href="https://www.linkedin.com/shareArticle?mini=true&amp;url=@Request.Url.AbsoluteUri&amp;title=@Model.Data.Article.SeoFriendlyName&amp;summary=@Model.Data.Article.SeoFriendlyName&amp;source=@Request.Url.AbsoluteUri"
+                                target="_blank" rel="noopener" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="social"
+                                href="https://reddit.com/submit/?url=@Request.Url.AbsoluteUri&amp;resubmit=true&amp;title=@Model.Data.Article.SeoFriendlyName"
+                                target="_blank" rel="noopener" aria-label="Reddit">
+                                <i class="fab fa-reddit-alien" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </article>
+
+    <section class="widget cta-block mb-0">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2 text-center">
+                    <h2 class="title">@Model.Data.Article.PlaceHolderCTA.Title</h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2 text-center">
+                    <p class="description">
+                        @Model.Data.Article.PlaceHolderCTA.ShortDescription
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2 text-center">
+                    <a class="cta-link" href="@Model.Data.Article.PlaceHolderCTA.ButtonUrl">@Model.Data.Article.PlaceHolderCTA.ButtonText</a>
+                </div>
+            </div>
+        </div>
+        <div class="color-bar"><span></span></div>
+    </section>
+</main>

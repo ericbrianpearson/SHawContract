@@ -1,5 +1,4 @@
 ﻿@using ShawContract.Utils
-@using ShawContract.Models.Widgets.WidgetShared;
 @using ShawContract.Models.Widgets.FullWidthVideoWidget;
 @using ShawContract.Models.InlineEditors;
 @using System.Text.RegularExpressions
@@ -8,94 +7,70 @@
 
 @{
     var editMode = Context.Kentico().PageBuilder().EditMode;
+    var imageSource = !string.IsNullOrEmpty(Model.ImageUrl) ? Model.ImageUrl : "https://placehold.it/1110x766/a3d1d0";
+}
+<section class="widget full-width-img right now-viewable">
+    <div class="gray-stripe"></div>
+    <div class="container">
+        <div class="img-box">
+            <img class="full-img" src="@imageSource" alt="description">
+            <div class="photo-credits">
+                @if (editMode)
+                {
+                    Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                    {
+                        PropertyName = nameof(FullWidthVideoWidgetProperties.PhotoCredit),
+                        Text = Model.PhotoCredit,
+                        EnableFormatting = false
+                    });
+                }
+                else
+                {
+                    @Html.Raw(Model.PhotoCredit)
+                }
+            </div>
 
-    if (Model.HasImage)
-    {
-        var imageUrl = Url.KenticoImageUrl(Model.ImageUrl);
-        var videoUrl = Model.VideoUrl;
-        <section class="widget full-width-img right now-viewable">
-            <div class="gray-stripe"></div>
-            <div class="container">
-                <div class="img-box">
-                    <img class="full-img" src="@imageUrl" alt="description">
-                    <p class="photo-credits">
+            <div class="card info-card">
+                <div class="card-body">
+                    <div class="mark"></div>
+                    <h5 class="card-title">
                         @if (editMode)
                         {
                             Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
                             {
-                                PropertyName = nameof(FullWidthVideoWidgetProperties.PhotoCredit),
-                                Text = Model.PhotoCredit,
+                                PropertyName = nameof(FullWidthVideoWidgetProperties.Title),
+                                Text = Model.Title,
                                 EnableFormatting = false
                             });
                         }
                         else
                         {
-                            @Regex.Replace(Model.PhotoCredit ?? "", "<.*?>", String.Empty)
+                            @Html.Raw(Model.Title)
                         }
-                    </p>
-
-                    <div class="card info-card">
-                        <div class="card-body">
-                            <div class="mark"></div>
-                            <h5 class="card-title">
-                                @if (editMode)
-                                {
-                                    Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
-                                    {
-                                        PropertyName = nameof(FullWidthVideoWidgetProperties.Title),
-                                        Text = Model.Title,
-                                        EnableFormatting = false
-                                    });
-                                }
-                                else
-                                {
-                                    @Regex.Replace(Model.Title ?? "", "<.*?>", String.Empty)
-                                }
-                            </h5>
-                            <p class="card-text">
-                                @if (editMode)
-                                {
-                                    Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
-                                    {
-                                        PropertyName = nameof(FullWidthVideoWidgetProperties.Description),
-                                        Text = Model.Description,
-                                        EnableFormatting = false
-                                    });
-                                }
-                                else
-                                {
-                                    @Regex.Replace(Model.Description ?? "", "<.*?>", String.Empty)
-                                }
-                            </p>
-
-                            <a class="btn btn-card" href="@Model.VideoUrl" data-fslightbox="gallery">
-                                @if (editMode)
-                                {
-                                    Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
-                                    {
-                                        PropertyName = nameof(FullWidthVideoWidgetProperties.VideoUrl),
-                                        Text = Model.VideoUrl,
-                                        EnableFormatting = false
-                                    });
-                                }
-
-                                Watch Video
-                            </a>
-                        </div>
+                    </h5>
+                    <div class="card-text">
+                        @if (editMode)
+                        {
+                            Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                            {
+                                PropertyName = nameof(FullWidthVideoWidgetProperties.Description),
+                                Text = Model.Description,
+                                EnableFormatting = true
+                            });
+                        }
+                        else
+                        {
+                            @Html.Raw(Model.Description)
+                        }
                     </div>
+
+                    <a class="btn btn-card" href="@Model.VideoUrl" data-fslightbox="gallery">
+                        Watch Video
+                    </a>
                 </div>
             </div>
-        </section>
-    }
-    else
-    {
-        Html.RenderPartial("InlineEditors/_ImageUploader", new ImageUploadEditorViewModel
-        {
-            PropertyName = nameof(FullWidthVideoWidgetProperties.ImageGuid),
-            HasImage = !string.IsNullOrEmpty(Model.ImageUrl),
-            MediaLibraryViewModel = Model.MediaLibraryViewModel
-        });
-    }
-}
+        </div>
+    </div>
+</section>
 
 <script src="~/Content/InlineEditors/ImageUploaderEditor/fslightbox.js"></script>

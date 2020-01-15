@@ -1,9 +1,10 @@
 // Styles for <main>
 
-
 main {
-    &.primary {
-        font-size: 1.6rem;
-        padding: 5rem 0;
-    }
+  flex: 1;
+
+  &.primary {
+    font-size: 1.6rem;
+    padding: 5rem 0;
+  }
 }

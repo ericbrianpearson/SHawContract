@@ -1,25 +1,37 @@
-@import 'variables';
+@import "variables";
 
-@import 'header';
-@import 'footer';
-@import 'main';
-@import 'global';
+@import "header";
+@import "footer";
+@import "main";
+@import "global";
 
+@import "account-profile-user-settings";
+@import "account-profile-edit-board";
+@import "account-profile-product-boards";
+@import "account-profile";
 @import "blog-list-section";
-@import 'card';
-@import 'checkout';
-@import 'checkout-product-card';
+@import "blog-page";
+@import "card";
+@import "checkout";
+@import "modal";
+@import "related-products";
 
-@import 'widget';
-@import 'widget-button-collection';
-@import 'widget-two-column';
-@import 'widget-feature-list';
-@import 'widget-quote-box';
-@import 'widget-centered-description';
-@import 'widget-cta-block';
-@import 'widget-bullet-list-img';
-@import 'widget-full-width-img';
-@import 'widget-dancing-squares';
-@import 'widget-double-floating-img';
+@import "widget";
+@import "widget-button-collection";
+@import "widget-two-column";
+@import "widget-feature-list";
+@import "widget-quote-box";
+@import "widget-centered-description";
+@import "widget-cta-block";
+@import "widget-bullet-list-img";
+@import "widget-full-width-img";
+@import "widget-dancing-squares";
+@import "widget-double-floating-img";
+@import "widget-collection-preview";
+@import "widget-also-like";
 
-@import 'product-specs-imgs';
+@import "product-specs-imgs";
+
+@import "tooltips";
+@import "custom-switch";
+@import "sharing-buttons";

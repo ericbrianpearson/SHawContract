@@ -1,0 +1,80 @@
+.user-settings {
+  .show-btn {
+    border: 1px solid #ced4da;
+    background: #d8d8d8;
+    width: 60px;
+  }
+
+  #personal-information-form {
+    #password-error {
+      position: absolute;
+      top: 50px;
+    }
+  }
+
+  #company-information-form {
+    #industry-error,
+    #role-title-error {
+      position: absolute;
+      top: 50px;
+    }
+  }
+
+  #communication-form {
+    #language-error {
+      position: absolute;
+      top: 50px;
+    }
+  }
+
+  .address-card {
+    padding: 15px;
+    font-size: 1.4rem;
+    border: 1px solid #808080;
+    border-radius: 3px;
+    height: 100%;
+    .info-wrapper {
+      padding-bottom: 35px;
+      span {
+        display: block;
+      }
+    }
+
+    .action-btns {
+      span {
+        color: #127392;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .intro-wrapper {
+    .img-wrapper {
+      width: 150px;
+      height: 150px;
+      overflow: hidden;
+      border-radius: 50%;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .quick-links {
+      li {
+        font-size: 1.4rem;
+      }
+    }
+  }
+
+  #shippingAddressModal {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  @media (max-width: $mobile-size) {
+    .cell-number {
+      padding-top: 25px;
+    }
+  }
+}

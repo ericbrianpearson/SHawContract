@@ -30,6 +30,36 @@ namespace ShawContract
                constraints: new { culture = new SiteCultureConstraint(AppConfig.Sitename), nodeAlias = new OptionalRouteConstraint(new RegexRouteConstraint(@"[\w\d_-]*")) }
                );
 
+            route = routes.MapRoute(
+                name: "BlogPageDetails",
+                url: "{culture}/Details/{nodeAlias}/{seoUrl}",
+                defaults: new { culture = defaultCulture.Name, controller = "BlogPage", action = "Details", seoUrl = UrlParameter.Optional },
+                constraints: new { culture = new SiteCultureConstraint(AppConfig.Sitename), nodeAlias = new OptionalRouteConstraint(new RegexRouteConstraint(@"[\w\d_-]*")) }
+                );
+
+            route = routes.MapRoute(
+                name: "BlogPageTagged",
+                url: "{culture}/TaggedArticles/{nodeAlias}/{type}/{tag}",
+                defaults: new { culture = defaultCulture.Name, controller = "BlogPage", action = "TaggedArticles", type = "", tag = "" },
+                constraints: new { culture = new SiteCultureConstraint(AppConfig.Sitename), nodeAlias = new OptionalRouteConstraint(new RegexRouteConstraint(@"[\w\d_-]*")) }
+                );
+
+            route = routes.MapRoute(
+                name: "BlogPageFilter",
+                url: "{culture}/Filter/{nodeAlias}/{persona}/{segment}",
+                defaults: new { culture = defaultCulture.Name, controller = "BlogPage", action = "Filter", persona = UrlParameter.Optional, segment = UrlParameter.Optional },
+                constraints: new { culture = new SiteCultureConstraint(AppConfig.Sitename), nodeAlias = new OptionalRouteConstraint(new RegexRouteConstraint(@"[\w\d_-]*")) }
+                );
+
+            route = routes.MapRoute(
+                name: "BlogPage",
+                url: "{culture}/{nodeAlias}",
+                defaults: new { culture = defaultCulture.Name, controller = "BlogPage", action = "Index" },
+                constraints: new { culture = new SiteCultureConstraint(AppConfig.Sitename), nodeAlias = new OptionalRouteConstraint(new RegexRouteConstraint(@"[\w\d_-]*")) }
+                );
+
+
+
             // Maps routes with cultures
             route = routes.MapRoute(
                 name: "DefaultWithCulture",

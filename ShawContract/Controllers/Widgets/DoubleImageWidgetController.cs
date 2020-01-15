@@ -8,8 +8,8 @@ using ShawContract.Models.Widgets.DoubleImageWidget;
 [assembly: RegisterWidget(
     "ShawContract.Widget.DoubleImageWidget",
     typeof(DoubleImageWidgetController),
-    "DoubleImageWidget",
-    Description = "DoubleImageWidget",
+    "Double Image",
+    Description = "Double Image",
     IconClass = "icon-pictures")]
 
 namespace ShawContract.Controllers.Widgets
