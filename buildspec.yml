@@ -9,8 +9,8 @@ phases:
   build:
     commands:
       - nuget restore ShawContract.sln -PackagesDirectory packages
-      - msbuild ShawContract\shawContract.csproj /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="C:\codebuild\artifacts"
+      - msbuild ShawContract\shawContract.csproj /p:Configuration=Release /p:DeployIisAppPath="Default Web Site" /p:PackageAsSingleFile=false /p:OutDir=C:\codebuild\artifacts /t:Package
 artifacts:
   files:
     - '**/*'
-  base-directory: C:\codebuild\artifacts
+  base-directory: C:\codebuild\artifacts\_PublishedWebsites\shawContract_Package\Archive\
