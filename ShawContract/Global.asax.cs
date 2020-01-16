@@ -1,4 +1,5 @@
 using System;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Routing;
 
@@ -27,13 +28,11 @@ namespace ShawContract
             Server.ClearError();
             Response.Clear();
 
-            if ((error is HttpException) && ((HttpException)error).GetHttpCode() == 404)
+            if ((error is HttpException))
             {
-                Response.Redirect("/en-us/Error/NotFound");
-            }
-            else
-            {
-                Response.Redirect("/en-us/Error/ServerError");
+                var redirectPath = "/en-us/Error/ServerError?error=" + error.Message + "&innerError=" + error.InnerException.Message;
+                redirectPath = Regex.Replace(redirectPath, @"\t|\n|\r", "");
+                Response.Redirect(redirectPath);
             }
         }
     }

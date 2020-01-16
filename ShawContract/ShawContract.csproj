@@ -900,6 +900,7 @@
     <Compile Include="Models\Cart\CartDropDownViewModel.cs" />
     <Compile Include="Models\Cart\CartItem.cs" />
     <Compile Include="Models\Cart\CartViewModel.cs" />
+    <Compile Include="Models\Errors\ErrorPageViewModel.cs" />
     <Compile Include="Models\InlineEditors\InlineEditorViewModel.cs" />
     <Compile Include="Models\InlineEditors\TextEditorViewModel.cs" />
     <Compile Include="Models\IViewModel.cs" />
@@ -988,7 +989,6 @@
     <Content Include="Views\Shared\Widgets\_CenteredTextWidget.cshtml" />
     <Content Include="Views\Shared\InlineEditors\_TextEditor.cshtml" />
     <Content Include="Views\Shared\Sections\_DefaultSection.cshtml" />
-    <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\ServerError.cshtml" />
     <Content Include="Views\Shared\Widgets\_FullWidthVideoWidget.cshtml" />
     <Content Include="Views\Shared\Personalization\_IsInPersonaConfiguration.cshtml" />
@@ -1011,6 +1011,7 @@
     <Content Include="Views\BlogPage\TaggedArticles.cshtml" />
     <Content Include="Views\ProductDetails\Index.cshtml" />
     <Content Include="Views\Cart\_CartDropDown.cshtml" />
+    <Content Include="Views\Shared\_ErrorLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShawContract.Application\ShawContract.Application.csproj">

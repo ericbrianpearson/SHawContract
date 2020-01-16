@@ -1,5 +1,6 @@
-﻿using System.Web.Mvc;
-using ShawContract.Application.Contracts.Services;
+﻿using ShawContract.Application.Contracts.Services;
+using ShawContract.Models.Errors;
+using System.Web.Mvc;
 
 namespace ShawContract.Controllers
 {
@@ -11,18 +12,17 @@ namespace ShawContract.Controllers
         }
 
         // GET: Error
-        public ActionResult ServerError()
+        public ActionResult ServerError(string error, string innerError)
         {
-            Response.StatusCode = 500;
+            var errorModel = new ErrorPageViewModel()
+            {
+                ErrorCode = Response.StatusCode,
+                ErrorMessage = error,
+                InnerErrorMessage = innerError
+            };
+            var model = GetPageViewModel(errorModel, "Error");
 
-            return View();
-        }
-
-        public ActionResult NotFound()
-        {
-            Response.StatusCode = 404;
-
-            return View();
+            return View("ServerError", "_ErrorLayout", model);
         }
     }
 }
