@@ -13,4 +13,4 @@ phases:
 artifacts:
   files:
     - '**/*'
-  base-directory: C:\codebuild\artifacts
+  base-directory: C:\codebuild\artifacts\_PublishedWebsites\shawContract_Package\Archive\
