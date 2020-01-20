@@ -1,9 +1,0 @@
-﻿<parameters>
-  <parameter name="IIS Web Application Name" defaultValue="Default Web Site/" tags="IisApp">
-    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\source\\Shaw\\v12\\ShawContract\\obj\\Debug\\Package\\PackageTmp$" />
-    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\source\\Shaw\\v12\\ShawContract\\obj\\Debug\\Package\\PackageTmp$" />
-  </parameter>
-  <parameter name="Add write permission to App_Data Folder" description="Add write permission to App_Data folder" defaultValue="{IIS Web Application Name}/App_Data" tags="Hidden">
-    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\source\\Shaw\\v12\\ShawContract\\obj\\Debug\\Package\\PackageTmp\\App_Data$" />
-  </parameter>
-</parameters>
