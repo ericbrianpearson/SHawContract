@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using ShawContract.Application.Models;
+﻿using ShawContract.Application.Models;
+using System.Collections.Generic;
 
 namespace ShawContract.Application.Contracts.Services
 {

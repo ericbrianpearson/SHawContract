@@ -1,20 +1,17 @@
-﻿using System.Globalization;
-using System.Web.Mvc;
-using Autofac;
+﻿using Autofac;
 using Autofac.Integration.Mvc;
 using AutoMapper;
+using ShawContract.Application.Contracts.Gateways;
 using ShawContract.Application.Contracts.Infrastructure;
 using ShawContract.Application.Contracts.Services;
 using ShawContract.Application.Services;
 using ShawContract.Infrastructure;
 using ShawContract.Providers.Kentico;
+using ShawContract.Providers.Kontent.Config;
 using ShawContract.Providers.ProductBoard.Config;
 using ShawContract.Utils;
-using ShawContract.Providers.Kontent.Config;
-using ShawContract.Providers.Kontent.KontentHandler;
-using ShawContract.Providers.Kontent.Interfaces;
-using ShawContract.Application.Contracts.Gateways;
-using ShawContract.Providers.Kontent;
+using System.Globalization;
+using System.Web.Mvc;
 
 namespace ShawContract.Config
 {

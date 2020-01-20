@@ -1,5 +1,4 @@
-﻿using CMS.AmazonStorage;
-using CMS.DataEngine;
+﻿using CMS.DataEngine;
 using CMS.Helpers;
 using CMS.MediaLibrary;
 using CMS.SiteProvider;
@@ -9,8 +8,6 @@ using ShawContract.Application.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShawContract.Providers.Kentico
 {

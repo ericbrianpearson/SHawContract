@@ -1,7 +1,7 @@
-﻿using System.Web.Mvc;
-using Kentico.PageBuilder.Web.Mvc;
+﻿using Kentico.PageBuilder.Web.Mvc;
 using ShawContract.Controllers.Widgets;
 using ShawContract.Models.Widgets.FullWidthCTAWidget;
+using System.Web.Mvc;
 
 [assembly: RegisterWidget("ShawContract.Widget.FullWidthCTAWidget",
     typeof(FullWidthCTAWidgetController),

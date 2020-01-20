@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using CMS.DocumentEngine.Types.ShawContract;
+﻿using CMS.DocumentEngine.Types.ShawContract;
 using ShawContract.Application.Contracts.Gateways;
 using ShawContract.Application.Models;
 using ShawContract.Providers.Kentico.PageHandler;
+using System.Linq;
 
 namespace ShawContract.Providers.Kentico
 {

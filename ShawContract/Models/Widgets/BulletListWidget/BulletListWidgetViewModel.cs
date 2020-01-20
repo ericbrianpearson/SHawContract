@@ -1,6 +1,4 @@
-﻿using ShawContract.Models.Widgets.FullWidthVideoWidget;
-
-namespace ShawContract.Models.Widgets.BulletListWidget
+﻿namespace ShawContract.Models.Widgets.BulletListWidget
 {
     public class BulletListWidgetViewModel
     {

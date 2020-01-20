@@ -1,14 +1,12 @@
-﻿using System;
+﻿using AutoMapper;
+using ShawContract.Application.Contracts.Gateways;
+using ShawContract.Application.Models;
+using ShawContract.Providers.ProductBoard.DAL;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using AutoMapper;
-using ShawContract.Application.Contracts.Gateways;
-
-using ShawContract.Application.Models;
-using ShawContract.Providers.ProductBoard.DAL;
 
 namespace ShawContract.Providers.ProductBoard
 {

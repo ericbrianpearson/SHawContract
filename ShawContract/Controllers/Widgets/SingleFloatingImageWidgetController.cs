@@ -1,7 +1,7 @@
 ﻿using Kentico.PageBuilder.Web.Mvc;
-using System.Web.Mvc;
-using ShawContract.Models.Widgets.SingleFloatingImageWidget;
 using ShawContract.Controllers.Widgets;
+using ShawContract.Models.Widgets.SingleFloatingImageWidget;
+using System.Web.Mvc;
 
 [assembly: RegisterWidget(
     "ShawContract.Widget.SingleFloatingImage",

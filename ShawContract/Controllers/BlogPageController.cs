@@ -1,11 +1,11 @@
-﻿using ShawContract.Application.Contracts.Services;
+﻿using Kentico.PageBuilder.Web.Mvc;
+using Kentico.Web.Mvc;
+using ShawContract.Application.Contracts.Services;
 using ShawContract.Models.Blogs;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.UI;
-using Kentico.Web.Mvc;
-using Kentico.PageBuilder.Web.Mvc;
-using System.Linq;
 
 namespace ShawContract.Controllers
 {
@@ -61,7 +61,7 @@ namespace ShawContract.Controllers
 
         public async Task<ActionResult> TaggedArticles(string nodeAlias, string type, string tag)
         {
-            var blogs = await BlogService.GetTaggedArticlesAsync(type, tag);            
+            var blogs = await BlogService.GetTaggedArticlesAsync(type, tag);
             var blogModel = new BlogsByTagViewModel() { Articles = blogs, SelectedTag = char.ToUpper(tag[0]) + tag.Substring(1), Cta = blogs.FirstOrDefault().Cta };
             var model = GetPageViewModel(blogModel, nodeAlias);
 

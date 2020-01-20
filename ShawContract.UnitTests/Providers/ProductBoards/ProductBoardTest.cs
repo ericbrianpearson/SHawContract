@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AutoMapper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ShawContract.Providers.ProductBoard;
-using ShawContract.Config;
 using ShawContract.Application.Models;
-using System.Threading.Tasks;
+using ShawContract.Config;
+using ShawContract.Providers.ProductBoard;
+using System;
+using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
+using System.Threading.Tasks;
 
 namespace Shaw.Contract.UnitTests.Providers.ProductBoards
 {

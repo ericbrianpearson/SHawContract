@@ -1,9 +1,4 @@
-﻿using System;
-using System.Configuration;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using CMS.Helpers;
+﻿using CMS.Helpers;
 using Kentico.Membership;
 using Microsoft.AspNet.Identity;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
@@ -15,6 +10,11 @@ using Microsoft.Owin.Security.Notifications;
 using Microsoft.Owin.Security.OpenIdConnect;
 using Owin;
 using ShawContract.Config;
+using System;
+using System.Configuration;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
 
 [assembly: OwinStartup(typeof(ShawContract.Startup))]
 

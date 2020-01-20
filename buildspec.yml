@@ -9,7 +9,7 @@ phases:
   build:
     commands:
       - nuget restore ShawContract.sln -PackagesDirectory packages
-      - msbuild ShawContract\shawContract.csproj /p:Configuration=Release /p:DeployIisAppPath="Default Web Site" /p:PackageAsSingleFile=false /p:OutDir=C:\codebuild\artifacts /t:Package
+      - msbuild ShawContract\shawContract.csproj /p:Configuration=Release /p:DeployIisAppPath="Default Web Site" /p:PackageAsSingleFile=false /p:OutDir=C:\codebuild\artifacts\_PublishedWebsites\shawContract_Package\Archive\ /t:Package
 artifacts:
   files:
     - '**/*'

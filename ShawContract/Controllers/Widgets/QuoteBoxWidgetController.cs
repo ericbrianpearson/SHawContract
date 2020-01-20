@@ -1,12 +1,6 @@
 ﻿using Kentico.PageBuilder.Web.Mvc;
-using ShawContract.Application.Contracts.Services;
 using ShawContract.Controllers.Widgets;
-using ShawContract.Models.Widgets.FullWidthVideoWidget;
 using ShawContract.Models.Widgets.QuoteBoxWidget;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 [assembly: RegisterWidget(

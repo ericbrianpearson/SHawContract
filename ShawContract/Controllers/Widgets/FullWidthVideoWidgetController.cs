@@ -2,7 +2,6 @@
 using ShawContract.Application.Contracts.Services;
 using ShawContract.Controllers.Widgets;
 using ShawContract.Models.Widgets.FullWidthVideoWidget;
-using System;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
 
@@ -31,7 +30,9 @@ namespace ShawContract.Controllers.Widgets
         {
             var properties = GetProperties();
             bool hasImage = false;
+#pragma warning disable CS0219 // The variable 'imageUrl' is assigned but its value is never used
             string imageUrl = null;
+#pragma warning restore CS0219 // The variable 'imageUrl' is assigned but its value is never used
 
             return PartialView("Widgets/_FullWidthVideoWidget", new FullWidthVideoWidgetViewModel
             {

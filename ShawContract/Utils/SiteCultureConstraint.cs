@@ -1,8 +1,8 @@
-﻿using System;
+﻿using CMS.SiteProvider;
+using System;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Routing;
-using CMS.SiteProvider;
 
 namespace ShawContract.Utils
 {
