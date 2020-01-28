@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using AutoMapper;
+﻿using AutoMapper;
 using CMS.Personas;
 using ShawContract.Application.Contracts.Gateways;
 using ShawContract.Application.Models;
+using System.Collections.Generic;
 
 namespace ShawContract.Providers.Kentico
 {

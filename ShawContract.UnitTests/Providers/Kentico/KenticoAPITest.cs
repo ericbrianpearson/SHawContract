@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using CMS.DataEngine;
+﻿using CMS.DataEngine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ShawContract.Application.Models;
 using ShawContract.Config;
@@ -8,6 +6,8 @@ using ShawContract.Infrastructure;
 using ShawContract.Providers.Kentico;
 using ShawContract.Providers.Kentico.PageHandler;
 using ShawContract.Utils;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Shaw.Contract.UnitTests.Providers.Kentico
 {

@@ -1,5 +1,5 @@
-﻿using System;
-using CMS.DocumentEngine;
+﻿using CMS.DocumentEngine;
+using System;
 
 namespace ShawContract.Providers.Kentico.PageHandler
 {

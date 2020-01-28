@@ -1,6 +1,5 @@
-﻿using System.Web.Mvc;
-using ShawContract.Application.Contracts.Services;
-using ShawContract.ActionSelectors;
+﻿using ShawContract.Application.Contracts.Services;
+using System.Web.Mvc;
 
 namespace ShawContract.Controllers
 {

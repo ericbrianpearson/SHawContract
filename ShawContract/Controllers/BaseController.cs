@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
-using ShawContract.Application.Contracts.Services;
+﻿using ShawContract.Application.Contracts.Services;
 using ShawContract.Application.Models;
 using ShawContract.Models;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace ShawContract.Controllers
 {

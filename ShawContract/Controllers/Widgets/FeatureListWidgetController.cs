@@ -1,7 +1,6 @@
 ﻿using Kentico.PageBuilder.Web.Mvc;
 using ShawContract.Controllers.Widgets;
 using ShawContract.Models.Widgets.FeatureListWidget;
-using System.Text.RegularExpressions;
 using System.Web.Mvc;
 
 [assembly: RegisterWidget("ShawContract.Widget.FeatureListWidget",

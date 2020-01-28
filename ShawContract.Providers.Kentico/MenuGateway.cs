@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
+﻿using AutoMapper;
 using CMS.DocumentEngine;
 using ShawContract.Application.Contracts.Gateways;
 using ShawContract.Application.Contracts.Infrastructure;
 using ShawContract.Application.Models;
 using ShawContract.Providers.Kentico.PageHandler;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ShawContract.Providers.Kentico
 {

@@ -2,15 +2,14 @@ version: 0.2
 
 env:
   variables:
-    SOLUTION: ShawContract\ShawContract.sln
-    PROJECT: ShawContract\ShawContract.csproj
+    PROJECT: ShawContract
     DOTNET_FRAMEWORK: 4.6.1
 phases:
   build:
     commands:
       - nuget restore ShawContract.sln -PackagesDirectory packages
-      - msbuild ShawContract\shawContract.csproj /p:Configuration=Release /p:DeployIisAppPath="Default Web Site" /p:PackageAsSingleFile=false /p:OutDir=C:\codebuild\artifacts /t:Package
+      - msbuild ShawContract\ShawContract.csproj /p:TargetFrameworkVersion=v$env:DOTNET_FRAMEWORK /p:Configuration=Release /p:DeployIisAppPath="Default Web Site" /p:PackageAsSingleFile=false /p:OutDir=C:\codebuild\artifacts\ /t:Package
 artifacts:
   files:
     - '**/*'
-  base-directory: C:\codebuild\artifacts\_PublishedWebsites\shawContract_Package\Archive\
+  base-directory: 'C:\codebuild\artifacts\_PublishedWebsites\ShawContract_Package\Archive\'
