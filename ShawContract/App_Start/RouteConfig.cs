@@ -31,6 +31,27 @@ namespace ShawContract
                );
 
             route = routes.MapRoute(
+                name: "UserSettings",
+                url: "{culture}/UserSetting",
+                defaults: new { culture = defaultCulture.Name, controller = "UserSettings", action = "Index" },
+                constraints: new { culture = new SiteCultureConstraint(AppConfig.Sitename) }
+            );
+
+            route = routes.MapRoute(
+                name: "ProductBoardDetails",
+                url: "{culture}/Account/{nodeAlias}/{boardId}",
+                defaults: new { culture = defaultCulture.Name, controller = "ProductBoards", action = "Details" },
+                constraints: new { culture = new SiteCultureConstraint(AppConfig.Sitename), nodeAlias = new OptionalRouteConstraint(new RegexRouteConstraint(@"[\w\d_-]*")) }
+                );
+
+            route = routes.MapRoute(
+                name: "MyBoards",
+                url: "{culture}/ProductBoards/MyBoards",
+                defaults: new { culture = defaultCulture.Name, controller = "ProductBoards", action = "Index"},
+                constraints: new { culture = new SiteCultureConstraint(AppConfig.Sitename), nodeAlias = new OptionalRouteConstraint(new RegexRouteConstraint(@"[\w\d_-]*")) }
+                );
+
+            route = routes.MapRoute(
                 name: "BlogPageDetails",
                 url: "{culture}/Details/{nodeAlias}/{seoUrl}",
                 defaults: new { culture = defaultCulture.Name, controller = "BlogPage", action = "Details", seoUrl = UrlParameter.Optional },
@@ -52,13 +73,18 @@ namespace ShawContract
                 );
 
             route = routes.MapRoute(
+                name: "CartPage",
+                url: "{culture}/Cart/{action}",
+                defaults: new { culture = defaultCulture.Name, controller = "Cart", action = "Index" },
+                constraints: new { culture = new SiteCultureConstraint(AppConfig.Sitename) }
+            );
+
+            route = routes.MapRoute(
                 name: "BlogPage",
                 url: "{culture}/{nodeAlias}",
                 defaults: new { culture = defaultCulture.Name, controller = "BlogPage", action = "Index" },
                 constraints: new { culture = new SiteCultureConstraint(AppConfig.Sitename), nodeAlias = new OptionalRouteConstraint(new RegexRouteConstraint(@"[\w\d_-]*")) }
                 );
-
-
 
             // Maps routes with cultures
             route = routes.MapRoute(

@@ -9,7 +9,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>ShawContract Template</title>
+    <title>ShawContract&reg;</title>
 
     <link href="https://api.machinelogic.io/mvc/images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
     <link href="https://api.machinelogic.io/mvc/images/favicon.ico" type="image/x-icon" rel="icon" />
@@ -17,7 +17,9 @@
     <link rel="canonical" href="/" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap" rel="stylesheet" />
     <link href="@Url.Content("~/Content/Css/Vendors/bootstrap.css")" rel="stylesheet" />
-    <link href="@Url.Content("~/Content/scss/shawcontract.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Css/Vendors/bootstrap-select.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Css/Vendors/toastr.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Css/Master/shawcontract.css")" rel="stylesheet" />
 
     <script src="https://kit.fontawesome.com/0244929327.js" crossorigin="anonymous"></script>
 
@@ -31,10 +33,17 @@
                 analytics.page();
             }
         }();
+
+        dataLayer = [{
+            'pageName': '',
+            'pageUrl': '@Request.Url',
+            'userEmail': '@CMS.Membership.MembershipContext.AuthenticatedUser.Email',
+            'userID': '@CMS.Membership.MembershipContext.AuthenticatedUser.UserID'
+        }];
     </script>
 </head>
 
-<body class="h-100">
+<body class="d-flex flex-column h-100">
     <nav class="secondary">
         <ul class="list-unstyled">
 
@@ -46,8 +55,12 @@
                     </a>
                 </li>
             }
-            <li><a href="#">language: en-us</a></li>
-            <li></li>
+            <li>
+                <a href="#" type="button" data-toggle="modal" data-target="#languageModal" aria-pressed="false"
+                   autocomplete="off">
+                    language: en-us
+                </a>
+            </li>
         </ul>
     </nav>
 
@@ -145,7 +158,7 @@
 
                         <div class="row">
                             <div class="col-sm-12">
-                                <button class="btn btn-after-login"><i class="far fa-cog"></i> User Settings</button>
+                                <button onclick="location.href='@Url.Action("Index", "UserSettings")';return false;" class="btn btn-after-login"><i class="far fa-cog"></i> User Settings</button>
                             </div>
                         </div>
 
@@ -166,6 +179,17 @@
                                 <button class="btn btn-after-login"><i class="far fa-phone-alt"></i> Account Support</button>
                             </div>
                         </div>
+                        @if (Request.IsAuthenticated)
+                        {
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    @using (Html.BeginForm("SignOut", "Account", FormMethod.Post))
+                                    {
+                                        <button class="btn btn-login" type="submit" name="provider">SIGN OUT</button>
+                                    }
+                                </div>
+                            </div>
+                        }
                     </div>
                 </li>
 
@@ -262,7 +286,7 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="cartDropDown">
-                        @* @Html.Action("Cart", "CartDropDown");*@
+                        @Html.Action("Cart", "CartDropDown");
                     </div>
                 </li>
             </ul>
@@ -363,14 +387,21 @@
         </div>
     </footer>
 
-    @RenderPage("~/Views/Shared/_NewBoardModal.cshtml")
+    @RenderPage("~/Views/Shared/_LanguageModal.cshtml")
     <script src="~/Content/js/jquery-3.4.1.min.js"></script>
     <script src="~/Content/js/jquery.validate.min.js"></script>
-    <script src="~/Content/js/shipping-address-form-validation.js"></script>
+    <script src="~/Content/js/regex.js"></script>
+    <script src="~/Content/js/jquery.maskedinput.min.js"></script>
     <script src="~/Content/js/bootstrap.bundle.js"></script>
+    <script src="~/Content/js/popper.min.js"></script>
+    <script src="~/Content/js/bootstrap-select.min.js"></script>
+    <script src="~/Content/js/clamp.min.js"></script>
+    <script src="~/Content/js/lineClamps.js"></script>
+    <script src="~/Content/js/userSettings.js"></script>
     <script src="~/Content/js/objectFitPolyFill.basic.min.js"></script>
     <script src="~/Content/js/toastr.js"></script>
     <script src="~/Content/js/notifications.js"></script>
+    <script src="~/Content/js/checkoutFormValidations.js"></script>
     <script src="~/Content/js/addNewBoard.js"></script>
     <script src="~/Content/js/copyToClipBoard.js"></script>
     <script src="~/Content/js/editProductBoard.js"></script>

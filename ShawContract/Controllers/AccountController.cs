@@ -136,13 +136,15 @@ namespace ShawContract.Controllers
             }
         }
 
-        public void SignOut()
+        public async Task<ActionResult> SignOut()
         {
             if (Request.IsAuthenticated)
             {
                 IEnumerable<AuthenticationDescription> authTypes = HttpContext.GetOwinContext().Authentication.GetAuthenticationTypes();
                 HttpContext.GetOwinContext().Authentication.SignOut(authTypes.Select(t => t.AuthenticationType).ToArray());
             }
+
+            return RedirectToAction("Home", "Index");
         }
 
         private static void ExtractEmailFromClaim(ExternalLoginInfo loginInfo)

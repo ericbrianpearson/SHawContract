@@ -218,8 +218,8 @@
     <Reference Include="Mono.Cecil.Rocks, Version=0.10.0.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
       <HintPath>..\packages\Mono.Cecil.0.10.0\lib\net40\Mono.Cecil.Rocks.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NuGet.Core, Version=2.14.0.832, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\NuGet.Core.2.14.0\lib\net40-Client\NuGet.Core.dll</HintPath>
@@ -22199,6 +22199,10 @@
     </When>
   </Choose>
   <ItemGroup>
+    <ProjectReference Include="..\ShawContract.CMSApp\ShawContract.CMSApp.csproj">
+      <Project>{4726f8cc-2bc1-4447-bdd3-c04bd66844b1}</Project>
+      <Name>ShawContract.CMSApp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ShawLibrary\ShawLibrary.csproj">
       <Project>{dda8dc77-1dfa-4923-a59c-4da900e4e413}</Project>
       <Name>ShawLibrary</Name>

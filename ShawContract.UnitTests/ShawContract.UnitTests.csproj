@@ -478,6 +478,7 @@
     <Compile Include="Providers\Kontent\KontentAPITest.cs" />
     <Compile Include="Providers\Kontent\BlogGatwayTest.cs" />
     <Compile Include="Providers\ProductBoards\ProductBoardTest.cs" />
+    <Compile Include="Providers\Profile\ProfileTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

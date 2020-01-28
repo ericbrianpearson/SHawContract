@@ -54,6 +54,11 @@ namespace ShawContract.Config
                     .ForMember(dest => dest.MainImage, opts => opts.MapFrom(src => src.ArticleBaseSnippetImageMedia.FirstOrDefault()))
                     .ForMember(dest => dest.PlaceHolderCTA, opts => opts.MapFrom(src => src.PlaceholderCta.FirstOrDefault()))
                     .ForMember(dest => dest.LongDescription, opts => opts.MapFrom(src => src.ArticleBaseSnippetLongdescription));
+
+                cfg.CreateMap<ShoppingCartInfo, ShoppingCart>();
+                cfg.CreateMap<ShoppingCartItemInfo, ShoppingCartItem>()
+                            .ForMember(dest => dest.CartItemName,
+                            opts => opts.MapFrom(src => src.SKU.SKUName));
             });
 
             return config.CreateMapper();

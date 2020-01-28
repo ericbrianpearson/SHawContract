@@ -1,4 +1,5 @@
-﻿using Kentico.Content.Web.Mvc;
+﻿using CMS.SiteProvider;
+using Kentico.Content.Web.Mvc;
 using Kentico.Web.Mvc;
 using ShawContract.Application.Contracts.Infrastructure;
 
@@ -13,6 +14,18 @@ namespace ShawContract.Utils
         public string PreviewCulture => System.Web.HttpContext.Current.Kentico().Preview().CultureName;
 
         public bool IsPreviewEnabled => System.Web.HttpContext.Current.Kentico().Preview().Enabled;
+
+        public int SiteContextID
+        {
+            get
+            {
+                return SiteContext.CurrentSiteID;
+            }
+            set
+            {
+                SiteContext.CurrentSiteID = value;
+            }
+        }
 
         public SiteContextService(string currentCulture, string siteName)
         {

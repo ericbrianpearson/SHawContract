@@ -7,14 +7,17 @@ namespace ShawContract.Providers.ProductBoard.Models
     {
         [Key]
         public Guid ID { get; set; }
-
-        [Required]
-        public string Style { get; set; }
-
-        [Required]
-        public string Color { get; set; }
-
         public string Notes { get; set; }
+        [Required]
+        public string StyleName { get; set; }
+        [Required]
+        public string StyleNumber { get; set; }
+        [Required]
+        public string ColorName { get; set; }
+        [Required]
+        public string ColorNumber { get; set; }
+        [Required]
+        public string ImageUrl { get; set; }
 
         public Guid ProductBoardID { get; set; }
         public virtual ProductBoard ProductBoard { get; set; }

@@ -34,7 +34,7 @@ namespace ShawContract.Providers.Kontent
         {
             var blogs = CachingService.GetItem<IEnumerable<BlogPreview>>(AllBlogsCachingKey);
             if (blogs == null)
-            {
+            {   //TODO: sravni datite, za da vidish kak gi vrushta
                 DeliveryItemListingResponse<BlogEntry> response = await KontentDeliveryClient.DeliveryClient
                     .GetItemsAsync<BlogEntry>(
                     new DepthParameter(3),

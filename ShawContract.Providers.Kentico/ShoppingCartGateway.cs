@@ -3,6 +3,7 @@ using CMS.DocumentEngine.Types.ShawContract;
 using CMS.Ecommerce;
 using CMS.SiteProvider;
 using ShawContract.Application.Contracts.Gateways;
+using ShawContract.Application.Contracts.Infrastructure;
 using ShawContract.Application.Models;
 using System;
 using System.Linq;
@@ -11,11 +12,13 @@ namespace ShawContract.Providers.Kentico
 {
     public class ShoppingCartGateway : IShoppingCartGateway
     {
-        public IShoppingService ShoppingService;
-        public IMapper Mapper;
+        public ISiteContextService SiteContextService { get; set; }
+        public IShoppingService ShoppingService { get; set; }
+        public IMapper Mapper { get; set; }
 
-        public ShoppingCartGateway(IShoppingService shoppingService, IMapper mapper)
+        public ShoppingCartGateway(ISiteContextService siteContextService, IShoppingService shoppingService, IMapper mapper)
         {
+            SiteContextService = siteContextService;
             ShoppingService = shoppingService;
             Mapper = mapper;
         }
@@ -65,10 +68,7 @@ namespace ShawContract.Providers.Kentico
         public void LoadFakeItemsToCart() //temporary method to load products to cart
         {
             var cartItems = SamplesProvider.GetSamples()
-                     .LatestVersion(true)
-                     .Published(true)
-                     .OnSite(SiteContext.CurrentSiteName)
-                     .CombineWithDefaultCulture()
+                     .OnSite(SiteContextService.SiteName)
                      .TopN(10)
                      .WhereTrue("SKUEnabled")
                      .OrderByDescending("SKUInStoreFrom")

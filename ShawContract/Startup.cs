@@ -15,6 +15,7 @@ using Microsoft.Owin.Security.Notifications;
 using Microsoft.Owin.Security.OpenIdConnect;
 using Owin;
 using ShawContract.Config;
+using ShawContract.Models.Personalization;
 
 [assembly: OwinStartup(typeof(ShawContract.Startup))]
 
@@ -32,6 +33,10 @@ namespace ShawContract
 
         public void Configuration(IAppBuilder app)
         {
+            // Registers Kentico.Membership Identity types with the 'ExtendedUser' user object
+            app.CreatePerOwinContext(() => KenticoUserManager<ExtendedUser>.Initialize(app, new KenticoUserManager<ExtendedUser>(new KenticoUserStore<ExtendedUser>(AppConfig.Sitename))));
+            app.CreatePerOwinContext<KenticoSignInManager<ExtendedUser>>(KenticoSignInManager<ExtendedUser>.Create);
+
             ConfigureAuth(app);
         }
 

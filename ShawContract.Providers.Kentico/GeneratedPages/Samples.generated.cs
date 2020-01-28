@@ -24,570 +24,570 @@ using CMS.Ecommerce;
 
 namespace CMS.DocumentEngine.Types.ShawContract
 {
-	/// <summary>
-	/// Represents a content item of type Samples.
-	/// </summary>
-	public partial class Samples : SKUTreeNode
-	{
-		#region "Constants and variables"
+    /// <summary>
+    /// Represents a content item of type Samples.
+    /// </summary>
+    public partial class Samples : SKUTreeNode
+    {
+        #region "Constants and variables"
 
-		/// <summary>
-		/// The name of the data class.
-		/// </summary>
-		public const string CLASS_NAME = "ShawContract.Samples";
-
-
-		/// <summary>
-		/// The instance of the class that provides extended API for working with Samples fields.
-		/// </summary>
-		private readonly SamplesFields mFields;
+        /// <summary>
+        /// The name of the data class.
+        /// </summary>
+        public const string CLASS_NAME = "ShawContract.Samples";
 
 
-		/// <summary>
-		/// The instance of the class that provides extended API for working with SKU fields.
-		/// </summary>
-		private readonly ProductFields mProduct;
-
-		#endregion
+        /// <summary>
+        /// The instance of the class that provides extended API for working with Samples fields.
+        /// </summary>
+        private readonly SamplesFields mFields;
 
 
-		#region "Properties"
+        /// <summary>
+        /// The instance of the class that provides extended API for working with SKU fields.
+        /// </summary>
+        private readonly ProductFields mProduct;
 
-		/// <summary>
-		/// SamplesID.
-		/// </summary>
-		[DatabaseIDField]
-		public int SamplesID
-		{
-			get
-			{
-				return ValidationHelper.GetInteger(GetValue("SamplesID"), 0);
-			}
-			set
-			{
-				SetValue("SamplesID", value);
-			}
-		}
+        #endregion
 
 
-		/// <summary>
-		/// Farm.
-		/// </summary>
-		[DatabaseField]
-		public string SampleFarm
-		{
-			get
-			{
-				return ValidationHelper.GetString(GetValue("SampleFarm"), @"");
-			}
-			set
-			{
-				SetValue("SampleFarm", value);
-			}
-		}
+        #region "Properties"
+
+        /// <summary>
+        /// SamplesID.
+        /// </summary>
+        [DatabaseIDField]
+        public int SamplesID
+        {
+            get
+            {
+                return ValidationHelper.GetInteger(GetValue("SamplesID"), 0);
+            }
+            set
+            {
+                SetValue("SamplesID", value);
+            }
+        }
 
 
-		/// <summary>
-		/// Gets an object that provides extended API for working with Samples fields.
-		/// </summary>
-		[RegisterProperty]
-		public SamplesFields Fields
-		{
-			get
-			{
-				return mFields;
-			}
-		}
+        /// <summary>
+        /// SampleType.
+        /// </summary>
+        [DatabaseField]
+        public string SampleType
+        {
+            get
+            {
+                return ValidationHelper.GetString(GetValue("SampleType"), @"");
+            }
+            set
+            {
+                SetValue("SampleType", value);
+            }
+        }
 
 
-		/// <summary>
-		/// Gets an object that provides extended API for working with SKU fields.
-		/// </summary>
+        /// <summary>
+        /// Gets an object that provides extended API for working with Samples fields.
+        /// </summary>
         [RegisterProperty]
-		public ProductFields Product
-		{
-			get
-			{
-				return mProduct;
-			}
-		}
+        public SamplesFields Fields
+        {
+            get
+            {
+                return mFields;
+            }
+        }
 
 
-		/// <summary>
-		/// Provides extended API for working with Samples fields.
-		/// </summary>
-		[RegisterAllProperties]
-		public partial class SamplesFields : AbstractHierarchicalObject<SamplesFields>
-		{
-			/// <summary>
-			/// The content item of type Samples that is a target of the extended API.
-			/// </summary>
-			private readonly Samples mInstance;
+        /// <summary>
+        /// Gets an object that provides extended API for working with SKU fields.
+        /// </summary>
+        [RegisterProperty]
+        public ProductFields Product
+        {
+            get
+            {
+                return mProduct;
+            }
+        }
 
 
-			/// <summary>
-			/// Initializes a new instance of the <see cref="SamplesFields" /> class with the specified content item of type Samples.
-			/// </summary>
-			/// <param name="instance">The content item of type Samples that is a target of the extended API.</param>
-			public SamplesFields(Samples instance)
-			{
-				mInstance = instance;
-			}
-
-
-			/// <summary>
-			/// SamplesID.
-			/// </summary>
-			public int ID
-			{
-				get
-				{
-					return mInstance.SamplesID;
-				}
-				set
-				{
-					mInstance.SamplesID = value;
-				}
-			}
-
-
-			/// <summary>
-			/// Farm.
-			/// </summary>
-			public string SampleFarm
-			{
-				get
-				{
-					return mInstance.SampleFarm;
-				}
-				set
-				{
-					mInstance.SampleFarm = value;
-				}
-			}
-		}
-
-
-		/// <summary>
-		/// Provides extended API for working with SKU fields.
-		/// </summary>
+        /// <summary>
+        /// Provides extended API for working with Samples fields.
+        /// </summary>
         [RegisterAllProperties]
-		public class ProductFields : AbstractHierarchicalObject<ProductFields>
-		{
-		    /// <summary>
-			/// The content item of type <see cref="Samples" /> that is a target of the extended API.
-			/// </summary>
-			private readonly Samples mInstance;
+        public partial class SamplesFields : AbstractHierarchicalObject<SamplesFields>
+        {
+            /// <summary>
+            /// The content item of type Samples that is a target of the extended API.
+            /// </summary>
+            private readonly Samples mInstance;
 
 
-			/// <summary>
-			/// The <see cref="PublicStatusInfo" /> object related to product based on value of <see cref="SKUInfo.SKUPublicStatusID" /> column. 
-			/// </summary>
-			private PublicStatusInfo mPublicStatus = null;
+            /// <summary>
+            /// Initializes a new instance of the <see cref="SamplesFields" /> class with the specified content item of type Samples.
+            /// </summary>
+            /// <param name="instance">The content item of type Samples that is a target of the extended API.</param>
+            public SamplesFields(Samples instance)
+            {
+                mInstance = instance;
+            }
 
 
-			/// <summary>
-			/// The <see cref="ManufacturerInfo" /> object related to product based on value of <see cref="SKUInfo.SKUManufacturerID" /> column. 
-			/// </summary>
-			private ManufacturerInfo mManufacturer = null;
+            /// <summary>
+            /// SamplesID.
+            /// </summary>
+            public int ID
+            {
+                get
+                {
+                    return mInstance.SamplesID;
+                }
+                set
+                {
+                    mInstance.SamplesID = value;
+                }
+            }
 
 
-			/// <summary>
-			/// The <see cref="DepartmentInfo" /> object related to product based on value of <see cref="SKUInfo.SKUDepartmentID" /> column. 
-			/// </summary>
-			private DepartmentInfo mDepartment = null;
+            /// <summary>
+            /// SampleType.
+            /// </summary>
+            public string SampleType
+            {
+                get
+                {
+                    return mInstance.SampleType;
+                }
+                set
+                {
+                    mInstance.SampleType = value;
+                }
+            }
+        }
 
 
-			/// <summary>
-			/// The <see cref="SupplierInfo" /> object related to product based on value of <see cref="SKUInfo.SKUSupplierID" /> column. 
-			/// </summary>
-			private SupplierInfo mSupplier = null;
+        /// <summary>
+        /// Provides extended API for working with SKU fields.
+        /// </summary>
+        [RegisterAllProperties]
+        public class ProductFields : AbstractHierarchicalObject<ProductFields>
+        {
+            /// <summary>
+            /// The content item of type <see cref="Samples" /> that is a target of the extended API.
+            /// </summary>
+            private readonly Samples mInstance;
 
 
-			/// <summary>
-			/// The <see cref="TaxClassInfo" /> object related to product based on value of <see cref="SKUInfo.SKUTaxClassID" /> column. 
-			/// </summary>
-			private TaxClassInfo mTaxClass = null;
+            /// <summary>
+            /// The <see cref="PublicStatusInfo" /> object related to product based on value of <see cref="SKUInfo.SKUPublicStatusID" /> column. 
+            /// </summary>
+            private PublicStatusInfo mPublicStatus = null;
 
 
-			/// <summary>
-			/// The <see cref="BrandInfo" /> object related to product based on value of <see cref="SKUInfo.SKUBrandID" /> column. 
-			/// </summary>
-			private BrandInfo mBrand = null;
+            /// <summary>
+            /// The <see cref="ManufacturerInfo" /> object related to product based on value of <see cref="SKUInfo.SKUManufacturerID" /> column. 
+            /// </summary>
+            private ManufacturerInfo mManufacturer = null;
 
 
-			/// <summary>
-			/// The <see cref="CollectionInfo" /> object related to product based on value of <see cref="SKUInfo.SKUCollectionID" /> column. 
-			/// </summary>
-			private CollectionInfo mCollection = null;
+            /// <summary>
+            /// The <see cref="DepartmentInfo" /> object related to product based on value of <see cref="SKUInfo.SKUDepartmentID" /> column. 
+            /// </summary>
+            private DepartmentInfo mDepartment = null;
 
 
-			/// <summary>
-			/// The shortcut to <see cref="SKUInfo" /> object which is a target of this extended API.
-			/// </summary>
-			private SKUInfo SKU
-			{
-				get 
-				{
-					return mInstance.SKU;
-				}
-			}
-
-						
-			/// <summary>
-			/// Initializes a new instance of the <see cref="ProductFields" /> class with SKU related fields of type <see cref="Samples" /> .
-			/// </summary>
-			/// <param name="instance">The content item of type Samples that is a target of the extended API.</param>
-			public ProductFields(Samples instance)
-			{
-				mInstance = instance;
-			}
+            /// <summary>
+            /// The <see cref="SupplierInfo" /> object related to product based on value of <see cref="SKUInfo.SKUSupplierID" /> column. 
+            /// </summary>
+            private SupplierInfo mSupplier = null;
 
 
-			/// <summary>
-			/// SKUID.
-			/// </summary>
-			public int ID
-			{
-				get
-				{
-					return (SKU != null) ? SKU.SKUID : 0;
-				}
-				set
-				{
-					if (SKU != null)
-					{
-						SKU.SKUID = value;
-					}
-				}
-			}
+            /// <summary>
+            /// The <see cref="TaxClassInfo" /> object related to product based on value of <see cref="SKUInfo.SKUTaxClassID" /> column. 
+            /// </summary>
+            private TaxClassInfo mTaxClass = null;
 
 
-			/// <summary>
-			/// Allows you to specify the product identifier. You can use this number or string, for example, in your accounting records.
-			/// </summary>
-			public string SKUNumber
-			{
-				get
-				{
-					return (SKU != null) ? SKU.SKUNumber : @"";
-				}
-				set
-				{
-					if (SKU != null)
-					{
-						SKU.SKUNumber = value;
-					}
-				}
-			}
+            /// <summary>
+            /// The <see cref="BrandInfo" /> object related to product based on value of <see cref="SKUInfo.SKUBrandID" /> column. 
+            /// </summary>
+            private BrandInfo mBrand = null;
 
 
-			/// <summary>
-			/// Package weight.
-			/// </summary>
-			public double Weight
-			{
-				get
-				{
-					return (SKU != null) ? SKU.SKUWeight : 0;
-				}
-				set
-				{
-					if (SKU != null)
-					{
-						SKU.SKUWeight = value;
-					}
-				}
-			}
+            /// <summary>
+            /// The <see cref="CollectionInfo" /> object related to product based on value of <see cref="SKUInfo.SKUCollectionID" /> column. 
+            /// </summary>
+            private CollectionInfo mCollection = null;
 
 
-			/// <summary>
-			/// Package height.
-			/// </summary>
-			public double Height
-			{
-				get
-				{
-					return (SKU != null) ? SKU.SKUHeight : 0;
-				}
-				set
-				{
-					if (SKU != null)
-					{
-						SKU.SKUHeight = value;
-					}
-				}
-			}
+            /// <summary>
+            /// The shortcut to <see cref="SKUInfo" /> object which is a target of this extended API.
+            /// </summary>
+            private SKUInfo SKU
+            {
+                get
+                {
+                    return mInstance.SKU;
+                }
+            }
 
 
-			/// <summary>
-			/// Package width.
-			/// </summary>
-			public double Width
-			{
-				get
-				{
-					return (SKU != null) ? SKU.SKUWidth : 0;
-				}
-				set
-				{
-					if (SKU != null)
-					{
-						SKU.SKUWidth = value;
-					}
-				}
-			}
+            /// <summary>
+            /// Initializes a new instance of the <see cref="ProductFields" /> class with SKU related fields of type <see cref="Samples" /> .
+            /// </summary>
+            /// <param name="instance">The content item of type Samples that is a target of the extended API.</param>
+            public ProductFields(Samples instance)
+            {
+                mInstance = instance;
+            }
 
 
-			/// <summary>
-			/// Package depth.
-			/// </summary>
-			public double Depth
-			{
-				get
-				{
-					return (SKU != null) ? SKU.SKUDepth : 0;
-				}
-				set
-				{
-					if (SKU != null)
-					{
-						SKU.SKUDepth = value;
-					}
-				}
-			}
+            /// <summary>
+            /// SKUID.
+            /// </summary>
+            public int ID
+            {
+                get
+                {
+                    return (SKU != null) ? SKU.SKUID : 0;
+                }
+                set
+                {
+                    if (SKU != null)
+                    {
+                        SKU.SKUID = value;
+                    }
+                }
+            }
 
 
-			/// <summary>
-			/// Gets <see cref="PublicStatusInfo" /> object based on value of <see cref="SKUInfo.SKUPublicStatusID" /> column. 
-			/// </summary>
-			public PublicStatusInfo PublicStatus
-			{	
-				get
-				{
-					if (SKU == null)
-					{
-						return null;
-					}
-
-					var id = SKU.SKUPublicStatusID;
-
-				    if ((mPublicStatus == null) && (id > 0))
-				    {
-                        mPublicStatus = PublicStatusInfoProvider.GetPublicStatusInfo(id);
-				    }
-
-				    return mPublicStatus;
-				}
-			}
+            /// <summary>
+            /// Allows you to specify the product identifier. You can use this number or string, for example, in your accounting records.
+            /// </summary>
+            public string SKUNumber
+            {
+                get
+                {
+                    return (SKU != null) ? SKU.SKUNumber : @"";
+                }
+                set
+                {
+                    if (SKU != null)
+                    {
+                        SKU.SKUNumber = value;
+                    }
+                }
+            }
 
 
-			/// <summary>
-			/// Gets <see cref="ManufacturerInfo" /> object based on value of <see cref="SKUInfo.SKUManufacturerID" /> column. 
-			/// </summary>
-			public ManufacturerInfo Manufacturer
-			{	
-				get
-				{
-					if (SKU == null)
-					{
-						return null;
-					}
-
-					var id = SKU.SKUManufacturerID;
-
-				    if ((mManufacturer == null) && (id > 0))
-				    {
-                        mManufacturer = ManufacturerInfoProvider.GetManufacturerInfo(id);
-				    }
-
-				    return mManufacturer;
-				}
-			}
+            /// <summary>
+            /// Package weight.
+            /// </summary>
+            public double Weight
+            {
+                get
+                {
+                    return (SKU != null) ? SKU.SKUWeight : 0;
+                }
+                set
+                {
+                    if (SKU != null)
+                    {
+                        SKU.SKUWeight = value;
+                    }
+                }
+            }
 
 
-			/// <summary>
-			/// Gets <see cref="DepartmentInfo" /> object based on value of <see cref="SKUInfo.SKUDepartmentID" /> column. 
-			/// </summary>
-			public DepartmentInfo Department
-			{	
-				get
-				{
-					if (SKU == null)
-					{
-						return null;
-					}
+            /// <summary>
+            /// Package height.
+            /// </summary>
+            public double Height
+            {
+                get
+                {
+                    return (SKU != null) ? SKU.SKUHeight : 0;
+                }
+                set
+                {
+                    if (SKU != null)
+                    {
+                        SKU.SKUHeight = value;
+                    }
+                }
+            }
 
-				    var id = SKU.SKUDepartmentID;
 
-				    if ((mDepartment == null) && (id > 0))
-				    {
-				        mDepartment = DepartmentInfoProvider.GetDepartmentInfo(id);
+            /// <summary>
+            /// Package width.
+            /// </summary>
+            public double Width
+            {
+                get
+                {
+                    return (SKU != null) ? SKU.SKUWidth : 0;
+                }
+                set
+                {
+                    if (SKU != null)
+                    {
+                        SKU.SKUWidth = value;
+                    }
+                }
+            }
+
+
+            /// <summary>
+            /// Package depth.
+            /// </summary>
+            public double Depth
+            {
+                get
+                {
+                    return (SKU != null) ? SKU.SKUDepth : 0;
+                }
+                set
+                {
+                    if (SKU != null)
+                    {
+                        SKU.SKUDepth = value;
+                    }
+                }
+            }
+
+
+            /// <summary>
+            /// Gets <see cref="PublicStatusInfo" /> object based on value of <see cref="SKUInfo.SKUPublicStatusID" /> column. 
+            /// </summary>
+            public PublicStatusInfo PublicStatus
+            {
+                get
+                {
+                    if (SKU == null)
+                    {
+                        return null;
                     }
 
-					return mDepartment;
-				}
-			}
+                    var id = SKU.SKUPublicStatusID;
+
+                    if ((mPublicStatus == null) && (id > 0))
+                    {
+                        mPublicStatus = PublicStatusInfoProvider.GetPublicStatusInfo(id);
+                    }
+
+                    return mPublicStatus;
+                }
+            }
 
 
-			/// <summary>
-			/// Gets <see cref="SupplierInfo" /> object based on value of <see cref="SKUInfo.SKUSupplierID" /> column. 
-			/// </summary>
-			public SupplierInfo Supplier
-			{	
-				get
-				{
-					if (SKU == null)
-					{
-						return null;
-					}
+            /// <summary>
+            /// Gets <see cref="ManufacturerInfo" /> object based on value of <see cref="SKUInfo.SKUManufacturerID" /> column. 
+            /// </summary>
+            public ManufacturerInfo Manufacturer
+            {
+                get
+                {
+                    if (SKU == null)
+                    {
+                        return null;
+                    }
 
-					var id = SKU.SKUSupplierID;
+                    var id = SKU.SKUManufacturerID;
 
-				    if ((mSupplier == null) && (id > 0))
-				    {
+                    if ((mManufacturer == null) && (id > 0))
+                    {
+                        mManufacturer = ManufacturerInfoProvider.GetManufacturerInfo(id);
+                    }
+
+                    return mManufacturer;
+                }
+            }
+
+
+            /// <summary>
+            /// Gets <see cref="DepartmentInfo" /> object based on value of <see cref="SKUInfo.SKUDepartmentID" /> column. 
+            /// </summary>
+            public DepartmentInfo Department
+            {
+                get
+                {
+                    if (SKU == null)
+                    {
+                        return null;
+                    }
+
+                    var id = SKU.SKUDepartmentID;
+
+                    if ((mDepartment == null) && (id > 0))
+                    {
+                        mDepartment = DepartmentInfoProvider.GetDepartmentInfo(id);
+                    }
+
+                    return mDepartment;
+                }
+            }
+
+
+            /// <summary>
+            /// Gets <see cref="SupplierInfo" /> object based on value of <see cref="SKUInfo.SKUSupplierID" /> column. 
+            /// </summary>
+            public SupplierInfo Supplier
+            {
+                get
+                {
+                    if (SKU == null)
+                    {
+                        return null;
+                    }
+
+                    var id = SKU.SKUSupplierID;
+
+                    if ((mSupplier == null) && (id > 0))
+                    {
                         mSupplier = SupplierInfoProvider.GetSupplierInfo(id);
                     }
 
-				    return mSupplier;
-				}
-			}
+                    return mSupplier;
+                }
+            }
 
 
-			/// <summary>
-			/// Gets <see cref="TaxClassInfo" /> object based on value of <see cref="SKUInfo.SKUTaxClassID" /> column. 
-			/// </summary>
-			public TaxClassInfo TaxClass
-			{	
-				get
-				{
-					if (SKU == null)
-					{
-						return null;
-					}
+            /// <summary>
+            /// Gets <see cref="TaxClassInfo" /> object based on value of <see cref="SKUInfo.SKUTaxClassID" /> column. 
+            /// </summary>
+            public TaxClassInfo TaxClass
+            {
+                get
+                {
+                    if (SKU == null)
+                    {
+                        return null;
+                    }
 
-					var id = SKU.SKUTaxClassID;
+                    var id = SKU.SKUTaxClassID;
 
-				    if ((mTaxClass == null) && (id > 0))
-				    {
-						mTaxClass = TaxClassInfoProvider.GetTaxClassInfo(id);
-				    }
-				    
-				    return mTaxClass;
-				}
-			}
+                    if ((mTaxClass == null) && (id > 0))
+                    {
+                        mTaxClass = TaxClassInfoProvider.GetTaxClassInfo(id);
+                    }
 
-
-			/// <summary>
-			/// Gets <see cref="BrandInfo" /> object based on value of <see cref="SKUInfo.SKUBrandID" /> column. 
-			/// </summary>
-			public BrandInfo Brand
-			{	
-				get
-				{
-					if (SKU == null)
-					{
-						return null;
-					}
-
-					var id = SKU.SKUBrandID;
-
-					if ((mBrand == null) && (id > 0))
-					{
-						mBrand = BrandInfoProvider.GetBrandInfo(id);
-					}
-
-					return mBrand;
-				}
-			}
+                    return mTaxClass;
+                }
+            }
 
 
-			/// <summary>
-			/// Gets <see cref="CollectionInfo" /> object based on value of <see cref="SKUInfo.SKUCollectionID" /> column. 
-			/// </summary>
-			public CollectionInfo Collection
-			{	
-				get
-				{
-					if (SKU == null)
-					{
-						return null;
-					}
+            /// <summary>
+            /// Gets <see cref="BrandInfo" /> object based on value of <see cref="SKUInfo.SKUBrandID" /> column. 
+            /// </summary>
+            public BrandInfo Brand
+            {
+                get
+                {
+                    if (SKU == null)
+                    {
+                        return null;
+                    }
 
-					var id = SKU.SKUCollectionID;
+                    var id = SKU.SKUBrandID;
 
-					if ((mCollection == null) && (id > 0))
-					{
-						mCollection = CollectionInfoProvider.GetCollectionInfo(id);
-					}
+                    if ((mBrand == null) && (id > 0))
+                    {
+                        mBrand = BrandInfoProvider.GetBrandInfo(id);
+                    }
 
-					return mCollection;
-				}
-			}
-
-
-			/// <summary>
-			/// Localized name of product.
-			/// </summary>
-			public string Name
-			{
-				get
-				{
-					return mInstance.DocumentSKUName;
-				}
-				set
-				{
-					mInstance.DocumentSKUName = value;
-				}
-			}
+                    return mBrand;
+                }
+            }
 
 
-			/// <summary>
-			/// Localized description of product.
-			/// </summary>
-			public string Description
-			{
-				get
-				{
-					return mInstance.DocumentSKUDescription;
-				}
-				set
-				{
-					mInstance.DocumentSKUDescription = value;
-				}
-			}
+            /// <summary>
+            /// Gets <see cref="CollectionInfo" /> object based on value of <see cref="SKUInfo.SKUCollectionID" /> column. 
+            /// </summary>
+            public CollectionInfo Collection
+            {
+                get
+                {
+                    if (SKU == null)
+                    {
+                        return null;
+                    }
+
+                    var id = SKU.SKUCollectionID;
+
+                    if ((mCollection == null) && (id > 0))
+                    {
+                        mCollection = CollectionInfoProvider.GetCollectionInfo(id);
+                    }
+
+                    return mCollection;
+                }
+            }
 
 
-			/// <summary>
-			/// Localized short description of product.
-			/// </summary>
-			public string ShortDescription
-			{
-				get
-				{
-					return mInstance.DocumentSKUShortDescription;
-				}
-				set
-				{
-					mInstance.DocumentSKUShortDescription = value;
-				}
-			}
-		}
-
-		#endregion
+            /// <summary>
+            /// Localized name of product.
+            /// </summary>
+            public string Name
+            {
+                get
+                {
+                    return mInstance.DocumentSKUName;
+                }
+                set
+                {
+                    mInstance.DocumentSKUName = value;
+                }
+            }
 
 
-		#region "Constructors"
+            /// <summary>
+            /// Localized description of product.
+            /// </summary>
+            public string Description
+            {
+                get
+                {
+                    return mInstance.DocumentSKUDescription;
+                }
+                set
+                {
+                    mInstance.DocumentSKUDescription = value;
+                }
+            }
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="Samples" /> class.
-		/// </summary>
-		public Samples() : base(CLASS_NAME)
-		{
-			mFields = new SamplesFields(this);
-			mProduct = new ProductFields(this);
-		}
 
-		#endregion
-	}
+            /// <summary>
+            /// Localized short description of product.
+            /// </summary>
+            public string ShortDescription
+            {
+                get
+                {
+                    return mInstance.DocumentSKUShortDescription;
+                }
+                set
+                {
+                    mInstance.DocumentSKUShortDescription = value;
+                }
+            }
+        }
+
+        #endregion
+
+
+        #region "Constructors"
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Samples" /> class.
+        /// </summary>
+        public Samples() : base(CLASS_NAME)
+        {
+            mFields = new SamplesFields(this);
+            mProduct = new ProductFields(this);
+        }
+
+        #endregion
+    }
 }

@@ -1,0 +1,327 @@
+﻿@using ShawContract.Models.ProductBoards
+
+@model ShawContract.Models.PageViewModel<ProductBoardDetailsViewModel>
+
+@{
+    Layout = "~/Views/Shared/_AccountProfileLayout.cshtml";
+}
+
+<div class="product-boards edit-board col-12 col-lg-10 pt-4 mb-3 mb-md-5">
+    <div class="row justify-content-center pt-5">
+        <div class="col-12 col-lg-11">
+        @using (Html.BeginForm("EditBoard", "ProductBoards", new { nodeAlias = Model.Metadata.Title }, FormMethod.Post))
+        {
+            @Html.AntiForgeryToken();
+            @Html.Hidden("ID", Model.Data.ProductBoard.ID);
+            @Html.Hidden("UserId", Model.Data.ProductBoard.UserId);
+            @Html.Hidden("BoardName", Model.Data.ProductBoard.BoardName);
+
+            var checkboxChecked = Model.Data.ProductBoard.LoggedUserRequiredToAccess ? "checked" : "";
+
+                <div class="row align-items-center mb-3 mb-md-4">
+                    <div class="col-12 col-md-6">
+                        <h2 class="heading-2 py-3 pl-0 pr-3 px-md-0">
+                            Edit Product Board:
+                        </h2>
+                    </div>
+                    <div class="col-12 col-md-6 text-md-right">
+                        <button type="button" class="btn btn-secondary text-black letter-spacing-normal mx-2 rounded"
+                                data-toggle="modal" data-target="#deleteBoardModal" aria-pressed="false" autocomplete="off">
+                            DELETE
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                        <button type="button" class="btn btn-secondary text-black letter-spacing-normal mx-2 rounded">
+                            SAVE
+                            <i class="fas fa-cloud-download-alt"></i>
+                        </button>
+                        <button type="button" class="btn btn-primary letter-spacing-normal copy-to-clipboard ml-2 rounded"
+                                aria-pressed="false" autocomplete="off">
+                            SHARE
+                            <i class="far fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-10">
+                        <div class="row mb-3 mb-md-4">
+                            <div class="col">
+                                <span class="text-size-normal d-inline-block mr-3">Board Name</span>
+                                <span class="text-size small">
+                                    <a href="" class="text-size-small text-decoration-none mt-2" data-toggle="modal"
+                                       data-target="#renameBoardModal" aria-pressed="false" autocomplete="off">
+                                        Edit
+                                    </a>
+                                </span>
+                                <h2 class="heading-2">@Model.Data.ProductBoard.BoardName</h2>
+                            </div>
+                        </div>
+                        <div class="row mb-3 mb-md-4">
+                            <div class="col">
+                                <h4 class="heading-4">Board Preferences</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="heading-5 regular d-inline-block mr-3">
+                                    Access Logging
+                                </h5>
+                                <span class="text-size-small">
+                                    <a href="" class="text-size-small text-decoration-none" data-toggle="modal" data-target="#viewLogModal" aria-pressed="false" autocomplete="off">
+                                        View log
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3 mb-md-5 no-gutters">
+                            <div class="col-12 col-md-10">
+                                <div class="custom-control custom-checkbox py-2">
+                                    <input type="checkbox" class="custom-control-input" name="LoggedUserRequiredToAccess" value="true" id="permissions" @checkboxChecked />
+                                    <label class="custom-control-label text-size-small" for="permissions">
+                                        User must have a website account and be logged in to view this shared board
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3 mb-md-5">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="introParagraph" class="heading-5">Intro Paragraph</label>
+                                    <textarea class="form-control form-control-lg" id="introParagraph" rows="3"
+                                              maxlength="500" name="Notes"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3 mb-md-4">
+                            <div class="col-12">
+                                <h3 class="heading-3">Products</h3>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+
+                            <!-- search bar -->
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="searchProducts" class="sr-only">Search for products</label>
+                                    <div class="input-group mb-3 position-relative">
+                                        <input type="text" id="searchProducts" class="form-control form-control-lg"
+                                               placeholder="Add products by searching by product name & number here..."
+                                               aria-label="Add products by searching by product name & number here...">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-sm my-0 px-4 input-group-text bg-white text-size-large"
+                                                    type="submit">
+                                                <i class="fal fa-search"></i>
+                                            </button>
+                                        </div>
+                                        <!-- search results -->
+                                        <div class="search-results-wrapper bg-gray-semilight w-100">
+
+                                            <!-- search item start -->
+                                            @*<div class="search-item border w-100">
+                                <div class="row no-gutters px-3 py-2 mx-0">
+                                    <div class="image-wrapper h-100 d-flex align-items-center">
+                                        <img src="https://placehold.it/120x120" class="img-fluid" alt="..."
+                                             data-object-fit />
+                                    </div>
+                                    <div class="col-8 pl-3 d-flex align-items-center">
+                                        <span class="text-size-small">
+                                            Product Name (5T332) - Color Name (01105)
+                                        </span>
+                                    </div>
+                                    <div class="col h-100 d-flex align-items-center justify-content-end">
+                                        <button class="btn btn-primary text-size-small rounded-circle"
+                                                type="button" aria-expanded="false">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>*@
+                                            <!-- search item end -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- search bar end -->
+
+                        </div>
+                        <div class="row">
+
+                            @for (int i = 0; i < Model.Data.ProductBoard.ProductBoardItems.Count; i++)
+                            {
+
+                                @Html.Hidden($"ProductBoardItems[{i}].ID", Model.Data.ProductBoard.ProductBoardItems[i].ID);
+                                @Html.Hidden($"ProductBoardItems[{i}].ImageUrl", Model.Data.ProductBoard.ProductBoardItems[i].ImageUrl);
+                                @Html.Hidden($"ProductBoardItems[{i}].StyleName", Model.Data.ProductBoard.ProductBoardItems[i].StyleName);
+                                @Html.Hidden($"ProductBoardItems[{i}].ColorName", Model.Data.ProductBoard.ProductBoardItems[i].ColorName);
+                                @Html.Hidden($"ProductBoardItems[{i}].StyleNumber", Model.Data.ProductBoard.ProductBoardItems[i].StyleNumber);
+                                @Html.Hidden($"ProductBoardItems[{i}].ColorNumber", Model.Data.ProductBoard.ProductBoardItems[i].ColorNumber);
+
+                                <!-- product card start -->
+                                <div class="col-12 col-md-6" id="@Model.Data.ProductBoard.ProductBoardItems[i].ID.ToString()">
+                                    <div class="card product-card rounded my-4">
+                                        <div class="card-body p-4">
+                                            <div class="row mb-5 no-gutters">
+                                                <div class="image-wrapper">
+                                                    <img src="@Model.Data.ProductBoard.ProductBoardItems[i].ImageUrl" class="img-fluid" alt="..." data-object-fit />
+                                                </div>
+                                                <div class="col pl-4">
+                                                    <h5 class="heading-5">
+                                                        @Model.Data.ProductBoard.ProductBoardItems[i].StyleName
+                                                    </h5>
+                                                    <p class="text-size-small">
+                                                        @Model.Data.ProductBoard.ProductBoardItems[i].ColorName
+                                                    </p>
+                                                </div>
+                                                <div class="col text-right">
+                                                    <h5 class="heading-5">
+                                                        @Model.Data.ProductBoard.ProductBoardItems[i].StyleNumber
+
+                                                    </h5>
+                                                    <p class="text-size-small">
+                                                        @Model.Data.ProductBoard.ProductBoardItems[i].ColorNumber
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="notes_1">Notes</label>
+                                                <textarea class="form-control form-control-lg bg-gray-semilight" id="notes_1" name="ProductBoardItems[@i].Notes"
+                                                          maxlength="500" rows="7">@Model.Data.ProductBoard.ProductBoardItems[i].Notes</textarea>
+                                            </div>
+                                            <div class="text-right">
+                                                <a href='@Url.Action("RemoveItem", "ProductBoards", new { nodeAlias = Model.Metadata.Title, boardId = Model.Data.ProductBoard.ID.ToString(), productId = Model.Data.ProductBoard.ProductBoardItems[i].ID.ToString() })' class='delete-icon text-size-small' @*role='button'*@ @*data-toggle='button'*@>
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="renameBoardModal" data-backdrop="static" tabindex="-1" role="dialog"
+     aria-labelledby="renameBoardLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content p-4 p-md-5">
+                @using (Html.BeginForm("RenameBoard", "ProductBoards", new { nodeAlias = Model.Metadata.Title }, FormMethod.Post, new { @class = "needs-validation" }))
+                {
+                    @Html.AntiForgeryToken();
+
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="renameBoardLabel">Rename Product Board</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                        </button>
+                    </div>
+                    <div class="modal-body mb-4 mb-md-5">
+                        <div class="form-group">
+                            <label for="board-name">Board Name<span class="text-danger"> *</span></label>
+                            <input style="display:none" type="text" name="ID" value="@Model.Data.ProductBoard.ID.ToString()"/>
+                            <input type="text" class="form-control form-control-lg" id="board-name" name="BoardName" maxlength="200" required
+                                   aria-required="true">                           
+                           
+                            <strong class="invalid-feedback"><span>Please enter a name.</span></strong>
+                        </div>
+                    </div>
+                    <div class="row justify-content-end">
+                        <div class="col-6 col-md-3">
+                            <button type="button" id="rename-modal-close" class="btn btn-tertiary btn-block text-size-normal"
+                                    data-dismiss="modal">
+                                Cancel
+                            </button>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <button type="submit" class="btn btn-primary btn-block text-size-normal">Save</button>
+                        </div>
+                    </div>
+                }
+        </div>
+    </div>
+</div>
+
+<!-- Delete Board Modal -->
+<div class="modal fade" id="deleteBoardModal" tabindex="-1" role="dialog" aria-labelledby="deleteBoardLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content p-4 p-md-5">
+                @using (Html.BeginForm("RemoveBoard", "ProductBoards", new { nodeAlias = Model.Metadata.Title }, FormMethod.Post, new { @class = "needs-validation" }))
+                {
+                    @Html.AntiForgeryToken();
+
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="deleteBoardLabel">
+                            Are you sure that you want to delete
+                            <span class="d-inline-block bg-gray-semilight rounded px-2">
+                                @Model.Data.ProductBoard.BoardName
+                            </span>
+                            ?
+                        </h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                        </button>
+                    </div>
+                    <div class="row justify-content-end">
+                        <div class="col-6 col-md-3">
+                            <button type="button" id="delete-modal-close" class="btn btn-tertiary btn-block text-size-normal"
+                                    data-dismiss="modal">
+                                Cancel
+                            </button>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <input style="display:none" name="boardId" value="@Model.Data.ProductBoard.ID.ToString()" />
+                            <button type="submit" class="btn btn-primary btn-block text-size-normal" >Delete</button>
+                        </div>
+                    </div>
+                }
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="viewLogModal" tabindex="-1" role="dialog" aria-labelledby="viewLogLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content p-4 p-md-5">
+            <form class="needs-validation" novalidate>
+                <div class="modal-header">
+                    <h2 class="modal-title" id="viewLogLabel">View Share Log</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group list-group-flush">
+
+                        <!-- element start -->
+                        @foreach (var visitor in Model.Data.ProductBoard.Visitors)
+                        {
+                            <li class="list-group-item">
+                                <div class="row justify-content-between">
+                                    <div class="col-12 col-lg-7">
+                                        <span class="semibold">
+                                            @visitor.Email
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-lg-5 text-lg-right">
+                                        <span class="semibold">
+                                            @visitor.DateVisited.ToString("MM/dd/yyyy hh:mm tt")
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                        <!-- element end -->
+
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

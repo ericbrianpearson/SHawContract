@@ -8,7 +8,7 @@
     var authServices = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
 
     @* Generates a form with buttons targeting the RequestSignIn action. Optionally pass a redirect URL as a parameter. *@
-    using (Html.BeginForm("RequestSignIn", "Account"))
+    using (Html.BeginForm("RequestSignIn", "Account", FormMethod.Post, new { @class = "w-100" }))
     {
         @Html.AntiForgeryToken()
         <div class="col-sm-12">
@@ -24,15 +24,7 @@
 
 @if (Request.IsAuthenticated)
 {
-
-    var name = string.Empty;
-    var claims = ((System.Security.Claims.ClaimsIdentity)User.Identity).Claims;
-    if (claims != null && claims.Count(a => a.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name") == 1)
-    {
-        name = claims.Single(a => a.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name").Value;
-    }
-    var usr = CMS.Membership.UserInfoProvider.GetUserInfo(name);
     <div class="col-sm-12">
-        <a id="profile-link">Hi @usr.FirstName </a>
+        <a id="profile-link">Hi @CMS.Membership.MembershipContext.AuthenticatedUser.FirstName </a>
     </div>
 }

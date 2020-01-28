@@ -31,7 +31,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.9.4.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,7 +51,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\ConfigurationKeys.cs" />
+    <Compile Include="Interfaces\IPDMSConfiguration.cs" />
+    <Compile Include="Models\CarpetSpecification.cs" />
+    <Compile Include="Models\Common\Attribute.cs" />
+    <Compile Include="Models\Common\BaseSpecification.cs" />
+    <Compile Include="Models\Common\Dimensions.cs" />
+    <Compile Include="Models\Common\KontentData.cs" />
+    <Compile Include="Models\Common\Link.cs" />
+    <Compile Include="Models\Common\MeasuringSystem.cs" />
+    <Compile Include="Models\Common\MeasuringUnit.cs" />
+    <Compile Include="Models\Common\MainKontentItem.cs" />
+    <Compile Include="Models\Common\ProductType.cs" />
+    <Compile Include="Models\Common\RoomScene.cs" />
+    <Compile Include="Models\HardwoodSpecification.cs" />
+    <Compile Include="Models\Common\Color.cs" />
+    <Compile Include="Config\PDMSConfiguration.cs" />
+    <Compile Include="Models\ResilientSpecification.cs" />
+    <Compile Include="Models\RugSpecification.cs" />
+    <Compile Include="ProductGateway.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

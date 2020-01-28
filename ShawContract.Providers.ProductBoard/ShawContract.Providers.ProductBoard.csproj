@@ -63,14 +63,15 @@
     <Compile Include="Config\AutofacConfigurationExtension.cs" />
     <Compile Include="DAL\IProductBoardContext.cs" />
     <Compile Include="DAL\ProductBoardContext.cs" />
-    <Compile Include="Migrations\201912270937098_Initial.cs" />
-    <Compile Include="Migrations\201912270937098_Initial.designer.cs">
-      <DependentUpon>201912270937098_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\202001231506220_update-product-board-model-add-view-log.cs" />
+    <Compile Include="Migrations\202001231506220_update-product-board-model-add-view-log.designer.cs">
+      <DependentUpon>202001231506220_update-product-board-model-add-view-log.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\ProductBoard.cs" />
     <Compile Include="Models\ProductBoardItem.cs" />
+    <Compile Include="Models\Visitor.cs" />
     <Compile Include="ProductBoardGateway.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -89,8 +90,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201912270937098_Initial.resx">
-      <DependentUpon>201912270937098_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001231506220_update-product-board-model-add-view-log.resx">
+      <DependentUpon>202001231506220_update-product-board-model-add-view-log.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

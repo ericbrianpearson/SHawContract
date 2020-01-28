@@ -41,7 +41,7 @@ namespace ShawContract.Controllers
             return View(model);
         }
 
-        [OutputCache(Duration = 3600, VaryByParam = "nodeAlias", Location = OutputCacheLocation.Server)]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public async Task<ActionResult> Details(string nodeAlias, string seoUrl)
         {
             var article = await BlogService.GetBlogAsync(seoUrl);

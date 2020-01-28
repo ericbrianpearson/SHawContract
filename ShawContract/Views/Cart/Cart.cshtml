@@ -69,7 +69,7 @@
                                                 Sample Type
                                             </label>
                                             <div class="selectWrapper" click="">
-                                                @Html.DropDownList("Sample Type", item.SampleTypes, new { @class = "shaw-select custom-select form-control-lg w-75" })
+                                                @Html.DropDownList("Sample Type", item.SampleTypes, new { @class = "selectpicker d-block form-control-lg w-75", data_style = "select-style white-text"})
                                             </div>
                                         </div>
                                     </div>
@@ -78,10 +78,8 @@
                                             <label for="country-field" class="text-size-xsmall text-muted d-md-none">
                                                 Quantity
                                             </label>
-                                            <div class="selectWrapper">
-                                                @Html.DropDownList("Quantity", Model.Data.QuantityDropdown, new { @class = "quantityDropDown shaw-select custom-select form-control-lg px-5" })
-                                                <input id="quantity" type="hidden" name="quantitySum" />
-                                            </div>
+                                            @Html.DropDownList("Quantity", Model.Data.QuantityDropdown, new { @class = "quantityDropDown selectpicker d-block form-control-lg w-50", data_style = "select-style white-text text-center" })
+                                            <input id="quantity" type="hidden" name="quantitySum" />
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-4 d-flex justify-content-center justify-content-md-end">

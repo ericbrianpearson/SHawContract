@@ -16,11 +16,9 @@
         @Html.Kentico().PageBuilderStyles()
     }
 
-    <div class="section">
-        <div class="container">
-            <div class="kn-system-messages"></div>
-            @Html.Kentico().EditableArea("top")
-        </div>
+    <div>
+        <div class="kn-system-messages"></div>
+        @Html.Kentico().EditableArea("top")
     </div>
 
     @section Scripts {
@@ -28,48 +26,54 @@
     }
 
     <section class="filter-wrapper">
-        <span>I am a</span>
+        <span class="pr-lg-5">I am a</span>
 
-        <select class="personas-dropdown">
+        <select class="personas-dropdown-wrapper selectpicker form-control-lg" data-style="select-style blue-bg personas-dropdown">
             @foreach (var persona in Model.Data.Personas)
             {
                 <option class="dropdown-option" value="@persona.Codename">@persona.Name</option>
             }
         </select>
-        <span>looking to</span>
-        <select class="segment-dropdown">
+        <span class="px-lg-5">looking to</span>
+        <select class="segment-dropdown-wrapper selectpicker form-control-lg" data-style="select-style blue-bg segment-dropdown">
             @foreach (var segment in Model.Data.Segments)
             {
                 <option class="dropdown-option" value="@segment.Codename">@segment.Name</option>
             }
         </select>
-        <button class="btn filter-btn" type="button" id="filter-btn" onclick="filter()">show me</button>
+        <button class="btn filter-btn ml-0 ml-lg-5" type="button" id="filter-btn" onclick="filter()">show me</button>
     </section>
-    @{ Html.RenderPartial("_BlogArticlesPartial", new BlogArticlesViewModel() { NodeAlias = Model.Metadata.Title, Articles = Model.Data.Articles.ToList() }); }
+    <section class="acrticles-wrapper">
+        @{ Html.RenderPartial("_BlogArticlesPartial", new BlogArticlesViewModel() { NodeAlias = Model.Metadata.Title, Articles = Model.Data.Articles.ToList() }); }
+    </section>
 
 </main>
 
-<script type="text/javascript">
-    function loadAll() {
-        $("#load-btn").hide();
-        $(".article-hidden").show();
-    }
-
-    function filter() {
-        var persona = $(".personas-dropdown option:selected").val();
-        var segment = $(".segment-dropdown option:selected").val();
-
-        $.ajax({
-            url: '@Url.Action("Filter", "BlogPage", new { nodeAlias = Model.Metadata.Title, })' + '/' + persona + '/' + segment,
-                type: "GET",
-                dataType: "html",
-                async: true,
-        success: function (data) {
-            $('.blogs-wrapper').html(data);
+    <script type="text/javascript">
+        function loadAll() {
+            $("#load-btn").hide();
+            $(".article-hidden").show();
         }
-        });
-    }
-</script>
+
+        function filter() {
+            var persona = $(".personas-dropdown-wrapper option:selected").val();
+            var segment = $(".segment-dropdown-wrapper option:selected").val();
+
+            $.ajax({
+                url: '@Url.Action("Filter", "BlogPage", new { nodeAlias = Model.Metadata.Title, })' + '/' + persona + '/' + segment,
+                    type: "GET",
+                    dataType: "html",
+                    async: true,
+            success: function (data) {
+                $('.acrticles-wrapper').html(data);
+
+                // blog cards
+                var tabletBreakpoint = 768;
+                $.__addLineClamps('.blogs-wrapper .blog-item .description p', tabletBreakpoint, '100px');
+            }
+            });
+        }
+    </script>
 
 
 

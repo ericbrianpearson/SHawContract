@@ -21,30 +21,30 @@
         </div>
 
         <section class="form-wrapper col-12 col-md-10 col-lg-8 mx-auto px-3 pt-5">
-            <form class="needs-validation" role="form" novalidate>
+            <form id="existing-address-form" role="form">
                 <div class="form-group pt-5">
                     <div class="row">
                         <div class="col">
                             <h4>
-                                <label for="existing-shipping-address" class="font-weight-bold heading-4">
-                                    Select an existing shipping
+                                <label for="existingAddress" class="font-weight-bold heading-4">
+                                    Select an
+                                    existing shipping
                                     address:
                                 </label>
                             </h4>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col">
-                            <div class="selectWrapper">
-                                <select id="existing-shipping-address" class="shaw-select custom-select form-control-lg" required aria-required="true">
-                                    <option value="" selected disabled>Select address</option>
-                                    <option value="Address 1">Address 1</option>
-                                </select>
-                                <strong class="invalid-feedback"><span>Please select a shipping address.</span></strong>
-                            </div>
+                        <div class="col-12 col-md-8 col-xl-9">
+                            <select id="existingAddress" name="existingAddress" title="Select an address.." class="selectpicker form-control-lg"
+                                    data-style="select-style white-text" required aria-required="true">
+                                <option value="sort">sort</option>
+                                <option value="london, United Kingdom">london, United Kingdom</option>
+                                <option value="Address 1">Address 1</option>
+                            </select>
                         </div>
-                        <div class="col flex-grow-0">
-                            <button type="submit" class="btn btn-primary px-5 continue-btn">Continue</button>
+                        <div class="col-12 col-md-4 col-xl-3 flex-grow-0">
+                            <button type="submit" class="btn btn-primary w-100 mt-3 mt-md-0 px-5 continue-btn">Continue</button>
                         </div>
                     </div>
                 </div>
@@ -70,88 +70,87 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-12 col-md-6 mb-3 mb-md-0">
-                            <label for="first-name">First name<span class="text-danger"> *</span></label>
-                            <input type="text" name="firstName" class="form-control form-control-lg">
+                            <label for="firstName" class="mt-20">First name<span class="text-danger"> *</span></label>
+                            <input type="text" id="first-name" name="firstName" class="form-control form-control-lg" aria-required="true">
                         </div>
                         <div class="col-12 col-md-6">
-                            <label for="last-name">Last name<span class="text-danger"> *</span></label>
-                            <input type="text" name="lastName" class="form-control form-control-lg">
+                            <label for="lastName" class="mt-20">Last name<span class="text-danger"> *</span></label>
+                            <input type="text" id="last-name" name="lastName" class="form-control form-control-lg" aria-required="true">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-12 col-md-7 mb-3 mb-md-0 mt-20">
+                            <label for="company">Company<span class="text-danger"> *</span></label>
+                            <input type="text" id="company" name="company" class="form-control form-control-lg" aria-required="true">
+                        </div>
+                        <div class="col-12 col-md-5 mt-20">
+                            <label for="phoneNumber">Cell / SMS Alert Number<span class="text-danger">*</span></label>
+                            <input type="text" id="phone-number" name="phoneNumber" class="form-control form-control-lg" aria-required="true">
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="row">
                         <div class="col-12 col-md-7 mb-3 mb-md-0">
-                            <label for="company-field">Company<span class="text-danger"> *</span></label>
-                            <input type="text" name="company" class="form-control form-control-lg">
-                            <strong class="invalid-feedback"><span>Please verify this field.</span></strong>
+                            <label for="country" class="mt-20">Country<span class="text-danger"> *</span></label>
+                            <select id="country" id="company" name="country" title="Select country"
+                                    class="selectpicker form-control-lg" data-style="select-style white-text" aria-required="true">
+                                <option value="Canada">Sort alphabetically</option>
+                                <option value="Canada">Canada</option>
+                                <option value="Bulgaria">Bulgaria</option>
+                                <option value="Bulgaria">France</option>
+                            </select>
                         </div>
                         <div class="col-12 col-md-5">
-                            <label for="cell-field">
-                                Cell / SMS Alert Number<span class="text-danger">
-                                    *
-                                </span>
-                            </label>
-                            <input type="text" name="phoneNumber" data-parsley-type='number' class="form-control form-control-lg" id="cell-field">
+                            <label for="zipCode" class="mt-20">Zip / Postal Code<span class="text-danger"> *</span></label>
+                            <input type="text" id="zip-code" name="zipCode" class="form-control form-control-lg" aria-required="true">
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="row">
-                        <div class="col-12 col-md-7 mb-3 mb-md-0">
-                            <label for="country-field">Country<span class="text-danger"> *</span></label>
-                            <div class="selectWrapper">
-                                <select id="inputState" class="shaw-select custom-select form-control-lg" name="country">
-                                    <option value="" selected disabled>Select country</option>
-                                    <option value="Bulgaria">Bulgaria</option>
-                                    <option value="Bulgaria">France</option>
-                                </select>
-                            </div>
-                            <strong class="invalid-feedback"><span>Please verify this field.</span></strong>
-                        </div>
-                        <div class="col-12 col-md-5">
-                            <label for="zip-field">Zip / Postal Code<span class="text-danger"> *</span></label>
-                            <input type="text" name="zipCode" class="form-control form-control-lg">
-                            <strong class="invalid-feedback"><span>Please verify this field.</span></strong>
-                        </div>
-                    </div>
+                    <label for="addressLineOne" class="mt-20">Address Line 1<span class="text-danger"> *</span></label>
+                    <input type="text" id="address-line-one" name="addressLineOne" class="form-control form-control-lg" aria-required="true">
                 </div>
                 <div class="form-group">
-                    <label for="address-line-1">Address Line 1<span class="text-danger"> *</span></label>
-                    <input type="text" name="addressLineOne" class="form-control form-control-lg">
-                    <strong class="invalid-feedback"><span>Please verify this field.</span></strong>
-                </div>
-                <div class="form-group">
-                    <label for="address-line-2">Address Line 2</label>
-                    <input type="text" class="form-control form-control-lg" id="address-line-2">
-                    <strong class="invalid-feedback"><span>Please verify this field.</span></strong>
+                    <label for="addressLineTwo" class="mt-20">Address Line 2</label>
+                    <input type="text" id="addressLineTwo" name="addressLineTwo" class="form-control form-control-lg" aria-required="true">
                 </div>
                 <div class="form-group">
                     <div class="row">
                         <div class="col-12 col-md-7 mb-3 mb-md-0">
-                            <label for="city-field">City<span class="text-danger"> *</span></label>
-                            <input type="text" name="city" class="form-control form-control-lg">
-                            <strong class="invalid-feedback"><span>Please verify this field.</span></strong>
+                            <label for="city" class="mt-20">City<span class="text-danger"> *</span></label>
+                            <input type="text" id="city" name="city" class="form-control form-control-lg" aria-required="true">
                         </div>
                         <div class="col-12 col-md-5">
-                            <label for="state-field">State / Province<span class="text-danger"> *</span></label>
-                            <div class="selectWrapper">
-                                <select id="state-field" name="state" class="shaw-select custom-select form-control-lg">
-                                    <option value="" selected disabled>Choose state</option>
-                                    <option value="state 1">State 1</option>
-                                </select>
-                            </div>
-                            <strong class="invalid-feedback"><span>Please verify this field.</span></strong>
+                            <label for="state" class="mt-20">State / Province<span class="text-danger"> *</span></label>
+                            <select id="state" name="state" title="Select state" class="selectpicker form-control-lg"
+                                    data-style="select-style white-text" required aria-required="true">
+                                <option value="state 1">Sort alphabetically</option>
+                                <option value="state 1">State 1</option>
+                                <option value="state 1">State 1</option>
+                                <option value="state 1">State 1</option>
+                                <option value="state 1">State 1</option>
+                                <option value="state 1">State 1</option>
+                                <option value="state 1">State 1</option>
+                                <option value="state 1">State 1</option>
+                                <option value="state 1">State 1</option>
+                            </select>
                         </div>
                     </div>
                 </div>
                 <div class="row d-flex justify-content-between mt-6">
                     <div class="col-6 col-md-5">
-                        <button class="btn btn-tertiary letter-spacing-normal w-100 h-100 px-md-5 py-4">Back to Products</button>
+                        <button class="btn btn-tertiary text-gray letter-spacing-normal w-100 h-100 px-md-5 py-4">
+                            Back to
+                            Products
+                        </button>
                     </div>
                     <div class="col-6">
                         <button type="submit" class="btn btn-primary letter-spacing-normal w-100 h-100 py-4">
-                            Add New Address & Continue
+                            Add New
+                            Address & Continue
                         </button>
                     </div>
                 </div>

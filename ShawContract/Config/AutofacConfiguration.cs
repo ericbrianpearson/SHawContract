@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
 using AutoMapper;
+using ShawContract.Application.Contracts.Gateways;
 using ShawContract.Application.Contracts.Infrastructure;
 using ShawContract.Application.Contracts.Services;
 using ShawContract.Application.Services;
@@ -14,7 +15,6 @@ using ShawContract.Providers.Kontent.Config;
 using ShawContract.Providers.Kontent.KontentHandler;
 using ShawContract.Providers.Kontent.Interfaces;
 using ShawContract.Application.Contracts.Gateways;
-using ShawContract.Providers.Kontent;
 
 namespace ShawContract.Config
 {
@@ -65,12 +65,15 @@ namespace ShawContract.Config
 
             builder.RegisterType<LoggingService>().As<ILoggingService>()
                 .SingleInstance();
+            builder.RegisterType<ProductBoardService>().As<IProductBoardService>()
+                .InstancePerRequest();
 
             builder.RegisterType<SiteContextService>().As<ISiteContextService>()
                 .WithParameter((parameter, context) => parameter.Name == "currentCulture",
                     (parameter, context) => CultureInfo.CurrentUICulture.Name)
                 .WithParameter((parameter, context) => parameter.Name == "siteName",
                     (parameter, context) => AppConfig.Sitename)
+                .WithProperty("SiteContextID", 1)
                 .InstancePerRequest();
 
             builder.RegisterKenticoServices();

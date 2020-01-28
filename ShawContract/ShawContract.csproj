@@ -17,7 +17,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44380</IISExpressSSLPort>
+    <IISExpressSSLPort>44319</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
@@ -692,10 +692,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Css\Master\shawcontract.css" />
     <Content Include="Content\Css\Master\style.css" />
     <Content Include="Content\Css\Vendors\bootstrap-grid.css" />
     <Content Include="Content\Css\Vendors\bootstrap-reboot.css" />
+    <Content Include="Content\Css\Vendors\bootstrap-select.min.css" />
     <Content Include="Content\Css\Vendors\bootstrap.css" />
+    <Content Include="Content\Css\Vendors\toastr.min.css" />
     <Content Include="Content\images\chevron-down.svg" />
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\Image 10%402x.png" />
@@ -720,20 +723,26 @@
     <Content Include="Content\InlineEditors\TextEditor\text-editor.js" />
     <Content Include="Content\InlineEditors\TextEditor\TextEditor.css" />
     <Content Include="Content\js\addNewBoard.js" />
+    <Content Include="Content\js\bootstrap-select.min.js" />
     <Content Include="Content\js\bootstrap.bundle.js" />
     <Content Include="Content\js\bootstrap.js" />
+    <Content Include="Content\js\clamp.min.js" />
     <Content Include="Content\js\copyToClipBoard.js" />
     <Content Include="Content\js\editProductBoard.js" />
     <Content Include="Content\js\fslightbox.js" />
     <Content Include="Content\js\jquery-3.4.1.min.js" />
+    <Content Include="Content\js\jquery.maskedinput.min.js" />
     <Content Include="Content\js\jquery.validate.min.js" />
+    <Content Include="Content\js\lineClamps.js" />
     <Content Include="Content\js\objectFitPolyFill.basic.min.js" />
+    <Content Include="Content\js\popper.min.js" />
+    <Content Include="Content\js\regex.js" />
     <Content Include="Content\js\shawcontract.js" />
-    <Content Include="Content\js\shipping-address-form-validation.js" />
+    <Content Include="Content\js\checkoutFormValidations.js" />
     <Content Include="Content\js\notifications.js" />
     <Content Include="Content\js\toastr.js" />
+    <Content Include="Content\js\userSettings.js" />
     <Content Include="Content\Personalization\IsInPersona.css" />
-    <Content Include="Content\scss\shawcontract.css" />
     <Content Include="Global.asax" />
     <Content Include="Kentico\Content\FormComponents\FileUploader\file-uploader.js" />
     <Content Include="Kentico\Content\FormComponents\USPhone\inputmask.js" />
@@ -875,9 +884,8 @@
     <Compile Include="Controllers\InlineEditors\ImageUploadController.cs" />
     <Compile Include="Controllers\OrderHistoryController.cs" />
     <Compile Include="Controllers\Personalization\IsInPersonaController.cs" />
-    <Compile Include="Controllers\ProductBoardController.cs" />
     <Compile Include="Controllers\ProductBoardsController.cs" />
-    <Compile Include="Controllers\ProductDetailsController.cs" />
+    <Compile Include="Controllers\UserSettingsController.cs" />
     <Compile Include="Controllers\Widgets\BulletListWidgetController.cs" />
     <Compile Include="Controllers\Widgets\ButtonCollectionWidgetController.cs" />
     <Compile Include="Controllers\Widgets\CenteredTextWidgetController.cs" />
@@ -905,8 +913,13 @@
     <Compile Include="Models\InlineEditors\TextEditorViewModel.cs" />
     <Compile Include="Models\IViewModel.cs" />
     <Compile Include="Models\PageViewModel.cs" />
+    <Compile Include="Models\Personalization\Address.cs" />
     <Compile Include="Models\Personalization\ConditionTypes\IsInPersona\IsInPersonaListItemViewModel.cs" />
     <Compile Include="Models\Personalization\ConditionTypes\IsInPersona\IsInPersonaViewModel.cs" />
+    <Compile Include="Models\ProductBoards\ProductBoardDetailsViewModel.cs" />
+    <Compile Include="Models\ProductBoards\ProductBoardsViewModel.cs" />
+    <Compile Include="Models\Personalization\ExtendedUser.cs" />
+    <Compile Include="Models\Personalization\UserSettingsViewModel.cs" />
     <Compile Include="Models\Widgets\BulletListWidget\BulletListWidgetProperties.cs" />
     <Compile Include="Models\Widgets\BulletListWidget\BulletListWidgetViewModel.cs" />
     <Compile Include="Models\Widgets\ButtonCollectionWidget\ButtonCollectionWidgetProperties.cs" />
@@ -944,40 +957,7 @@
     <Content Include="Kentico\Scripts\builders\Core-icons.woff" />
     <Content Include="Kentico\Scripts\builders\Core-icons.ttf" />
     <Content Include="Kentico\Scripts\builders\Core-icons.eot" />
-    <Content Include="Content\scss\shawcontract.css.map" />
-    <Content Include="Content\scss\shawcontract.scss" />
-    <Content Include="Content\scss\_blog-list-section.scss" />
-    <Content Include="Content\scss\_card.scss" />
-    <Content Include="Content\scss\_checkout.scss" />
-    <Content Include="Content\scss\_footer.scss" />
-    <Content Include="Content\scss\_global.scss" />
-    <Content Include="Content\scss\_header.scss" />
-    <Content Include="Content\scss\_main.scss" />
-    <Content Include="Content\scss\_product-specs-imgs.scss" />
-    <Content Include="Content\scss\_variables.scss" />
-    <Content Include="Content\scss\_widget-bullet-list-img.scss" />
-    <Content Include="Content\scss\_widget-button-collection.scss" />
-    <Content Include="Content\scss\_widget-centered-description.scss" />
-    <Content Include="Content\scss\_widget-cta-block.scss" />
-    <Content Include="Content\scss\_widget-dancing-squares.scss" />
-    <Content Include="Content\scss\_widget-double-floating-img.scss" />
-    <Content Include="Content\scss\_widget-feature-list.scss" />
-    <Content Include="Content\scss\_widget-full-width-img.scss" />
-    <Content Include="Content\scss\_widget-quote-box.scss" />
-    <Content Include="Content\scss\_widget-two-column.scss" />
-    <Content Include="Content\scss\_widget.scss" />
-    <Content Include="Content\scss\_account-profile.scss" />
-    <Content Include="Content\scss\_related-products.scss" />
-    <Content Include="Content\scss\_account-profile-edit-board.scss" />
-    <Content Include="Content\scss\_modal.scss" />
-    <Content Include="Content\scss\_account-profile-product-boards.scss" />
-    <Content Include="Content\scss\_sharing-buttons.scss" />
-    <Content Include="Content\scss\_custom-switch.scss" />
-    <Content Include="Content\scss\_tooltips.scss" />
-    <Content Include="Content\scss\_widget-also-like.scss" />
-    <Content Include="Content\scss\_widget-collection-preview.scss" />
-    <Content Include="Content\scss\_account-profile-user-settings.scss" />
-    <Content Include="Content\scss\_blog-page.scss" />
+    <Content Include="Content\Css\Master\shawcontract.css.map" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -1000,10 +980,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Cart\Cart.cshtml" />
     <Content Include="Views\Checkout\Index.cshtml" />
-    <Content Include="Views\Shared\_NewBoardModal.cshtml" />
     <Content Include="Views\Shared\_AccountProfileLayout.cshtml" />
-    <Content Include="Views\ProductBoards\Index.cshtml" />
-    <Content Include="Views\EditProductBoard\Index.cshtml" />
+    <Content Include="Views\ProductBoards\MyBoards.cshtml" />
     <Content Include="Views\OrderHistory\Index.cshtml" />
     <Content Include="Views\BlogPage\Index.cshtml" />
     <Content Include="Views\BlogPage\Details.cshtml" />
@@ -1011,7 +989,15 @@
     <Content Include="Views\BlogPage\TaggedArticles.cshtml" />
     <Content Include="Views\ProductDetails\Index.cshtml" />
     <Content Include="Views\Cart\_CartDropDown.cshtml" />
+    <Content Include="Views\UserSettings\Index.cshtml" />
     <Content Include="Views\Shared\_ErrorLayout.cshtml" />
+    <Content Include="Views\ProductBoards\Details.cshtml" />
+    <Content Include="Views\Shared\_LanguageModal.cshtml" />
+    <Content Include="Views\SharedProductBoard\Index.cshtml" />
+    <Content Include="Views\Checkout\AdditionalDetails.cshtml" />
+    <Content Include="Views\Checkout\FinalizeAndSubmit.cshtml" />
+    <Content Include="Views\Shared\_ShippingAddressModal.cshtml" />
+    <Content Include="Views\ContactUs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShawContract.Application\ShawContract.Application.csproj">
@@ -1036,8 +1022,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\AccountProfile\" />
     <Folder Include="Views\CartDropDown\" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -55,12 +55,12 @@
 
         <section class="article-date border-top">
             <div class="row">
-                <div class="col-lg-8 col-md-8 col-sm-12 p-0 text-center text-md-left">
-                    <p class="text-muted">
+                <div class="col-12 col-md-8 text-center text-md-left">
+                    <p class="text-muted mx-0">
                         @string.Join(", ", Model.Data.Article.LastModified.ToString("MMMM dd"), Model.Data.Article.LastModified.ToString("yyyy"))
                     </p>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 d-flex justify-content-md-end justify-content-center p-0">
+                <div class="col-12 col-md-4 d-flex justify-content-md-end justify-content-center">
                     <ul class="article social-links list-unstyled">
                         <li>
                             <a class="social" href="https://facebook.com/sharer/sharer.php?u=@Request.Url.AbsoluteUri"

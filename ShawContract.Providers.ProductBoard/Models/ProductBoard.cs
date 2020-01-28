@@ -17,6 +17,9 @@ namespace ShawContract.Providers.ProductBoard.Models
         [Required]
         public string UserId { get; set; }
 
+        public bool LoggedUserRequiredToAccess { get; set; }
+
         public virtual ICollection<ProductBoardItem> ProductBoardItems { get; set; }
+        public virtual ICollection<Visitor> Visitors { get; set; }
     }
 }

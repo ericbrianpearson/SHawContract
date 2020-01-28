@@ -9,8 +9,10 @@ namespace ShawContract.Application.Models
         public string BoardName { get; set; }
         public string Notes { get; set; }
         public string UserId { get; set; }
+        public bool LoggedUserRequiredToAccess { get; set; } = false;
 
-        public virtual ICollection<ProductBoardItem> ProductBoardItems { get; set; }
+        public List<ProductBoardItem> ProductBoardItems { get; set; }
+        public List<Visitor> Visitors { get; set; }
 
         public ProductBoard()
         {
@@ -21,10 +23,18 @@ namespace ShawContract.Application.Models
     public class ProductBoardItem
     {
         public Guid ID { get; set; }
-        public string Style { get; set; }
-
-        public string Color { get; set; }
 
         public string Notes { get; set; }
+        public string StyleName { get; set; }
+        public string StyleNumber { get; set; }
+        public string ColorName { get; set; }
+        public string ColorNumber { get; set; }
+        public string ImageUrl { get; set; }
+    }
+
+    public class Visitor
+    {
+        public string Email { get; set; }
+        public DateTime DateVisited { get; set; }
     }
 }

@@ -34,20 +34,20 @@ namespace Shaw.Contract.UnitTests.Providers.ProductBoards
                     {
                         new ProductBoardItem
                         {
-                             Style ="Style 1",
-                              Color="blue",
+                             StyleName ="Style 1",
+                              ColorName="blue",
                                Notes="some board item notes"
                         },
                          new ProductBoardItem
                         {
-                             Style ="Style 2",
-                              Color="blue",
+                             StyleName ="Style 2",
+                              ColorName="blue",
                                Notes="some board item notes"
                         },
                           new ProductBoardItem
                         {
-                             Style ="Style 3",
-                              Color="blue",
+                             StyleName ="Style 3",
+                              ColorName="blue",
                                Notes="some board item notes"
                         }
                     }
@@ -88,8 +88,8 @@ namespace Shaw.Contract.UnitTests.Providers.ProductBoards
 
             await this.ProductBoardGateway.AddProductBoardItemAsync(firstBoard.ID, new ProductBoardItem
             {
-                Color = "Color",
-                Style = "Style",
+                ColorName = "Color",
+                StyleName = "Style",
                 Notes = "Notes"
             });
             var updatedBoard = await this.ProductBoardGateway.GetProductBoardAsync(firstBoard.ID);

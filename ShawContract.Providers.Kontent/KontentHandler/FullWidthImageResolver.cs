@@ -7,7 +7,7 @@ namespace ShawContract.Providers.Kontent.KontentHandler
     public class FullWidthImageResolver : IInlineContentItemsResolver<FullWidthImage>
     {
         const string template = @"<section class=""container mb-3 mb-md-5 article-full-width-image d-flex justify-content-center"">
-            <img src = ""{0}"" alt=""{1}"" class=""img-fluid"">
+            <img src = ""{0}"" alt=""{1}"" class=""img-fluid w-100"">
         </section>";
         public FullWidthImageResolver()
         {

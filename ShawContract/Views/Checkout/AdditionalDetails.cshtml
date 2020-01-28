@@ -1,0 +1,239 @@
+﻿
+@{
+    ViewBag.Title = "AdditionalDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main role="main" class="primary flex-shrink-0 checkout">
+    <section class="container">
+        <div class="title-section">
+            <div class="mark"></div>
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2 text-center">
+                    <h1 class="title heading-1">Checkout</h1>
+                </div>
+            </div>
+        </div>
+        <div class="checkout-tabs-wrapper border-bottom">
+            <ul class="list-group list-group-horizontal-md flex-fill d-flex justify-content-around align-items-center">
+                <li class="list-group-item border-0 heading-3">Shipping Address</li>
+                <li class="list-group-item border-0 heading-3 is-active">Additional Details</li>
+                <li class="list-group-item border-0 heading-3">Finalize & Submit</li>
+            </ul>
+        </div>
+
+        <section class="form-wrapper col-12 col-md-10 col-lg-8 mx-auto px-3 pt-5">
+            <form id="additional-details-form">
+                <div class="form-group pt-5">
+                    <fieldset>
+                        <h4 class="font-weight-bold heading-4 mb-4">Shipping Method</h4>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" id="shipping-method-priority" name="shipping-method">
+                            <label class="custom-control-label" for="shipping-method-priority">Priority - Next Day 10:30am</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" id="shipping-method-ground" name="shipping-method"
+                                   aria-required="true">
+                            <label class="custom-control-label" for="shipping-method-ground">Ground - 5 to 7 Business Days</label>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="row my-5">
+                    <div class="col-12 col-md-7">
+                        <h4 class="font-weight-bold heading-4">Project Information</h4>
+                    </div>
+                    <div class="col-12 col-md-5">
+                        <span class="float-md-right"><span class="text-danger">*</span> = Required Fields</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="projectName">Project Name<span class="text-danger"> *</span></label>
+                    <input type="text" name="projectName" class="form-control form-control-lg" id="projectName" aria-required="true">
+                </div>
+                <div class="form-group my-5">
+                    <fieldset>
+                        <h4 class="heading-4 mb-4 text-secondary">Project Sector / Segment</h4>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="education">
+                            <label class="custom-control-label" for="education">Education</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="healthcare">
+                            <label class="custom-control-label" for="healthcare">Healthcare</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="hospitality">
+                            <label class="custom-control-label" for="hospitality">Hospitality</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="public-sector">
+                            <label class="custom-control-label" for="public-sector">Public Sector</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="retail">
+                            <label class="custom-control-label" for="retail">Retail</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="senior-living">
+                            <label class="custom-control-label" for="senior-living">Senior Living</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="workplace">
+                            <label class="custom-control-label" for="workplace">Workplace</label>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="form-group">
+                    <h4 class="font-weight-bold heading-4 my-4">Account Support</h4>
+                    <label for="account-manager">Your Account Manager</label>
+                    <div class="row">
+                        <div class="col">
+                            <select id="account-manager" class="selectpicker account-manager-select"
+                                    data-style="select-style white-text" title="No account manager selected">
+
+                                <!-- manager option start -->
+                                <option value="Kevin Bettis" data-content='<div class="d-flex align-items-center">
+                    <!-- image -->
+                                            <div class="image-wrapper d-none d-sm-block mr-3" style="">
+                                              <img src="https://placehold.it/100x100" alt="" data-object-fit style="object-fit:cover; height: 100%; width: 100%">
+                                            </div>
+
+                                            <div class="content-body">
+                                              <div class="row name">
+                      <!-- name -->
+                                                <div class="col text-size-normal medium">
+                                                  <span>
+                                                    Kevin Bettis,
+                                                  </span>
+                                                  <span>
+                                                    Metro Atlanta
+                                                  </span>
+                                                </div>
+                                              </div>
+                      <!-- email -->
+                                              <div class="row email">
+                                                <div class="col">
+                                                  <span class="text-size-small">
+                                                    kevin.bettis@shawcontract.com
+                                                  </span>
+                                                </div>
+                                              </div>
+                      <!-- phone -->
+                                              <div class="row phone-number">
+                                                <div class="col">
+                                                  <span class="text-size-normal">
+                                                    (770) 547-1374
+                                                  </span>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>'>
+                  </option>
+                                <!-- manager option end -->
+                                <option value="Kevin Bettis" data-content='<div class="d-flex align-items-center">
+                    <!-- image -->
+                                            <div class="image-wrapper d-none d-sm-block mr-3" style="">
+                                              <img src="https://placehold.it/100x100" alt="" data-object-fit style="object-fit:cover; height: 100%; width: 100%">
+                                            </div>
+
+                                            <div class="content-body">
+                                              <div class="row name">
+                      <!-- name -->
+                                                <div class="col text-size-normal medium">
+                                                  <span>
+                                                    Kevin Bettis,
+                                                  </span>
+                                                  <span>
+                                                    Metro Atlanta
+                                                  </span>
+                                                </div>
+                                              </div>
+                      <!-- email -->
+                                              <div class="row email">
+                                                <div class="col">
+                                                  <span class="text-size-small">
+                                                    kevin.bettis@shawcontract.com
+                                                  </span>
+                                                </div>
+                                              </div>
+                      <!-- phone -->
+                                              <div class="row phone-number">
+                                                <div class="col">
+                                                  <span class="text-size-normal">
+                                                    (770) 547-1374
+                                                  </span>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>'>
+                  </option>
+                                <!-- manager option end -->
+                                <option value="Kevin Bettis" data-content='<div class="d-flex align-items-center">
+                    <!-- image -->
+                                            <div class="image-wrapper d-none d-sm-block mr-3" style="">
+                                              <img src="https://placehold.it/100x100" alt="" data-object-fit style="object-fit:cover; height: 100%; width: 100%">
+                                            </div>
+
+                                            <div class="content-body">
+                                              <div class="row name">
+                      <!-- name -->
+                                                <div class="col text-size-normal medium">
+                                                  <span>
+                                                    Kevin Bettis,
+                                                  </span>
+                                                  <span>
+                                                    Metro Atlanta
+                                                  </span>
+                                                </div>
+                                              </div>
+                      <!-- email -->
+                                              <div class="row email">
+                                                <div class="col">
+                                                  <span class="text-size-small">
+                                                    kevin.bettis@shawcontract.com
+                                                  </span>
+                                                </div>
+                                              </div>
+                      <!-- phone -->
+                                              <div class="row phone-number">
+                                                <div class="col">
+                                                  <span class="text-size-normal">
+                                                    (770) 547-1374
+                                                  </span>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>'>
+                  </option>
+                                <!-- manager option end -->
+
+                            </select>
+                        </div>
+                    </div>
+                    <small id="manager-help-message" class="form-text black py-3">
+                        Some sort of warning that without an account manager your sample request will be placed on hold for
+                        review.
+                    </small>
+                </div>
+                <div class="row d-flex justify-content-between mt-6">
+                    <div class="col-12 col-md-4 my-3">
+                        <button class="btn btn-tertiary text-gray letter-spacing-normal w-100 h-100 py-4">Back to Products</button>
+                    </div>
+                    <div class="col-12 col-md-7">
+                        <div class="row">
+                            <div class="col-12 col-md-6 my-3">
+                                <button type="submit" class="btn btn-tertiary letter-spacing-normal w-100 h-100 py-4">Back</button>
+                            </div>
+                            <div class="col-12 col-md-6 my-3">
+                                <button type="submit" class="btn btn-primary letter-spacing-normal w-100 h-100 py-4">Continue</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </section>
+
+    </section>
+</main>
+

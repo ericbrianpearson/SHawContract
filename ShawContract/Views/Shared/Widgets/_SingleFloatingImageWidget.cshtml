@@ -6,7 +6,7 @@
 
 @{
     var editMode = Context.Kentico().PageBuilder().EditMode;
-    var imageAlignment = Model.ImageAlignment == "right" ? "widget dancing-squares now-viewable" : "widget dancing-squares now-viewable left";
+    var imageAlignment = Model.ImageAlignment == "right" ? "widget dancing-squares" : "widget dancing-squares left";
     var image = !string.IsNullOrEmpty(Model.ImageUrl) ? Model.ImageUrl : "https://placehold.it/768x534";
 
 }
@@ -16,7 +16,7 @@
         <div class="col-sm-12 text-right">
             <div class="content-box">
                 <div class="img-box">
-                    <img class="dance-img mt-5" src="@image" alt="description" data-object-fit />
+                    <img class="dance-img mt-1" data-object-fit src="@image" alt="description" />
                     <div class="photo-credits">
                         @if (editMode)
                         {
@@ -37,7 +37,7 @@
                 <div class="card info-card text-left">
                     <div class="card-body">
                         <div class="mark"></div>
-                        <h5 class="card-title">
+                        <h5 class="card-title blue-regular">
                             @if (editMode)
                             {
                                 Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel()
