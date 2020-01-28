@@ -1,6 +1,3 @@
-using System;
-using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.Routing;
 
 using Kentico.Web.Mvc;
@@ -21,19 +18,19 @@ namespace ShawContract
             AutofacConfiguration.ConfigureContainer();
         }
 
-        protected void Application_Error(object sender, EventArgs e)
-        {
-            var error = Server.GetLastError();
-            //log error here
-            Server.ClearError();
-            Response.Clear();
+        //protected void Application_Error(object sender, EventArgs e)
+        //{
+        //    var error = Server.GetLastError();
+        //    //log error here
+        //    Server.ClearError();
+        //    Response.Clear();
 
-            if ((error is HttpException))
-            {
-                var redirectPath = "/en-us/Error/ServerError?error=" + error.Message + "&innerError=" + error.InnerException.Message;
-                redirectPath = Regex.Replace(redirectPath, @"\t|\n|\r", "");
-                Response.Redirect(redirectPath);
-            }
-        }
+        //    if ((error is HttpException))
+        //    {
+        //        var redirectPath = "/en-us/Error/ServerError?error=" + error.Message + "&innerError=" + error.InnerException.Message;
+        //        redirectPath = Regex.Replace(redirectPath, @"\t|\n|\r", "");
+        //        Response.Redirect(redirectPath);
+        //    }
+        //}
     }
 }
