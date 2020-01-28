@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using AutoMapper;
 using ShawContract.Application.Contracts.Gateways;
 
 using ShawContract.Providers.Kentico.PageHandler;

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using Kentico.Kontent.Delivery;
 
 namespace ShawContract.Providers.Kontent.Models
 {

@@ -1,7 +1,11 @@
 ﻿using ShawContract.Application.Contracts.Gateways;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using ShawContract.Application.Models;
 using ShawContract.Providers.Kentico.PageHandler;
-using System.Linq;
 
 namespace ShawContract.Providers.Kentico
 {
@@ -16,7 +20,7 @@ namespace ShawContract.Providers.Kentico
 
         public BlogPage GetBlogPage(string nodeAlias)
         {
-            return this.PageContentHandler.GetPage<CMS.DocumentEngine.Types.ShawContract.BlogPage>(nodeAlias)
+            return this.PageContentHandler.GetPage < CMS.DocumentEngine.Types.ShawContract.BlogPage>(nodeAlias)
                     .AddColumns("DocumentID")
                     .ToList()
                     .Select(l => new BlogPage()

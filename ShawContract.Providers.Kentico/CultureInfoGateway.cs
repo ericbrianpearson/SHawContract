@@ -1,9 +1,9 @@
-﻿using CMS.SiteProvider;
+﻿using System.Collections.Generic;
+using System.Linq;
+using CMS.SiteProvider;
 using ShawContract.Application.Contracts.Gateways;
 using ShawContract.Application.Contracts.Infrastructure;
 using ShawContract.Application.Models;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ShawContract.Providers.Kentico
 {

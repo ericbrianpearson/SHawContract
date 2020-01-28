@@ -1,8 +1,8 @@
-﻿using ShawContract.Application.Contracts.Gateways;
+﻿using System.Collections.Generic;
+using ShawContract.Application.Contracts.Gateways;
 using ShawContract.Application.Contracts.Infrastructure;
 using ShawContract.Application.Contracts.Services;
 using ShawContract.Application.Models;
-using System.Collections.Generic;
 
 namespace ShawContract.Application.Services
 {

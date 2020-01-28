@@ -1,5 +1,5 @@
-﻿using ShawContract.Application.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using ShawContract.Application.Models;
 
 namespace ShawContract.Application.Contracts.Gateways
 {

@@ -1,7 +1,9 @@
-﻿using Kentico.PageBuilder.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
+using Kentico.PageBuilder.Web.Mvc;
+using ShawContract.Application.Contracts.Services;
 using ShawContract.Controllers.Widgets;
 using ShawContract.Models.Widgets.DoubleImageWidget;
-using System.Web.Mvc;
 
 [assembly: RegisterWidget(
     "ShawContract.Widget.DoubleImageWidget",

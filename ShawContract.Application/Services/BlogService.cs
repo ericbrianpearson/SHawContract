@@ -1,15 +1,15 @@
-﻿using ShawContract.Application.Contracts.Gateways;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using ShawContract.Application.Contracts.Gateways;
 using ShawContract.Application.Contracts.Services;
 using ShawContract.Application.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace ShawContract.Application.Services
 {
     public class BlogService : IBlogService
     {
         private IBlogGateway BlogGateway { get; }
-
+        
         //Getting the page itself
         public IBlogPageGateway BlogPage { get; }
 
@@ -42,8 +42,8 @@ namespace ShawContract.Application.Services
         }
 
         public async Task<IEnumerable<BlogPreview>> GetTaggedArticlesAsync(string tagType, string tag)
-        {
-
+        {     
+            
             return string.Compare(tagType.ToLower(), "articlebasesnippetpersonas") == 0 ? await BlogGateway.ArticlesByPersonaAsync(tag) : await BlogGateway.ArticlesBySegmentAsync(tag);
         }
 

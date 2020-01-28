@@ -1,5 +1,6 @@
 ﻿using Kentico.Forms.Web.Mvc;
 using Kentico.PageBuilder.Web.Mvc;
+using System;
 
 namespace ShawContract.Models.Widgets.FullWidthPhotoWidget
 {

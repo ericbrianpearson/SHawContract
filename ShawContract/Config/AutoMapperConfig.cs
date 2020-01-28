@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CMS.Ecommerce;
 using CMS.Personas;
 using ShawContract.Application.Models;
 using ShawContract.Models.Widgets.BulletListWidget;

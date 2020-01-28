@@ -1,6 +1,7 @@
-﻿using ShawContract.Application.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using ShawContract.Application.Models;
+using ShawContract.Application.Contracts.Gateways;
 
 namespace ShawContract.Application.Contracts.Services
 {

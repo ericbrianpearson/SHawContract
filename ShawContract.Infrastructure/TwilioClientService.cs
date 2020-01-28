@@ -1,6 +1,6 @@
-﻿using ShawContract.Application.Constants;
+﻿using System;
+using ShawContract.Application.Constants;
 using ShawContract.Application.Contracts.Infrastructure;
-using System;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
 using Twilio.TwiML;

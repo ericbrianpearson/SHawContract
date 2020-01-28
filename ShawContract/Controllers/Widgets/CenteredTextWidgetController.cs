@@ -1,7 +1,7 @@
-﻿using Kentico.PageBuilder.Web.Mvc;
+﻿using System.Web.Mvc;
+using Kentico.PageBuilder.Web.Mvc;
 using ShawContract.Controllers.Widgets;
 using ShawContract.Models.Widgets.CenteredTextWidget;
-using System.Web.Mvc;
 
 [assembly: RegisterWidget(
     "ShawContract.Widget.CenteredTextWidget",

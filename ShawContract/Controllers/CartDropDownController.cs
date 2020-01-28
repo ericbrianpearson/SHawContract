@@ -1,7 +1,7 @@
-﻿using ShawContract.ActionSelectors;
+﻿using System.Web.Mvc;
+using ShawContract.ActionSelectors;
 using ShawContract.Application.Contracts.Services;
 using ShawContract.Models.Cart;
-using System.Web.Mvc;
 
 namespace ShawContract.Controllers
 {

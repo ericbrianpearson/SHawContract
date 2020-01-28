@@ -1,13 +1,13 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using AutoMapper;
 using Kentico.Kontent.Delivery;
 using ShawContract.Application.Contracts.Gateways;
 using ShawContract.Application.Contracts.Infrastructure;
 using ShawContract.Application.Models;
 using ShawContract.Providers.Kontent.Interfaces;
 using ShawContract.Providers.Kontent.Models;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace ShawContract.Providers.Kontent
 {
@@ -92,7 +92,7 @@ namespace ShawContract.Providers.Kontent
             var segments = segmentsTaxonomyGroup.Terms.ToList();
             result.Segments = segments.Select(s => new Models.TaxonomyTerm { Codename = s.Codename, Name = s.Name }).ToList();
 
-            return Mapper.Map<TaxonomyTypes, Taxonomy>(result);
+            return Mapper.Map<TaxonomyTypes, Taxonomy>(result); 
         }
 
         public async Task<IEnumerable<BlogPreview>> FilterByTagsAsync(string persona, string segment)
@@ -142,7 +142,7 @@ namespace ShawContract.Providers.Kontent
         }
 
         public async Task<IEnumerable<BlogPreview>> ArticlesBySegmentAsync(string segment)
-        {
+         {
             var blogs = CachingService.GetItem<IEnumerable<BlogPreview>>(AllBlogsCachingKey);
             if (blogs == null)
             {

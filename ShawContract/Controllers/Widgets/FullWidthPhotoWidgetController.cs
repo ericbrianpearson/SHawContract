@@ -1,6 +1,9 @@
 ﻿using Kentico.PageBuilder.Web.Mvc;
+using ShawContract.Application.Contracts.Services;
 using ShawContract.Controllers.Widgets;
 using ShawContract.Models.Widgets.FullWidthPhotoWidget;
+using ShawContract.Models.Widgets.FullWidthVideoWidget;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 [assembly: RegisterWidget(

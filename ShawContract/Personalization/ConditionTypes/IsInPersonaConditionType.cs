@@ -1,10 +1,10 @@
-﻿using CMS.ContactManagement;
+﻿using System;
+using CMS.ContactManagement;
 using CMS.Personas;
 using Kentico.PageBuilder.Web.Mvc.Personalization;
 using Newtonsoft.Json;
 using ShawContract.Controllers.Personalization;
 using ShawContract.Personalization;
-using System;
 
 [assembly: RegisterPersonalizationConditionType("ShawContract.Personalization.IsInPersona",
     typeof(IsInPersonaConditionType),

@@ -1,10 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Shaw.Contract.UnitTests.Mocks;
-using ShawContract.Config;
-using ShawContract.Infrastructure;
-using ShawContract.Providers.Kontent;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Shaw.Contract.UnitTests.Mocks;
+using ShawContract.Providers.Kontent;
+using ShawContract.Infrastructure;
+using ShawContract.Config;
 
 namespace ShawContract.UnitTests.Services.Kontent
 {
@@ -33,7 +33,7 @@ namespace ShawContract.UnitTests.Services.Kontent
         public async Task GetKontentItemAssertNotNull()
         {
             string seoUrl = "seeking-the-horizon";
-            var blogGateway = new BlogGateway(MockedKontentProvider.GetKontentProvider(),
+            var blogGateway = new BlogGateway(MockedKontentProvider.GetKontentProvider(), 
                               new MockedSiteContext(),
                               new CachingService(),
                               AutoMapperConfig.RegisterAutoMappings());

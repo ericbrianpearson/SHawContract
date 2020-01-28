@@ -1,5 +1,5 @@
-﻿using ShawContract.Application.Contracts.Infrastructure;
-using System;
+﻿using System;
+using ShawContract.Application.Contracts.Infrastructure;
 
 namespace ShawContract.Infrastructure
 {

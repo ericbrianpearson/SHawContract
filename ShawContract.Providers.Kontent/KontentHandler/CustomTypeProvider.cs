@@ -1,6 +1,11 @@
 ﻿using Kentico.Kontent.Delivery;
+using ShawContract.Application.Models;
 using ShawContract.Providers.Kontent.Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ShawContract.Providers.Kontent.KontentHandler
 {

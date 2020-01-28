@@ -1,5 +1,7 @@
 ﻿using Kentico.Kontent.Delivery;
 using ShawContract.Providers.Kontent.Interfaces;
+using Kentico.Kontent.Delivery.InlineContentItems;
+using ShawContract.Providers.Kontent.Models;
 
 namespace ShawContract.Providers.Kontent.KontentHandler
 {
@@ -18,9 +20,9 @@ namespace ShawContract.Providers.Kontent.KontentHandler
         private IDeliveryClient CreateDeliveryClient()
         {
             return DeliveryClientBuilder
-                .WithOptions(builder => builder
+                .WithOptions(builder => builder               
                 .WithProjectId(KontentConfiguration.ProjectId)
-                .UseProductionApi(KontentConfiguration.Key)
+                .UseProductionApi(KontentConfiguration.Key)  
                 .Build())
                 .WithTypeProvider(new CustomTypeProvider())
                 .WithInlineContentItemsResolver(new FullWidthImageResolver())

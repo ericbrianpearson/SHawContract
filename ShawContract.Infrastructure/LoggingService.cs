@@ -1,9 +1,9 @@
-﻿using ShawContract.Application.Contracts.Infrastructure;
-using ShawContract.Application.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using ShawContract.Application.Contracts.Infrastructure;
+using ShawContract.Application.Models;
 
 namespace ShawContract.Infrastructure
 {

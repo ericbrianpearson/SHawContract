@@ -1,4 +1,6 @@
-﻿namespace ShawContract.Models.Widgets.DoubleImageWidget
+﻿using ShawContract.Models.Widgets.FullWidthVideoWidget;
+
+namespace ShawContract.Models.Widgets.DoubleImageWidget
 {
     public class DoubleImageWidgetViewModel
     {

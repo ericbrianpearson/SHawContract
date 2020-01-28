@@ -1,10 +1,10 @@
-﻿using Kentico.PageBuilder.Web.Mvc.Personalization;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using Kentico.PageBuilder.Web.Mvc.Personalization;
 using ShawContract.Application.Contracts.Services;
 using ShawContract.Models.Personalization.ConditionTypes.IsInPersona;
 using ShawContract.Personalization;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
 
 namespace ShawContract.Controllers.Personalization
 {

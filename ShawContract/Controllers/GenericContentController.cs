@@ -1,8 +1,8 @@
-﻿using Kentico.PageBuilder.Web.Mvc;
+﻿using System.Web.Mvc;
+using System.Web.UI;
+using Kentico.PageBuilder.Web.Mvc;
 using Kentico.Web.Mvc;
 using ShawContract.Application.Contracts.Services;
-using System.Web.Mvc;
-using System.Web.UI;
 
 namespace ShawContract.Controllers
 {
