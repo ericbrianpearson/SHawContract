@@ -12,9 +12,9 @@ phases:
   post_build:
     commands:
        create_post_dir:
-       command:"md C:\Program Files\Amazon\ElasticBeanstalk\hooks\appdeploy\post"
-          files:"C:\Program Files\Amazon\ElasticBeanstalk\hooks\appdeploy\post\800envvar.ps1"  
-          content:|  Get-ChildItem -Path Env:\ | Out-File -FilePath c:\temp\envvar.txt
+       command: md C:\Program Files\Amazon\ElasticBeanstalk\hooks\appdeploy\post
+       files: C:\Program Files\Amazon\ElasticBeanstalk\hooks\appdeploy\post\800envvar.ps1  
+          content:| Get-ChildItem -Path Env:\ | Out-File -FilePath c:\temp\envvar.txt
 artifacts:
   files:
     - '**/*'
