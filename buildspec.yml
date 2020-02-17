@@ -12,5 +12,4 @@ phases:
 artifacts:
   files:
     - .ebextensions/**/*
-    - '**/*'
-  base-directory: 'C:\codebuild\artifacts\_PublishedWebsites\ShawContract_Package\Archive\'
+    - 'C:/codebuild/artifacts/_PublishedWebsites/ShawContract_Package/Archive/**/*'
