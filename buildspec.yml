@@ -9,12 +9,6 @@ phases:
     commands:
       - nuget restore ShawContract.sln -PackagesDirectory packages
       - msbuild ShawContract\ShawContract.csproj /p:Configuration=Release /p:DeployIisAppPath="Default Web Site" /p:PackageAsSingleFile=false /p:OutDir=C:\codebuild\artifacts\ /t:Package
-  post_build:
-    commands:
-       create_post_dir:
-       command: md C:\Program Files\Amazon\ElasticBeanstalk\hooks\appdeploy\post
-       files: C:\Program Files\Amazon\ElasticBeanstalk\hooks\appdeploy\post\800envvar.ps1  
-          content:| Get-ChildItem -Path Env:\ | Out-File -FilePath c:\temp\envvar.txt
 artifacts:
   files:
     - '**/*'
