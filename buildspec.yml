@@ -11,5 +11,6 @@ phases:
       - msbuild ShawContract\ShawContract.csproj /p:Configuration=Release /p:DeployIisAppPath="Default Web Site" /p:PackageAsSingleFile=false /p:OutDir=C:\codebuild\artifacts\ /t:Package
 artifacts:
   files:
+    - .ebextensions/**/*
     - '**/*'
   base-directory: 'C:\codebuild\artifacts\_PublishedWebsites\ShawContract_Package\Archive\'
