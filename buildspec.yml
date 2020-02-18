@@ -9,7 +9,10 @@ phases:
     commands:
       - nuget restore ShawContract.sln -PackagesDirectory packages
       - msbuild ShawContract\ShawContract.csproj /p:Configuration=Release /p:DeployIisAppPath="Default Web Site" /p:PackageAsSingleFile=false /p:OutDir=C:\codebuild\artifacts\ /t:Package
+  post_build:
+    commands: 
+      - move .ebextensions 'C:\codebuild\artifacts\_PublishedWebsites\ShawContract_Package\Archive\'
 artifacts:
   files:
-    - .ebextensions/**/*
-    - 'C:/codebuild/artifacts/_PublishedWebsites/ShawContract_Package/Archive/**/*'
+    - '**/*'
+  base-directory: 'C:\codebuild\artifacts\_PublishedWebsites\ShawContract_Package\Archive\'
