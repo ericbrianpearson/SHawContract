@@ -32,19 +32,18 @@
 #  <add key="ida:RedirectUri" value="https://localhost:44380/" />
 #</appSettings>
 
-#$configPath = "C:\inetpub\wwwroot\_ConfigFiles\"
-$configPath = "C:\temp\1\"
+$configPath = "C:\inetpub\wwwroot\_ConfigFiles\"
 $connectionConfig = "ConnectionStrings.config"
 
-$rdsDB = Get-ChildItem Env:RDS_DB_NAME
-$rdsHost = Get-ChildItem Env:RDS_HOSTNAME
-$rdsPass = Get-ChildItem Env:RDS_PASSWORD
-$rdsPort = Get-ChildItem Env:RDS_PORT
-$rdsUser = Get-ChildItem Env:RDS_USERNAME
+$rdsDB = (Get-ChildItem Env:RDS_DB_NAME).Value
+$rdsHost = (Get-ChildItem Env:RDS_HOSTNAME).Value
+$rdsPass = (Get-ChildItem Env:RDS_PASSWORD).Value
+$rdsPort = (Get-ChildItem Env:RDS_PORT).Value
+$rdsUser = (Get-ChildItem Env:RDS_USERNAME).Value
 
 if (Test-Path -Path $configPath) {
   if (Test-Path -Path $configPath$connectionConfig) {
-    Remove-File -Path $configPath$connectionConfig -Force
+    Remove-Item -Path $configPath$connectionConfig -Force
   }
 } else {
   New-Item -Path $configPath
