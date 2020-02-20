@@ -1,3 +1,8 @@
+# This script is ran using an .ebextensions config file, executed under the container_commands section
+# The script is processed from a staging directory, after the site has been extracted but before it has been deployed
+# The working directory of container_commands is the root of the extracted site
+# 02/20/2020 - RBM
+
 # Environment Variables
 # ---------------------
 # RDS_DB_NAME
@@ -10,7 +15,7 @@
 # ------------------------
 #<connectionStrings>
 #  <clear />
-#  <add name="CMSConnectionString" connectionString="Data Source=saue1scwsdrds1.c5amvvt8azeq.us-east-1.rds.amazonaws.com;Initial Catalog=shawcontract;Integrated Security=False;User Id=egobrie;Password=Emad@Shaw123;Persist Security Info=False;Connect Timeout=60;Encrypt=False;Current Language=English;" />
+#  <add name="CMSConnectionString" connectionString="Data Source=saue1scwsdrds1.c5amvvt8azeq.us-east-1.rds.amazonaws.com;Initial Catalog=shawcontract;Integrated Security=False;User Id=egobrie;Password=xxxxxxx;Persist Security Info=False;Connect Timeout=60;Encrypt=False;Current Language=English;" />
 #</connectionStrings>
 
 # SystemSettings.config
