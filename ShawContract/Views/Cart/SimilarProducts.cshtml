@@ -1,0 +1,25 @@
+﻿@using ShawContract.Models.Cart
+
+@model  SimilarProductsViewModel
+
+<section id="relatedProducts" class="related-products">
+    <h2 class="heading-2 py-5 text-center">
+        You May Also Like
+    </h2>
+    <div class="related-products-grid d-flex flex-wrap justify-content-around">
+        @foreach (var product in Model.SimilarProducts)
+        {
+            <div class="card border-0 m-3">
+                <img src="@product.ImageUrl" class="card-img-top" alt="..." data-object-fit>
+                <div class="card-body pl-0">
+                    <h4 class="card-title heading-4">
+                        <a href="#" class="stretched-link text-decoration-none black">@product.StyleName</a>
+                    </h4>
+                    <p class="card-text text-size-small">
+                        @product.StyleNumber
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+</section>

@@ -9,11 +9,13 @@
     var editMode = Context.Kentico().PageBuilder().EditMode;
     var imageSource = !string.IsNullOrEmpty(Model.ImageUrl) ? Model.ImageUrl : "https://placehold.it/1110x766/a3d1d0";
 }
+<!-- add 'full-screen' to <section> when the full screen variant is selected -->
+<!-- if fullScreen ? 'full-screen' : string.Empty  -->
 <section class="widget full-width-img right now-viewable">
     <div class="gray-stripe"></div>
     <div class="container">
         <div class="img-box">
-            <img class="full-img" src="@imageSource" alt="description">
+            <img class="full-img" src="@imageSource" alt="description" data-object-fit />
             <div class="photo-credits">
                 @if (editMode)
                 {
@@ -64,7 +66,7 @@
                         }
                     </div>
 
-                    <a class="btn btn-card" href="@Model.VideoUrl" data-fslightbox="gallery">
+                    <a class="btn btn-card large-btn" href="@Model.VideoUrl" data-fslightbox="gallery">
                         Watch Video
                     </a>
                 </div>

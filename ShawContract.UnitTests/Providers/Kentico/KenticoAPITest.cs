@@ -45,7 +45,7 @@ namespace Shaw.Contract.UnitTests.Providers.Kentico
         [TestMethod]
         public void GetMenuItemsTest()
         {
-            MenuGateway = new MenuGateway(handler, new CachingService(), new LoggingService(), AutoMapperConfig.RegisterAutoMappings());
+            MenuGateway = new MenuGateway(handler, new LoggingService(), AutoMapperConfig.RegisterAutoMappings());
             var menuItems = MenuGateway.GetHeaderMenuItems();
 
             Assert.IsNotNull(menuItems);

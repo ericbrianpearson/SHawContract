@@ -38,8 +38,35 @@ namespace ShawContract
             );
 
             route = routes.MapRoute(
+                name: "HomePage",
+                url: "{culture}/Home",
+                defaults: new { culture = defaultCulture.Name, controller = "Home", action = "Index" },
+                constraints: new { culture = new SiteCultureConstraint(AppConfig.Sitename) }
+            );
+            route = routes.MapRoute(
+                 name: "PrintReturnLabel",
+                 url: "{culture}/PrintReturnLabel",
+                 defaults: new { culture = defaultCulture.Name, controller = "PrintReturnLabel", action = "Index" },
+                 constraints: new { culture = new SiteCultureConstraint(AppConfig.Sitename) }
+            );
+
+            route = routes.MapRoute(
+                name: "ContactUs",
+                url: "{culture}/About/{nodeAlias}",
+                defaults: new { culture = defaultCulture.Name, controller = "ContactUs", action = "Index", nodeAlias = "" },
+                constraints: new { culture = new SiteCultureConstraint(AppConfig.Sitename) }
+                );
+
+            route = routes.MapRoute(
+                name: "SharedBoard",
+                url: "{culture}/ProductBoards/SharedBoard/{boardId}",
+                defaults: new { culture = defaultCulture.Name, controller = "ProductBoards", action = "SharedBoard", boardId = "" },
+                constraints: new { culture = new SiteCultureConstraint(AppConfig.Sitename) }
+                );
+
+            route = routes.MapRoute(
                 name: "ProductBoardDetails",
-                url: "{culture}/Account/{nodeAlias}/{boardId}",
+                url: "{culture}/ProductBoards/EditBoard/{boardId}",
                 defaults: new { culture = defaultCulture.Name, controller = "ProductBoards", action = "Details" },
                 constraints: new { culture = new SiteCultureConstraint(AppConfig.Sitename), nodeAlias = new OptionalRouteConstraint(new RegexRouteConstraint(@"[\w\d_-]*")) }
                 );
@@ -50,6 +77,20 @@ namespace ShawContract
                 defaults: new { culture = defaultCulture.Name, controller = "ProductBoards", action = "Index"},
                 constraints: new { culture = new SiteCultureConstraint(AppConfig.Sitename), nodeAlias = new OptionalRouteConstraint(new RegexRouteConstraint(@"[\w\d_-]*")) }
                 );
+
+            route = routes.MapRoute(
+                name: "OrderHistory",
+                url: "{culture}/OrderHistory/Orders",
+                defaults: new { culture = defaultCulture.Name, controller = "OrderHistory", action = "Index" },
+                constraints: new { culture = new SiteCultureConstraint(AppConfig.Sitename), nodeAlias = new OptionalRouteConstraint(new RegexRouteConstraint(@"[\w\d_-]*")) }
+                );
+
+            route = routes.MapRoute(
+              name: "ProductPageDetails",
+              url: "{culture}/Product/{inventoryType}/{nodeAlias}",
+              defaults: new { culture = defaultCulture.Name, controller = "Product", action = "Details" },
+              constraints: new { culture = new SiteCultureConstraint(AppConfig.Sitename), nodeAlias = new OptionalRouteConstraint(new RegexRouteConstraint(@"[\w\d_-]*")) }
+              );
 
             route = routes.MapRoute(
                 name: "BlogPageDetails",
@@ -77,6 +118,13 @@ namespace ShawContract
                 url: "{culture}/Cart/{action}",
                 defaults: new { culture = defaultCulture.Name, controller = "Cart", action = "Index" },
                 constraints: new { culture = new SiteCultureConstraint(AppConfig.Sitename) }
+            );
+
+            route = routes.MapRoute(
+              name: "Checkout",
+              url: "{culture}/Checkout/{action}",
+              defaults: new { culture = defaultCulture.Name, controller = "Checkout", action = "Index" },
+              constraints: new { culture = new SiteCultureConstraint(AppConfig.Sitename) }
             );
 
             route = routes.MapRoute(

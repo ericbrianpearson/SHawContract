@@ -9,8 +9,5 @@ namespace ShawContract.Providers.PDMS.Models
 
         [JsonProperty("colorName")]
         public string ColorName { get; set; }
-
-        [JsonProperty("imagePath")]
-        public string ImageUrl { get; set; }
     }
 }

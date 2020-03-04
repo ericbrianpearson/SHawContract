@@ -30,7 +30,8 @@ namespace ShawContract.Controllers.Widgets
                 ImageUrl = properties.ImageUrl,
                 ButtonText = properties.ButtonText,
                 ButtonUrl = properties.ButtonUrl,
-                TextBoxAlignment = properties.TextBoxAlignment
+                TextBoxAlignment = properties.TextBoxAlignment,
+                IsFullWidth = properties.IsFullWidth
             });
         }
     }

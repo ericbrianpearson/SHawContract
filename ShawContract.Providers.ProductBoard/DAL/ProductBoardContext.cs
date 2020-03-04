@@ -7,6 +7,7 @@ namespace ShawContract.Providers.ProductBoard.DAL
     {
         public DbSet<Models.ProductBoard> ProductBoards { get; set; }
         public DbSet<Models.ProductBoardItem> ProductBoardItems { get; set; }
+        public DbSet<Models.Visitor> Visitors { get; set; }
 
         public ProductBoardContext() : base(nameOrConnectionString: "ProductBoardsConnection")
         { }

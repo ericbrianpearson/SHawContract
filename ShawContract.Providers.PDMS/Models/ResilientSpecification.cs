@@ -13,5 +13,11 @@ namespace ShawContract.Providers.PDMS.Models
 
         [JsonProperty("installationGrade")]
         public string Installation { get; set; }
+
+        [JsonProperty("actualDimensions")]
+        public Size ActualDimensions { get; set; }
+
+        [JsonProperty("inventorySubType")]
+        public string ProductSubType { get; set; }
     }
 }

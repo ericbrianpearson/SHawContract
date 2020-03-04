@@ -1,20 +1,17 @@
-﻿using System.Globalization;
-using System.Web.Mvc;
-using Autofac;
+﻿using Autofac;
 using Autofac.Integration.Mvc;
 using AutoMapper;
-using ShawContract.Application.Contracts.Gateways;
 using ShawContract.Application.Contracts.Infrastructure;
 using ShawContract.Application.Contracts.Services;
 using ShawContract.Application.Services;
 using ShawContract.Infrastructure;
 using ShawContract.Providers.Kentico;
-using ShawContract.Providers.ProductBoard.Config;
-using ShawContract.Utils;
 using ShawContract.Providers.Kontent.Config;
-using ShawContract.Providers.Kontent.KontentHandler;
-using ShawContract.Providers.Kontent.Interfaces;
-using ShawContract.Application.Contracts.Gateways;
+using ShawContract.Providers.ProductBoard.Config;
+using ShawContract.Providers.ShawNow.Config;
+using ShawContract.Utils;
+using System.Globalization;
+using System.Web.Mvc;
 
 namespace ShawContract.Config
 {
@@ -30,7 +27,16 @@ namespace ShawContract.Config
             builder.Register(c => AutoMapperConfig.RegisterAutoMappings()).As<IMapper>()
                 .InstancePerRequest();
 
-            builder.RegisterType<BlogPageGateway>().As<IBlogPageGateway>()
+            builder.RegisterType<ContactUsService>().As<IContactUsService>()
+                .InstancePerRequest();
+
+            builder.RegisterType<MailingClientService>().As<IMailingClientService>()
+                .InstancePerRequest();
+
+            builder.RegisterType<MailingService>().As<IMailingService>()
+                .InstancePerRequest();
+
+            builder.RegisterType<ContactService>().As<IContactService>()
                 .InstancePerRequest();
 
             builder.RegisterType<PersonaService>().As<IPersonaService>()
@@ -48,12 +54,6 @@ namespace ShawContract.Config
             builder.RegisterType<ShoppingCartService>().As<IShoppingCartService>()
                 .InstancePerRequest();
 
-            builder.RegisterType<FileManagerService>().As<IFileManagerService>()
-                .InstancePerRequest(); //unnecessary ; out of scope
-
-            builder.RegisterType<MediaLibraryFileService>().As<IMediaLibraryFileService>()
-                .InstancePerRequest(); //unnecessary ; out of scope
-
             builder.RegisterType<ConfigurationService>().As<IConfigurationService>()
                 .SingleInstance();
 
@@ -68,6 +68,12 @@ namespace ShawContract.Config
             builder.RegisterType<ProductBoardService>().As<IProductBoardService>()
                 .InstancePerRequest();
 
+            builder.RegisterType<ProductService>().As<IProductsService>()
+               .InstancePerRequest();
+
+            builder.RegisterType<HomePageService>().As<IHomePageService>()
+              .InstancePerRequest();
+
             builder.RegisterType<SiteContextService>().As<ISiteContextService>()
                 .WithParameter((parameter, context) => parameter.Name == "currentCulture",
                     (parameter, context) => CultureInfo.CurrentUICulture.Name)
@@ -80,6 +86,7 @@ namespace ShawContract.Config
             builder.RegisterKenticoSources();
             builder.RegisterProductBoardServices();
             builder.RegisterKontentServices();
+            builder.RegisterShawNowServices();
 
             // Set MVC DI resolver to use our Autofac container
             DependencyResolver.SetResolver(new AutofacDependencyResolver(builder.Build()));

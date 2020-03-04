@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShawContract.Providers.Sale
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShawContract.Providers.ProductBoard", "ShawContract.Providers.ProductBoard\ShawContract.Providers.ProductBoard.csproj", "{D49DE124-2043-43FD-BC89-8E459B17CAA8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShawContract.Providers.ShawNow", "ShawContract.Providers.ShawNow\ShawContract.Providers.ShawNow.csproj", "{BE14FF69-5136-47C0-8A6B-76374BC0A81A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,10 @@ Global
 		{D49DE124-2043-43FD-BC89-8E459B17CAA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D49DE124-2043-43FD-BC89-8E459B17CAA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D49DE124-2043-43FD-BC89-8E459B17CAA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE14FF69-5136-47C0-8A6B-76374BC0A81A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE14FF69-5136-47C0-8A6B-76374BC0A81A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE14FF69-5136-47C0-8A6B-76374BC0A81A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE14FF69-5136-47C0-8A6B-76374BC0A81A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

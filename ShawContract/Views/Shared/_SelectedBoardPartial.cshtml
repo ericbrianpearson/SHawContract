@@ -1,0 +1,43 @@
+﻿@using ShawContract.Models.ProductBoards
+
+@model SelectedBoardViewModel
+
+<div class="cart-items-wrapper">
+    <input type="hidden" id="board-url" value="@Model.BoardUrl" data-url-board="@Model.BoardUrl" />
+    <input type="hidden" id="board-last-update-date" value="@Model.Board.DisplayDate"/>
+
+    @for (int i = 0; i < Model.Board.ProductBoardItems.Count; i++)
+    {
+        <div class="media cart-item">
+            <a class="style-img" href="@Url.Action("Details", "Product", new { inventoryType = "Carpet", nodeAlias="city-central-tile".Trim().Replace(' ', '-'), colorNumber= @Model.Board.ProductBoardItems[i].ColorNumber})"><img class="mr-3" src="@Model.Board.ProductBoardItems[i].ImageUrl" alt="Style Name"></a>
+            <div class="media-body">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <p class="style-name"><a href="@Url.Action("Details", "Product", new { inventoryType = "Carpet", nodeAlias="city-central-tile".Trim().Replace(' ', '-'), colorNumber= @Model.Board.ProductBoardItems[i].ColorNumber})">@Model.Board.ProductBoardItems[i].StyleName @Model.Board.ProductBoardItems[i].StyleNumber</a></p>
+                        <p class="color-name">@Model.Board.ProductBoardItems[i].ColorName @Model.Board.ProductBoardItems[i].ColorNumber</p>
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn remove-style-sample" onclick="removeFromBoard(`@Model.Board.ProductBoardItems[i].ID.ToString()`, `@Model.Board.ID.ToString()`)"><i class="fal fa-times"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    function removeFromBoard(id, boardID) {
+        $.ajax({
+            url: '@Url.Action("RemoveItem", "ProductBoardsDropDown")',
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        itemId: id,
+                        boardId: boardID
+                    },
+                    success: function (data) {
+                        $('#items-partial').html(data);
+                    }
+            });
+    }
+</script>

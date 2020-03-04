@@ -22,10 +22,14 @@ namespace ShawContract.Controllers.Widgets
             return PartialView("Widgets/_SingleFloatingImageWidget", new SingleFloatingImageWidgetViewModel()
             {
                 Title = properties.Title,
+                Subtitle = properties.Subtitle,
+                WindowTitle = properties.WindowTitle,
                 Description = properties.Description,
                 PhotoCredit = properties.PhotoCredit,
                 ImageUrl = properties.ImageUrl,
-                ImageAlignment = properties.ImageAlignment
+                ImageAlignment = properties.ImageAlignment,
+                ButtonText = properties.ButtonText,
+                ButtonUrl = properties.ButtonUrl
             });
         }
     }

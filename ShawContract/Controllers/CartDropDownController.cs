@@ -17,34 +17,30 @@ namespace ShawContract.Controllers
         // GET: CartDropDown
         public ActionResult Cart()
         {
-            var cartModel = GetCartViewModel();
+            var cartModel = GetCartDropDownViewModel();
 
             return PartialView("~/Views/Cart/_CartDropDown.cshtml", cartModel);
         }
 
         [HttpPost]
-        [ButtonNameAction]
         public ActionResult RemoveFromCartDropDown(int removeItemDropDown)
         {
             ShoppingCartService.RemoveItemFromCart(removeItemDropDown);
 
-            var cartModel = GetCartViewModel();
+            var cartModel = GetCartDropDownViewModel();
 
             return PartialView("~/Views/Cart/_CartDropDown.cshtml", cartModel);
         }
 
-        [HttpPost]
-        [ButtonNameAction]
+
         public ActionResult Checkout()
         {
-            var cartModel = GetCartViewModel();
-
-            return PartialView("~/Views/Cart/_CartDropDown.cshtml", cartModel);
+            return RedirectToAction("Index", "Checkout");
         }
 
-        private CartDropDownViewModel GetCartViewModel()
+        private CartDropDownViewModel GetCartDropDownViewModel()
         {
-            var cart = ShoppingCartService.GetDropDownShoppingCart();
+            var cart = ShoppingCartService.GetCurrentShoppingCart();
             var cartModel = CartDropDownViewModel.BuildCartDropDownViewModel(cart);
 
             return cartModel;

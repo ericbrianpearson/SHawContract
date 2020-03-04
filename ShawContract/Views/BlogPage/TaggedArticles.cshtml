@@ -21,17 +21,8 @@
         </div>
     </section>
 
-    <!-- Intro Section: Start-->
-    <!-- Blog Section: Start -->
-    <section class="blogs-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-
-                @{Html.RenderPartial("_BlogArticlesPartial", new BlogArticlesViewModel() { NodeAlias = Model.Metadata.Title, Articles = Model.Data.Articles.ToList() });}
-            </div>
-        </div>
-    </section>
-    <!-- Blog Section: End -->
+    @{Html.RenderPartial("_BlogArticlesPartial", new BlogArticlesViewModel() { NodeAlias = Model.Metadata.Title, Articles = Model.Data.Articles.ToList() });}
+    
     <!--Hospitality CTA Setion: Start-->
     <section class="widget cta-block now-viewable m-0">
         <div class="container">
@@ -58,9 +49,11 @@
     <!--Hospitality CTA Setion: End-->
 </main>
 
-<script>
-    function loadAll() {
-        $("#load-btn").hide();
-        $(".article-hidden").show();
-    }
-</script>
+@section ViewScript {
+    <script type="text/javascript">
+        function loadAll() {
+            $("#load-btn").hide();
+            $(".article-hidden").show();
+        }
+    </script>
+}

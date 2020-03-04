@@ -1,6 +1,7 @@
 ﻿window.kentico = window.kentico || {};
 
 window.kentico.updatableFormHelper = (function () {
+
     // Duration for which user must not type anything in order for the form to be submitted.
     var KEY_UP_DEBOUNCE_DURATION = 800;
 
@@ -73,7 +74,7 @@ window.kentico.updatableFormHelper = (function () {
             return;
         }
 
-        // If form is not updatable then do nothing
+        // If form is not updatable then do nothing 
         var elementIdSelector = form.getAttribute("data-ktc-ajax-update");
         if (!elementIdSelector) {
             return;
@@ -117,7 +118,7 @@ window.kentico.updatableFormHelper = (function () {
         var form = event.target;
         var formData = new FormData(form);
 
-        var onResponse = function (event) {
+        var onResponse = function(event) {
             var contentType = event.target.getResponseHeader("Content-Type");
 
             if (contentType.indexOf("application/json") === -1) {

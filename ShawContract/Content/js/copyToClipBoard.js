@@ -5,41 +5,27 @@
 // Internet Explorer: The clipboard feature may be disabled by
 // an administrator. By default a prompt is shown the first
 // time the clipboard is used (per session).
-(function() {
-  if(!window) {
-    return;
+var __copyToClipboard = function copyToClipboard(text) {
+  if (window.clipboardData && window.clipboardData.setData) {
+    // Internet Explorer-specific code path to prevent textarea being shown while dialog is visible.
+    return clipboardData.setData("Text", text);
+
   }
-
-  function copyToClipboard(text) {
-    if (window.clipboardData && window.clipboardData.setData) {
-      // Internet Explorer-specific code path to prevent textarea being shown while dialog is visible.
-      return clipboardData.setData("Text", text);
-
+  else if (document.queryCommandSupported && document.queryCommandSupported("copy")) {
+    var textarea = document.createElement("textarea");
+    textarea.textContent = text;
+    textarea.style.position = "fixed";  // Prevent scrolling to bottom of page in Microsoft Edge.
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+      return document.execCommand("copy");  // Security exception may be thrown by some browsers.
     }
-    else if (document.queryCommandSupported && document.queryCommandSupported("copy")) {
-      var textarea = document.createElement("textarea");
-      textarea.textContent = text;
-      textarea.style.position = "fixed";  // Prevent scrolling to bottom of page in Microsoft Edge.
-      document.body.appendChild(textarea);
-      textarea.select();
-      try {
-        return document.execCommand("copy");  // Security exception may be thrown by some browsers.
-      }
-      catch (ex) {
-        console.warn("Copy to clipboard failed.", ex);
-        return false;
-      }
-      finally {
-        document.body.removeChild(textarea);
-      }
+    catch (ex) {
+      console.warn("Copy to clipboard failed.", ex);
+      return false;
+    }
+    finally {
+      document.body.removeChild(textarea);
     }
   }
-
-  var elements = document.querySelectorAll(".copy-to-clipboard");
-  for(var i=0; i < elements.length; i++) {
-    elements[i].addEventListener('click', function() {
-      copyToClipboard(window.location.href);
-    })
-  }
-}
-)();
+};

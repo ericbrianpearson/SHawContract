@@ -13,8 +13,5 @@ namespace ShawContract.Providers.PDMS.Models
 
         [JsonProperty("tuftedWeight")]
         public MeasuringSystem TuftedWeight { get; set; }
-
-        [JsonProperty("combinedWarrantyLink")]
-        public string CombinedWarantyLink { get; set; }
     }
 }

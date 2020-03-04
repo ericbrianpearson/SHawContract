@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="https://webservices.shawonline.com/SampleOrderService/v1_0" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="https://webservices.shawonline.com/SampleOrderService/v1_0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="WSHttpBinding_IOrderSample_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp />
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <sp:SignedSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:WssUsernameToken10 />
+              </wsp:Policy>
+            </sp:UsernameToken>
+          </wsp:Policy>
+        </sp:SignedSupportingTokens>
+        <sp:Wss11 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy />
+        </sp:Wss11>
+        <sp:Trust10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:MustSupportIssuedTokens />
+            <sp:RequireClientEntropy />
+            <sp:RequireServerEntropy />
+          </wsp:Policy>
+        </sp:Trust10>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="https://webservices.shawonline.com/SampleOrderService/v1_0/Imports">
+      <xsd:import schemaLocation="https://webservices-qa.shawonline.com/SampleOrderService.svc?xsd=xsd0" namespace="https://webservices.shawonline.com/SampleOrderService/v1_0" />
+      <xsd:import schemaLocation="https://webservices-qa.shawonline.com/SampleOrderService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="https://webservices-qa.shawonline.com/SampleOrderService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Shaw.OrdersServiceBUS" />
+      <xsd:import schemaLocation="https://webservices-qa.shawonline.com/SampleOrderService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Shaw.OrdersService.DTO" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IOrderSample_CreateSampleOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateSampleOrder" />
+  </wsdl:message>
+  <wsdl:message name="IOrderSample_CreateSampleOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateSampleOrderResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IOrderSample">
+    <wsdl:operation name="CreateSampleOrder">
+      <wsdl:input wsaw:Action="https://webservices.shawonline.com/SampleOrderService/v1_0/IOrderSample/CreateSampleOrder" message="tns:IOrderSample_CreateSampleOrder_InputMessage" />
+      <wsdl:output wsaw:Action="https://webservices.shawonline.com/SampleOrderService/v1_0/IOrderSample/CreateSampleOrderResponse" message="tns:IOrderSample_CreateSampleOrder_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSHttpBinding_IOrderSample" type="tns:IOrderSample">
+    <wsp:PolicyReference URI="#WSHttpBinding_IOrderSample_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateSampleOrder">
+      <soap12:operation soapAction="https://webservices.shawonline.com/SampleOrderService/v1_0/IOrderSample/CreateSampleOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>

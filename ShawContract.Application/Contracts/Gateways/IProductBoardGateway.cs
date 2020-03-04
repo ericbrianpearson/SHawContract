@@ -7,9 +7,9 @@ namespace ShawContract.Application.Contracts.Gateways
 {
     public interface IProductBoardGateway
     {
-        Task<IEnumerable<ProductBoard>> GetProductBoardsAsync(string userId);
+        IEnumerable<ProductBoard> GetProductBoards(string userId);
 
-        Task<Application.Models.ProductBoard> GetProductBoardAsync(Guid boardID);
+        Application.Models.ProductBoard GetProductBoard(Guid boardID);
 
         Task<Guid> CreateProductBoardAsync(ProductBoard productBoard);
 
@@ -21,6 +21,6 @@ namespace ShawContract.Application.Contracts.Gateways
 
         Task RemoveProductBoardItemAsync(Guid boardId, Guid productId);
 
-        Task AddUserToViewersLog(Guid boardId, Application.Models.Visitor visitor);
+        void AddUserToViewersLog(Guid boardId, Application.Models.Visitor visitor);
     }
 }

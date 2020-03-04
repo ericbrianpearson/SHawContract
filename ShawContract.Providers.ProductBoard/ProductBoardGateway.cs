@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using ShawContract.Application.Contracts.Gateways;
-
-using ShawContract.Application.Models;
 using ShawContract.Providers.ProductBoard.DAL;
 
 namespace ShawContract.Providers.ProductBoard
@@ -17,21 +14,7 @@ namespace ShawContract.Providers.ProductBoard
         private ProductBoardContext ProductBoardContext { get; }
         private IMapper Mapper { get; }
 
-        private static List<Models.ProductBoardItem> MockedBoardItems = new List<Models.ProductBoardItem>
-                {
-                    new Models.ProductBoardItem() { StyleName = "Product name 1", ColorName = "Color name 1", Notes = "Some notes here", StyleNumber = "5T3321", ColorNumber = "011105", ID = Guid.NewGuid(), ImageUrl = "https://images.unsplash.com/photo-1541233349642-6e425fe6190e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" },
-                    new Models.ProductBoardItem() { StyleName = "Product name 2", ColorName = "Color name 2", Notes = "Some notes here", StyleNumber = "5T3323", ColorNumber = "011106", ID = Guid.NewGuid(), ImageUrl = "https://images.unsplash.com/photo-1541233349642-6e425fe6190e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" },
-                    new Models.ProductBoardItem() { StyleName = "Product name 3", ColorName = "Color name 3", Notes = "Some notes here", StyleNumber = "5T3324", ColorNumber = "011107", ID = Guid.NewGuid(), ImageUrl = "https://images.unsplash.com/photo-1541233349642-6e425fe6190e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" },
-                    new Models.ProductBoardItem() { StyleName = "Product name 4", ColorName = "Color name 4", Notes = "Some notes here", StyleNumber = "5T3325", ColorNumber = "011108", ID = Guid.NewGuid(), ImageUrl = "https://images.unsplash.com/photo-1541233349642-6e425fe6190e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" }
-                };
-
-        private static List<Models.ProductBoard> MockedBoards = new List<Models.ProductBoard>()
-        {
-           new Models.ProductBoard() { BoardName = "Some test board 1", ID = Guid.NewGuid(), Notes = "Description description on display, which board is mightiest of them all?", LoggedUserRequiredToAccess = false, UserId = "TestUserId", ProductBoardItems = MockedBoardItems },
-           new Models.ProductBoard() { BoardName = "Some test board 2", ID = Guid.NewGuid(), Notes = "Description description on display, which board is mightiest of them all?", LoggedUserRequiredToAccess = false, UserId = "TestUserId", ProductBoardItems = MockedBoardItems },
-           new Models.ProductBoard() { BoardName = "Some test board 3", ID = Guid.NewGuid(), Notes = "Description description on display, which board is mightiest of them all?", LoggedUserRequiredToAccess = true, UserId = "TestUserId", ProductBoardItems = MockedBoardItems }
-        };
-
+      
         public ProductBoardGateway(IMapper mapper)
         {
             this.ProductBoardContext = new ProductBoardContext();
@@ -53,10 +36,8 @@ namespace ShawContract.Providers.ProductBoard
             }
             try
             {
-                //this.ProductBoardContext.ProductBoards.Add(board);
-                //await this.ProductBoardContext.SaveChangesAsync();
-
-                MockedBoards.Add(board);
+                this.ProductBoardContext.ProductBoards.Add(board);
+                await this.ProductBoardContext.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -66,17 +47,20 @@ namespace ShawContract.Providers.ProductBoard
             return board.ID;
         }
 
-        public async Task<Application.Models.ProductBoard> GetProductBoardAsync(Guid boardID)
+        public Application.Models.ProductBoard GetProductBoard(Guid boardID)
         {
             try
             {
-                //var item = await this.ProductBoardContext.ProductBoards
-                //.Where(b => b.ID == boardID)
-                //.Include(b => b.ProductBoardItems)
-                //.FirstOrDefaultAsync();
-                var item = MockedBoards.FirstOrDefault(b => b.ID == boardID);
+                var item =  this.ProductBoardContext.ProductBoards
+                .Where(b => b.ID == boardID)
+                .Include(b => b.ProductBoardItems)
+                .Include(b => b.Visitors)
+                .FirstOrDefault();
+                item.Visitors = item.Visitors.OrderByDescending(i => i.DateVisited).ToList();
 
-                return this.Mapper.Map<Application.Models.ProductBoard>(item);
+                var mappedBoard = this.Mapper.Map<Application.Models.ProductBoard>(item);
+                AddDisplayDate(mappedBoard);
+                return mappedBoard;
             }
             catch (Exception ex)
             {
@@ -84,16 +68,18 @@ namespace ShawContract.Providers.ProductBoard
             }
         }
 
-        public async Task<IEnumerable<Application.Models.ProductBoard>> GetProductBoardsAsync(string userId)
+        public IEnumerable<Application.Models.ProductBoard> GetProductBoards(string userId)
         {
             try
             {
-                //var items = await this.ProductBoardContext.ProductBoards
-                //.Where(b => b.UserId == userId)
-                //.Include(b => b.ProductBoardItems)
-                //.ToListAsync();               
-                var mapped = this.Mapper.Map<List<Application.Models.ProductBoard>>(MockedBoards);
-                return mapped;
+                var items = this.ProductBoardContext.ProductBoards
+               .Where(b => b.UserId == userId)
+               .Include(b => b.ProductBoardItems)
+               .Include(b => b.Visitors)
+               .ToList();
+                var mappedItems = this.Mapper.Map<List<Application.Models.ProductBoard>>(items);
+                mappedItems.ForEach(i => AddDisplayDate(i));
+                return mappedItems;
             }
             catch (Exception ex)
             {
@@ -105,19 +91,18 @@ namespace ShawContract.Providers.ProductBoard
         {
             try
             {
-                //var board = await this.ProductBoardContext.ProductBoards
-                //    .Where(p => p.ID == productBoard.ID)
-                //    .FirstOrDefaultAsync();
-
-                var board = MockedBoards.FirstOrDefault(b => b.ID == productBoard.ID);
+                var board = await this.ProductBoardContext.ProductBoards
+                  .Where(p => p.ID == productBoard.ID)
+                  .FirstOrDefaultAsync();
+                
                 var mappedBoard = Mapper.Map<Models.ProductBoard>(productBoard);
                 board.ModifiedOn = DateTime.UtcNow;
                 board.LoggedUserRequiredToAccess = productBoard.LoggedUserRequiredToAccess;
                 board.Notes = productBoard.Notes;
                 board.BoardName = productBoard.BoardName;
-                board.ProductBoardItems = mappedBoard.ProductBoardItems;
+                UpdateBoardItems(productBoard.ProductBoardItems, board.ProductBoardItems);
 
-                //await this.ProductBoardContext.SaveChangesAsync();
+                await this.ProductBoardContext.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -125,22 +110,27 @@ namespace ShawContract.Providers.ProductBoard
             }
         }
 
-        public async Task AddProductBoardItemAsync(Guid boardId, ProductBoardItem productBoardItem)
+        private void UpdateBoardItems(List<Application.Models.ProductBoardItem> productBoardItems, ICollection<Models.ProductBoardItem> oldBoardItems)
+        {
+            foreach (var item in productBoardItems)
+            {
+                oldBoardItems.FirstOrDefault(i => i.ID == item.ID).Notes = item.Notes;
+            }
+        }
+
+        public async Task AddProductBoardItemAsync(Guid boardId, Application.Models.ProductBoardItem productBoardItem)
         {
             try
             {
-                var productBoard = MockedBoards.FirstOrDefault(b => b.ID == boardId);
+                var productBoard = await this.ProductBoardContext.ProductBoards.FirstOrDefaultAsync(p => p.ID == boardId);
 
-                //var productBoard = await this.ProductBoardContext.ProductBoards.FirstOrDefaultAsync(p => p.ID == boardId);
                 var productItemToAdd = this.Mapper.Map<Models.ProductBoardItem>(productBoardItem);
                 productItemToAdd.ID = Guid.NewGuid();
-                productItemToAdd.ModifiedOn = DateTime.UtcNow;
                 productItemToAdd.CreatedOn = DateTime.UtcNow;
-                //productBoard.ProductBoardItems.Add(productItemToAdd);
-
+                productItemToAdd.ModifiedOn = productItemToAdd.CreatedOn;
                 productBoard.ProductBoardItems.Add(productItemToAdd);
 
-                //await this.ProductBoardContext.SaveChangesAsync();
+                await this.ProductBoardContext.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -152,12 +142,11 @@ namespace ShawContract.Providers.ProductBoard
         {
             try
             {
-                var productBoard = MockedBoards.FirstOrDefault(b => b.ID == boardId);
-                //var productBoard = await this.ProductBoardContext.ProductBoards.FirstOrDefaultAsync(p => p.ID == boardId);
+                var productBoard = await this.ProductBoardContext.ProductBoards.FirstOrDefaultAsync(p => p.ID == boardId);
                 var productBoardItem = productBoard.ProductBoardItems.FirstOrDefault(i => i.ID == productId);
-                //this.ProductBoardContext.ProductBoardItems.Remove(productBoardItem);
+                this.ProductBoardContext.ProductBoardItems.Remove(productBoardItem);
                 productBoard.ProductBoardItems.Remove(productBoardItem);
-                //await this.ProductBoardContext.SaveChangesAsync();
+                await this.ProductBoardContext.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -169,16 +158,13 @@ namespace ShawContract.Providers.ProductBoard
         {
             try
             {
-                //Models.ProductBoard productBoard = this.ProductBoardContext
-                //    .ProductBoards
-                //    .Where(b => b.ID == productBoardID)
-                //    .FirstOrDefault();
+                Models.ProductBoard productBoard = this.ProductBoardContext
+                    .ProductBoards
+                    .Where(b => b.ID == productBoardID)
+                    .FirstOrDefault();
 
-                //this.ProductBoardContext.ProductBoards.Remove(productBoard);
-                //await this.ProductBoardContext.SaveChangesAsync();
-
-                var boardToRemove = MockedBoards.FirstOrDefault(b => b.ID == productBoardID);
-                MockedBoards.Remove(boardToRemove);
+                this.ProductBoardContext.ProductBoards.Remove(productBoard);
+                await this.ProductBoardContext.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -186,14 +172,28 @@ namespace ShawContract.Providers.ProductBoard
             }
         }
 
-        public async Task AddUserToViewersLog(Guid boardId, Application.Models.Visitor visitor)
+        public void AddUserToViewersLog(Guid boardId, Application.Models.Visitor visitor)
         {
             var board = this.ProductBoardContext.ProductBoards
                             .Where(b => b.ID == boardId)
+                            .Include(b => b.Visitors)
                             .FirstOrDefault();
 
-            board.Visitors.Add(Mapper.Map<Models.Visitor>(visitor));
-            await this.ProductBoardContext.SaveChangesAsync();
+            visitor.Id = Guid.NewGuid();
+            visitor.DateVisited = DateTime.UtcNow;
+
+            if (board != null)
+            {
+                board.Visitors.Add(Mapper.Map<Models.Visitor>(visitor));
+                this.ProductBoardContext.SaveChanges();
+            }
+        }
+        private void AddDisplayDate(Application.Models.ProductBoard mappedBoard)
+        {
+            var date = mappedBoard.LastModied.Hours < 1 ? string.Format("Last Updated: {0} minutes ago", mappedBoard.LastModied.Minutes)
+           : string.Format("Last Updated: {0} hours ago", mappedBoard.LastModied.Hours);
+            mappedBoard.DisplayDate = mappedBoard.LastModied.Days < 1 ? date
+                          : string.Format("Last Updated: {0}", mappedBoard.ModifiedOn.ToString("MMMM dd"));
         }
     }
 }

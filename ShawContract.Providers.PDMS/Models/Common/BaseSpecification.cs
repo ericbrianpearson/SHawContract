@@ -19,7 +19,7 @@ namespace ShawContract.Providers.PDMS.Models
         public string StyleNumber { get; set; }
 
         [JsonProperty("productSize")]
-        public MeasuringSystem ProductSize { get; set; }
+        public Size ProductSize { get; set; }
 
         [JsonProperty("construction")]
         public string Construction { get; set; }
@@ -39,11 +39,17 @@ namespace ShawContract.Providers.PDMS.Models
         [JsonProperty("pdmsLink")]
         public string LinkToFullSpec { get; set; }
 
+        [JsonProperty("roomScene")]
+        public FeatureImage FeatureImage { get; set; }
+
         [JsonProperty("areaPerCarton")]
         public MeasuringSystem AreaPerCarton { get; set; }
 
         [JsonProperty("attributes")]
         public IEnumerable<Attribute> Sustainability { get; set; }
+
+        [JsonProperty("recommendedInstallationMethods")]
+        public IEnumerable<string> RecommendedInstallationMethods { get; set; }
 
         [JsonProperty("kenticoCloudData")]
         public KontentData KontentData { get; set; }

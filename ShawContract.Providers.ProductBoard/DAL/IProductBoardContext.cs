@@ -7,5 +7,6 @@ namespace ShawContract.Providers.ProductBoard.DAL
         DbSet<Models.ProductBoard> ProductBoards { get; set; }
 
         DbSet<Models.ProductBoardItem> ProductBoardItems { get; set; }
+        DbSet<Models.Visitor> Visitors { get; set; }
     }
 }

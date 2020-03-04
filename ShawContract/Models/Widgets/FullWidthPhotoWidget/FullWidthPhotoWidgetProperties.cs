@@ -23,5 +23,8 @@ namespace ShawContract.Models.Widgets.FullWidthPhotoWidget
         [EditingComponent(DropDownComponent.IDENTIFIER, Label = "Text Box Alignment", Order = 0)]
         [EditingComponentProperty(nameof(DropDownProperties.DataSource), "left; Text Box Left\r\nright; Text Box Right")]
         public string TextBoxAlignment { get; set; } = "left";
+
+        [EditingComponent(CheckBoxComponent.IDENTIFIER, DefaultValue = false, Label = "Full width", Order = 4)]
+        public bool IsFullWidth { get; set; }
     }
 }

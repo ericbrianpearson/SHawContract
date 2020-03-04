@@ -20,7 +20,6 @@ namespace ShawContract.UnitTests.Services.Kontent
         {
             var blogGateway = new BlogGateway(MockedKontentProvider.GetKontentProvider(),
                               new MockedSiteContext(),
-                              new CachingService(),
                               AutoMapperConfig.RegisterAutoMappings());
 
             var items = await blogGateway.GetAllBlogsAsync();
@@ -35,7 +34,6 @@ namespace ShawContract.UnitTests.Services.Kontent
             string seoUrl = "seeking-the-horizon";
             var blogGateway = new BlogGateway(MockedKontentProvider.GetKontentProvider(), 
                               new MockedSiteContext(),
-                              new CachingService(),
                               AutoMapperConfig.RegisterAutoMappings());
 
             var blog = await blogGateway.GetBlogAsync(seoUrl);
@@ -47,7 +45,6 @@ namespace ShawContract.UnitTests.Services.Kontent
         {
             var blogGateway = new BlogGateway(MockedKontentProvider.GetKontentProvider(),
                               new MockedSiteContext(),
-                              new CachingService(),
                               AutoMapperConfig.RegisterAutoMappings());
 
             var taxonomyTerms = await blogGateway.GetTaxonomyAsync();
@@ -62,7 +59,6 @@ namespace ShawContract.UnitTests.Services.Kontent
             string segment = "healthcare";
             var blogGateway = new BlogGateway(MockedKontentProvider.GetKontentProvider(),
                               new MockedSiteContext(),
-                              new CachingService(),
                               AutoMapperConfig.RegisterAutoMappings());
 
             var blog = await blogGateway.FilterByTagsAsync(persona, segment);
@@ -76,7 +72,6 @@ namespace ShawContract.UnitTests.Services.Kontent
             string segment = "healthcare";
             var blogGateway = new BlogGateway(MockedKontentProvider.GetKontentProvider(),
                               new MockedSiteContext(),
-                              new CachingService(),
                               AutoMapperConfig.RegisterAutoMappings());
 
             var blogByPersona = await blogGateway.ArticlesByPersonaAsync(persona);

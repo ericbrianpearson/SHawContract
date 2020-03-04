@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using CMS.DocumentEngine;
+using CMS.Ecommerce;
 using ShawContract.Application.Contracts.Infrastructure;
 
 namespace ShawContract.Providers.Kentico.PageHandler
@@ -45,5 +48,15 @@ namespace ShawContract.Providers.Kentico.PageHandler
                 .TopN(1)
                 .WhereEquals("NodeAlias", pageAlias);
         }
+
+        public List<ProductVariant> GetVariants(int nodeSKUId)
+        {
+            return VariantHelper.GetVariants(nodeSKUId)
+                .OnSite(this.SiteContextService.SiteContextID)               
+                .ToList()
+                .Select(sku => new ProductVariant(sku.SKUID))
+                .ToList();
+        }
+
     }
 }

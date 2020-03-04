@@ -22,26 +22,28 @@
                 <div class="row" id="Boards">
                     @foreach (var board in Model.Data.ProductBoards)
                     {
-                        <div class="product-board-card col-12 col-md-6 col-lg-4 ">
+                        <div class="product-board-card col-12 col-md-6 col-lg-4">
                             <div class="card border-0">
                                 <div class="card-body pl-0">
                                     <div class="image-grid-wrapper">
                                         <div class="image-grid">
                                             @foreach (var product in board.ProductBoardItems)
                                             {
-                                                <img src="@product.ImageUrl"
-                                                     alt="..." data-object-fit>
+                                                <div class="image-wrapper">
+                                                    <img src="@product.ImageUrl"
+                                                         alt="..." data-object-fit>
+                                                </div>
                                             }
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-9">
+                                        <div class="col-8">
                                             <h4 class="heading-4 card-title">
                                                 @board.BoardName
                                             </h4>
                                         </div>
-                                        <div class="col-3 text-right">
-                                            <a href="@Url.Action("Details", "ProductBoards", new { nodeAlias = Model.Metadata.Title, boardId = board.ID.ToString() }, this.Request.Url.Scheme)" class="text-size-small stretched-link text-decoration-none mt-2">
+                                        <div class="col-4 text-right">
+                                            <a href="@Url.Action("EditBoard", "ProductBoards", new { nodeAlias = Model.Metadata.Title, boardId = board.ID.ToString() }, this.Request.Url.Scheme)" class="text-size-small stretched-link text-decoration-none mt-2">
                                                 Edit
                                             </a>
                                         </div>
@@ -61,7 +63,7 @@
 <div class="modal fade text-size-normal" id="createNewBoardModal" data-backdrop="static" tabindex="-1" role="dialog"
          aria-labelledby="createNewBoardLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content p-4 p-md-5">
+            <div class="modal-content">
                     @using (Html.BeginForm("CreateBoard", "ProductBoards", new { nodeAlias = Model.Metadata.Title }, FormMethod.Post, new { @class = "needs-validation" }))
                     {   
                         @Html.AntiForgeryToken()

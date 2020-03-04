@@ -4,8 +4,7 @@ using System.Threading.Tasks;
 using System;
 using ShawContract.Models.ProductBoards;
 using ShawContract.Application.Models;
-using System.Linq;
-using System.Collections.Generic;
+using ShawContract.Utils;
 
 namespace ShawContract.Controllers
 {
@@ -19,13 +18,16 @@ namespace ShawContract.Controllers
         }
 
         // GET: Product boards
-        //[Authorize]
         [HttpGet]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
-        public async Task<ActionResult> MyBoards()
+        public ActionResult MyBoards()
         {
-            var userId = "TestUserId";
-            var productBoards = await ProductBoardService.GetProductBoardsAsync(userId);
+            if (!Request.IsAuthenticated)
+            {
+                return RedirectToAction("RequestSignIn", "Account", new { provider = "", returnUrl = Url.Action("MyBoards", "ProductBoards") });
+            }
+            var productBoards = ProductBoardService.GetProductBoards(this.User.Identity.Name);
+            
             if (productBoards == null) return HttpNotFound();
 
             var boardModel = new ProductBoardsViewModel() { ProductBoards = productBoards };
@@ -34,95 +36,95 @@ namespace ShawContract.Controllers
             return View(model);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
-        public async Task<ActionResult> Details(string nodeAlias, string boardId)
+        public ActionResult EditBoard(string boardId)
         {
-            var board = await ProductBoardService.GetProductBoardAsync(Guid.Parse(boardId));
+            var board = ProductBoardService.GetProductBoard(Guid.Parse(boardId));
             if (board == null) return HttpNotFound();
 
             var boardModel = new ProductBoardDetailsViewModel() { ProductBoard = board };
+            boardModel.BoardUrl = ExtensionMethods.CreateBoardUrl(boardId, MasterPageService.SiteContext.CurrentSiteCulture);
             var model = this.GetPageViewModel(boardModel, "ProductBoardDetails");
 
             return View(model);
 
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateBoard(string nodeAlias,string boardName)
+        public async Task<ActionResult> CreateBoard(string boardName)
         {
-            var userId = "SomeUserId";
-            var board = new ProductBoard() { BoardName = boardName, UserId = userId };
+            var user = CMS.Membership.MembershipContext.AuthenticatedUser;
+
+            var board = new ProductBoard() { BoardName = boardName, UserId = user.Email };
             var result = await ProductBoardService.CreateProductBoardAsync(board);
 
-            return RedirectToAction("MyBoards");
+            return RedirectToAction("EditBoard", new { boardId = result.ToString()});
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditBoard(string nodeAlias, ProductBoard board)
+        public async Task<ActionResult> Edit(ProductBoard board)
         {
-            await ProductBoardService.UpdateProductBoardAsync(board);
-            return RedirectToAction("Details", new { nodeAlias = nodeAlias, boardId = board.ID.ToString() });
+            var user = CMS.Membership.MembershipContext.AuthenticatedUser;
+            if (user.Email.ToLowerInvariant() == board.UserId.ToLowerInvariant())
+            {
+                await ProductBoardService.UpdateProductBoardAsync(board);
+                return RedirectToAction("EditBoard", new { boardId = board.ID.ToString() });
+            }
+
+            return HttpNotFound();
+
         }
 
-        //[Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> RenameBoard(string nodeAlias, string id, string boardName)
+        public async Task<ActionResult> RenameBoard(string id, string boardName)
         {
-            var boardToRename = await ProductBoardService.GetProductBoardAsync(Guid.Parse(id));
+            var boardToRename = ProductBoardService.GetProductBoard(Guid.Parse(id));
             boardToRename.BoardName = boardName;
             await ProductBoardService.UpdateProductBoardAsync(boardToRename);
 
-            return RedirectToAction("Details", new { nodeAlias = nodeAlias, boardId = id });
+            return RedirectToAction("EditBoard", new { boardId = id });
         }
 
-        //[Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> RemoveBoard(string nodeAlias, string boardId)
+        public async Task<ActionResult> RemoveBoard(string boardId)
         {
             await ProductBoardService.DeleteProductBoardAsync(Guid.Parse(boardId));
 
             return RedirectToAction("MyBoards"); 
         }
 
-
-        //[Authorize]
-        public async Task<ActionResult> RemoveItem(string nodeAlias, string boardId, string productId)
+        public async Task<ActionResult> RemoveItem(string boardId, string productId)
         {
             await ProductBoardService.RemoveProductBoardItemAsync(Guid.Parse(boardId), Guid.Parse(productId));
-            var boardModel = new ProductBoardDetailsViewModel() { ProductBoard = await ProductBoardService.GetProductBoardAsync(Guid.Parse(boardId))};
-            var model = GetPageViewModel(boardModel, nodeAlias);
+            var boardModel = new ProductBoardDetailsViewModel() { ProductBoard = ProductBoardService.GetProductBoard(Guid.Parse(boardId))};
+            var model = GetPageViewModel(boardModel, "ProductBoardDetails");
 
-            return View("Details", model);
+            return View("EditBoard", model);
         }
 
-        //Not done yet, may be implemented with kentico smart search
-        //[Authorize]
-        [HttpPost]
-        public JsonResult Search(string term)
+        public ActionResult SharedBoard(string boardId)
         {
-            List<ProductBoardItem> itemsList = new List<ProductBoardItem>()
+            if (Request.IsAuthenticated)
             {
-                new ProductBoardItem(){StyleName = "Search product 1", ColorName = "Blue", Notes = "Some notes here", StyleNumber = "5T3321", ColorNumber = "011105", ID = Guid.NewGuid(), ImageUrl = "https://images.unsplash.com/photo-1541233349642-6e425fe6190e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"},
-                new ProductBoardItem(){StyleName = "test something", ColorName = "Red", Notes = "Some notes here", StyleNumber = "5T3321", ColorNumber = "011105", ID = Guid.NewGuid(), ImageUrl = "https://images.unsplash.com/photo-1541233349642-6e425fe6190e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"},
-                new ProductBoardItem(){StyleName = "resilient", ColorName = "Blue", Notes = "Some notes here", StyleNumber = "5T3321", ColorNumber = "011105", ID = Guid.NewGuid(), ImageUrl = "https://images.unsplash.com/photo-1541233349642-6e425fe6190e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"},
-                new ProductBoardItem(){StyleName = "carpet", ColorName = "purple", Notes = "Some notes here", StyleNumber = "5T3321", ColorNumber = "011105", ID = Guid.NewGuid(), ImageUrl = "https://images.unsplash.com/photo-1541233349642-6e425fe6190e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"},
-                new ProductBoardItem(){StyleName = "bla bla", ColorName = "green", Notes = "Some notes here", StyleNumber = "5T3321", ColorNumber = "011105", ID = Guid.NewGuid(), ImageUrl = "https://images.unsplash.com/photo-1541233349642-6e425fe6190e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"},
-                new ProductBoardItem(){StyleName = "another moket", ColorName = "gray", Notes = "Some notes here", StyleNumber = "5T3321", ColorNumber = "011105", ID = Guid.NewGuid(), ImageUrl = "https://images.unsplash.com/photo-1541233349642-6e425fe6190e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"},
-                new ProductBoardItem(){StyleName = "lalala", ColorName = "Blue", Notes = "Some notes here", StyleNumber = "5T3321", ColorNumber = "011105", ID = Guid.NewGuid(), ImageUrl = "https://images.unsplash.com/photo-1541233349642-6e425fe6190e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"},
-            };
+                var userEmail = CMS.Membership.MembershipContext.AuthenticatedUser.Email;
+                ProductBoardService.AddVisitorToLog(Guid.Parse(boardId), new Visitor() { Email = userEmail, DateVisited = DateTime.UtcNow });
+            }
 
-            var result = itemsList.Where(i => i.StyleName.ToLower().Contains(term.ToLower()) ||
-                                         i.StyleNumber.ToLower().Contains(term.ToLower()))
-                                         .Select(i => i).ToList();
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
+            var board = ProductBoardService.GetProductBoard(Guid.Parse(boardId));
+            var boardUrl = ExtensionMethods.CreateBoardUrl(boardId, MasterPageService.SiteContext.CurrentSiteCulture);
+
+
+            if (board == null) return HttpNotFound();
+
+            return View("SharedBoard", new SelectedBoardViewModel() { Board = board, BoardUrl = boardUrl });
+        }    
 
     }
 }

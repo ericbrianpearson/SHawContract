@@ -7,9 +7,12 @@
 
 @{
     var editMode = Context.Kentico().PageBuilder().EditMode;
+    var centerText = Model.IsTextCentered ? "align-items-center" : "align-items-start";
+    var textCenter = Model.IsTextCentered ? "text-center" : String.Empty;
+    // var titleColor = Model.IsTitleBlue ? "blue-regular" : "black";
 }
-<div class="container">
-    <section class="widget feature-list now-viewable">
+<section class="widget feature-list now-viewable">
+    <div class="container">
         <div class="row">
             <div class="col-sm-8 offset-sm-2 text-center">
                 <div class="subtitle">
@@ -32,6 +35,10 @@
 
         <div class="row">
             <div class="col-sm-8 offset-sm-2 text-center">
+                @if (string.IsNullOrEmpty(Model.Subtitle))
+                {
+                    <div class="mark"></div>
+                }
                 <h2 class="title">
                     @if (editMode)
                     {
@@ -50,181 +57,222 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row justify-content-center">
 
             @if (!string.IsNullOrWhiteSpace(Model.Description1) &&
-                     !string.IsNullOrWhiteSpace(Model.SecondaryTitle1) &&
-                     !string.IsNullOrWhiteSpace(Model.Icon1))
+                     !string.IsNullOrWhiteSpace(Model.Image1))
             {
-                <div class="col-lg-4 feature-card">
-
-                    <div class="row">
-                        <div class="col-sm-8 offset-sm-2 text-center">
-                            <i class="@Model.Icon1" aria-hidden="true"></i>
-                        </div>
+                <div class="col-12 col-md-6 col-lg-4 feature-card @textCenter">
+                    <div class="h-auto flex-shrink-0">
+                        <img class="img-fluid"
+                             src="@Model.Image1"
+                             alt="" />
                     </div>
-
-                    <div class="row">
-                        <div class="col-sm-8 offset-sm-2 text-center">
-                            <p class="heading">
-                                <a style="text-decoration: none" class="heading" href="@Model.LinkUrl1">@Model.SecondaryTitle1</a>
-                            </p>
+                    <div class="feature-card-body @centerText">
+                        <div class="feature-card-body-top">
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <p class="heading">
+                                        <a class="heading text-decoration-none" href="@Model.LinkUrl1">@Model.SecondaryTitle1</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="description">@Model.Description1</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-sm-8 offset-sm-2 text-center">
-                            <p class="description">@Model.Description1</p>
-                        </div>
+                        @if (Model.ShowButtons)
+                        {
+                            <a href="@Model.LinkUrl1" class="btn btn-tertiary large-btn text-size-normal py-3 px-5">
+                                Learn more
+                            </a>
+                        }
                     </div>
                 </div>
-
             }
 
             @if (!string.IsNullOrWhiteSpace(Model.Description2) &&
-                     !string.IsNullOrWhiteSpace(Model.SecondaryTitle2) &&
-                     !string.IsNullOrWhiteSpace(Model.Icon2))
+                     !string.IsNullOrWhiteSpace(Model.Image2))
             {
-                <div class="col-lg-4 feature-card">
-
-                    <div class="row">
-                        <div class="col-sm-8 offset-sm-2 text-center">
-                            <i class="@Model.Icon2" aria-hidden="true"></i>
-                        </div>
+                <div class="col-12 col-md-6 col-lg-4 feature-card @textCenter">
+                    <div class="h-auto flex-shrink-0">
+                        <img class="img-fluid"
+                             src="@Model.Image2"
+                             alt="" />
                     </div>
 
-                    <div class="row">
-                        <div class="col-sm-8 offset-sm-2 text-center">
-                            <p class="heading">
-                                <a class="heading" href="@Model.LinkUrl2">@Model.SecondaryTitle2</a>
-                            </p>
+                    <div class="feature-card-body @centerText">
+                        <div class="feature-card-body-top">
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <p class="heading">
+                                        <a class="heading text-decoration-none" href="@Model.LinkUrl2">@Model.SecondaryTitle2</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="description">@Model.Description2</p>
+                                </div>
+                            </div>
                         </div>
+
+                        @if (Model.ShowButtons)
+                        {
+                            <a href="@Model.LinkUrl2" class="btn btn-tertiary large-btn text-size-normal py-3 px-5">
+                                Learn more
+                            </a>
+                        }
                     </div>
 
-                    <div class="row">
-                        <div class="col-sm-8 offset-sm-2 text-center">
-                            <p class="description">@Model.Description2</p>
-                        </div>
-                    </div>
                 </div>
-
             }
-
             @if (!string.IsNullOrWhiteSpace(Model.Description3) &&
-                 !string.IsNullOrWhiteSpace(Model.SecondaryTitle3) &&
-                     !string.IsNullOrWhiteSpace(Model.Icon3))
+                     !string.IsNullOrWhiteSpace(Model.Image3))
             {
-                <div class="col-lg-4 feature-card">
-
-                    <div class="row">
-                        <div class="col-sm-8 offset-sm-2 text-center">
-                            <i class="@Model.Icon3" aria-hidden="true"></i>
-                        </div>
+                <div class="col-12 col-md-6 col-lg-4 feature-card @textCenter">
+                    <div class="h-auto flex-shrink-0">
+                        <img class="img-fluid"
+                             src="@Model.Image3"
+                             alt="" />
                     </div>
 
-                    <div class="row">
-                        <div class="col-sm-8 offset-sm-2 text-center">
-                            <p class="heading">
-                                <a class="heading" href="@Model.LinkUrl3">@Model.SecondaryTitle3</a>
-                            </p>
+                    <div class="feature-card-body @centerText">
+                        <div class="feature-card-body-top">
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <p class="heading">
+                                        <a class="heading text-decoration-none" href="@Model.LinkUrl3">@Model.SecondaryTitle3</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="description">@Model.Description3</p>
+                                </div>
+                            </div>
                         </div>
+
+                        @if (Model.ShowButtons)
+                        {
+                            <a href="@Model.LinkUrl3" class="btn btn-tertiary large-btn text-size-normal py-3 px-5">
+                                Learn more
+                            </a>
+                        }
+
                     </div>
 
-                    <div class="row">
-                        <div class="col-sm-8 offset-sm-2 text-center">
-                            <p class="description">@Model.Description3</p>
-                        </div>
-                    </div>
                 </div>
-
             }
-
             @if (!string.IsNullOrWhiteSpace(Model.Description4) &&
-                 !string.IsNullOrWhiteSpace(Model.SecondaryTitle4) &&
-                     !string.IsNullOrWhiteSpace(Model.Icon4))
+                     !string.IsNullOrWhiteSpace(Model.Image4))
             {
-                <div class="col-lg-4 feature-card">
-
-                    <div class="row">
-                        <div class="col-sm-8 offset-sm-2 text-center">
-                            <i class="@Model.Icon4" aria-hidden="true"></i>
-                        </div>
+                <div class="col-12 col-md-6 col-lg-4 feature-card @textCenter">
+                    <div class="h-auto flex-shrink-0">
+                        <img class="img-fluid"
+                             src="@Model.Image4"
+                             alt="" />
                     </div>
 
-                    <div class="row">
-                        <div class="col-sm-8 offset-sm-2 text-center">
-                            <p class="heading">
-                                <a class="heading" href="@Model.LinkUrl4">@Model.SecondaryTitle4</a>
-                            </p>
+                    <div class="feature-card-body @centerText">
+                        <div class="feature-card-body-top">
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <p class="heading">
+                                        <a class="heading text-decoration-none" href="@Model.LinkUrl4">@Model.SecondaryTitle4</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="description">@Model.Description4</p>
+                                </div>
+                            </div>
                         </div>
+
+                        @if (Model.ShowButtons)
+                        {
+                            <a href="@Model.LinkUrl4" class="btn btn-tertiary large-btn text-size-normal py-3 px-5">
+                                Learn more
+                            </a>
+                        }
                     </div>
 
-                    <div class="row">
-                        <div class="col-sm-8 offset-sm-2 text-center">
-                            <p class="description">@Model.Description4</p>
-                        </div>
-                    </div>
                 </div>
-
             }
-
             @if (!string.IsNullOrWhiteSpace(Model.Description5) &&
-                 !string.IsNullOrWhiteSpace(Model.SecondaryTitle5) &&
-                 !string.IsNullOrWhiteSpace(Model.Icon5))
+                 !string.IsNullOrWhiteSpace(Model.Image5))
             {
-                <div class="col-lg-4 feature-card">
-
-                    <div class="row">
-                        <div class="col-sm-8 offset-sm-2 text-center">
-                            <i class="@Model.Icon5" aria-hidden="true"></i>
-                        </div>
+                <div class="col-12 col-md-6 col-lg-4 feature-card @textCenter">
+                    <div class="h-auto flex-shrink-0">
+                        <img class="img-fluid"
+                             src="@Model.Image5"
+                             alt="" />
                     </div>
 
-                    <div class="row">
-                        <div class="col-sm-8 offset-sm-2 text-center">
-                            <p class="heading">
-                                <a class="heading" href="@Model.LinkUrl5">@Model.SecondaryTitle5</a>
-                            </p>
+                    <div class="feature-card-body @centerText">
+                        <div class="feature-card-body-top">
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <p class="heading">
+                                        <a class="heading text-decoration-none" href="@Model.LinkUrl5">@Model.SecondaryTitle5</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="description">@Model.Description5</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-sm-8 offset-sm-2 text-center">
-                            <p class="description">@Model.Description5</p>
-                        </div>
+                        @if (Model.ShowButtons)
+                        {
+                            <a href="@Model.LinkUrl5" class="btn btn-tertiary large-btn text-size-normal py-3 px-5">
+                                Learn more
+                            </a>
+                        }
                     </div>
+                    
                 </div>
-
             }
-
-            @if (!string.IsNullOrWhiteSpace(Model.Description6) &&
-                 !string.IsNullOrWhiteSpace(Model.SecondaryTitle6) &&
-                 !string.IsNullOrWhiteSpace(Model.Icon6))
-            {
-                <div class="col-lg-4 feature-card">
-
-                    <div class="row">
-                        <div class="col-sm-8 offset-sm-2 text-center">
-                            <i class="@Model.Icon6" aria-hidden="true"></i>
+                @if (!string.IsNullOrWhiteSpace(Model.Description6) &&
+                     !string.IsNullOrWhiteSpace(Model.Image6))
+                {
+                    <div class="col-12 col-md-6 col-lg-4 feature-card @textCenter">
+                        <div class="h-auto flex-shrink-0">
+                            <img class="img-fluid"
+                                 src="@Model.Image6"
+                                 alt="" />
                         </div>
-                    </div>
+                        <div class="feature-card-body @centerText">
+                            <div class="feature-card-body-top">
+                                <div class="row mt-3">
+                                    <div class="col">
+                                        <p class="heading">
+                                            <a class="heading text-decoration-none" href="@Model.LinkUrl6">@Model.SecondaryTitle6</a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="description">@Model.Description6</p>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <div class="row">
-                        <div class="col-sm-8 offset-sm-2 text-center">
-                            <p class="heading">
-                                <a class="heading" href="@Model.LinkUrl6">@Model.SecondaryTitle6</a>
-                            </p>
+                            @if (Model.ShowButtons)
+                            {
+                                <a href="@Model.LinkUrl6" class="btn btn-tertiary large-btn text-size-normal py-3 px-5">
+                                    Learn more
+                                </a>
+                            }
                         </div>
+                        
                     </div>
-
-                    <div class="row">
-                        <div class="col-sm-8 offset-sm-2 text-center">
-                            <p class="description">@Model.Description6</p>
-                        </div>
-                    </div>
+                }
                 </div>
-
-            }
-        </div>
-    </section>
-</div>
+        </section>

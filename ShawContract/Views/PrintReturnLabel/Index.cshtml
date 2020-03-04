@@ -1,0 +1,157 @@
+﻿@model ShawContract.Models.PageViewModel<ShawContract.Models.PrintReturnLabel.PrintReturnLabelViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AccountProfileLayout.cshtml";
+}
+
+<div class="print-return-label col-12 col-lg-10 pt-4 mb-3 mb-md-5">
+    <div class="row pt-5">
+        <div class="col-12 col-lg-8 offset-lg-1">
+            <h2 class="title py-3">Order History</h2>
+            <section class="intro-wrapper">
+                <div class="row">
+                    <div class="col-12">
+                        <p>This label can be used to ship Shaw Contract, Shaw Hospitality and Shaw Hard your own packaging. For assistance, please contact us at 1-800-257-7429. Instructions: Download PDF Outside of US and Canada: Please contact your.</p>
+                        <div class="my-5">Instruction: <span><a class="red-regular text-decoration-none" href="">Download PDF</a></span></div>
+                        <p>Shaw Hospitality and Shaw Hard Surface sample swatches back to us at no cost to you using your own packaging. For assistance, please contact us at 1-800-257-7429. Instructions: Download PDF Outside of US and Canada: Please contact your local Shaw Contract account manager. Let this friendly face know that you have samples you would like to return. He or she may prefer to collect the samples from you directly and reuse them.</p>
+                    </div>
+                </div>
+            </section>
+            <section class="form-wrapper">
+                <form id="print-label-existing-address-form">
+                    <div class="form-group pt-4">
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <h4>
+                                    <label for="existing-shipping-address" class="font-weight-bold heading-4">Select an existing address:</label>
+                                </h4>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <span class="float-md-right grey-regular-semibold"><span class="red-regular">*</span> = Required Fields</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-8 col-xl-9">
+                                <select id="existing-shipping-address" name="existingAddress" title="Select address" class="selectpicker form-control-lg" data-style="select-style --white" required aria-required="true">
+                                    <option value="sort">sort</option>
+                                    <option value="london, United Kingdom">london, United Kingdom</option>
+                                    <option value="Address 1">Address 1</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-4 col-xl-3 flex-grow-0">
+                                <button type="submit" class="btn btn-primary w-100 mt-3 mt-md-0 px-3 letter-spacing-normal continue-btn">Print Label</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="row or-boundary justify-content-center">
+                    <div class="col-12 col-md-9">
+                        <h2 class="line-with-text heading-4 text-muted regular border-bottom">
+                            <span>
+                                OR
+                            </span>
+                        </h2>
+                    </div>
+                </div>
+                <form role="form" id="print-label-new-address-form">
+                    <div class="row my-5">
+                        <div class="col-12 col-md-7">
+                            <h4 class="font-weight-bold heading-4">Add a new shipping address:</h4>
+                        </div>
+                        <div class="col-12 col-md-5">
+                            <span class="float-md-right grey-regular-semibold"><span class="red-regular">*</span> = Required Fields</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-12 col-md-6 mb-3 mb-md-0">
+                                <label for="firstName" class="mt-20">First name<span class="red-regular"> *</span></label>
+                                <input type="text" id="first-name" name="firstName" class="form-control form-control-lg" aria-required="true">
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="lastName" class="mt-20">Last name<span class="red-regular"> *</span></label>
+                                <input type="text" id="last-name" name="lastName" class="form-control form-control-lg" aria-required="true">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-12 col-md-7 mb-3 mb-md-0 mt-20">
+                                <label for="company">Company<span class="red-regular"> *</span></label>
+                                <input type="text" id="company" name="company" class="form-control form-control-lg" aria-required="true">
+                            </div>
+                            <div class="col-12 col-md-5 mt-20">
+                                <label for="phoneNumber">Cell / SMS Alert Number<span class="red-regular">*</span></label>
+                                <input type="text" id="phone-number" name="phoneNumber" class="form-control form-control-lg" aria-required="true">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-12 col-md-7 mb-3 mb-md-0">
+                                <label for="country" class="mt-20">Country<span class="red-regular"> *</span></label>
+                                <select id="country" name="country" title="Select country"
+                                        class="selectpicker form-control-lg" data-style="select-style white-text" aria-required="true">
+                                    <option value="Canada">Sort alphabetically</option>
+                                    <option value="Canada">Canada</option>
+                                    <option value="Bulgaria">Bulgaria</option>
+                                    <option value="Bulgaria">France</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-5">
+                                <label for="zipCode" class="mt-20">Zip / Postal Code<span class="red-regular"> *</span></label>
+                                <input type="text" id="zip-code" name="zipCode" class="form-control form-control-lg" aria-required="true">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="addressLineOne" class="mt-20">Address Line 1<span class="red-regular"> *</span></label>
+                        <input type="text" id="address-line-one" name="addressLineOne" class="form-control form-control-lg" aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="addressLineTwo" class="mt-20">Address Line 2</label>
+                        <input type="text" id="addressLineTwo" name="addressLineTwo" class="form-control form-control-lg" aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-12 col-md-7 mb-3 mb-md-0">
+                                <label for="city" class="mt-20">City<span class="red-regular"> *</span></label>
+                                <input type="text" id="city" name="city" class="form-control form-control-lg" aria-required="true">
+                            </div>
+                            <div class="col-12 col-md-5">
+                                <label for="state" class="mt-20">State / Province<span class="red-regular"> *</span></label>
+                                <select id="state" name="state" title="Select state" class="selectpicker form-control-lg"
+                                        data-style="select-style white-text" required aria-required="true">
+                                    <option value="state 1">Sort alphabetically</option>
+                                    <option value="state 1">State 1</option>
+                                    <option value="state 1">State 1</option>
+                                    <option value="state 1">State 1</option>
+                                    <option value="state 1">State 1</option>
+                                    <option value="state 1">State 1</option>
+                                    <option value="state 1">State 1</option>
+                                    <option value="state 1">State 1</option>
+                                    <option value="state 1">State 1</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-between mt-6">
+                        <div class="col-6 col-md-5">
+                            <button class="btn btn-tertiary text-gray letter-spacing-normal w-100 h-100 px-md-5 py-4">
+                                Back to
+                                Products
+                            </button>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-primary letter-spacing-normal w-100 h-100 py-4">
+                                Add New
+                                Address & Continue
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
+

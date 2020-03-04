@@ -22,7 +22,10 @@ namespace ShawContract.Controllers.Widgets
             {
                 Title = properties.Title,
                 Subtitle = properties.Subtitle,
-                Description = properties.Description
+                Description = properties.Description,
+                ImageUrl = properties.ImageUrl,
+                ButtonText = properties.ButtonText,
+                ButtonLink = properties.ButtonLink
             });
         }
     }

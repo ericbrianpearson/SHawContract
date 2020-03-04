@@ -5,9 +5,22 @@
 
 @{
     var editMode = Context.Kentico().PageBuilder().EditMode;
+    var hasImage = !string.IsNullOrEmpty(Model.ImageUrl);
+    var buttonStyle = hasImage ? "btn-secondary" : "btn-tertiary";
+    var imageStyle = hasImage ?  "full-width-image" : string.Empty;
 }
-<div class="container">
-    <section class="widget centered-description">
+
+<section class="widget @imageStyle centered-description">
+
+    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+    {
+        <div class="background-image">
+            <img class="img-fluid" src="@Model.ImageUrl" alt="" data-object-fit>
+            <div class="background-filter" aria-hidden="true"></div>
+        </div>
+    }
+
+    <div class="container content">
         <div class="row">
             <div class="col-sm-8 offset-sm-2 text-center">
                 <div class="subtitle">
@@ -67,5 +80,14 @@
                 </div>
             </div>
         </div>
-    </section>
-</div>
+
+        @if (!string.IsNullOrEmpty(Model.ButtonText) && !string.IsNullOrEmpty(Model.ButtonLink))
+        {
+            <div class="row no-gutters justify-content-center">
+                <a href="@Model.ButtonLink" class="btn @buttonStyle text-size-normal">
+                    @Model.ButtonText
+                </a>
+            </div>
+        }
+    </div>
+</section>

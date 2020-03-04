@@ -17,7 +17,7 @@ namespace ShawContract.Providers.PDMS
         public ProductGateway(IPDMSConfiguration pdmsConfiguration)
         {
             this.HttpClient = new HttpClient();
-            this.HttpClient.Timeout = new System.TimeSpan(0, 10, 0);
+            this.HttpClient.Timeout = new System.TimeSpan(0, 15, 0);
             this.PDMSConfiguration = pdmsConfiguration;
         }
 
@@ -29,11 +29,11 @@ namespace ShawContract.Providers.PDMS
             switch (productType)
             {
                 case "Carpet":
-                    httpResponse = await this.HttpClient.GetAsync(string.Format("{0}?uid={1}&$filter=(SellingStyleNumber in ( '5A259', '5T339','800X1') )", this.PDMSConfiguration.PDMSApiUrl, this.PDMSConfiguration.PDMSUid)).ConfigureAwait(false);
+                    httpResponse = await this.HttpClient.GetAsync(string.Format("{0}?uid={1}&$filter=(SellingStyleNumber in ( '5A259', '5T339','800X1', '5T175') )", this.PDMSConfiguration.PDMSApiUrl, this.PDMSConfiguration.PDMSUid)).ConfigureAwait(false);
                     break;
 
                 case "Rug":
-                    httpResponse = await this.HttpClient.GetAsync(string.Format("{0}?uid={1}&$filter=(SellingStyleNumber in ( '5A259', '800X1') )", this.PDMSConfiguration.PDMSApiUrl, this.PDMSConfiguration.PDMSUid)).ConfigureAwait(false);
+                    httpResponse = await this.HttpClient.GetAsync(string.Format("{0}?uid={1}&$filter=(SellingStyleNumber in ( '5A262', 'G021R', 'G022R') )", this.PDMSConfiguration.PDMSApiUrl, this.PDMSConfiguration.PDMSUid)).ConfigureAwait(false);
                     break;
 
                 case "Resilient":

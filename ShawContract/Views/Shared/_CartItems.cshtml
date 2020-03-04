@@ -1,0 +1,160 @@
+﻿@using ShawContract.Models.Cart
+
+@model  CartItemsViewModel
+
+@{
+    string visibility = !string.IsNullOrEmpty(Model.ErrorMessage) ? "visibile" : "hidden";
+}
+
+<section class="form-wrapper col-12 col-lg-11 mx-auto px-3 pt-6">
+    <div class="mb-2 py-0 py-md-3 border-bottom">
+        <ul class="list-group list-group-horizontal flex-fill justify-content-between">
+            <li class="col-6 text-left list-group-item border-0 px-0 heading-3">
+                Product Info
+            </li>
+            <li class="col-3 text-center list-group-item border-0 px-0 heading-3 d-none d-md-inline-block">
+                Quantity
+            </li>
+            <li class="col-6 col-md-3 text-right list-group-item border-0 px-0 heading-3">
+                <button onclick="removeAll()" name="RemoveAllFromCart" class="bg-transparent text-danger text-size-xsmall border-danger border rounded-lg p-2 px-sm-5">
+                    CLEAR CART
+                </button>
+            </li>
+        </ul>
+    </div>
+    @foreach (var item in Model.CartItems)
+    {
+        var itemName = item.ItemName + ": " + item.ItemNumber;
+        var colorName = item.ColorName + ": " + item.ColorNumber;
+        <div id="@item.CartItemID" class="card checkout-product-card py-4">
+            <div class="row">
+                <div class="col-12 col-md-2 mb-3 mb-md-0">
+                    <a href="@Url.Action("Details", "Product", new { inventoryType = item.ProductType, nodeAlias = item.ItemName.Trim().Replace(' ', '-'), colorNumber = item.ColorNumber })">
+                        <img src="@item.ImageUrl" class="card-img img-fluid" alt="...">
+                    </a>
+                </div>
+                <div class="col-12 col-md-10">
+                    <div class="row">
+                        <div class="col-12 col-md-5">
+                            <h4 class="card-title heading-4">
+                                <a href="@Url.Action("Details", "Product", new { inventoryType =  item.ProductType, nodeAlias=item.ItemName.Trim().Replace(' ', '-'), colorNumber = item.ColorNumber })" class="text-decoration-none black">
+                                    @itemName
+                                </a>
+                                <input type="hidden" name="cartItemName" value="@itemName" />
+                            </h4>
+                            <p class="card-text text-size-normal  text-muted">@colorName</p>
+                            <div class="form-group">
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div data-id="@item.CartItemID" class="form-group d-md-flex justify-content-md-center">
+                                <label for="country-field" class="text-size-xsmall text-muted d-md-none">
+                                    Quantity
+                                </label>
+                                @Html.DropDownList("Quantity", new SelectList(Model.QuantityDropdown, item.TotalUnits), new { @class = "quantityDropDown selectpicker d-block form-control-lg w-50", data_style = "select-style white-text text-center", @onchange = "updateCartDropDown(this)" })
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4 d-flex justify-content-center justify-content-md-end">
+                            <button onclick="removeItemFromCart(@item.CartItemID)" name="RemoveFromCart" class="remove-from-cart close text-danger p-4 mr-md-5" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                    @*Error Markup*@
+                    @*<div class="row error-row show-error">
+                            <div class="col">
+                                <div class="error text-size-xsmall">
+                                    <div class="row semibold">
+                                        <div class="col">
+                                            This item is no longer in stock from our website.
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            If you continue with your order a Shaw Contract associate will reach out to assist you.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="error error-message p-4 my-5">
+        <p class="error-text text-size-large">
+            <span class="pr-4">Error: </span>
+            Maximum number of samples is 30.
+        </p>
+    </div>
+</section>
+
+<script>
+   function removeItemFromCart(itemId) {
+        $.ajax({
+            url: '@Url.Action("RemoveFromCart", "CartItems")',
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        removeItemId: itemId
+                    },
+                    async: false,
+                    success: function () {
+                        $('#' + itemId).remove();
+                        $('#' + itemId).remove()
+                        decreaseTotal();
+                }
+            });
+    }
+
+     function removeAll() {
+        $.ajax({
+            url: '@Url.Action("RemoveAllFromCart", "CartItems")',
+                    type: "POST",
+                    dataType: "html",
+                    async: true,
+            success: function () {
+                    $('.checkout-product-card').remove();
+                    $('.cart-item').remove();
+                    clearTotal();
+                }
+            });
+    }
+
+    var decreaseTotal = (function() {
+        var total = document.getElementById('cartTotal');
+
+        return function () {
+            if (!!total) {
+                total.textContent = parseInt(total.textContent) - 1;
+            }
+
+            if (parseInt(total.textContent) == 0) {
+                removeButtons();
+            }
+         }
+    })();
+
+    function clearTotal() {
+        var total = document.getElementById('cartTotal');
+        total.textContent = 0;
+        removeButtons();
+    }
+
+    function removeButtons() {
+        $('#submitBtn').remove();
+        $('#relatedProducts').remove();
+        $('#cartDropDownSubmit').addClass('disabled');
+    }
+
+    function updateCartDropDown(selectedElement) {
+        var itemId = selectedElement.parentElement.parentElement.getAttribute('data-id');
+        var selectedValue = selectedElement.value;
+        var dataToPost = { itemId: itemId, quantity: selectedValue };
+        $.post('@Url.Action("UpdateItemQuantity", "CartItems")', dataToPost, function () {
+            $('.quantity.' + itemId + ' span')[0].innerText = selectedValue;
+        });
+       
+    }
+</script>

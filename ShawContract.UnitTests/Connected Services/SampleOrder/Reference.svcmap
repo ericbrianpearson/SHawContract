@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="bcac2c94-a145-45ea-83a7-387b798229c4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://webservices-s-qa-shaw-now.shawinc.com/SampleOrderService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SampleOrderService.xsd" MetadataType="Schema" ID="bcc99ed2-9f55-459e-99d4-88a51cdc59d6" SourceId="1" SourceUrl="https://webservices-qa.shawonline.com/SampleOrderService.svc?xsd=xsd1" />
+    <MetadataFile FileName="SampleOrderService1.xsd" MetadataType="Schema" ID="639ab9f2-f6d8-459e-9bda-5cbc9d80aaaa" SourceId="1" SourceUrl="https://webservices-qa.shawonline.com/SampleOrderService.svc?xsd=xsd0" />
+    <MetadataFile FileName="SampleOrderService2.xsd" MetadataType="Schema" ID="60ebf543-94aa-463f-b636-5f4e036d58ec" SourceId="1" SourceUrl="https://webservices-qa.shawonline.com/SampleOrderService.svc?xsd=xsd3" />
+    <MetadataFile FileName="OrderSample.wsdl" MetadataType="Wsdl" ID="6fda0818-2391-42d2-ba57-8dc027f645fe" SourceId="1" SourceUrl="https://webservices-qa.shawonline.com/SampleOrderService.svc?wsdl" />
+    <MetadataFile FileName="SampleOrderService.disco" MetadataType="Disco" ID="e6ee4035-b590-4839-8d4b-37d82120b632" SourceId="1" SourceUrl="https://webservices-qa.shawonline.com/SampleOrderService.svc?disco" />
+    <MetadataFile FileName="SampleOrderService3.xsd" MetadataType="Schema" ID="4e67ea09-8f91-42fc-bf0f-bc8306d16fa5" SourceId="1" SourceUrl="https://webservices-qa.shawonline.com/SampleOrderService.svc?xsd=xsd2" />
+    <MetadataFile FileName="SampleOrderService.wsdl" MetadataType="Wsdl" ID="2beb86c2-567e-47d5-9b0a-bcba03eb2bdf" SourceId="1" SourceUrl="https://webservices-qa.shawonline.com/SampleOrderService.svc?wsdl=wsdl0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,246 @@
+﻿@using ShawContract.Models.ProductBoards
+
+@model SelectedBoardViewModel
+
+@{
+    Layout = null;
+
+    var isUserAuthenticated = User.Identity.IsAuthenticated == true ? "" : "display:none;";
+    var boardVisibility = Model.Board.LoggedUserRequiredToAccess == true ? isUserAuthenticated : "";
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>ShawContract Template</title>
+
+    <link href="https://api.machinelogic.io/mvc/images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+    <link href="https://api.machinelogic.io/mvc/images/favicon.ico" type="image/x-icon" rel="icon" />
+
+    <link rel="canonical" href="/" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap" rel="stylesheet" />
+    <link href="@Url.Content(" ~/Content/Css/Vendors/bootstrap.css")" rel="stylesheet" />
+    <link href="@Url.Content(" ~/Content/Css/Master/shawcontract.css")" rel="stylesheet" />
+
+    <script src="https://kit.fontawesome.com/0244929327.js" crossorigin="anonymous"></script>
+
+    <script>
+        !function () {
+            var analytics = window.analytics = window.analytics || []; if (!analytics.initialize) if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice."); else {
+                analytics.invoked = !0; analytics.methods = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset", "group", "track", "ready", "alias", "debug", "page", "once", "off", "on"]; analytics.factory = function (t) { return function () { var e = Array.prototype.slice.call(arguments); e.unshift(t); analytics.push(e); return analytics } }; for (var t = 0; t < analytics.methods.length; t++) { var e = analytics.methods[t]; analytics[e] = analytics.factory(e) } analytics.load = function (t, e) { var n = document.createElement("script"); n.type = "text/javascript"; n.async = !0; n.src = "https://cdn.segment.com/analytics.js/v1/" + t + "/analytics.min.js"; var a = document.getElementsByTagName("script")[0]; a.parentNode.insertBefore(n, a); analytics._loadOptions = e }; analytics.SNIPPET_VERSION = "4.1.0";
+                analytics.load("QRcWMAZ3nFToL0xZgFFXYJYJ39S6281U");
+                analytics.page();
+            }
+        }();
+    </script>
+</head>
+
+<body class="d-flex flex-column h-100 product-boards-shared-page text-size-normal">
+    <!-- navigation -->
+    <nav class="navbar navbar-expand-lg top-navigation justify-content-start align-items-center">
+        <a class="navbar-brand" href="@Model.SiteUrl" style="fill: #fff;" target="_blank">
+            <svg role="img" aria-labelledby="shaw-contact-nav-logo" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="20.566" viewBox="0 0 200 20.566">
+                <title id="shaw-contact-nav-logo">Go to Shaw Contract's main website</title>
+                <defs>
+                    <clipPath id="clip-path">
+                        <path id="Clip_2" data-name="Clip 2" d="M0,0H200V20.566H0Z" transform="translate(0 0)" fill="none" />
+                    </clipPath>
+                </defs>
+                <g id="ShawContract_Logo" transform="translate(-0.021 -0.275)">
+                    <path id="Clip_2-2" data-name="Clip 2" d="M0,0H200V20.566H0Z" transform="translate(0.021 0.275)"
+                          fill="none" />
+                    <g id="ShawContract_Logo-2" data-name="ShawContract_Logo" transform="translate(0.021 0.275)"
+                       clip-path="url(#clip-path)">
+                        <path id="Fill_1" data-name="Fill 1"
+                              d="M172.874,20.566a7.784,7.784,0,0,1-5.451-2.09,7.565,7.565,0,0,1-2.248-5.609,7.412,7.412,0,0,1,2.293-5.486A7.883,7.883,0,0,1,172.9,5.31a7.791,7.791,0,0,1,4.864,1.56,6.192,6.192,0,0,1,2.356,4.173h-4.215A2.961,2.961,0,0,0,172.9,8.794c-1.969,0-3.343,1.675-3.343,4.074,0,2.481,1.375,4.214,3.343,4.214a2.942,2.942,0,0,0,2.979-2.276h4.242a6.494,6.494,0,0,1-2.454,4.228A7.744,7.744,0,0,1,172.874,20.566Zm-70.97,0a8.111,8.111,0,0,1-5.6-2.079,7.478,7.478,0,0,1-2.293-5.619A7.254,7.254,0,0,1,96.334,7.35a8.654,8.654,0,0,1,11.151-.011,7.263,7.263,0,0,1,2.314,5.528,7.47,7.47,0,0,1-2.3,5.609A8.1,8.1,0,0,1,101.9,20.566Zm0-11.773c-2.1,0-3.512,1.637-3.512,4.074,0,2.521,1.411,4.214,3.512,4.214,2.133,0,3.511-1.654,3.511-4.214C105.416,10.431,104,8.794,101.9,8.794ZM83.164,20.566a9.814,9.814,0,0,1-6.88-2.7A10.2,10.2,0,0,1,73.3,10.311a10.016,10.016,0,0,1,3.049-7.5A9.657,9.657,0,0,1,79.513.825,10.147,10.147,0,0,1,83.192.14,9.9,9.9,0,0,1,89.328,2.1a7.76,7.76,0,0,1,3,5.181H87.744a4.415,4.415,0,0,0-4.58-3.231,4.729,4.729,0,0,0-3.645,1.689,6.923,6.923,0,0,0-1.5,4.576,7.036,7.036,0,0,0,1.51,4.618,4.734,4.734,0,0,0,3.659,1.731,4.514,4.514,0,0,0,4.579-3.231h4.58a8.063,8.063,0,0,1-3.066,5.191A9.9,9.9,0,0,1,83.164,20.566Zm-74.679,0a9.906,9.906,0,0,1-5.8-1.6A6.492,6.492,0,0,1,0,14.02H4.467c.262,1.965,1.736,3.091,4.046,3.091,2.1,0,3.456-.9,3.456-2.3,0-1.183-1.008-1.9-3.372-2.389L6.631,12A9.442,9.442,0,0,1,1.984,9.918,4.783,4.783,0,0,1,.477,6.237c0-3.476,3.3-6.1,7.671-6.1a9.025,9.025,0,0,1,5.44,1.6A6.264,6.264,0,0,1,16.1,6.266H11.66C11.409,4.594,10.086,3.6,8.12,3.6a4.044,4.044,0,0,0-2.276.629,1.962,1.962,0,0,0-.927,1.619c0,1.116.743,1.66,2.838,2.079L9.946,8.4a10.392,10.392,0,0,1,4.745,2,5.006,5.006,0,0,1,1.774,3.983,5.451,5.451,0,0,1-2.42,4.608A9.7,9.7,0,0,1,8.485,20.566Zm146.127-.028a6.164,6.164,0,0,1-3.73-1.159,4.119,4.119,0,0,1-1.665-3.393c0-3.078,2.516-4.113,6.294-4.72l3.344-.534v-.2a2.089,2.089,0,0,0-.626-1.685,2.619,2.619,0,0,0-1.763-.505,2.475,2.475,0,0,0-2.753,2.079h-3.989c.467-3.107,3.191-5.114,6.94-5.114,2.308,0,3.946.518,5.005,1.585a5.493,5.493,0,0,1,1.373,4.062l-.028,6.182c0,.508.034,1.432.112,3.09h-3.905l-.057-1.657A5.612,5.612,0,0,1,154.612,20.538Zm4.243-7.052h0c-3.884.482-5.508.909-5.508,2.3,0,1.057.9,1.714,2.36,1.714a2.9,2.9,0,0,0,3.147-3.034v-.983ZM39.784,20.538a6.164,6.164,0,0,1-3.73-1.159,4.119,4.119,0,0,1-1.665-3.393c0-3.078,2.516-4.113,6.294-4.72l3.343-.534v-.2A2.09,2.09,0,0,0,43.4,8.85a2.619,2.619,0,0,0-1.763-.505,2.475,2.475,0,0,0-2.753,2.079H34.9c.467-3.107,3.191-5.114,6.939-5.114,2.309,0,3.947.518,5.006,1.585a5.493,5.493,0,0,1,1.373,4.062l-.028,6.182c0,.508.034,1.432.112,3.09H44.391l-.057-1.657A5.612,5.612,0,0,1,39.784,20.538Zm4.243-7.052h0c-3.884.482-5.508.909-5.508,2.3,0,1.057.9,1.714,2.36,1.714a2.9,2.9,0,0,0,3.147-3.034v-.983Zm143.71,6.771c-2.547,0-4.243-.678-4.243-3.989V8.794h-2.36V5.676h2.36V2.051h4.186V5.676h3.231V8.794H187.68v6.491c0,1.49.494,1.741,1.6,1.741h1.63V20.2C189.928,20.257,189.1,20.257,187.737,20.257Zm-53.944,0c-2.547,0-4.243-.678-4.243-3.989V8.794H127.19V5.676h2.359V2.051h4.187V5.676h3.23V8.794h-3.23v6.491c0,1.49.494,1.741,1.6,1.741h1.629V20.2C135.984,20.257,135.159,20.257,133.793,20.257Zm-17.728-.027h-4.271V5.676h4.131v1.77a5.2,5.2,0,0,1,4.411-2.108c3.375,0,5.311,2.12,5.311,5.816v9.074h-4.271V11.913a3.213,3.213,0,0,0-.678-2.156,2.412,2.412,0,0,0-1.879-.766c-1.331,0-2.753.915-2.753,3.484v7.754Zm-93.223,0H18.571V0h4.271V7.249a5.277,5.277,0,0,1,4.27-1.911c3.375,0,5.311,2.12,5.311,5.816v9.074h-4.27V11.913a3.212,3.212,0,0,0-.678-2.156A2.414,2.414,0,0,0,25.6,8.991c-1.331,0-2.753.915-2.753,3.484v7.754Zm34.952,0H53.719L49.084,5.676h4.242l2.7,9.524,2.585-9.524h3.68L64.9,15.144l2.669-9.469h4.074L67.037,20.228H62.963l-2.586-9.187-2.584,9.187Zm85.72,0h-4.271V5.676h4.13V7.839A4.677,4.677,0,0,1,144.385,6.6a4.377,4.377,0,0,1,3.034-1.039,5.575,5.575,0,0,1,1.04.084V9.581a9.677,9.677,0,0,0-1.433-.085c-2.9,0-3.512,1.818-3.512,3.344v7.388ZM197.042,10.2a3.03,3.03,0,0,1-2.979-3.072,2.98,2.98,0,1,1,5.956,0A3.029,3.029,0,0,1,197.042,10.2Zm0-5.685a2.569,2.569,0,0,0-2.517,2.613,2.519,2.519,0,1,0,5.034,0A2.569,2.569,0,0,0,197.038,4.516Zm-.611,4.1h-.586V5.576H197.3c.66,0,1.054.347,1.054.928a.855.855,0,0,1-.62.863v.009c.027.045.046.077.071.122l.042.073.588,1.04h-.68l-.6-1.093c-.03-.055-.038-.07-.117-.07h-.6V8.613Zm0-2.548v.9h.8c.334,0,.525-.163.525-.447s-.2-.451-.525-.451Z"
+                              transform="translate(-0.02 0)" />
+                    </g>
+                </g>
+            </svg>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon d-flex align-items-center justify-content-center">
+                <i class="fas fa-bars white heading-3" aria-hidden="true"></i>
+            </span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-lg-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link px-4" href="@Url.Action("Index", "ContactUs", new { nodeAlias = "ContactUs"})" target="_blank">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-4" href="@Url.Action("Index", "ContactUs", new { nodeAlias = "ContactUs"})" target="_blank">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-4" href="@Url.Action("Index", "ContactUs", new { nodeAlias = "ContactUs"})" target="_blank">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- navigation end-->
+
+
+
+
+    <main role="main" class="text-size-normal">
+        <section class="board-bg-image">
+            <div class="image-wrapper h-100">
+                <img src="~/Content/images/Image 22@2x.png" alt="..." class="img-fluid" data-object-fit>
+                <div class="blue-overlay"></div>
+            </div>
+            <div class="container mx-0 image-text">
+                    <div class="row">
+                        <div class="col text-center">
+                            <span class="board-name">@Model.Board.BoardName</span>
+                        </div>
+                    </div>
+                <div class="row">
+                    <div class="col text-center">
+                        <span class="author text-size-normal">
+                            <strong>shared by: </strong>@Model.Board.UserId
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- title -->
+        <section class="title-section my-3 my-md-5" style="@boardVisibility">
+            <div class="mark red"></div>
+                <div class="row">
+                    <div class="col-sm-8 offset-sm-2 text-center">
+                        <h1 class="title heading-1">About This Board</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 offset-sm-2 text-center">
+                        <p class="description">
+                            @Model.Board.Notes
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+        <!-- if user isn't logged in -->
+        @if (!User.Identity.IsAuthenticated && Model.Board.LoggedUserRequiredToAccess)
+        {
+            <section class="title-section my-3 my-md-5">
+                <div class="mark red"></div>
+                <div class="row">
+                    <div class="col-sm-8 offset-sm-2 text-center">
+                        <h1 class="title heading-1">Login Required</h1>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-6 col-lg-4 text-center">
+                        <p class="description">
+                            To view this product board, please either
+                            <a href="@Url.Action("RequestSignIn", "Account", new { provider = "", returnUrl = @Url.Action("SharedBoard", "ProductBoards", new { boardId = Model.Board.ID.ToString()}) })">
+                                <u>
+                                    create an account
+                                </u>
+                            </a> or
+                            <a href="@Url.Action("RequestSignIn", "Account", new { provider = "", returnUrl = @Url.Action("SharedBoard", "ProductBoards", new { boardId = Model.Board.ID.ToString()}) })" >
+                                <u>
+                                    log in
+                                </u>
+                            </a>
+                            with an existing account.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            }
+        <section class="board-products container mb-3 mb-md-5" style="@boardVisibility">
+            <div class="row">
+                <!-- card -->
+                @foreach (var product in Model.Board.ProductBoardItems)
+                {
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-6 product-card p-4">
+                        <div class="card w-100">
+                            <div class="row no-gutters card-content">
+                                <!-- link -->
+                                <a href="@Url.Action("Details", "Product", new { inventoryType = "Carpet", nodeAlias="city-central-tile".Trim().Replace(' ', '-'), colorNumber= product.ColorNumber})" class="stretched-link" target="_blank"></a>
+                                <!-- image -->
+                                <div class="col-xl-5 image-wrapper">
+                                    <img src="@product.ImageUrl" class="card-img" alt="..." data-object-fit>
+                                    <div class="hover-effect">
+                                        <span class="hover-text">
+                                            View
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-xl-7">
+                                    <div class="card-body">
+                                        <div class="heading-2 medium">@product.StyleName</div>
+                                        <div class="heading-3 medium mb-3">@product.ColorName</div>
+                                        <div class="text-size-normal mb-3">
+                                            <span class="mr-3">
+                                                <span class="medium">
+                                                    Style:
+                                                </span>
+                                                <span>
+                                                    @product.StyleNumber
+                                                </span>
+                                            </span>
+                                            <span>
+                                                <span class="medium">
+                                                    Color:
+                                                </span>
+                                                <span>
+                                                    @product.ColorNumber
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <p class="card-text text-size-small">
+                                            @product.Notes
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+    </main>
+
+
+    <footer class="footer mt-auto py-3 primary">
+        <div class="row pt-5 pb-4 justify-content-between m-0">
+            <div class="col-12 col-md-4 text-center text-md-left">
+                <a href="@Model.SiteUrl" target="_blank">
+                    <img class="logo white mb-5" alt="ShawContract - Commercial Flooring" src="~/Content/images/logo-white.svg" />
+                </a>
+            </div>
+            <div class="col-12 col-md-8 text-center text-md-right">
+                <h2 class="heading-2">
+                    <a href="@Model.SiteUrl" target="_blank" class="white text-decoration-none">
+                        View ShawContract.com
+                    </a>
+                </h2>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="~/Content/js/jquery-3.4.1.min.js"></script>
+    <script src="~/Content/js/bootstrap.bundle.js"></script>
+    <script src="~/Content/js/clamp.min.js"></script>
+    <script src="~/Content/js/lineClamps.js"></script>
+    <script src="~/Content/js/objectFitPolyFill.basic.min.js"></script>
+    <script src="~/Content/js/toastr.js"></script>
+    <script src="~/Content/js/notifications.js"></script>
+    <script src="~/Content/js/shawcontract.js"></script>
+</body>
+</html>

@@ -1,4 +1,5 @@
-﻿@model ShawContract.Models.PageViewModel
+﻿@using Microsoft.Owin.Security
+@model ShawContract.Models.PageViewModel
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,41 +17,52 @@
 
     <link rel="canonical" href="/" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap" rel="stylesheet" />
-    <link href="@Url.Content("~/Content/Css/Vendors/bootstrap.css")" rel="stylesheet" />
-    <link href="@Url.Content("~/Content/Css/Vendors/bootstrap-select.min.css")" rel="stylesheet" />
-    <link href="@Url.Content("~/Content/Css/Vendors/toastr.min.css")" rel="stylesheet" />
-    <link href="@Url.Content("~/Content/Css/Master/shawcontract.css")" rel="stylesheet" />
+    <link href="@Url.Content(" ~/Content/Css/Vendors/bootstrap.css")" rel="stylesheet" />
+    <link href="@Url.Content(" ~/Content/Css/Vendors/bootstrap-select.min.css")" rel="stylesheet" />
+    <link href="@Url.Content(" ~/Content/Css/Vendors/toastr.min.css")" rel="stylesheet" />
+    <link href="@Url.Content(" ~/Content/Css/Master/shawcontract.css")" rel="stylesheet" />
 
     <script src="https://kit.fontawesome.com/0244929327.js" crossorigin="anonymous"></script>
 
     @RenderSection("Styles", required: false)
 
+    <!-- Google Tag Manager -->
     <script>
-        !function () {
-            var analytics = window.analytics = window.analytics || []; if (!analytics.initialize) if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice."); else {
-                analytics.invoked = !0; analytics.methods = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset", "group", "track", "ready", "alias", "debug", "page", "once", "off", "on"]; analytics.factory = function (t) { return function () { var e = Array.prototype.slice.call(arguments); e.unshift(t); analytics.push(e); return analytics } }; for (var t = 0; t < analytics.methods.length; t++) { var e = analytics.methods[t]; analytics[e] = analytics.factory(e) } analytics.load = function (t, e) { var n = document.createElement("script"); n.type = "text/javascript"; n.async = !0; n.src = "https://cdn.segment.com/analytics.js/v1/" + t + "/analytics.min.js"; var a = document.getElementsByTagName("script")[0]; a.parentNode.insertBefore(n, a); analytics._loadOptions = e }; analytics.SNIPPET_VERSION = "4.1.0";
-                analytics.load("QRcWMAZ3nFToL0xZgFFXYJYJ39S6281U");
-                analytics.page();
-            }
-        }();
+        (function(w,d,s,l,i){w[l] = w[l] || []; w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-TMPVD32');
 
         dataLayer = [{
-            'pageName': '',
+            'pageName': '@ViewBag.Title',
             'pageUrl': '@Request.Url',
             'userEmail': '@CMS.Membership.MembershipContext.AuthenticatedUser.Email',
             'userID': '@CMS.Membership.MembershipContext.AuthenticatedUser.UserID'
         }];
     </script>
+    <!-- End Google Tag Manager -->
 </head>
 
+@{
+    var authService = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+}
+
 <body class="d-flex flex-column h-100">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TMPVD32"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <nav class="secondary">
         <ul class="list-unstyled">
 
             @foreach (var item in Model.SecondaryMenuItems)
             {
                 <li>
-                    <a @(item.IsClickable ? item.OpenInNewTab ? "href=" + item.PageReference + " target=\"_blank\"" : "href=" + item.PageReference : string.Empty)>
+                    <a @(item.IsClickable ? item.OpenInNewTab ? "href=" + item.PageReference + " target=\" _blank\"" : "href=" + item.PageReference : string.Empty)>
                         @item.DisplayName
                     </a>
                 </li>
@@ -107,7 +119,7 @@
                                     @foreach (var subItem in menuItem.SubItems)
                                     {
                                         <li>
-                                            <a @(subItem.IsClickable ? subItem.OpenInNewTab ? "href=" + subItem.PageReference + " target=\"_blank\"" : "href=" + subItem.PageReference : string.Empty)>
+                                            <a @(subItem.IsClickable ? subItem.OpenInNewTab ? "href=" + subItem.PageReference + " target=\" _blank\"" : "href=" + subItem.PageReference : string.Empty)>
                                                 @subItem.DisplayName
                                             </a>
                                             @if (subItem.SubItems.Count() > 0)
@@ -116,7 +128,7 @@
                                                     @foreach (var subSubItem in subItem.SubItems)
                                                     {
                                                         <li>
-                                                            <a @(subSubItem.IsClickable ? subSubItem.OpenInNewTab ? "href=" + subSubItem.PageReference + " target=\"_blank\"" : "href=" + subSubItem.PageReference : string.Empty)>
+                                                            <a @(subSubItem.IsClickable ? subSubItem.OpenInNewTab ? "href=" + subSubItem.PageReference + " target=\" _blank\"" : "href=" + subSubItem.PageReference : string.Empty)>
                                                                 @subSubItem.DisplayName
                                                             </a>
                                                         </li>
@@ -164,19 +176,19 @@
 
                         <div class="row">
                             <div class="col-sm-12">
-                                <button class="btn btn-after-login"><i class="far fa-receipt"></i> Order History</button>
+                                <button onclick="location.href='@Url.Action("Orders", "OrderHistory")'" class="btn btn-after-login"><i class="far fa-receipt"></i> Order History</button>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-sm-12">
-                                <button class="btn btn-after-login"><i class="far fa-heart"></i> Product Boards</button>
+                                <button class="btn btn-after-login" onclick="location.href='@Url.Action("MyBoards", "ProductBoards")'"><i class="far fa-heart"></i> Product Boards</button>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-sm-12">
-                                <button class="btn btn-after-login"><i class="far fa-phone-alt"></i> Account Support</button>
+                                <button onclick="location.href='@Url.Action("Orders", "OrderHistory")'" class="btn btn-after-login"><i class="far fa-phone-alt"></i> Account Support</button>
                             </div>
                         </div>
                         @if (Request.IsAuthenticated)
@@ -193,91 +205,29 @@
                     </div>
                 </li>
 
-                <li class="nav-item dropdown board-nav">
-                    <a class="nav-link" href="#" id="boardDropDown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">
-                        <i class="far fa-heart" aria-label="View Your Product Boards"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="boardDropDown">
-
-                        <div class="row mb-4">
-                            <div class="col-sm-12">
-                                <button type="button" class="btn btn-primary w-100" data-toggle="modal"
-                                        data-target="#createNewBoardModal" aria-pressed="false" autocomplete="off">
-                                    Create New Board
-                                </button>
-                            </div>
+                @if (Request.IsAuthenticated)
+                {
+                    <li class="nav-item dropdown board-nav">
+                        <a class="nav-link" href="#" id="boardDropDown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">
+                            <i class="far fa-heart" aria-label="View Your Product Boards"></i>
+                        </a>
+                        <div id="boardDropDownContent" class="dropdown-menu dropdown-menu-right" aria-labelledby="boardDropDown">
+                            @{Html.RenderAction("Boards", "ProductBoardsDropDown");}
                         </div>
 
-                        <div class="cart-item-box">
 
-                            <select class="form-control select-white mb-3 mt-2" id="boardNavSelect">
-                                <option>Board Name 1</option>
-                                <option>Board Name 2</option>
-                                <option>Board Name 3</option>
-                                <option>Board Name 4</option>
-                                <option>Board Name 5</option>
-                            </select>
-
-                            <div class="media cart-item">
-                                <a class="style-img" href="#"><img class="mr-3" src="https://placehold.it/60x60" alt="Style Name"></a>
-                                <div class="media-body">
-                                    <div class="row">
-                                        <div class="col-sm-9">
-                                            <p class="style-name"><a href="#">Style Name Number</a></p>
-                                            <p class="color-name">Color Name Number</p>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <button class="btn remove-style-sample"><i class="fal fa-times"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="media cart-item">
-                                <a class="style-img" href="#"><img class="mr-3" src="https://placehold.it/60x60" alt="Style Name"></a>
-                                <div class="media-body">
-                                    <div class="row">
-                                        <div class="col-sm-9">
-                                            <p class="style-name"><a href="#">Style Name Number</a></p>
-                                            <p class="color-name">Color Name Number</p>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <button class="btn remove-style-sample"><i class="fal fa-times"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="media cart-item">
-                                <a class="style-img" href="#"><img class="mr-3" src="https://placehold.it/60x60" alt="Style Name"></a>
-                                <div class="media-body">
-                                    <div class="row">
-                                        <div class="col-sm-9">
-                                            <p class="style-name"><a href="#">Style Name Number</a></p>
-                                            <p class="color-name">Color Name Number</p>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <button class="btn remove-style-sample"><i class="fal fa-times"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-3 mt-5">
-                            <div class="col-sm-12">
-                                <button class="btn btn-secondary w-100"><i class="fal fa-paper-plane"></i> Share This Board</button>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <p class="last-updated">Last Updated: 5 minutes ago</p>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item dropdown board-nav">
+                        <a class="nav-link" onclick="location.href='@Url.Action("RequestSignIn", "Account", new { provider = authService.FirstOrDefault().AuthenticationType, returnUrl = Url.Action("MyBoards","ProductBoards")})'" id="boardDropDown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">
+                            <i class="far fa-heart" aria-label="View Your Product Boards"></i>
+                        </a>
+                    </li>
+                }
 
                 <li class="nav-item dropdown cart-nav">
                     <a class="nav-link" href="#" id="cartDropDown" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -285,8 +235,8 @@
                         <i class="far fa-shopping-cart" aria-label="View Your Cart"></i>
                     </a>
 
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="cartDropDown">
-                        @Html.Action("Cart", "CartDropDown");
+                    <div id="cart" class="dropdown-menu dropdown-menu-right" aria-labelledby="cartDropDown">
+                        @{ Html.RenderAction("Cart", "CartDropDown"); }
                     </div>
                 </li>
             </ul>
@@ -295,9 +245,9 @@
 
     @RenderBody()
 
-    <footer class="footer mt-auto py-3 primary">
-        <div class="container">
-            <div class="row pt-5 pb-4">
+    <footer class="footer mt-auto primary">
+        <div class="container-fluid">
+            <div class="row">
                 <div class="col-lg-9">
                     <img class="logo white mb-5" alt="ShawContract - Commercial Flooring" src="https://api.machinelogic.io/mvc/images/logo-white.svg" />
                     @if (Model.FooterMenuItems.Count() > 0)
@@ -307,7 +257,7 @@
                                 @foreach (var footerItem in Model.FooterMenuItems)
                                 {
                                     <li>
-                                        <a @(footerItem.IsClickable ? footerItem.OpenInNewTab ? "href=" + footerItem.PageReference + " target=\"_blank\"" : "href=" + footerItem.PageReference : string.Empty)>
+                                        <a @(footerItem.IsClickable ? footerItem.OpenInNewTab ? "href=" + footerItem.PageReference + " target=\" _blank\"" : "href=" + footerItem.PageReference : string.Empty)>
                                             @footerItem.DisplayName
                                         </a>
                                     </li>
@@ -320,7 +270,7 @@
                         <ul class="list-unstyled">
                             <li>
                                 <span>
-                                    &copy; 2019 Shaw Industries Group, Inc., a Berkshire
+                                    &copy; @DateTime.Now.Year Shaw Industries Group, Inc., a Berkshire
                                     Hathaway Company
                                 </span>
                             </li>
@@ -381,13 +331,37 @@
             </div>
             <div class="row float-right">
                 <small>
-                    @System.IO.File.GetLastWriteTime(typeof(ShawContract.MvcApplication).Assembly.Location);
+                    @System.IO.File.GetLastWriteTime(typeof(ShawContract.MvcApplication).Assembly.Location)
                 </small>
+            </div  class="row float-right">
+						            <div class="row float-right">
+                <small>
+                    HTTP_X_FORWARDED_FOR : @Request.ServerVariables["HTTP_X_FORWARDED_FOR"] |
+                </small>
+                <small>
+                    REMOTE_ADDR:  @Request.ServerVariables["REMOTE_ADDR"] |
+                </small>
+                <small>
+                    UserHostAddress: @Request.UserHostAddress |
+                </small>
+                @{ 
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://globalip.melissadata.net/v4/WEB/iplocation/doiplocation?ip="+ Request.ServerVariables["HTTP_X_FORWARDED_FOR"]+"&opt=&id=T6tc9h9twSrJzOfIILvaAr**&t=RestJson");
+                    request.Accept = "application/json";
+					HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+					string text = "";
+					using (var sr = new StreamReader(response.GetResponseStream()))
+					{
+						text = sr.ReadToEnd();
+					}
+					<small>@text</small>
+                }
             </div>
         </div>
     </footer>
 
+
     @RenderPage("~/Views/Shared/_LanguageModal.cshtml")
+    @RenderPage("~/Views/Shared/_NewBoardModal.cshtml")
     <script src="~/Content/js/jquery-3.4.1.min.js"></script>
     <script src="~/Content/js/jquery.validate.min.js"></script>
     <script src="~/Content/js/regex.js"></script>
@@ -396,16 +370,27 @@
     <script src="~/Content/js/popper.min.js"></script>
     <script src="~/Content/js/bootstrap-select.min.js"></script>
     <script src="~/Content/js/clamp.min.js"></script>
+    <script src="~/Content/js/checkSampleCount.js"></script>
     <script src="~/Content/js/lineClamps.js"></script>
     <script src="~/Content/js/userSettings.js"></script>
+    <script src="~/Content/js/printReturnLabel.js"></script>
     <script src="~/Content/js/objectFitPolyFill.basic.min.js"></script>
     <script src="~/Content/js/toastr.js"></script>
     <script src="~/Content/js/notifications.js"></script>
-    <script src="~/Content/js/checkoutFormValidations.js"></script>
+    <script src="~/Content/js/checkout.js"></script>
     <script src="~/Content/js/addNewBoard.js"></script>
     <script src="~/Content/js/copyToClipBoard.js"></script>
     <script src="~/Content/js/editProductBoard.js"></script>
+    <script src="~/Content/js/addedToCart.js"></script>
     <script src="~/Content/js/shawcontract.js"></script>
+    <script src="~/Content/js/shareThisBoard.js"></script>
+    <script src="~/Content/js/saveToBoard.js"></script>
+    <script src="~/Content/js/product.js"></script>
+    <script src="~/Content/js/checkout.js"></script>
+    <script src="~/Content/js/shipping-address-form-validation.js"></script>
+    <script src="~/Content/js/timestamps.js"></script>
+    @RenderSection("ViewScript", required: false)
     @RenderSection("Scripts", required: false)
+
 </body>
 </html>

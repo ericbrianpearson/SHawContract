@@ -2,3 +2,7 @@
 .kn-system-messages p {
     padding: 0.5rem;
 }
+
+disabled {
+    pointer-events: none;
+}

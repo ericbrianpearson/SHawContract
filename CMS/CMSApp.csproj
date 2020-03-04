@@ -779,9 +779,6 @@
     <None Include="App_Themes\Default\CMSModules\cms.emailmarketing\cms.emailmarketing.newsletter.report.less" />
     <None Include="App_Themes\Default\CMSModules\cms.membership.less" />
     <None Include="App_Themes\Default\CMSModules\cms.objecttypegraph.less" />
-    <None Include="Config\ConnectionStrings.config">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Old_App_WebReferences\WS\WebService.discomap" />
     <None Include="Old_App_WebReferences\WS\WebService.wsdl" />
     <Content Include="Admin\Default.aspx" />
@@ -5866,6 +5863,10 @@
     <Content Include="App_Data\DancingGoat\Resources\dancingGoat.resx" />
     <Content Include="App_Data\DancingGoat\Resources\es-ES\dancingGoat.es-ES.resx" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <Content Include="_ConfigFiles\SystemSettings.config" />
+    <Content Include="_ConfigFiles\ConnectionStrings.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CMSAdminControls\UI\SmartTip.ascx.cs">

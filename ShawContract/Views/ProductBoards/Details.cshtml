@@ -18,26 +18,34 @@
 
             var checkboxChecked = Model.Data.ProductBoard.LoggedUserRequiredToAccess ? "checked" : "";
 
-                <div class="row align-items-center mb-3 mb-md-4">
-                    <div class="col-12 col-md-6">
+                <div class="row justify-content-between align-items-center mb-3 mb-md-4">
+                    <div class="col-12 col-md-8">
                         <h2 class="heading-2 py-3 pl-0 pr-3 px-md-0">
                             Edit Product Board:
+                            <span class="regular">@Model.Data.ProductBoard.BoardName</span>
                         </h2>
                     </div>
-                    <div class="col-12 col-md-6 text-md-right">
-                        <button type="button" class="btn btn-secondary text-black letter-spacing-normal mx-2 rounded"
-                                data-toggle="modal" data-target="#deleteBoardModal" aria-pressed="false" autocomplete="off">
-                            DELETE
-                            <i class="fas fa-trash-alt"></i>
+                    <div class="col-12 col-md-4 text-md-right">
+                        <button type="button" class="btn btn-secondary btn-black-text letter-spacing-normal"
+                                data-toggle="modal" data-target="#renameBoardModal" aria-pressed="false" autocomplete="off">
+                            RENAME
+                            <i class="fal fa-pencil"></i>
                         </button>
-                        <button type="button" class="btn btn-secondary text-black letter-spacing-normal mx-2 rounded">
-                            SAVE
-                            <i class="fas fa-cloud-download-alt"></i>
-                        </button>
-                        <button type="button" class="btn btn-primary letter-spacing-normal copy-to-clipboard ml-2 rounded"
+                        <button type="button"
+                                class="btn btn-secondary btn-black-text letter-spacing-normal copy-to-clipboard"
                                 aria-pressed="false" autocomplete="off">
                             SHARE
                             <i class="far fa-paper-plane"></i>
+                        </button>
+                        <button type="button" class="btn btn-secondary btn-black-text letter-spacing-normal"
+                                data-toggle="modal" data-target="#deleteBoardModal" aria-pressed="false" autocomplete="off">
+                            DELETE
+                            <i class="fas fa-trash-alt"></i>
+                        </button>   
+                        <button type="submit" class="btn btn-secondary btn-black-text letter-spacing-normal"
+                                aria-pressed="false" autocomplete="off" id="save-btn">
+                            SAVE
+                            <i class="fas fa-cloud-download-alt"></i>
                         </button>
                     </div>
                 </div>
@@ -45,34 +53,17 @@
                     <div class="col-12 col-lg-10">
                         <div class="row mb-3 mb-md-4">
                             <div class="col">
-                                <span class="text-size-normal d-inline-block mr-3">Board Name</span>
-                                <span class="text-size small">
-                                    <a href="" class="text-size-small text-decoration-none mt-2" data-toggle="modal"
-                                       data-target="#renameBoardModal" aria-pressed="false" autocomplete="off">
-                                        Edit
-                                    </a>
-                                </span>
-                                <h2 class="heading-2">@Model.Data.ProductBoard.BoardName</h2>
-                            </div>
-                        </div>
-                        <div class="row mb-3 mb-md-4">
-                            <div class="col">
-                                <h4 class="heading-4">Board Preferences</h4>
+                                <h3 class="heading-3">Board Preferences</h3>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <h5 class="heading-5 regular d-inline-block mr-3">
+                                <h5 class="heading-5 regular">
                                     Access Logging
                                 </h5>
-                                <span class="text-size-small">
-                                    <a href="" class="text-size-small text-decoration-none" data-toggle="modal" data-target="#viewLogModal" aria-pressed="false" autocomplete="off">
-                                        View log
-                                    </a>
-                                </span>
                             </div>
                         </div>
-
+                        
                         <div class="row mb-3 mb-md-5 no-gutters">
                             <div class="col-12 col-md-10">
                                 <div class="custom-control custom-checkbox py-2">
@@ -81,6 +72,12 @@
                                         User must have a website account and be logged in to view this shared board
                                     </label>
                                 </div>
+                            </div>
+                            <div class="col-12 col-md-2 mt-3 mt-md-0 d-flex justify-content-end">
+                                <button type="button" class="btn black bg-white text-size-normal letter-spacing-normal"
+                                        data-toggle="modal" data-target="#viewLogModal" aria-pressed="false" autocomplete="off">
+                                    View log
+                                </button>
                             </div>
                         </div>
                         <div class="row mb-3 mb-md-5">
@@ -118,24 +115,24 @@
 
                                             <!-- search item start -->
                                             @*<div class="search-item border w-100">
-                                <div class="row no-gutters px-3 py-2 mx-0">
-                                    <div class="image-wrapper h-100 d-flex align-items-center">
-                                        <img src="https://placehold.it/120x120" class="img-fluid" alt="..."
-                                             data-object-fit />
-                                    </div>
-                                    <div class="col-8 pl-3 d-flex align-items-center">
-                                        <span class="text-size-small">
-                                            Product Name (5T332) - Color Name (01105)
-                                        </span>
-                                    </div>
-                                    <div class="col h-100 d-flex align-items-center justify-content-end">
-                                        <button class="btn btn-primary text-size-small rounded-circle"
-                                                type="button" aria-expanded="false">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>*@
+                                                <div class="row no-gutters px-3 py-2 mx-0">
+                                                    <div class="image-wrapper h-100 d-flex align-items-center">
+                                                        <img src="https://placehold.it/120x120" class="img-fluid" alt="..."
+                                                             data-object-fit />
+                                                    </div>
+                                                    <div class="col-8 pl-3 d-flex align-items-center">
+                                                        <span class="text-size-small">
+                                                            Product Name (5T332) - Color Name (01105)
+                                                        </span>
+                                                    </div>
+                                                    <div class="col h-100 d-flex align-items-center justify-content-end">
+                                                        <button class="btn btn-primary text-size-small rounded-circle"
+                                                                type="button" aria-expanded="false">
+                                                            <i class="fas fa-plus"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>*@
                                             <!-- search item end -->
 
                                         </div>
@@ -156,7 +153,7 @@
                                 @Html.Hidden($"ProductBoardItems[{i}].ColorName", Model.Data.ProductBoard.ProductBoardItems[i].ColorName);
                                 @Html.Hidden($"ProductBoardItems[{i}].StyleNumber", Model.Data.ProductBoard.ProductBoardItems[i].StyleNumber);
                                 @Html.Hidden($"ProductBoardItems[{i}].ColorNumber", Model.Data.ProductBoard.ProductBoardItems[i].ColorNumber);
-
+                                
                                 <!-- product card start -->
                                 <div class="col-12 col-md-6" id="@Model.Data.ProductBoard.ProductBoardItems[i].ID.ToString()">
                                     <div class="card product-card rounded my-4">
@@ -176,7 +173,7 @@
                                                 <div class="col text-right">
                                                     <h5 class="heading-5">
                                                         @Model.Data.ProductBoard.ProductBoardItems[i].StyleNumber
-
+                                                        
                                                     </h5>
                                                     <p class="text-size-small">
                                                         @Model.Data.ProductBoard.ProductBoardItems[i].ColorNumber
@@ -184,12 +181,12 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="notes_1">Notes</label>
+                                                <label for="notes_1">Notes</label>                            
                                                 <textarea class="form-control form-control-lg bg-gray-semilight" id="notes_1" name="ProductBoardItems[@i].Notes"
                                                           maxlength="500" rows="7">@Model.Data.ProductBoard.ProductBoardItems[i].Notes</textarea>
                                             </div>
-                                            <div class="text-right">
-                                                <a href='@Url.Action("RemoveItem", "ProductBoards", new { nodeAlias = Model.Metadata.Title, boardId = Model.Data.ProductBoard.ID.ToString(), productId = Model.Data.ProductBoard.ProductBoardItems[i].ID.ToString() })' class='delete-icon text-size-small' @*role='button'*@ @*data-toggle='button'*@>
+                                            <div class="text-right">                                            
+                                                <a href='@Url.Action("RemoveItem", "ProductBoards", new { nodeAlias = Model.Metadata.Title, boardId = Model.Data.ProductBoard.ID.ToString(), productId = Model.Data.ProductBoard.ProductBoardItems[i].ID.ToString() })' class='delete-icon text-size-small' @*role='button'*@ @*data-toggle='button'*@ >
                                                     <i class="fas fa-trash-alt"></i>
                                                 </a>
                                             </div>
@@ -226,7 +223,7 @@
                             <input type="text" class="form-control form-control-lg" id="board-name" name="BoardName" maxlength="200" required
                                    aria-required="true">                           
                            
-                            <strong class="invalid-feedback"><span>Please enter a name.</span></strong>
+                            <strong class="invalid-feedback"><span>Cannot create a new board without a name.</span></strong>
                         </div>
                     </div>
                     <div class="row justify-content-end">
@@ -309,6 +306,7 @@
                                     </div>
                                     <div class="col-12 col-lg-5 text-lg-right">
                                         <span class="semibold">
+                                            12/23/2019 03:12pm EST
                                             @visitor.DateVisited.ToString("MM/dd/yyyy hh:mm tt")
                                         </span>
                                     </div>

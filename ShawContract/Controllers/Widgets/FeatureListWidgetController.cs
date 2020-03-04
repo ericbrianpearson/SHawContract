@@ -22,33 +22,35 @@ namespace ShawContract.Controllers.Widgets
             {
                 Title = properties.Title,
                 Subtitle = properties.Subtitle,
+                IsTextCentered = properties.IsTextCentered,
+                ShowButtons = properties.ShowButtons,
 
-                Icon1 = properties.Icon1,
+                Image1 = properties.Image1,
                 Description1 = properties.Description1,
                 LinkUrl1 = properties.LinkUrl1,
                 SecondaryTitle1 = properties.SecondaryTitle1,
 
-                Icon2 = properties.Icon2,
+                Image2 = properties.Image2,
                 Description2 = properties.Description2,
                 LinkUrl2 = properties.LinkUrl2,
                 SecondaryTitle2 = properties.SecondaryTitle2,
 
-                Icon3 = properties.Icon3,
+                Image3 = properties.Image3,
                 Description3 = properties.Description3,
                 LinkUrl3 = properties.LinkUrl3,
                 SecondaryTitle3 = properties.SecondaryTitle3,
 
-                Icon4 = properties.Icon4,
+                Image4 = properties.Image4,
                 Description4 = properties.Description4,
                 LinkUrl4 = properties.LinkUrl4,
                 SecondaryTitle4 = properties.SecondaryTitle4,
 
-                Icon5 = properties.Icon5,
+                Image5 = properties.Image5,
                 Description5 = properties.Description5,
                 LinkUrl5 = properties.LinkUrl5,
                 SecondaryTitle5 = properties.SecondaryTitle5,
 
-                Icon6 = properties.Icon6,
+                Image6 = properties.Image6,
                 Description6 = properties.Description6,
                 LinkUrl6 = properties.LinkUrl6,
                 SecondaryTitle6 = properties.SecondaryTitle6,

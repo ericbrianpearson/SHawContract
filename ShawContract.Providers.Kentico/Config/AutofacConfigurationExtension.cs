@@ -1,7 +1,7 @@
 ﻿using Autofac;
-using AutoMapper;
+using CMS.Ecommerce;
 using ShawContract.Application.Contracts.Gateways;
-
+using ShawContract.Application.Contracts.Services;
 using ShawContract.Providers.Kentico.PageHandler;
 
 namespace ShawContract.Providers.Kentico
@@ -15,6 +15,17 @@ namespace ShawContract.Providers.Kentico
             builder.RegisterType<MediaLibraryFileGateway>().As<IMediaLibraryGateway>()
                 .InstancePerRequest();
 
+            builder.RegisterType<ContactUsGateway>().As<IContactUsGateway>()
+                .InstancePerRequest();
+
+            builder.RegisterType<ContactGateway>().As<IContactGateway>()
+                .InstancePerRequest();
+
+            builder.RegisterType<BlogPageGateway>().As<IBlogPageGateway>()
+                .InstancePerRequest();
+
+            builder.RegisterType<ProductGateway>().As<IProductGateway>()
+             .InstancePerRequest();
             builder.RegisterType<PersonaGateway>().As<IPersonaGateway>()
              .InstancePerRequest();
             builder.RegisterType<AccountGateway>().As<IAccountGateway>()
@@ -27,7 +38,12 @@ namespace ShawContract.Providers.Kentico
                 .InstancePerRequest();
             builder.RegisterType<PageContentHandler>().As<IPageContentHandler>()
               .InstancePerRequest();
-
+            builder.RegisterType<ShoppingService>().As<IShoppingService>()
+             .InstancePerRequest();
+            builder.RegisterType<HomePageGateway>().As<IHomePageGateway>()
+                .InstancePerRequest();
+            builder.RegisterType<CarouselGateway>().As<ICarouselGateway>()
+               .InstancePerRequest();
             return builder;
         }
 

@@ -1,5 +1,5 @@
 (function () {
-    var userSettingsPage = document.querySelector("main.user-settings");
+    var userSettingsPage = document.querySelector("main.account-profile .user-settings");
 
     if (!userSettingsPage) {
         return;
@@ -8,8 +8,9 @@
     // Form Validations
     $(document).ready(function () {
         $("#personal-information-form").validate({
+            errorClass: "error jquery-error",
             rules: {
-                firstName: {
+                "Data.FirstName": {
                     required: true,
                     minlength: 2,
                     maxlength: 100,
@@ -18,7 +19,7 @@
                         return $.trim(value);
                     }
                 },
-                lastName: {
+                "Data.LastName": {
                     required: true,
                     minlength: 2,
                     maxlength: 100,
@@ -27,7 +28,7 @@
                         return $.trim(value);
                     }
                 },
-                email: {
+                "Data.Email": {
                     required: true,
                     email: true,
                     normalizer: function (value) {
@@ -36,56 +37,59 @@
                 },
                 password: {
                     required: true
+                },
+                "Data.CellPhone": {
+                    required: true,
+                    // regex: $.__phoneRegex,
+                    // normalizer: function(value) {
+                    //     return $.trim(value);
+                    // }
                 }
-                // phoneNumber: {
-                //   regex: $.__phoneRegex,
-                //   normalizer: function(value) {
-                //     return $.trim(value);
-                //   }
-                // }
             },
             messages: {
-                firstName: {
+                "Data.FirstName": {
                     required: "Please enter a first name.",
                     minlength: "Please enter at least {0} characters.",
                     maxlength: "Maximum character length: {0}.",
                     regex: "Only letters and the following symbols: -,'.  are accepted."
                 },
-                lastName: {
+                "Data.LastName": {
                     required: "Please enter a last name.",
                     minlength: "Please enter at least {0} characters.",
                     maxlength: "Maximum character length: {0}.",
                     regex: "Only letters and the following symbols: -,'.  are accepted."
                 },
-                email: {
+                "Data.Email": {
                     required: "Please enter an email address.",
                     email: "Invalid email address."
-                }
-                // phoneNumber: {
+                },
+                "Data.CellPhone": {
+                    required: "Please enter a phone number."
                 //   regex: "Only US numbers are allowed"
-                // }
+                }
             },
             submitHandler: function (form) {
-                alert("valid form submitted");
-                return false;
+                form.submit();
+                return true;
             }
         });
 
         $("#company-information-form").validate({
+            errorClass: "error jquery-error",
             rules: {
-                companyName: {
+                "Data.CompanyName": {
                     required: true
                 },
-                roleTitle: {
+                "Data.JobTitle": {
                     required: true
                 },
-                industry: {
+                "Data.Industry": {
                     required: true
                 },
                 password: {
                     required: true
-                }
-                // workNumber: {
+                },
+                // "Data.WorkPhone": {
                 //   regex: $.__phoneRegex,
                 //   normalizer: function(value) {
                 //     return $.trim(value);
@@ -93,37 +97,44 @@
                 // }
             },
             messages: {
-                roleTitle: {
-                    required: "This field is required."
+                "Data.CompanyName": {
+                    required: "Please enter a company name."
                 },
-                industry: {
-                    required: "This field is required."
+                "Data.JobTitle": {
+                    required: "Please select a job title."
+                },
+                "Data.Industry": {
+                    required: "Please enter an industry."
+                },
+                password: {
+                    required: "Please enter a password."
+                },
+                "Data.WorkPhone": {
+                    // regex: "Invalid number."
                 }
-                // workNumber: {
-                //   regex: "Only US numbers are allowed."
-                // }
             },
 
             submitHandler: function (form) {
-                alert("valid form submitted");
-                return false;
+                form.submit();
+                return true;
             }
         });
 
         $("#communication-form").validate({
+            errorClass: "error jquery-error",
             rules: {
-                language: {
+                "Data.Language": {
                     required: true
                 }
             },
             messages: {
-                language: {
-                    required: "This field is required"
+                "Data.Language": {
+                    required: "This field is required."
                 }
             },
             submitHandler: function (form) {
-                alert("valid form submitted");
-                return false;
+                form.submit();
+                return true;
             }
         });
     });

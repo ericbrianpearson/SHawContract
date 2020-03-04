@@ -1,0 +1,57 @@
+﻿@using ShawContract.Models.ProductBoards
+
+@model UserBoardsViewModel
+
+@{ 
+    var displayDate = Model.SelectedBoard != null && Model.SelectedBoard.Board != null ? Model.SelectedBoard.Board.DisplayDate : string.Empty;
+}
+<div class="row mb-4">
+    <div class="col-sm-12">
+        <button id="createNewBoardBtn" type="button" class="btn btn-primary w-100" data-toggle="modal"
+                data-target="#createNewBoardModal" aria-pressed="false" autocomplete="off">
+            Create New Board
+        </button>
+    </div>
+</div>
+
+<div class="cart-item-box">
+    <select class="form-control select-white mb-3 mt-2 text-size-small" onchange="getValue(this)" id="boardNavSelect">
+        @foreach (var board in Model.Boards)
+        {
+            <option value="@board.ID.ToString()">@board.BoardName</option>
+        }
+    </select>
+
+    <div id="items-partial">
+        @if (Model.SelectedBoard != null)
+        {
+            @Html.Partial("_SelectedBoardPartial", Model.SelectedBoard)
+        }
+    </div>
+</div>
+<div class="row mb-3 mt-5">
+    <div class="col-12">
+        <button id="shareThisBoard" class="btn btn-secondary copy-to-clipboard w-100"><i class="fal fa-paper-plane"></i> Share This Board</button>
+    </div>
+    <div class="col-12 mt-3">
+        <a href="@Url.Action("MyBoards", "ProductBoards")" class="btn btn-secondary w-100">View all boards</a>
+    </div>
+</div>
+<div class="row" id="last-update-date">
+    <div class="col-sm-12">
+        <p class="last-updated" id="dateUpdated">
+           @displayDate
+    </div>
+</div>
+
+<script type="text/javascript">
+
+function getValue(board) {
+        var dataToPost = { boardId: board.value };
+    $.post('@Url.Action("GetBoard", "ProductBoardsDropDown")', dataToPost, function (data) {
+        $('#items-partial').html(data);
+        var lastUpdateDate = document.getElementById("board-last-update-date").value;
+        document.getElementById("dateUpdated").innerHTML = lastUpdateDate;
+    });
+    }
+</script>

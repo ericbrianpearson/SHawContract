@@ -8,12 +8,18 @@ using Kentico.Membership;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using ShawContract.Application.Contracts.Services;
 using ShawContract.Config;
 
 namespace ShawContract.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
+        public AccountController(IMasterPageService masterPageService)
+            : base(masterPageService)
+        {
+        }
+
         /// <summary>
         /// Provides access to the Microsoft.Owin.Security.IAuthenticationManager instance.
         /// </summary>
@@ -51,9 +57,7 @@ namespace ShawContract.Controllers
         /// Redirects authentication requests to an external service.
         /// Posted parameters include the name of the requested authentication middleware instance and a return URL.
         /// </summary>
-        [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
         public ActionResult RequestSignIn(string provider, string returnUrl)
         {
             // Requests a redirect to the external sign-in provider
@@ -63,7 +67,20 @@ namespace ShawContract.Controllers
             {
                 returnUrl = Startup.redirectUri;
             }
+
+            if (string.IsNullOrEmpty(provider))
+            {
+                provider = Startup.SignInPolicyId;
+            }
             return new ChallengeResult(provider, Url.Action("SignInCallback", "Account", new { ReturnUrl = returnUrl }));
+        }
+
+        public void ResetPassword()
+        {
+            // Set the page to redirect to after changing passwords
+            var authenticationProperties = new AuthenticationProperties { RedirectUri = "/" };
+            //HttpContext.GetOwinContext().Authentication.Challenge(authenticationProperties);
+            HttpContext.GetOwinContext().Authentication.Challenge(authenticationProperties, Startup.ResetPasswordPolicyId);
         }
 
         public void SignIn()

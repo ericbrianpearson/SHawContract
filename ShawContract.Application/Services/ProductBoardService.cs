@@ -30,14 +30,14 @@ namespace ShawContract.Application.Services
             await ProductBoardGateway.DeleteProductBoardAsync(productBoardID);
         }
 
-        public async Task<ProductBoard> GetProductBoardAsync(Guid boardID)
+        public  ProductBoard GetProductBoard(Guid boardID)
         {
-            return await ProductBoardGateway.GetProductBoardAsync(boardID);
+            return  ProductBoardGateway.GetProductBoard(boardID);
         }
 
-        public async Task<IEnumerable<ProductBoard>> GetProductBoardsAsync(string userId)
+        public IEnumerable<ProductBoard> GetProductBoards(string userId)
         {
-            return await ProductBoardGateway.GetProductBoardsAsync(userId);
+            return  ProductBoardGateway.GetProductBoards(userId);
         }
 
         public async Task RemoveProductBoardItemAsync(Guid boardId, Guid productId)
@@ -50,9 +50,9 @@ namespace ShawContract.Application.Services
             await ProductBoardGateway.UpdateProductBoardAsync(productBoard);
         }
 
-        public async Task AddVisitorToLog(Guid boardId, Visitor visitor)
+        public void AddVisitorToLog(Guid boardId, Visitor visitor)
         {
-            await ProductBoardGateway.AddUserToViewersLog(boardId, visitor);
+             ProductBoardGateway.AddUserToViewersLog(boardId, visitor);
         }
     }
 }

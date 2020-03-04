@@ -1,34 +1,41 @@
-﻿<div class="modal fade" id="createNewBoardModal" data-backdrop="static" tabindex="-1" role="dialog"
+﻿
+<div class="modal fade text-size-normal" id="createNewBoardModal" data-backdrop="static" tabindex="-1" role="dialog"
      aria-labelledby="createNewBoardLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content p-4 p-md-5">
-            <form class="needs-validation" novalidate>
-                <div class="modal-header">
-                    <h2 class="modal-title" id="createNewBoardLabel">Add New Product Board</h2>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                    </button>
-                </div>
-                <div class="modal-body mb-4 mb-md-5">
-                    <div class="form-group">
-                        <label for="board-name">Board Name<span class="text-danger"> *</span></label>
-                        <input type="text" class="form-control form-control-lg" id="board-name" maxlength="200" required
-                               aria-required="true">
-                        <strong class="invalid-feedback text-size-normal"><span>Cannot create a new board without a name.</span></strong>
-                    </div>
-                </div>
-                <div class="row justify-content-end">
-                    <div class="col-6 col-md-3">
-                        <button type="button" id="create-board-close" class="btn btn-tertiary btn-block text-size-normal"
-                                data-dismiss="modal">
-                            Cancel
+            @using (Html.BeginForm("CreateBoard", "ProductBoards", FormMethod.Post, new { @class = "needs-validation" }))
+            {
+                @Html.AntiForgeryToken()
+                @*<form class="needs-validation" novalidate>*@
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="createNewBoardLabel">Add New Product Board</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="fas fa-times"></i></span>
                         </button>
                     </div>
-                    <div class="col-6 col-md-3">
-                        <button type="submit" class="btn btn-primary btn-block text-size-normal">Save</button>
+                    <div class="modal-body mb-4 mb-md-5">
+                        <div class="form-group">
+                            <label for="board-name">Board Name<span class="text-danger"> *</span></label>
+                            <input type="text" class="form-control form-control-lg" id="board-name" name="boardName" maxlength="200" required
+                                   aria-required="true">
+                            <strong class="invalid-feedback text-size-normal"><span>Cannot create a new board without a name.</span></strong>
+                        </div>
                     </div>
-                </div>
-            </form>
+                    <div class="row justify-content-end">
+                        <div class="col-6 col-md-3">
+                            <button type="button" id="create-board-close" class="btn btn-tertiary btn-block text-size-normal"
+                                    data-dismiss="modal">
+                                Cancel
+                            </button>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <button type="submit" class="btn btn-primary btn-block text-size-normal">Save</button>
+                        </div>
+                    </div>
+                @*</form>*@
+            }
+
         </div>
     </div>
 </div>
+

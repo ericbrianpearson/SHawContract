@@ -1,0 +1,902 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://v2.product.csws.shaw.com" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="ProductWSv2Service" targetNamespace="http://v2.product.csws.shaw.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema xmlns:ns1="http://v2.orderentry.csws.shaw.com" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://v2.product.csws.shaw.com" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://v2.orderentry.csws.shaw.com" />
+      <xs:element name="getColorList" type="tns:getColorList" />
+      <xs:element name="getColorListResponse" type="tns:getColorListResponse" />
+      <xs:element name="getFob" type="tns:getFob" />
+      <xs:element name="getFobResponse" type="tns:getFobResponse" />
+      <xs:element name="getProdSpecPDF" type="tns:getProdSpecPDF" />
+      <xs:element name="getProdSpecPDFResponse" type="tns:getProdSpecPDFResponse" />
+      <xs:element name="getProductSpec" type="tns:getProductSpec" />
+      <xs:element name="getProductSpecResponse" type="tns:getProductSpecResponse" />
+      <xs:element name="getSampleProduct" type="tns:getSampleProduct" />
+      <xs:element name="getSampleProductResponse" type="tns:getSampleProductResponse" />
+      <xs:element name="getSamplesStyleList" type="tns:getSamplesStyleList" />
+      <xs:element name="getSamplesStyleListResponse" type="tns:getSamplesStyleListResponse" />
+      <xs:element name="getStyleInfo" type="tns:getStyleInfo" />
+      <xs:element name="getStyleInfoResponse" type="tns:getStyleInfoResponse" />
+      <xs:element name="getStyleList" type="tns:getStyleList" />
+      <xs:element name="getStyleListResponse" type="tns:getStyleListResponse" />
+      <xs:element name="getStylePrice" type="tns:getStylePrice" />
+      <xs:element name="getStylePriceResponse" type="tns:getStylePriceResponse" />
+      <xs:complexType name="getProductSpec">
+        <xs:sequence>
+          <xs:element minOccurs="0" form="qualified" name="request" type="tns:ProductSearchRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductSearchRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:owsRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="privateStyle" type="xs:string" />
+              <xs:element minOccurs="0" name="poNbr" type="xs:string" />
+              <xs:element minOccurs="0" name="cartNbr" type="xs:string" />
+              <xs:element minOccurs="0" name="colorNbr" type="xs:string" />
+              <xs:element minOccurs="0" name="custNbr" type="xs:string" />
+              <xs:element minOccurs="0" name="prodType" type="xs:string" />
+              <xs:element minOccurs="0" name="refNbr" type="xs:string" />
+              <xs:element minOccurs="0" name="selco" type="xs:string" />
+              <xs:element minOccurs="0" name="selmfg" type="xs:string" />
+              <xs:element minOccurs="0" name="status" type="xs:string" />
+              <xs:element minOccurs="0" name="styleName" type="xs:string" />
+              <xs:element minOccurs="0" name="styleNbr" type="xs:string" />
+              <xs:element minOccurs="0" name="prodTypeCode" type="xs:string" />
+              <xs:element minOccurs="0" name="pvtLabel" type="xs:string" />
+              <xs:element minOccurs="0" name="sequenceNbr" type="xs:string" />
+              <xs:element minOccurs="0" name="collection" type="xs:string" />
+              <xs:element minOccurs="0" name="size" type="xs:string" />
+              <xs:element minOccurs="0" name="function" type="xs:string" />
+              <xs:element minOccurs="0" name="line" type="xs:string" />
+              <xs:element minOccurs="0" name="orderNbr" type="xs:string" />
+              <xs:element minOccurs="0" name="program" type="xs:string" />
+              <xs:element minOccurs="0" name="samples" type="xs:string" />
+              <xs:element minOccurs="0" name="sampleType" type="xs:string" />
+              <xs:element minOccurs="0" name="system" type="xs:string" />
+              <xs:element minOccurs="0" name="delVehNbr" type="xs:string" />
+              <xs:element minOccurs="0" name="orderCustNbr" type="xs:string" />
+              <xs:element minOccurs="0" name="roleFlag" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="owsRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="applicationId" type="xs:string" />
+          <xs:element minOccurs="0" name="businessFunc" type="xs:string" />
+          <xs:element minOccurs="0" name="callerId" type="xs:string" />
+          <xs:element minOccurs="0" name="userId" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getProductSpecResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:ProductSpecResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductSpecResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:owsResponse">
+            <xs:sequence>
+              <xs:element name="density" type="xs:long" />
+              <xs:element minOccurs="0" name="description" type="xs:string" />
+              <xs:element minOccurs="0" name="durabilityRating" type="xs:string" />
+              <xs:element name="faceWeight" type="xs:double" />
+              <xs:element minOccurs="0" name="fhaMea" type="xs:string" />
+              <xs:element minOccurs="0" name="fiber" type="xs:string" />
+              <xs:element name="flammingMode" type="xs:long" />
+              <xs:element minOccurs="0" name="guage" type="xs:string" />
+              <xs:element name="nonFlammingMode" type="xs:long" />
+              <xs:element minOccurs="0" name="patternRepeat" type="xs:string" />
+              <xs:element minOccurs="0" name="plyTwist" type="xs:string" />
+              <xs:element minOccurs="0" name="primaryBacking" type="xs:string" />
+              <xs:element minOccurs="0" name="productType" type="xs:string" />
+              <xs:element minOccurs="0" name="secondaryBacking" type="xs:string" />
+              <xs:element minOccurs="0" name="size" type="xs:string" />
+              <xs:element name="stiches" type="xs:double" />
+              <xs:element minOccurs="0" name="styleName" type="xs:string" />
+              <xs:element minOccurs="0" name="styleNbr" type="xs:string" />
+              <xs:element name="thickness" type="xs:double" />
+              <xs:element name="totalWeight" type="xs:double" />
+              <xs:element name="weightDensity" type="xs:long" />
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="colorList" nillable="true" type="tns:Color" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="owsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="resultMessage" type="xs:string" />
+          <xs:element minOccurs="0" name="resultType" type="xs:string" />
+          <xs:element name="successful" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Color">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="colorName" type="xs:string" />
+          <xs:element minOccurs="0" name="colorNbr" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getSampleProduct">
+        <xs:sequence>
+          <xs:element minOccurs="0" form="qualified" name="request" type="tns:SampleProdRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SampleProdRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:owsRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="custRef" type="xs:string" />
+              <xs:element minOccurs="0" name="status" type="xs:string" />
+              <xs:element minOccurs="0" name="styleName" type="xs:string" />
+              <xs:element minOccurs="0" name="styleNbr" type="xs:string" />
+              <xs:element minOccurs="0" name="colorNbr" type="xs:string" />
+              <xs:element minOccurs="0" name="pv" type="xs:string" />
+              <xs:element minOccurs="0" name="seqNbr" type="xs:string" />
+              <xs:element minOccurs="0" name="custNbr" type="xs:string" />
+              <xs:element minOccurs="0" name="function" type="xs:string" />
+              <xs:element minOccurs="0" name="sampleType" type="xs:string" />
+              <xs:element minOccurs="0" name="sellCo" type="xs:string" />
+              <xs:element minOccurs="0" name="delVehNbr" type="xs:string" />
+              <xs:element minOccurs="0" name="orderCustNbr" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getSampleProductResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:SampleProdResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SampleProdResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:owsResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="collection" type="xs:string" />
+              <xs:element minOccurs="0" name="custRef" type="xs:string" />
+              <xs:element minOccurs="0" name="sampleType" type="xs:string" />
+              <xs:element minOccurs="0" name="sellCo" type="xs:string" />
+              <xs:element minOccurs="0" name="typeset" type="xs:string" />
+              <xs:element minOccurs="0" name="status" type="xs:string" />
+              <xs:element minOccurs="0" name="styleName" type="xs:string" />
+              <xs:element minOccurs="0" name="styleNbr" type="xs:string" />
+              <xs:element minOccurs="0" name="colorNbr" type="xs:string" />
+              <xs:element minOccurs="0" name="pv" type="xs:string" />
+              <xs:element minOccurs="0" name="seqNbr" type="xs:string" />
+              <xs:element minOccurs="0" name="custNbr" type="xs:string" />
+              <xs:element minOccurs="0" name="function" type="xs:string" />
+              <xs:element minOccurs="0" name="delVehNbr" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="samplePhhsList" nillable="true" type="tns:SamplePv" />
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="samplePvdList" nillable="true" type="tns:SamplePv" />
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="samplePvList" nillable="true" type="tns:SamplePv" />
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="samplePartList" nillable="true" type="tns:SamplePartList" />
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="sampleProdList" nillable="true" type="tns:SampleProd" />
+              <xs:element minOccurs="0" name="orderCustNbr" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="SamplePv">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="custNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="custRefNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="delVehName" type="xs:string" />
+          <xs:element minOccurs="0" name="delVehNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="pvtStyleNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="sellStyleName" type="xs:string" />
+          <xs:element minOccurs="0" name="sequNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="specNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="status" type="xs:string" />
+          <xs:element minOccurs="0" name="styleNbr" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SamplePartList">
+        <xs:sequence>
+          <xs:element name="cartonQty" type="xs:double" />
+          <xs:element minOccurs="0" name="custNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="description" type="xs:string" />
+          <xs:element name="length" type="xs:double" />
+          <xs:element minOccurs="0" name="orderByColor" type="xs:string" />
+          <xs:element minOccurs="0" name="partNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="sellColorName" type="xs:string" />
+          <xs:element minOccurs="0" name="sellColorNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="sellStyleName" type="xs:string" />
+          <xs:element minOccurs="0" name="sequNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="status" type="xs:string" />
+          <xs:element minOccurs="0" name="styleNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="subset" type="xs:string" />
+          <xs:element name="weight" type="xs:double" />
+          <xs:element minOccurs="0" name="weightUom" type="xs:string" />
+          <xs:element name="width" type="xs:double" />
+          <xs:element name="height" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SampleProd">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="custNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="custRef" type="xs:string" />
+          <xs:element minOccurs="0" name="delVehName" type="xs:string" />
+          <xs:element minOccurs="0" name="delVehNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="delVehType" type="xs:string" />
+          <xs:element minOccurs="0" name="invColorNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="invPartNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="invStyleNbr" type="xs:string" />
+          <xs:element name="length" type="xs:double" />
+          <xs:element minOccurs="0" name="orderByColor" type="xs:string" />
+          <xs:element minOccurs="0" name="sampleType" type="xs:string" />
+          <xs:element minOccurs="0" name="sellCo" type="xs:string" />
+          <xs:element minOccurs="0" name="sellCoDesc" type="xs:string" />
+          <xs:element minOccurs="0" name="sellColorName" type="xs:string" />
+          <xs:element minOccurs="0" name="sellColorNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="sellPartNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="sellStyleName" type="xs:string" />
+          <xs:element minOccurs="0" name="seqNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="specNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="status" type="xs:string" />
+          <xs:element minOccurs="0" name="subset" type="xs:string" />
+          <xs:element name="width" type="xs:double" />
+          <xs:element minOccurs="0" name="sellStyleNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="colorNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="custRefNbr" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getStyleInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" form="qualified" name="request" type="tns:ProductSearchRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getStyleInfoResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:StyleSearchResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="StyleSearchResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:owsResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="product" type="tns:ProductDetail" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ProductDetail">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="samplesStyle" type="xs:string" />
+          <xs:element minOccurs="0" name="samplesCustNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="delVehName" type="xs:string" />
+          <xs:element minOccurs="0" name="delVehNbr" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="samplesStyleList" nillable="true" type="tns:SampleStyleInfo" />
+          <xs:element minOccurs="0" name="invPoMessage" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="duplicatePoOrders" nillable="true" type="ns1:DuplicateOrder" />
+          <xs:element minOccurs="0" name="replaceStyle" type="xs:string" />
+          <xs:element minOccurs="0" name="prdCodeDesc" type="xs:string" />
+          <xs:element minOccurs="0" name="svcProgram" type="xs:string" />
+          <xs:element minOccurs="0" name="cutRollLen" type="xs:string" />
+          <xs:element minOccurs="0" name="colSvcCode" type="xs:string" />
+          <xs:element minOccurs="0" name="colSvcDesc" type="xs:string" />
+          <xs:element minOccurs="0" name="location" type="xs:string" />
+          <xs:element minOccurs="0" name="shipDate" type="xs:string" />
+          <xs:element minOccurs="0" name="dropDate" type="xs:string" />
+          <xs:element minOccurs="0" name="atsDate" type="xs:string" />
+          <xs:element minOccurs="0" name="mfgStyle" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="duplicateOrders" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="callNum" type="xs:string" />
+          <xs:element minOccurs="0" name="colorName" type="xs:string" />
+          <xs:element minOccurs="0" name="invColor" type="xs:string" />
+          <xs:element minOccurs="0" name="owsCol" type="xs:string" />
+          <xs:element minOccurs="0" name="owsColName" type="xs:string" />
+          <xs:element minOccurs="0" name="owsColor" type="xs:string" />
+          <xs:element minOccurs="0" name="owsStatus" type="xs:string" />
+          <xs:element minOccurs="0" name="tileSize" type="xs:string" />
+          <xs:element minOccurs="0" name="casePltsz602" type="xs:string" />
+          <xs:element minOccurs="0" name="coll" type="xs:string" />
+          <xs:element minOccurs="0" name="colorNumber" type="xs:string" />
+          <xs:element minOccurs="0" name="colorsFound" type="xs:string" />
+          <xs:element minOccurs="0" name="custNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="density602" type="xs:string" />
+          <xs:element minOccurs="0" name="desc602" type="xs:string" />
+          <xs:element minOccurs="0" name="dropEffDate" type="xs:string" />
+          <xs:element minOccurs="0" name="dropPlanDate" type="xs:string" />
+          <xs:element minOccurs="0" name="dyeRun" type="xs:string" />
+          <xs:element minOccurs="0" name="invStyle" type="xs:string" />
+          <xs:element minOccurs="0" name="leadTime" type="xs:string" />
+          <xs:element minOccurs="0" name="millLoc" type="xs:string" />
+          <xs:element minOccurs="0" name="needPo" type="xs:string" />
+          <xs:element minOccurs="0" name="outmsg" type="xs:string" />
+          <xs:element minOccurs="0" name="pailBtlSizez602" type="xs:string" />
+          <xs:element minOccurs="0" name="prodCode" type="xs:string" />
+          <xs:element minOccurs="0" name="productType" type="xs:string" />
+          <xs:element minOccurs="0" name="ref" type="xs:string" />
+          <xs:element minOccurs="0" name="refNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="retcode" type="xs:string" />
+          <xs:element minOccurs="0" name="rollUom" type="xs:string" />
+          <xs:element minOccurs="0" name="selCo" type="xs:string" />
+          <xs:element minOccurs="0" name="selCoName" type="xs:string" />
+          <xs:element minOccurs="0" name="sellStyle" type="xs:string" />
+          <xs:element minOccurs="0" name="sellStyleName" type="xs:string" />
+          <xs:element minOccurs="0" name="serviceCode" type="xs:string" />
+          <xs:element minOccurs="0" name="serviceDesc" type="xs:string" />
+          <xs:element minOccurs="0" name="spreadRates602" type="xs:string" />
+          <xs:element minOccurs="0" name="sqYrds602" type="xs:string" />
+          <xs:element minOccurs="0" name="status" type="xs:string" />
+          <xs:element minOccurs="0" name="stdLen" type="xs:string" />
+          <xs:element minOccurs="0" name="stdLenFt" type="xs:string" />
+          <xs:element minOccurs="0" name="stdWid" type="xs:string" />
+          <xs:element minOccurs="0" name="stdWidFt" type="xs:string" />
+          <xs:element minOccurs="0" name="stockType" type="xs:string" />
+          <xs:element minOccurs="0" name="styleName" type="xs:string" />
+          <xs:element minOccurs="0" name="styleNumber" type="xs:string" />
+          <xs:element minOccurs="0" name="styleType" type="xs:string" />
+          <xs:element minOccurs="0" name="thickness602" type="xs:string" />
+          <xs:element minOccurs="0" name="type" type="xs:string" />
+          <xs:element minOccurs="0" name="userid" type="xs:string" />
+          <xs:element minOccurs="0" name="weight602" type="xs:string" />
+          <xs:element minOccurs="0" name="messageType" type="xs:string" />
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+          <xs:element minOccurs="0" name="boxcInc" type="xs:string" />
+          <xs:element minOccurs="0" name="collection2" type="xs:string" />
+          <xs:element minOccurs="0" name="colorWay" type="xs:string" />
+          <xs:element minOccurs="0" name="comment1" type="xs:string" />
+          <xs:element minOccurs="0" name="comment2" type="xs:string" />
+          <xs:element minOccurs="0" name="fringe" type="xs:string" />
+          <xs:element minOccurs="0" name="invUom" type="xs:string" />
+          <xs:element minOccurs="0" name="leadtime522" type="xs:string" />
+          <xs:element minOccurs="0" name="palletQty" type="xs:string" />
+          <xs:element minOccurs="0" name="palUom" type="xs:string" />
+          <xs:element minOccurs="0" name="plant" type="xs:string" />
+          <xs:element minOccurs="0" name="rtlUom" type="xs:string" />
+          <xs:element minOccurs="0" name="rugColor" type="xs:string" />
+          <xs:element minOccurs="0" name="rugname" type="xs:string" />
+          <xs:element minOccurs="0" name="sellSize" type="xs:string" />
+          <xs:element minOccurs="0" name="size" type="xs:string" />
+          <xs:element minOccurs="0" name="sPlanDropDt" type="xs:string" />
+          <xs:element minOccurs="0" name="stdWeight" type="xs:string" />
+          <xs:element minOccurs="0" name="stockType522" type="xs:string" />
+          <xs:element minOccurs="0" name="styleDualProd" type="xs:string" />
+          <xs:element minOccurs="0" name="styleType522" type="xs:string" />
+          <xs:element minOccurs="0" name="upc" type="xs:string" />
+          <xs:element minOccurs="0" name="multiProducts" type="xs:string" />
+          <xs:element minOccurs="0" name="multiProductsList" type="xs:string" />
+          <xs:element minOccurs="0" name="productChoice" type="xs:string" />
+          <xs:element minOccurs="0" name="construction" type="xs:string" />
+          <xs:element minOccurs="0" name="backingType" type="xs:string" />
+          <xs:element minOccurs="0" name="faceWeight" type="xs:string" />
+          <xs:element minOccurs="0" name="patternRepeat" type="xs:string" />
+          <xs:element minOccurs="0" name="species" type="xs:string" />
+          <xs:element minOccurs="0" name="packageName" type="xs:string" />
+          <xs:element minOccurs="0" name="sequenceNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="prodType" type="xs:string" />
+          <xs:element minOccurs="0" name="privateLabel" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="samples" nillable="true" type="tns:SampleStyleInfo" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="restrictedCountries" nillable="true" type="xs:string" />
+          <xs:element name="convFactor" type="xs:double" />
+          <xs:element minOccurs="0" name="leadTypeDesc" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SampleStyleInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="customerNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="custRefNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="delVehName" type="xs:string" />
+          <xs:element minOccurs="0" name="delVehNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="privateLableNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="sellingStyleName" type="xs:string" />
+          <xs:element minOccurs="0" name="sequenceNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="specNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="status" type="xs:string" />
+          <xs:element minOccurs="0" name="styleNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="styleLabel" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getSamplesStyleList">
+        <xs:sequence>
+          <xs:element minOccurs="0" form="qualified" name="request" type="tns:ProductSearchRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getSamplesStyleListResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:StyleSearchResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getStylePrice">
+        <xs:sequence>
+          <xs:element minOccurs="0" form="qualified" name="request" type="tns:ProductPriceRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductPriceRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:owsRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="fobLoc" type="xs:string" />
+              <xs:element minOccurs="0" name="qty" type="xs:string" />
+              <xs:element minOccurs="0" name="colorNbr" type="xs:string" />
+              <xs:element minOccurs="0" name="custNbr" type="xs:string" />
+              <xs:element minOccurs="0" name="refNbr" type="xs:string" />
+              <xs:element minOccurs="0" name="styleNbr" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getStylePriceResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:ProductPriceResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductPriceResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:owsResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="fobLoc" type="xs:string" />
+              <xs:element minOccurs="0" name="qty" type="xs:string" />
+              <xs:element minOccurs="0" name="colorNbr" type="xs:string" />
+              <xs:element minOccurs="0" name="custNbr" type="xs:string" />
+              <xs:element minOccurs="0" name="prodType" type="xs:string" />
+              <xs:element minOccurs="0" name="refNbr" type="xs:string" />
+              <xs:element minOccurs="0" name="styleNbr" type="xs:string" />
+              <xs:element minOccurs="0" name="price" type="xs:string" />
+              <xs:element minOccurs="0" name="priceUom" type="xs:string" />
+              <xs:element minOccurs="0" name="currencyCode" type="xs:string" />
+              <xs:element name="foreignPrice" type="xs:double" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getStyleList">
+        <xs:sequence>
+          <xs:element minOccurs="0" form="qualified" name="request" type="tns:ProductSearchRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getStyleListResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:ProductSearchResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductSearchResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:owsResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="styles" nillable="true" type="tns:StyleInfo" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="StyleInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="createDrop" type="xs:string" />
+          <xs:element minOccurs="0" name="custNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="mfgSell" type="xs:string" />
+          <xs:element minOccurs="0" name="multRef" type="xs:string" />
+          <xs:element minOccurs="0" name="ref" type="xs:string" />
+          <xs:element minOccurs="0" name="selco" type="xs:string" />
+          <xs:element minOccurs="0" name="status" type="xs:string" />
+          <xs:element minOccurs="0" name="styleName" type="xs:string" />
+          <xs:element minOccurs="0" name="styleNumber" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getProdSpecPDF">
+        <xs:sequence>
+          <xs:element minOccurs="0" form="qualified" name="request" type="tns:ProductSearchRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getProdSpecPDFResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:base64Binary" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getColorList">
+        <xs:sequence>
+          <xs:element minOccurs="0" form="qualified" name="request" type="tns:ProductSearchRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getColorListResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:ColorInquiryResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ColorInquiryResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:owsResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="location" type="xs:string" />
+              <xs:element minOccurs="0" name="shipDate" type="xs:string" />
+              <xs:element minOccurs="0" name="route" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="productDetails" nillable="true" type="tns:ProductDetail" />
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="products" nillable="true" type="tns:ProductInfo" />
+              <xs:element minOccurs="0" name="productTypeCodes" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ProductInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="prodCodeDesc" type="xs:string" />
+          <xs:element minOccurs="0" name="needPo" type="xs:string" />
+          <xs:element minOccurs="0" name="invColor" type="xs:string" />
+          <xs:element minOccurs="0" name="invStyle" type="xs:string" />
+          <xs:element minOccurs="0" name="stdWidFt" type="xs:string" />
+          <xs:element minOccurs="0" name="weight602" type="xs:string" />
+          <xs:element minOccurs="0" name="casePltsz602" type="xs:string" />
+          <xs:element minOccurs="0" name="density602" type="xs:string" />
+          <xs:element minOccurs="0" name="desc602" type="xs:string" />
+          <xs:element minOccurs="0" name="pailBtlSizez602" type="xs:string" />
+          <xs:element minOccurs="0" name="selCoName" type="xs:string" />
+          <xs:element minOccurs="0" name="spreadRates602" type="xs:string" />
+          <xs:element minOccurs="0" name="thickness602" type="xs:string" />
+          <xs:element minOccurs="0" name="rollUom" type="xs:string" />
+          <xs:element minOccurs="0" name="styleType" type="xs:string" />
+          <xs:element minOccurs="0" name="commType" type="xs:string" />
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+          <xs:element minOccurs="0" name="prodCode" type="xs:string" />
+          <xs:element minOccurs="0" name="atsDate" type="xs:string" />
+          <xs:element minOccurs="0" name="coll" type="xs:string" />
+          <xs:element minOccurs="0" name="colorNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="custNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="dropDate" type="xs:string" />
+          <xs:element minOccurs="0" name="dyeRun" type="xs:string" />
+          <xs:element minOccurs="0" name="mfgColor" type="xs:string" />
+          <xs:element minOccurs="0" name="mfgLoc" type="xs:string" />
+          <xs:element minOccurs="0" name="mfgStyle" type="xs:string" />
+          <xs:element minOccurs="0" name="prodType" type="xs:string" />
+          <xs:element minOccurs="0" name="ref" type="xs:string" />
+          <xs:element minOccurs="0" name="selCo" type="xs:string" />
+          <xs:element minOccurs="0" name="sellColorName" type="xs:string" />
+          <xs:element minOccurs="0" name="status" type="xs:string" />
+          <xs:element minOccurs="0" name="stdLen" type="xs:string" />
+          <xs:element minOccurs="0" name="styleName" type="xs:string" />
+          <xs:element minOccurs="0" name="styleNumber" type="xs:string" />
+          <xs:element minOccurs="0" name="svsProgram" type="xs:string" />
+          <xs:element minOccurs="0" name="userid" type="xs:string" />
+          <xs:element minOccurs="0" name="width" type="xs:string" />
+          <xs:element minOccurs="0" name="boxcInc" type="xs:string" />
+          <xs:element minOccurs="0" name="collection2" type="xs:string" />
+          <xs:element minOccurs="0" name="colorWay" type="xs:string" />
+          <xs:element minOccurs="0" name="comment1" type="xs:string" />
+          <xs:element minOccurs="0" name="comment2" type="xs:string" />
+          <xs:element minOccurs="0" name="fringe" type="xs:string" />
+          <xs:element minOccurs="0" name="invUom" type="xs:string" />
+          <xs:element minOccurs="0" name="leadtime522" type="xs:string" />
+          <xs:element minOccurs="0" name="palletQty" type="xs:string" />
+          <xs:element minOccurs="0" name="palUom" type="xs:string" />
+          <xs:element minOccurs="0" name="plant" type="xs:string" />
+          <xs:element minOccurs="0" name="rtlUom" type="xs:string" />
+          <xs:element minOccurs="0" name="rugColor" type="xs:string" />
+          <xs:element minOccurs="0" name="rugname" type="xs:string" />
+          <xs:element minOccurs="0" name="sellSize" type="xs:string" />
+          <xs:element minOccurs="0" name="size" type="xs:string" />
+          <xs:element minOccurs="0" name="sPlanDropDt" type="xs:string" />
+          <xs:element minOccurs="0" name="stdWeight" type="xs:string" />
+          <xs:element minOccurs="0" name="stockType522" type="xs:string" />
+          <xs:element minOccurs="0" name="styleDualProd" type="xs:string" />
+          <xs:element minOccurs="0" name="styleType522" type="xs:string" />
+          <xs:element minOccurs="0" name="upc" type="xs:string" />
+          <xs:element minOccurs="0" name="styleStatus" type="xs:string" />
+          <xs:element minOccurs="0" name="construction" type="xs:string" />
+          <xs:element minOccurs="0" name="backingType" type="xs:string" />
+          <xs:element minOccurs="0" name="faceWeight" type="xs:string" />
+          <xs:element minOccurs="0" name="patternRepeat" type="xs:string" />
+          <xs:element minOccurs="0" name="species" type="xs:string" />
+          <xs:element minOccurs="0" name="packageName" type="xs:string" />
+          <xs:element minOccurs="0" name="sequenceNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="privateLabel" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getFob">
+        <xs:sequence>
+          <xs:element minOccurs="0" form="qualified" name="request" type="tns:ProductSearchRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getFobResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:Fob" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Fob">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="code" type="xs:string" />
+          <xs:element minOccurs="0" name="name" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="CSDSInvalidInputException" type="tns:CSDSInvalidInputException" />
+      <xs:complexType name="CSDSInvalidInputException">
+        <xs:sequence>
+          <xs:element name="warning_msg" nillable="true" type="xs:string" />
+          <xs:element name="exception" nillable="true" type="xs:boolean" />
+          <xs:element name="error" nillable="true" type="xs:boolean" />
+          <xs:element name="confirm" nillable="true" type="xs:boolean" />
+          <xs:element name="httpStatusCode" nillable="true" type="xs:int" />
+          <xs:element name="error_detail" nillable="true" type="xs:string" />
+          <xs:element name="warning" nillable="true" type="xs:boolean" />
+          <xs:element name="error_type" nillable="true" type="xs:string" />
+          <xs:element name="message" nillable="true" type="xs:boolean" />
+          <xs:element name="error_code" nillable="true" type="xs:string" />
+          <xs:element name="error_msg" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="CSDSServerException" type="tns:CSDSServerException" />
+      <xs:complexType name="CSDSServerException">
+        <xs:sequence>
+          <xs:element name="warning_msg" nillable="true" type="xs:string" />
+          <xs:element name="exception" nillable="true" type="xs:boolean" />
+          <xs:element name="error" nillable="true" type="xs:boolean" />
+          <xs:element name="confirm" nillable="true" type="xs:boolean" />
+          <xs:element name="error_detail" nillable="true" type="xs:string" />
+          <xs:element name="warning" nillable="true" type="xs:boolean" />
+          <xs:element name="httpStatusCode" nillable="true" type="xs:int" />
+          <xs:element name="error_type" nillable="true" type="xs:string" />
+          <xs:element name="message" nillable="true" type="xs:boolean" />
+          <xs:element name="error_code" nillable="true" type="xs:string" />
+          <xs:element name="error_msg" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema targetNamespace="http://v2.orderentry.csws.shaw.com" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="DuplicateOrder">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="custNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="orderDate" type="xs:string" />
+          <xs:element minOccurs="0" name="orderNbr" type="xs:string" />
+          <xs:element minOccurs="0" name="status" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getProdSpecPDFResponse">
+    <wsdl:part name="parameters" element="tns:getProdSpecPDFResponse" />
+  </wsdl:message>
+  <wsdl:message name="getSampleProductResponse">
+    <wsdl:part name="parameters" element="tns:getSampleProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="getStyleList">
+    <wsdl:part name="parameters" element="tns:getStyleList" />
+  </wsdl:message>
+  <wsdl:message name="getColorList">
+    <wsdl:part name="parameters" element="tns:getColorList" />
+  </wsdl:message>
+  <wsdl:message name="getStyleInfo">
+    <wsdl:part name="parameters" element="tns:getStyleInfo" />
+  </wsdl:message>
+  <wsdl:message name="getProductSpecResponse">
+    <wsdl:part name="parameters" element="tns:getProductSpecResponse" />
+  </wsdl:message>
+  <wsdl:message name="getColorListResponse">
+    <wsdl:part name="parameters" element="tns:getColorListResponse" />
+  </wsdl:message>
+  <wsdl:message name="getStyleInfoResponse">
+    <wsdl:part name="parameters" element="tns:getStyleInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="getFobResponse">
+    <wsdl:part name="parameters" element="tns:getFobResponse" />
+  </wsdl:message>
+  <wsdl:message name="getProductSpec">
+    <wsdl:part name="parameters" element="tns:getProductSpec" />
+  </wsdl:message>
+  <wsdl:message name="getSamplesStyleList">
+    <wsdl:part name="parameters" element="tns:getSamplesStyleList" />
+  </wsdl:message>
+  <wsdl:message name="getSamplesStyleListResponse">
+    <wsdl:part name="parameters" element="tns:getSamplesStyleListResponse" />
+  </wsdl:message>
+  <wsdl:message name="CSDSInvalidInputException">
+    <wsdl:part name="CSDSInvalidInputException" element="tns:CSDSInvalidInputException" />
+  </wsdl:message>
+  <wsdl:message name="CSDSServerException">
+    <wsdl:part name="CSDSServerException" element="tns:CSDSServerException" />
+  </wsdl:message>
+  <wsdl:message name="getSampleProduct">
+    <wsdl:part name="parameters" element="tns:getSampleProduct" />
+  </wsdl:message>
+  <wsdl:message name="getStylePrice">
+    <wsdl:part name="parameters" element="tns:getStylePrice" />
+  </wsdl:message>
+  <wsdl:message name="getProdSpecPDF">
+    <wsdl:part name="parameters" element="tns:getProdSpecPDF" />
+  </wsdl:message>
+  <wsdl:message name="getStylePriceResponse">
+    <wsdl:part name="parameters" element="tns:getStylePriceResponse" />
+  </wsdl:message>
+  <wsdl:message name="getFob">
+    <wsdl:part name="parameters" element="tns:getFob" />
+  </wsdl:message>
+  <wsdl:message name="getStyleListResponse">
+    <wsdl:part name="parameters" element="tns:getStyleListResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ProductWSv2">
+    <wsdl:operation name="getProductSpec">
+      <wsdl:input name="getProductSpec" message="tns:getProductSpec" />
+      <wsdl:output name="getProductSpecResponse" message="tns:getProductSpecResponse" />
+      <wsdl:fault name="CSDSServerException" message="tns:CSDSServerException" />
+      <wsdl:fault name="CSDSInvalidInputException" message="tns:CSDSInvalidInputException" />
+    </wsdl:operation>
+    <wsdl:operation name="getSampleProduct">
+      <wsdl:input name="getSampleProduct" message="tns:getSampleProduct" />
+      <wsdl:output name="getSampleProductResponse" message="tns:getSampleProductResponse" />
+      <wsdl:fault name="CSDSServerException" message="tns:CSDSServerException" />
+      <wsdl:fault name="CSDSInvalidInputException" message="tns:CSDSInvalidInputException" />
+    </wsdl:operation>
+    <wsdl:operation name="getStyleInfo">
+      <wsdl:input name="getStyleInfo" message="tns:getStyleInfo" />
+      <wsdl:output name="getStyleInfoResponse" message="tns:getStyleInfoResponse" />
+      <wsdl:fault name="CSDSServerException" message="tns:CSDSServerException" />
+      <wsdl:fault name="CSDSInvalidInputException" message="tns:CSDSInvalidInputException" />
+    </wsdl:operation>
+    <wsdl:operation name="getSamplesStyleList">
+      <wsdl:input name="getSamplesStyleList" message="tns:getSamplesStyleList" />
+      <wsdl:output name="getSamplesStyleListResponse" message="tns:getSamplesStyleListResponse" />
+      <wsdl:fault name="CSDSServerException" message="tns:CSDSServerException" />
+      <wsdl:fault name="CSDSInvalidInputException" message="tns:CSDSInvalidInputException" />
+    </wsdl:operation>
+    <wsdl:operation name="getStylePrice">
+      <wsdl:input name="getStylePrice" message="tns:getStylePrice" />
+      <wsdl:output name="getStylePriceResponse" message="tns:getStylePriceResponse" />
+      <wsdl:fault name="CSDSServerException" message="tns:CSDSServerException" />
+      <wsdl:fault name="CSDSInvalidInputException" message="tns:CSDSInvalidInputException" />
+    </wsdl:operation>
+    <wsdl:operation name="getStyleList">
+      <wsdl:input name="getStyleList" message="tns:getStyleList" />
+      <wsdl:output name="getStyleListResponse" message="tns:getStyleListResponse" />
+      <wsdl:fault name="CSDSServerException" message="tns:CSDSServerException" />
+      <wsdl:fault name="CSDSInvalidInputException" message="tns:CSDSInvalidInputException" />
+    </wsdl:operation>
+    <wsdl:operation name="getProdSpecPDF">
+      <wsdl:input name="getProdSpecPDF" message="tns:getProdSpecPDF" />
+      <wsdl:output name="getProdSpecPDFResponse" message="tns:getProdSpecPDFResponse" />
+      <wsdl:fault name="CSDSServerException" message="tns:CSDSServerException" />
+      <wsdl:fault name="CSDSInvalidInputException" message="tns:CSDSInvalidInputException" />
+    </wsdl:operation>
+    <wsdl:operation name="getColorList">
+      <wsdl:input name="getColorList" message="tns:getColorList" />
+      <wsdl:output name="getColorListResponse" message="tns:getColorListResponse" />
+      <wsdl:fault name="CSDSServerException" message="tns:CSDSServerException" />
+      <wsdl:fault name="CSDSInvalidInputException" message="tns:CSDSInvalidInputException" />
+    </wsdl:operation>
+    <wsdl:operation name="getFob">
+      <wsdl:input name="getFob" message="tns:getFob" />
+      <wsdl:output name="getFobResponse" message="tns:getFobResponse" />
+      <wsdl:fault name="CSDSServerException" message="tns:CSDSServerException" />
+      <wsdl:fault name="CSDSInvalidInputException" message="tns:CSDSInvalidInputException" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProductWSv2ServiceSoapBinding" type="tns:ProductWSv2">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getProductSpec">
+      <soap:operation soapAction="getProductSpec" style="document" />
+      <wsdl:input name="getProductSpec">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getProductSpecResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CSDSServerException">
+        <soap:fault use="literal" name="CSDSServerException" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="CSDSInvalidInputException">
+        <soap:fault use="literal" name="CSDSInvalidInputException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSampleProduct">
+      <soap:operation soapAction="getSampleProduct" style="document" />
+      <wsdl:input name="getSampleProduct">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getSampleProductResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CSDSServerException">
+        <soap:fault use="literal" name="CSDSServerException" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="CSDSInvalidInputException">
+        <soap:fault use="literal" name="CSDSInvalidInputException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getStyleInfo">
+      <soap:operation soapAction="getStyleInfo" style="document" />
+      <wsdl:input name="getStyleInfo">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getStyleInfoResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CSDSServerException">
+        <soap:fault use="literal" name="CSDSServerException" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="CSDSInvalidInputException">
+        <soap:fault use="literal" name="CSDSInvalidInputException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSamplesStyleList">
+      <soap:operation soapAction="getSamplesStyleList" style="document" />
+      <wsdl:input name="getSamplesStyleList">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getSamplesStyleListResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CSDSServerException">
+        <soap:fault use="literal" name="CSDSServerException" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="CSDSInvalidInputException">
+        <soap:fault use="literal" name="CSDSInvalidInputException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getStylePrice">
+      <soap:operation soapAction="getStylePrice" style="document" />
+      <wsdl:input name="getStylePrice">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getStylePriceResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CSDSServerException">
+        <soap:fault use="literal" name="CSDSServerException" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="CSDSInvalidInputException">
+        <soap:fault use="literal" name="CSDSInvalidInputException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getStyleList">
+      <soap:operation soapAction="getStyleList" style="document" />
+      <wsdl:input name="getStyleList">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getStyleListResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CSDSServerException">
+        <soap:fault use="literal" name="CSDSServerException" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="CSDSInvalidInputException">
+        <soap:fault use="literal" name="CSDSInvalidInputException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getColorList">
+      <soap:operation soapAction="getColorList" style="document" />
+      <wsdl:input name="getColorList">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getColorListResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CSDSServerException">
+        <soap:fault use="literal" name="CSDSServerException" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="CSDSInvalidInputException">
+        <soap:fault use="literal" name="CSDSInvalidInputException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getProdSpecPDF">
+      <soap:operation soapAction="getProdSpecPDF" style="document" />
+      <wsdl:input name="getProdSpecPDF">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getProdSpecPDFResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CSDSServerException">
+        <soap:fault use="literal" name="CSDSServerException" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="CSDSInvalidInputException">
+        <soap:fault use="literal" name="CSDSInvalidInputException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getFob">
+      <soap:operation soapAction="getFob" style="document" />
+      <wsdl:input name="getFob">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getFobResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CSDSServerException">
+        <soap:fault use="literal" name="CSDSServerException" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="CSDSInvalidInputException">
+        <soap:fault use="literal" name="CSDSInvalidInputException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProductWSv2Service">
+    <wsdl:port name="ProductWSv2Port" binding="tns:ProductWSv2ServiceSoapBinding">
+      <soap:address location="http://sw72cseapdv.shaw.shawinc.com:8080/CSWS/ProductWSv2" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -6,10 +6,8 @@ namespace ShawContract.Providers.PDMS
 {
     public class PDMSConfiguration : IPDMSConfiguration
     {
-        public string PDMSApiUrl => "https://specifications.shawinc.com/api/v1/Specifications";
-        //"ConfigurationManager.GetAppSetting(ConfigurationKeys.PDMSApiUrl)";
+        public string PDMSApiUrl => ConfigurationManager.AppSettings[ConfigurationKeys.PDMSApiUrl];
 
-        public string PDMSUid => "EFD2FA0A-269D-4FFA-8648-72DDF81CCEA5";
-        //"ConfigurationManager.GetAppSetting(ConfigurationKeys.PDMSUid)";
+        public string PDMSUid => ConfigurationManager.AppSettings[ConfigurationKeys.PDMSUid];
     }
 }

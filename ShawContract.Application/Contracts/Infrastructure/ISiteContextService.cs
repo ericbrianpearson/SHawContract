@@ -4,7 +4,6 @@
     {
         string SiteName { get; }
         string CurrentSiteCulture { get; }
-
         int SiteContextID { get; }
     }
 }

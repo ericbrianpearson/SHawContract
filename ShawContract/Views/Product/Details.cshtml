@@ -1,0 +1,753 @@
+﻿@using ShawContract.Models.Product
+@using System.Text.RegularExpressions
+@model ShawContract.Models.PageViewModel<ProductDetailsViewModel>
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var colors = Model.Data.Product.Colors.ToList();
+    var roomScenes = Model.Data.Product.KontentData.AvailableRoomScenes.ToList();
+    var featureImage = Model.Data.Product.FeatureImage ?? "https://placehold.it/738x513/efefef";
+    var unathorized = User.Identity.IsAuthenticated ? null : "location.href='" + @Url.Action("Unauthorized", "Product") + "?inventoryType=" + Model.Data.Product.InventoryType + "&nodeAlias=" + Model.Data.Product.StyleName.Replace(' ', '-') + "'";
+}
+@Html.Hidden("data", Json.Encode(ViewData["Data"]))
+@Html.Hidden("addProductLink", @Url.Action("AddProductToShoppingCart", "Product"))
+@Html.Hidden("reloadCart", @Url.Action("Cart", "CartDropDown"))
+@Html.Hidden("saveToBoardLink", @Url.Action("CreateProductToBoard", "Product"))
+@Html.Hidden("addItemToExsistingBoard", @Url.Action("AddProductBoardItem", "Product"))
+@Html.Hidden("refreshBoardsLink", @Url.Action("Boards", "ProductBoardsDropDown"))
+<main role="main" class="primary flex-shrink-0 product">
+    <section class="container product-specs-imgs">
+        <div class="row">
+            <div class="col-md-7 product-left mb-5">
+                <div id="product_detail_view_swap" class="product-rendering-swap-area">
+                    <div class="row">
+                        <div id="swatch_view" class="col-sm-12 maximized swappable">
+                            <div class="control-area">
+                                <div class="controls">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <button id="tileImageDownload" class="btn btn-control download-this" data-download="@Model.Data.SingleTileImageUrl"><i class="far fa-cloud-download"></i></button>
+                                            <label>Download Asset</label>
+                                        </li>
+                                        <li>
+                                            <button onclick="@unathorized" class="btn btn-control save-to-board" data-toggle="modal" data-target="#addToBoardModal" aria-pressed="false" autocomplete="off" data-product="5T233" data-color="01100"><i class="far fa-heart"></i></button>
+                                            <label>Save to Board</label>
+                                        </li>
+                                        <li>
+                                            <button id="rotate-img-btn" class="btn btn-control rotate-img"><i class="fas fa-undo"></i></button>
+                                            <label>Rotate Asset</label>
+                                        </li>
+                                        <li>
+                                            <button class="btn btn-control multi-tile-view"><i class="fas fa-th-large"></i></button>
+                                            <label>Multi-Tile View</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="img-area with-background">
+                                    <img id="single-tile-img" src="@Model.Data.SingleTileImageUrl" alt="" class="single-tile-img rectangle" data-object-fit />
+                                </div>
+                                <div class="preview-area">
+                                    <img id="tileImageSmall" src="@Model.Data.SingleTileImageUrl" data-object-fit />
+                                    <button class="btn-maximize">View Swatch</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="room_view" class="col-sm-6 order-6 minimized swappable">
+                            <div class="control-area">
+                                <div class="controls">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <button id="roomSceneDownload" class="btn btn-control download-this" data-download="@Model.Data.RoomSceneUrl"><i class="far fa-cloud-download"></i></button>
+                                            <label>Download File</label>
+                                        </li>
+                                        <li>
+                                            <button onclick="@unathorized" class="btn btn-control save-to-board" data-toggle="modal" data-target="#addToBoardModal" aria-pressed="false" autocomplete="off" data-product="5T233" data-color="01100"><i class="far fa-heart"></i></button>
+                                            <label>Save to Board</label>
+                                        </li>
+                                        <li>
+                                            <button class="btn btn-control">
+                                                <div class="relative-wrapper">
+                                                    <i class="fad fa-th"></i>
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item heading">Installation Method</li>
+                                                        @foreach (var item in Model.Data.Product.RecommendedInstallationMethods)
+                                                        {
+                                                            <li data-item="@item" class="list-group-item installation-method"><a class="install-method mon" href="https://placehold.it/735x513/fece40">@item</a></li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button class="btn btn-control">
+                                                <div class="relative-wrapper">
+                                                    <i class="far fa-door-open"></i>
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item heading">Room Scenes</li>
+                                                        @for (int i = 0; i < roomScenes.Count; i++)
+                                                        {
+                                                            <li data-id="@i" class="list-group-item room-scene"><a class="install-method mon" href="https://placehold.it/735x513/fece40">@roomScenes[i].Name</a></li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="img-area">
+                                    <img id="roomScene" src="@Model.Data.RoomSceneUrl" alt="" class="full-width-img" data-object-fit />
+                                </div>
+                                <div class="preview-area">
+                                    <img id="roomSceneSmall" src="@Model.Data.RoomSceneUrl" data-object-fit />
+                                    <button class="btn-maximize">View Room Scene</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="install_view" class="col-sm-6 order-6 minimized swappable">
+                            <div class="control-area">
+                                <div class="controls">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <button id="installImageDownload" class="btn btn-control download-this" data-download="@Model.Data.InstallImageUrl"><i class="far fa-cloud-download"></i></button>
+                                            <label>Download File</label>
+                                        </li>
+                                        <li>
+                                            <button onclick="@unathorized" class="btn btn-control save-to-board" data-toggle="modal" data-target="#addToBoardModal" aria-pressed="false" autocomplete="off" data-product="5T233" data-color="01100"><i class="far fa-heart"></i></button>
+                                            <label>Save to Board</label>
+                                        </li>
+                                        <li>
+                                            <button class="btn btn-control">
+                                                <div class="relative-wrapper">
+                                                    <i class="fad fa-th"></i>
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item heading">Installation Method</li>
+                                                        @foreach (var item in Model.Data.Product.RecommendedInstallationMethods)
+                                                        {
+                                                            <li data-item="@item" class="list-group-item installation-method"><a class="install-method mon">@item</a></li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="img-area">
+                                    <img id="installImage" src="@Model.Data.InstallImageUrl" alt="" class="full-width-img" />
+                                </div>
+                                <div class="preview-area">
+                                    <img id="installImageSmall" src="@Model.Data.InstallImageUrl" data-object-fit />
+                                    <button class="btn-maximize">View Install</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-photo">
+                    <div class="control-area">
+                        <div class="controls">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <button class="btn btn-control download-this" data-download="@featureImage"><i class="far fa-cloud-download"></i></button>
+                                    <label>Download File</label>
+                                </li>
+                                <li>
+                                    <button onclick="@unathorized" class="btn btn-control save-to-board" data-toggle="modal" data-target="#addToBoardModal" aria-pressed="false" autocomplete="off" data-product="5T233" data-color="01100"><i class="far fa-heart"></i></button>
+                                    <label>Save to Board</label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="img-area">
+                            <img src="@featureImage" alt="" class="full-width-img" data-object-fit />
+                        </div>
+                    </div>
+                </div>
+                <div id="product_detail_loader" class="assets-loader">
+                    <div class="progress">
+                        <div id="product_detail_progress" class="progress-bar" role="progressbar" style="width: 5%;"
+                             aria-valuenow="5" aria-valuemin="0" aria-valuemax="100">Loading Image Assets...</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 product-right mb-5">
+                <div class="product-specs">
+                    <p class="style-number">Style: @Model.Data.Product.StyleNumber</p>
+                    <h1 class="style-name">@Model.Data.Product.StyleName</h1>
+                    @if (!string.IsNullOrEmpty(Model.Data.Product.Collection))
+                    {
+                        <p class="collection-name"><strong>Collection:</strong> <a href="#">@Model.Data.Product.Collection</a></p>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.Data.ProductSize))
+                    {
+                        <p class="size-info"><strong>Size:</strong> @Model.Data.ProductSize</p>
+                    }
+                    <div class="quick-ship">
+                        <p class="mb-1"><strong>Available Quick Ship Options:</strong></p>
+                        <div class="row">
+                            <div class="col-sm-1"><img src="~/Content/images/QuickShip2500XS.png" alt=""></div>
+                            <div class="col-sm-11">
+                                <p class="info">2 weeks - up to 2,500 square yards from US</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-1"><img src="~/Content/images/QuickShipInStockXS.png" alt=""></div>
+                            <div class="col-sm-11">
+                                <p class="info">Immediately - In Stock from US</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <p class="see-color">Quick ship varies by color option. See below for additional details.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="product-color-divide">
+                    <div class="color-label-toggler">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <div class="custom-switch custom-switch-label-io">
+                                    <input class="custom-switch-input" id="product_color_label_switch" type="checkbox">
+                                    <label class="custom-switch-btn" for="product_color_label_switch"></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-10">
+                                <p class="color-label-text">Show All Color Name / Number Labels</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="product_color_picker" class="color-button-list mb-4 mt-4">
+                        <ul class="list-unstyled">
+
+                            @for (int i = 0; i < colors.Count; i++)
+                            {
+                                var buttonId = "chooseColor" + i;
+                                var active = colors[i].ColorNumber == Model.Data.SelectedColor.ColorNumber ? "active" : string.Empty;
+                                <li>
+                                    <button id="@buttonId" class="btn btn-choose-color @active select-color-btn" data-index="@i" data-toggle="tooltip" data-html="true"
+                                            data-placement="top"
+                                            title="&lt;span class=&quot;product-name&quot;&gt; @colors[i].ColorName &lt;/span&gt; &lt;span class=&quot;product-number&quot;&gt; @colors[i].ColorNumber &lt;img class=&quot;quick-ship-img&quot; src=&quot;images/QuickShip2500XS.png&quot;&gt; &lt;/span&gt;">
+                                        <img class="color-img" src="@colors[i].ImageUrl" alt="" data-object-fit>
+                                        <img class="quick-ship-img" src="~/Content/images/QuickShip2500XS.png" data-object-fit>
+                                    </button>
+                                    <div class="color-tooltip">
+                                        <p class="color-info color-name">@colors[i].ColorName</p>
+                                        <p class="color-info">@colors[i].ColorNumber</p>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    @{
+                        var selectedColor = Model.Data.SelectedColor.ColorName + " " + Model.Data.SelectedColor.ColorNumber + " ";
+                    }
+                    <div class="color-info">
+                        <strong>Color:</strong>
+                        <span id="selectedColor">@selectedColor</span>
+                        <span class="ml-3">
+                            v3<button type="button" class="btn btn-sup" data-toggle="modal"
+                                      data-target="#productColorNameVersion">
+                                <i class="far fa-info-circle"></i>
+                            </button>
+                        </span>
+                    </div>
+                    <div class="row mb-5 mt-4">
+                        <div class="col-xl-6">
+                            <button id="addToCartBtn" class="btn btn-primary w-100 mb-3"
+                                    data-toggle="modal" data-target="#addToCartModal" aria-pressed="false">
+                                Order Samples
+                            </button>
+                        </div>
+                        <div class="col-xl-6">
+                            <button onclick="@unathorized" class="btn btn-tertiary w-100 mb-3" data-toggle="modal" data-target="#addToBoardModal" aria-pressed="false" autocomplete="off">
+                                <i class="far fa-heart"></i>
+                                Save to Board
+                            </button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <ul class="list-unstyled social-share-icons">
+                                <li><button class="btn btn-share-social"><i class="fab fa-facebook-square"></i></button></li>
+                                <li>
+                                    <button class="btn btn-share-social"><i class="fab fa-twitter"></i></button>
+                                </li>
+                                <li>
+                                    <button class="btn btn-share-social"><i class="fab fa-pinterest"></i></button>
+                                </li>
+                                <li>
+                                    <button class="btn btn-share-social"><i class="fas fa-envelope"></i></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    @if (Model.Data.Product.KontentData != null)
+                    {
+                        <div class="row mt-4 mb-5">
+                            <div class="col-sm-12">
+                                <p class="short-description">
+                                    @Html.Raw(Regex.Replace(Model.Data.Product.KontentData.Description ?? "", "<.*?>", String.Empty))
+                                </p>
+                            </div>
+                        </div>
+                        <div class="accordion product-spec-accordion" id="accordionProductSpecs">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne"
+                                            aria-expanded="false" aria-controls="collapseOne">
+                                        Features
+
+                                        <i class="far fa-plus-circle open"></i>
+                                        <i class="far fa-minus-circle close"></i>
+                                    </button>
+                                </div>
+                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                     data-parent="#accordionProductSpecs">
+                                    <div class="card-body">
+                                        <ul class="list-unstyled">
+                                            @foreach (var item in Model.Data.Product.KontentData.Features)
+                                            {
+                                                string firstLink = item.Links != null && item.Links.Count() > 0 ? item.Links.FirstOrDefault().Url : null;
+                                                var headline = Html.Raw(Regex.Replace(item.Headline ?? "", "<.*?>", String.Empty));
+                                                <li class="media">
+                                                    @if (!string.IsNullOrEmpty(item.ImageUrl))
+                                                    {
+                                                        <a href="@firstLink"><img class="mr-3" src="@item.ImageUrl" alt="@headline" data-object-fit></a>
+                                                    }
+                                                    <div class="media-body">
+                                                        <p class="mt-0 mb-1"><strong>@headline</strong></p>
+                                                        @Html.Raw(Regex.Replace(item.Description ?? "", "<.*?>", String.Empty))
+                                                        @if (item.Links != null && item.Links.Count() > 0)
+                                                        {
+                                                            foreach (var link in item.Links)
+                                                            {
+                                                                <a class="link-url" href="@link.Url">@Html.Raw(Regex.Replace(link.Text ?? "", "<.*?>", String.Empty))</a>
+                                                            }
+                                                        }
+                                                    </div>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo"
+                                            aria-expanded="false" aria-controls="collapseTwo">
+                                        Specifications
+
+                                        <i class="far fa-plus-circle open"></i>
+                                        <i class="far fa-minus-circle close"></i>
+                                    </button>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                     data-parent="#accordionProductSpecs">
+                                    <div class="card-body">
+                                        <p>
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                            richardson ad squid.
+                                        </p>
+                                        <ul class="list-unstyled">
+                                            @if (!string.IsNullOrEmpty(Model.Data.Product.Collection))
+                                            {
+                                                <li><strong>Collection:</strong> <a href="#"> @Model.Data.Product.Collection</a></li>
+                                            }
+                                            @{
+                                                var productStyle = @Model.Data.Product.StyleName + " " + @Model.Data.Product.StyleNumber;
+                                            }
+                                            <li><strong>Style:</strong> @productStyle</li>
+                                            @if (!string.IsNullOrEmpty(Model.Data.ProductSize))
+                                            {
+                                                <li><strong>Size:</strong> @Model.Data.ProductSize</li>
+                                            }
+                                            @if (!string.IsNullOrEmpty(Model.Data.Product.Construction))
+                                            {
+                                                <li><strong> Construction:</strong> @Model.Data.Product.Construction</li>
+                                            }
+                                            <li><strong>Type:</strong> @Model.Data.Product.ProductType</li>
+                                            @if (!string.IsNullOrEmpty(Model.Data.Backing))
+                                            {
+                                                <li><strong>Backing:</strong> @Model.Data.Backing</li>
+                                            }
+                                            @if (!string.IsNullOrEmpty(Model.Data.Fiber))
+                                            {
+                                                <li><strong>Fiber:</strong> @Model.Data.Fiber</li>
+                                            }
+                                            @if (!string.IsNullOrEmpty(Model.Data.Backing))
+                                            {
+                                                <li><strong>Backing:</strong> @Model.Data.Backing</li>
+                                            }
+                                            @if (Model.Data.TuftedWeight != null && !string.IsNullOrEmpty(Model.Data.TuftedWeight.Imperial.DisplayValue))
+                                            {
+                                                <li><strong>Tufted Weight:</strong> @Model.Data.TuftedWeight.Imperial.DisplayValue</li>
+                                            }
+                                            @if (Model.Data.Product.Warranty != null && Model.Data.Product.Warranty.Count() > 0)
+                                            {
+                                                <li><strong>Warranty:</strong> <a href="@Model.Data.Product.WarrantyLink">@Model.Data.Product.Warranty.FirstOrDefault()</a></li>
+                                            }
+                                        </ul>
+                                        <a class="link-btn lb-tertiary mt-1 mb-3" href="@Model.Data.Product.LinkToFullSpec">
+                                            <i class="far fa-file-pdf"></i> View Full
+                                            Spec
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Documents and Brochures
+
+                                        <i class="far fa-plus-circle open"></i>
+                                        <i class="far fa-minus-circle close"></i>
+                                    </button>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                     data-parent="#accordionProductSpecs">
+                                    <div class="card-body">
+                                        <ul class="list-unstyled">
+                                            @foreach (var item in Model.Data.Product.KontentData.Documents)
+                                            {
+                                                string firstLink = item.Links != null && item.Links.Count() > 0 ? item.Links.FirstOrDefault().Url : null;
+                                                var headline = Html.Raw(Regex.Replace(item.Headline ?? "", "<.*?>", String.Empty));
+                                                <li class="media">
+                                                    @if (!string.IsNullOrEmpty(item.ImageUrl))
+                                                    {
+                                                        <a href="@firstLink"><img class="mr-3" src="@item.ImageUrl" alt="@headline" data-object-fit></a>
+                                                    }
+                                                    <div class="media-body">
+                                                        <p class="mt-0 mb-1"><strong>@headline</strong></p>
+                                                        @Html.Raw(Regex.Replace(item.Description ?? "", "<.*?>", String.Empty))
+                                                        @if (item.Links != null && item.Links.Count() > 0)
+                                                        {
+                                                            foreach (var link in item.Links)
+                                                            {
+                                                                <a class="link-url" href="@link.Url">@Html.Raw(Regex.Replace(link.Text ?? "", "<.*?>", String.Empty))</a>
+                                                            }
+                                                        }
+                                                    </div>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            @if (Model.Data.Product.KontentData.Installation != null && Model.Data.Product.KontentData.Installation.Count() > 0)
+                            {
+                                <div class="card">
+                                    <div class="card-header" id="headingInstallation">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                                data-target="#collapseInstallation" aria-expanded="false" aria-controls="collapseInstallation">
+                                            Installation
+
+                                            <i class="far fa-plus-circle open"></i>
+                                            <i class="far fa-minus-circle close"></i>
+                                        </button>
+                                    </div>
+                                    <div id="collapseInstallation" class="collapse" aria-labelledby="headingInstallation"
+                                         data-parent="#accordionProductSpecs">
+                                        <div class="card-body">
+                                            <ul class="list-unstyled">
+                                                @foreach (var item in Model.Data.Product.KontentData.Installation)
+                                                {
+                                                    string firstLink = item.Links != null && item.Links.Count() > 0 ? item.Links.FirstOrDefault().Url : null;
+                                                    var headline = Html.Raw(Regex.Replace(item.Headline ?? "", "<.*?>", String.Empty));
+                                                    <li class="media">
+                                                        @if (!string.IsNullOrEmpty(item.ImageUrl))
+                                                        {
+                                                            <a href="@firstLink"><img class="mr-3" src="@item.ImageUrl" alt="@headline" data-object-fit></a>
+                                                        }
+                                                        <div class="media-body">
+                                                            <p class="mt-0 mb-1"><strong>@headline</strong></p>
+                                                            @Html.Raw(Regex.Replace(item.Description ?? "", "<.*?>", String.Empty))
+                                                            @if (item.Links != null && item.Links.Count() > 0)
+                                                            {
+                                                                foreach (var link in item.Links)
+                                                                {
+                                                                    <a class="link-url" href="@link.Url">@Html.Raw(Regex.Replace(link.Text ?? "", "<.*?>", String.Empty))</a>
+                                                                }
+                                                            }
+                                                        </div>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            @if (Model.Data.Product.KontentData.Sustainability != null && Model.Data.Product.KontentData.Sustainability.Count() > 0)
+                            {
+                                <div class="card">
+                                    <div class="card-header" id="headingSustainability">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                                data-target="#collapseSustainability" aria-expanded="false" aria-controls="collapseSustainability">
+                                            Installation
+
+                                            <i class="far fa-plus-circle open"></i>
+                                            <i class="far fa-minus-circle close"></i>
+                                        </button>
+                                    </div>
+                                    <div id="collapseSustainability" class="collapse" aria-labelledby="headingSustainability"
+                                         data-parent="#accordionProductSpecs">
+                                        <div class="card-body">
+                                            <ul class="list-unstyled">
+                                                @foreach (var item in Model.Data.Product.KontentData.Sustainability)
+                                                {
+                                                    string firstLink = item.Links != null && item.Links.Count() > 0 ? item.Links.FirstOrDefault().Url : null;
+                                                    var headline = Html.Raw(Regex.Replace(item.Headline ?? "", "<.*?>", String.Empty));
+                                                    <li class="media">
+                                                        @if (!string.IsNullOrEmpty(item.ImageUrl))
+                                                        {
+                                                            <a href="@firstLink"><img class="mr-3" src="@item.ImageUrl" alt="@headline" data-object-fit></a>
+                                                        }
+                                                        <div class="media-body">
+                                                            <p class="mt-0 mb-1"><strong>@headline</strong></p>
+                                                            @Html.Raw(Regex.Replace(item.Description ?? "", "<.*?>", String.Empty))
+                                                            @if (item.Links != null && item.Links.Count() > 0)
+                                                            {
+                                                                foreach (var link in item.Links)
+                                                                {
+                                                                    <a class="link-url" href="@link.Url">@Html.Raw(Regex.Replace(link.Text ?? "", "<.*?>", String.Empty))</a>
+                                                                }
+                                                            }
+                                                        </div>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="productColorNameVersion" tabindex="-1" role="dialog"
+         aria-labelledby="productColorNameVersionLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productColorNameVersionLabel">Version Info</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="widget collection-preview">
+        <div class="container">
+            <div class="mark"></div>
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2 text-center">
+                    <h2 class="title">@Model.Data.Product.Collection</h2>
+                </div>
+            </div>
+            <div class="row mt-4 mb-5">
+                <div class="left col-lg-7">
+                    @{
+                        var collectionImage1 = Model.Data.CollectionProducts.Count > 0 ? Model.Data.CollectionProducts[0].ImageUrl : "https://placehold.it/718x496";
+                    }
+                    <a href="#"><img class="collection-img" alt="@Model.Data.Product.Collection" src="@collectionImage1" data-object-fit /></a>
+                </div>
+                <div class="right col-lg-5 d-xl-block d-lg-block d-md-none d-sm-none d-none">
+                    @{
+                        var collectionImage2 = Model.Data.CollectionProducts.Count > 1 ? Model.Data.CollectionProducts[1].ImageUrl : "https://placehold.it/397x496";
+                    }
+                    <a href="#"><img class="collection-img" alt="@Model.Data.Product.Collection" src="@collectionImage2" data-object-fit /></a>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-sm-8 offset-sm-2 text-center">
+                    <a href="#" class="collection-link blue-regular">Explore @Model.Data.Product.Collection Collection</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    @if (Model.Data.SimilarProducts.Count > 0)
+    {
+        <section class="widget also-like">
+            <div class="container">
+                <div class="mark"></div>
+                <div class="row mb-4">
+                    <div class="col-sm-8 offset-sm-2 text-center">
+                        <h2 class="title">You May Also Like:</h2>
+                    </div>
+                </div>
+                <div class="row mb-5 mx-5 px-4">
+                    @for (int i = 0; i < 3; i++)
+                    {
+                        var product = Model.Data.SimilarProducts[i];
+                        var image = product.ImageUrl ?? "https://placehold.it/286x180";
+                        <div class="col-sm-4">
+                            <div class="card product-card">
+                                <a href="@Url.Action("Details", "Product", new { inventoryType = Model.Data.Product.InventoryType, nodeAlias=product.StyleName.Trim().Replace(' ', '-')})"><img class="card-img-top" src="@image" alt="@product.StyleName" data-object-fit></a>
+                                <div class="card-body">
+                                    <p class="card-title"><a href="#">@product.StyleName</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div id="alsoLikeCollapse" class="collapse">
+                    <div class="row mb-5 mx-5 px-4">
+                        @if (Model.Data.SimilarProducts.Count > 3)
+                        {
+                            for (int i = 3; i < 6; i++)
+                            {
+                                var product = Model.Data.SimilarProducts[i];
+                                var image = product.ImageUrl ?? "https://placehold.it/286x180";
+                                <div class="col-sm-4">
+                                    <div class="card product-card">
+                                        <a href="@Url.Action("Details", "Product", new { inventoryType = Model.Data.Product.InventoryType, nodeAlias=product.StyleName.Trim().Replace(' ', '-')})"><img class="card-img-top" src="@image" alt="@product.StyleName" data-object-fit></a>
+                                        <div class="card-body">
+                                            <p class="card-title"><a href="#">@product.StyleName</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                    </div>
+                </div>
+                <div class="row mt-5 load-more-row">
+                    <div class="col-sm-8 offset-sm-2 text-center">
+                        <button class="collection-link blue-regular" data-toggle="collapse" data-target="#alsoLikeCollapse">
+                            <span class="more">Show More</span> <span class="less">Show Less</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+
+    <div class="modal secondary save-to-board fade" id="addToBoardModal" tabindex="-1" role="dialog"
+         aria-labelledby="addToBoardLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="saving-to-board-form">
+                    <form>
+                        <div class="modal-header">
+                            <h1 id="addToBoardLabel" class="modal-title heading-1 blue-regular font-weight-normal">
+                                Save to Board
+                            </h1>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                            </button>
+                        </div>
+                        <div class="modal-body mb-4">
+                            <div class="row">
+                                <div class="left-image-wrapper">
+                                    @{
+                                        var selectedColorIndex = colors.IndexOf(Model.Data.SelectedColor);
+                                     }
+                                    <img id="save-to-board-selected-image" data-color="@selectedColorIndex"
+                                         src="@Model.Data.SelectedColor.ImageUrl" alt="" data-object-fit>
+                                </div>
+                                <div class="col d-flex flex-column">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h5 class="heading-5 bold">
+                                                Select Color
+                                            </h5>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="row no-gutters">
+                                                @for (int i = 0; i < colors.Count; i++)
+                                                {
+                                                    var selectedBoardColor = colors[i].ColorNumber == Model.Data.SelectedColor.ColorNumber? "data-selected":string.Empty;
+                                                    <div class="color-wrapper show animate" @selectedBoardColor>
+                                                        <img class="save-to-board-color" data-color="@i"
+                                                             data-toggle="tooltip" data-html="true" data-placement="top"
+                                                             title='&lt;span class="product-name"&gt; @colors[i].ColorName &lt;/span&gt; &lt;span class="product-number"&gt; @colors[i].ColorNumber &lt;/span&gt;'
+                                                             src="@colors[i].ImageUrl" alt="" data-object-fit>
+                                                    </div>
+                                                }
+                                                <button id="colorArrowBtn" class="btn-show-colors btn-floating border-0">
+                                                    <i class="fas fa-chevron-right font-weight-normal heading-2"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-end justify-content-end mt-3 mt-lg-5">
+                                        <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+                                            <h5 class="heading-5 bold">Select Board</h5>
+                                            <select id="selectBoardField" name="selectBoardField" title="Select a board"
+                                                    class="selectpicker d-block form-control-lg" data-style="select-style white-text" required
+                                                    aria-required="true">
+                                                <option value="new board" data-content="<span><i class='fal fa-plus mr-2'></i>New Board</span>"></option>
+                                                <option data-divider="true"></option>
+                                                @foreach (var board in Model.Data.ProductBoards)
+                                                {
+                                                    <option value="@board.ID">@board.BoardName</option>
+                                                }
+                                            </select>
+                                            <div id="boardNameDropdownError" class="red-regular">
+                                                Please select a board.
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-6 new-board-name">
+                                            <div class="form-group mb-0">
+                                                <label class="heading-5 medium mb-1" for="newBoardName">Board Name</label>
+                                                <input type="text" id="newBoardName" name="newBoardName" class="form-control form-control-lg"
+                                                       aria-required="true">
+                                                <div id="newBoardError" class="red-regular">
+                                                    Please enter a name.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-6 saveBtn">
+                                            <button class="btn btn-primary w-100 py-4" type="submit">
+                                                <i class="far fa-heart"></i>
+                                                SAVE TO BOARD
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="saved-to-board blue-regular">
+                    <div class="icon">
+                        <i class="far fa-heart" aria-hidden="true"></i>
+                        <i class="fas fa-heart fill" aria-hidden="true"></i>
+                    </div>
+                    <div class="heading-2">
+                        Saved
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- add to cart animation -->
+    <div class="modal secondary fade" id="addToCartModal" tabindex="-1" role="dialog"
+         aria-labelledby="addToBoardLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="added-to-cart blue-regular">
+                    <div class="icon">
+                        <i class="fal fa-shopping-cart"></i>
+                        <i class="fas fa-shopping-cart fill"></i>
+                    </div>
+                    <div class="heading-2 mt-4">
+                        Added to cart
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>

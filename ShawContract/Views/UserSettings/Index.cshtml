@@ -34,40 +34,32 @@
             </section>
             <section class="personal-information-wrapper mt-5 pt-lg-5">
                 <h2 class="pb-4">Personal Information</h2>
-                @using (Html.BeginForm("SavePersonalInfo", "UserSettings", FormMethod.Post, new { @class = "personal-information-form" }))
+                @using (Html.BeginForm("SavePersonalInfo", "UserSettings", FormMethod.Post, new { @id = "personal-information-form" }))
                 {
                     <div class="form-group">
                         <div class="row mb-3">
                             <div class="col-lg-2 col-12-6 col-xs-12">
-                                <label for="title">Title</label>
-                                @*<select id="title" class="selectpicker form-control form-control-lg" name="title"
-                                            data-style="select-style --white" title="Select title...">
-                                        <option value="Mr">Mr.</option>
-                                        <option value="Ms">Ms.</option>
-                                    </select>*@
-                                @Html.DropDownListFor(m => m.Data.Title, new SelectList(Model.Data.Titles), "Select title", new { @class = "selectpicker form-control form-control-lg" })
+                                <label for="user-title" class="mt-20">Title</label>
+                                @Html.DropDownListFor(m => m.Data.Title, new SelectList(Model.Data.Titles, "Value", "Key"), "Select title", new { @id = "user-title", @class = "selectpicker form-control form-control-lg", data_style = "select-style white-text" })
                             </div>
                             <div class="col-lg-4 col-md-6 col-xs-12">
-                                <label for="first-name">First Name<span class="text-danger"> *</span></label>
-                                @*<input type="text" id="first-name" name="firstName" class="form-control form-control-lg" value="@Model.Data.FirstName">*@
-                                @Html.TextBoxFor(m => m.Data.FirstName, new { @class = "form-control form-control-lg" })
+                                <label for="firstName" class="mt-20">First Name<span class="red-regular"> *</span></label>
+                                @Html.TextBoxFor(m => m.Data.FirstName, new { @id = "firstName", @class = "form-control form-control-lg" })
                             </div>
                             <div class="col-lg-4 col-md-6 col-xs-12">
-                                <label for="last-name">Last Name<span class="text-danger"> *</span></label>
-                                @*<input type="text" id="last-name" name="lastName" class="form-control form-control-lg" value="@Model.Data.LastName">*@
-                                @Html.TextBoxFor(m => m.Data.LastName, new { @class = "form-control form-control-lg" })
+                                <label for="lastName" class="mt-20">Last Name<span class="red-regular"> *</span></label>
+                                @Html.TextBoxFor(m => m.Data.LastName, new { @id = "lastName", @class = "form-control form-control-lg" })
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-lg-5 col-md-6 col-xs-12 pt-4">
-                                <label for="email">Email Address<span class="text-danger"> *</span></label>
-                                @*<input type="text" id="email" name="email" class="form-control form-control-lg" value="@Model.Data.Email">*@
-                                @Html.TextBoxFor(m => m.Data.Email, new { @class = "form-control form-control-lg" })
+                            <div class="col-lg-5 col-md-6 col-xs-12">
+                                <label for="email" class="mt-20">Email Address<span class="red-regular"> *</span></label>
+                                @Html.TextBoxFor(m => m.Data.Email, new { @id = "email", @class = "form-control form-control-lg" })
                             </div>
                             <div class="col-lg-5 col-md-6 col-xs-12">
-                                <label for="password" class="mt-20">Password<span class="text-danger"> *</span></label>
+                                <label for="user-password" class="mt-20">Password<span class="red-regular"> *</span></label>
                                 <div class="input-group">
-                                    <input type="password" id="password" name="password" class="form-control form-control-lg">
+                                    <input type="password" id="user-password" name="password" class="form-control form-control-lg">
                                     <div class="input-group-append">
                                         <button id="toggle-password-btn" class="btn show-btn text-size-small" type="button">Show</button>
                                     </div>
@@ -76,12 +68,11 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-lg-5 col-md-6 col-xs-12">
-                                <label id="personal-cell-number-label" class="mt-20" for="personal-phone-number">
-                                    Cell / SMS Alert
-                                    Number<span class="text-danger">*</span>
+                                <label id="personal-cell-number-label" class="mt-20" for="phoneNumber">
+                                    Cell / SMS Alert Number
+                                    <span class="red-regular">*</span>
                                 </label>
-                                @*<input type="text" id="personal-phone-number" name="phoneNumber" class="form-control form-control-lg phone-number" value="@Model.Data.CellPhone">*@
-                                @Html.TextBoxFor(m => m.Data.CellPhone, new { @class = "form-control form-control-lg phone-number" })
+                                @Html.TextBoxFor(m => m.Data.CellPhone, new { @id = "phoneNumber", @type = "tel", @class = "form-control form-control-lg phone-number" })
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary letter-spacing-normal py-3 px-5 mt-4">
@@ -93,47 +84,39 @@
             <section class="company-information-wrapper mt-5 pt-lg-5">
                 <h2>Company Information</h2>
 
-                @using (Html.BeginForm("SaveCompanyInfo", "UserSettings", FormMethod.Post, new { @class = "company-information-form" }))
+                @using (Html.BeginForm("SaveCompanyInfo", "UserSettings", FormMethod.Post, new { @id = "company-information-form" }))
                 {
                     <div class="form-group">
                         <div class="row mb-3">
-                            <div class="col-lg-5 col-md-6 col-xs-12 pt-4">
-                                <label for="company-name">Company Name<span class="text-danger"> *</span></label>
-                                @*<input type="text" id="company-name" name="companyName" class="form-control form-control-lg" value="@Model.Data.CompanyName">*@
-                                @Html.TextBoxFor(m => m.Data.CompanyName, new { @class = "form-control form-control-lg" })
+                            <div class="col-lg-5 col-md-6 col-xs-12">
+                                <label for="companyName" class="mt-20">Company Name<span class="red-regular"> *</span></label>
+                                @Html.TextBoxFor(m => m.Data.CompanyName, new { @id = "companyName", @class = "form-control form-control-lg" })
                             </div>
-                            <div class="col-lg-5 col-md-6 col-xs-12 pt-4">
-                                <label for="role-title">Role / Job Title<span class="text-danger"> *</span></label>
-                                @*<select id="role-title" name="roleTitle" data-style="select-style --white"
-                                            title="Select role..." class="selectpicker form-control form-control-lg">
-                                        <option value="Designer">Designer</option>
-                                        <option value="Developer">Developer</option>
-                                    </select>*@
-                                @Html.DropDownListFor(m => m.Data.JobTitle, new SelectList(Model.Data.JobTitles), "Select role", new { @class = "selectpicker form-control form-control-lg" })
+                            <div class="col-lg-5 col-md-6 col-xs-12">
+                                <label for="roleTitle" class="mt-20">Role / Job Title<span class="red-regular"> *</span></label>
+                                @Html.DropDownListFor(m => m.Data.JobTitle, new SelectList(Model.Data.JobTitles, "Value", "Key"), "Select role", new { @id = "roleTitle", @class = "selectpicker form-control form-control-lg", data_style = "select-style white-text" })
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-lg-5 col-md-6 col-xs-12 pt-4">
-                                <label for="work-number" id="work-number-label">Work Number</label>
+                            <div class="col-lg-5 col-md-6 col-xs-12">
                                 <div class="row">
                                     <div class="col-9">
-                                        @*<input type="text" id="work-number" name="workNumber" class="form-control form-control-lg" value="@Model.Data.WorkPhone">*@
-                                        @Html.TextBoxFor(m => m.Data.WorkPhone, new { @class = "form-control form-control-lg" })
+                                        <label for="workPhone" class="mt-20" id="work-number-label">
+                                            Work Number
+                                        </label>
+                                        @Html.TextBoxFor(m => m.Data.WorkPhone, new { @id = "workNumber", @type = "tel", @class = "form-control form-control-lg" })
                                     </div>
                                     <div class="col-3">
-                                        @*<input type="text" class="form-control form-control-lg" placeholder="ext." value="@Model.Data.WorkPhoneExtension">*@
-                                        @Html.TextBoxFor(m => m.Data.WorkPhoneExtension, new { @class = "form-control form-control-lg" })
+                                        <label for="phoneExtension" class="mt-20">
+                                            Extension
+                                        </label>
+                                        @Html.TextBoxFor(m => m.Data.WorkPhoneExtension, new { @id = "phoneExtension", @type = "tel", @class = "form-control form-control-lg" })
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-5 col-md-6 col-xs-12 pt-4">
-                                <label for="industry">Industry/ Segment<span class="text-danger"> *</span></label>
-                                @*<select id="industry" data-style="select-style --white" multiple name="industry"
-                                            title="Select industries..." class="selectpicker form-control form-control-lg">
-                                        <option value="Ketchup">Ketchup</option>
-                                        <option value="Barbecue">Barbecue</option>
-                                    </select>*@
-                                @Html.DropDownListFor(m => m.Data.Industry, new SelectList(Model.Data.Industries), "Select industry", new { @class = "selectpicker form-control form-control-lg" })
+                            <div class="col-lg-5 col-md-6 col-xs-12">
+                                <label for="industry" class="mt-20">Industry/ Segment<span class="red-regular"> *</span></label>
+                                @Html.DropDownListFor(m => m.Data.Industry, new SelectList(Model.Data.Industries, "Value", "Key"), "Select industry", new { @id = "industry", @class = "selectpicker form-control form-control-lg", data_style = "select-style white-text" })
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary letter-spacing-normal py-3 px-5 mt-4">
@@ -145,57 +128,47 @@
             <section class="shipping-address-wrapper mt-5 pt-lg-5">
                 <h2>Shipping Addresses</h2>
                 <div class="row pt-4">
-                    <div class="col-lg-4 col-md-12 col-sm-12 pb-5">
-                        <div class="address-card">
-                            <div class="row">
-                                <div class="col-10 info-wrapper">
-                                    <h4>title for the address</h4>
-                                    <span class="street">456 Wesnt End Ave Chattanooga, TN 34721-0001</span>
-                                    <span>SMS Alert #:(423) 555-1234</span>
+                    @for (int i = 0; i < Model.Data.ShippingAddresses.Count; i++)
+                    {
+                        var address = Model.Data.ShippingAddresses[i];
+
+                        var stateOrProvince = address.State != null ? address.State : address.Province;
+
+                        <div class="col-lg-6 col-md-12 col-sm-12 pb-5">
+                            <div class="address-card">
+                                <div class="row">
+                                    <div class="col-10 info-wrapper">
+                                        <h4>@address.Title</h4>
+                                        <span class="street">@address.StreetLine1</span>
+                                        <span>@address.City, @stateOrProvince @address.PostalCode</span>
+                                        <span>SMS Alert #:@address.SmsAlertNumber</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 ">
-                                    <div class="row pt-2">
-                                        <div class="col-12 action-btns">
-                                            <span>Edit</span> |
-                                            <span>Remove</span> |
-                                            <span>Set as default</span>
+                                <div class="row">
+                                    <div class="col-12 ">
+                                        <div class="row pt-2">
+                                            <div class="col-12 action-btns">
+                                                <span onclick="editAddressModal(@i)">Edit</span>
+                                                <span>| @Html.ActionLink("Remove", "RemoveAddress", new { line1 = @address.StreetLine1, line2 = @address.StreetLine2 }) | </span>
+                                                @if (!address.IsDefault)
+                                                {
+                                                    <span>@Html.ActionLink("Set as default", "SetDefaultAddress", new { line1 = @address.StreetLine1, line2 = @address.StreetLine2 })</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>default</span>
+                                                }
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12 pb-5">
-                        <div class="address-card">
-                            <div class="row">
-                                <div class="col-10 info-wrapper">
-                                    <h4>title for the address</h4>
-                                    <span class="street">456 Wesnt End Ave</span>
-                                    <span>Chattanooga, TN 34721-0001</span>
-                                    <span>SMS Alert #:(423) 555-1234</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="row pt-2">
-                                        <div class="col-9 action-btns">
-                                            <span>Edit</span> |
-                                            <span>Remove</span>
-                                        </div>
-                                        <div class="col-3 d-flex justify-content-end">
-                                            <span>Default</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    }
                 </div>
                 <div class="row">
                     <div class="col-lg-4 col-md-6 col-xs-12">
-                        <button type="button" data-toggle="modal" data-target="#shippingAddressModal"
+                        <button onclick="addNewAddressModal()"
                                 class="btn btn-primary letter-spacing-normal w-100 py-3">
                             Add new shipping address
                         </button>
@@ -205,35 +178,23 @@
             <section class="communication-wrapper mt-5 pt-lg-5">
                 <h2>Communication Preferences</h2>
 
-                @using (Html.BeginForm("SaveCommunicationInfo", "UserSettings", FormMethod.Post, new { @class = "communication-form" }))
+                @using (Html.BeginForm("SaveCommunicationInfo", "UserSettings", FormMethod.Post, new { @id = "communication-form" }))
                 {
                     <div class="row">
-                        <div class="col-lg-5 col-md-6 col-xs-12 pt-4">
-                            <label for="language">
-                                Please select your preferred language<span class="text-danger">
+                        <div class="col-lg-5 col-md-6 col-xs-12">
+                            <label for="language" class="mt-20">
+                                Please select your preferred language
+                                <span class="red-regular">
                                     *
                                 </span>
                             </label>
-                            @*<select id="language" data-style="select-style --white" name="language"
-                                        title="Select language..." class="selectpicker form-control form-control-lg">
-                                    <option value="Designer">Designer</option>
-                                    <option value="Developer">Developer</option>
-                                </select>*@
-                            @Html.DropDownListFor(m => m.Data.Language, new SelectList(Model.Data.Languages), "Select language", new { @class = "selectpicker form-control form-control-lg" })
+                            @Html.DropDownListFor(m => m.Data.Language, new SelectList(Model.Data.Languages, "Value", "Key"), "Select language", new { @id = "language", @class = "selectpicker form-control form-control-lg", data_style = "select-style white-text" })
                         </div>
                     </div>
                     <div class="form-group my-5">
                         <fieldset>
-                            <label for="segment">Project Sector / Segment</label>
-                            @*<div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="new-porduct">
-                                    <label class="custom-control-label" for="new-porduct">New Product Launches</label>
-                                </div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="newsletter">
-                                    <label class="custom-control-label" for="newsletter">Periodic Newsletter</label>
-                                </div>*@
-                            @Html.ListBoxFor(m => m.Data.Segments, new SelectList(Model.Data.SegmentsOptions), new { @class = "selectpicker form-control form-control-lg" })
+                            <label for="segment" class="mt-20">Project Sector / Segment</label>
+                            @Html.ListBoxFor(m => m.Data.Segments, new SelectList(Model.Data.SegmentsOptions, "Value", "Key"), new { @id = "segment", @class = "selectpicker form-control form-control-lg", data_style = "select-style white-text" })
                         </fieldset>
                     </div>
                     <button type="submit" class="btn btn-primary letter-spacing-normal py-3 px-5">
@@ -244,3 +205,36 @@
         </div>
     </div>
 </div>
+<div class="modal fade p-0" id="shippingAddressModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="shippingAddressModal"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div id="modal-content" class="modal-content">
+        </div>
+    </div>
+</div>
+
+<script>
+    var model = @Html.Raw(Json.Encode(Model));
+
+    function editAddressModal(index) {
+        model.Data.AddressToEdit = model.Data.ShippingAddresses[index];
+        var dataToPost = { userSettings: model.Data };
+          $.post('@Url.Action("EditAddress", "UserSettings")', dataToPost, function (data) {
+              $("#modal-content").html(data);
+              _newAddressFormValidation();
+              $('#shippingAddressModal .selectpicker').selectpicker('refresh');
+              $('#shippingAddressModal').modal('show');
+        });
+
+    }
+    function addNewAddressModal() {
+        var dataToPost = { userSettings: model.Data };
+                 $.post('@Url.Action("AddAddress", "UserSettings")', dataToPost, function (data) {
+                     $("#modal-content").html(data);
+                     _newAddressFormValidation();
+                     $('#shippingAddressModal .selectpicker').selectpicker('refresh');
+              $('#shippingAddressModal').modal('show');
+        });
+
+    }
+</script>

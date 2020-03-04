@@ -41,7 +41,7 @@
                 <option class="dropdown-option" value="@segment.Codename">@segment.Name</option>
             }
         </select>
-        <button class="btn filter-btn ml-0 ml-lg-5" type="button" id="filter-btn" onclick="filter()">show me</button>
+        <button class="btn filter-btn ml-0 ml-lg-5" type="button" id="filter-btn">show me</button>
     </section>
     <section class="acrticles-wrapper">
         @{ Html.RenderPartial("_BlogArticlesPartial", new BlogArticlesViewModel() { NodeAlias = Model.Metadata.Title, Articles = Model.Data.Articles.ToList() }); }
@@ -49,31 +49,38 @@
 
 </main>
 
+@section ViewScript {
     <script type="text/javascript">
-        function loadAll() {
+        (function () {
+
+            function loadAll() {
             $("#load-btn").hide();
             $(".article-hidden").show();
-        }
+            }
 
-        function filter() {
-            var persona = $(".personas-dropdown-wrapper option:selected").val();
-            var segment = $(".segment-dropdown-wrapper option:selected").val();
+            function filter() {
+                var persona = $(".personas-dropdown-wrapper option:selected").val();
+                var segment = $(".segment-dropdown-wrapper option:selected").val();
 
             $.ajax({
                 url: '@Url.Action("Filter", "BlogPage", new { nodeAlias = Model.Metadata.Title, })' + '/' + persona + '/' + segment,
                     type: "GET",
                     dataType: "html",
                     async: true,
-            success: function (data) {
-                $('.acrticles-wrapper').html(data);
+                success: function (data) {
+                    $('.acrticles-wrapper').html(data);
 
-                // blog cards
-                var tabletBreakpoint = 768;
-                $.__addLineClamps('.blogs-wrapper .blog-item .description p', tabletBreakpoint, '100px');
-            }
+                    // blog cards
+                    var tabletBreakpoint = 768;
+                    __addLineClamps('.blogs-wrapper .blog-item .description p', tabletBreakpoint, '100px');
+                }
             });
         }
+
+        document.getElementById('filter-btn').addEventListener('click', filter);
+        })();
     </script>
+}
 
 
 

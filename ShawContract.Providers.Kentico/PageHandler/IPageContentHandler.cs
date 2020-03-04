@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using CMS.DocumentEngine;
+using CMS.Ecommerce;
 
 namespace ShawContract.Providers.Kentico.PageHandler
 {
@@ -10,5 +12,7 @@ namespace ShawContract.Providers.Kentico.PageHandler
         DocumentQuery<T> GetPages<T>() where T : TreeNode, new();
 
         DocumentQuery<T> GetPage<T>(string pageAlias) where T : TreeNode, new();
+
+        List<ProductVariant> GetVariants(int nodeSKUId);
     }
 }

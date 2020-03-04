@@ -57,6 +57,7 @@
     <Compile Include="Models\Common\Attribute.cs" />
     <Compile Include="Models\Common\BaseSpecification.cs" />
     <Compile Include="Models\Common\Dimensions.cs" />
+    <Compile Include="Models\Common\FeatureImage.cs" />
     <Compile Include="Models\Common\KontentData.cs" />
     <Compile Include="Models\Common\Link.cs" />
     <Compile Include="Models\Common\MeasuringSystem.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Models\Common\MainKontentItem.cs" />
     <Compile Include="Models\Common\ProductType.cs" />
     <Compile Include="Models\Common\RoomScene.cs" />
+    <Compile Include="Models\Common\Size.cs" />
     <Compile Include="Models\HardwoodSpecification.cs" />
     <Compile Include="Models\Common\Color.cs" />
     <Compile Include="Config\PDMSConfiguration.cs" />

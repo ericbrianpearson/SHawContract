@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Text.RegularExpressions;
+using System.Web.Mvc;
 using ShawContract.Application.Contracts.Infrastructure;
 using Twilio.AspNet.Mvc;
 using Twilio.TwiML;
@@ -14,15 +15,10 @@ namespace ShawContract.Controllers
             TwilioClientService = twilioClientService;
         }
 
-        // GET: Twilio
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         [HttpPost]
         public ActionResult CallCustomer(string phoneNumber)
         {
+            phoneNumber = Regex.Replace(phoneNumber, "[^0-9]", "");
             TwilioClientService.Call(phoneNumber);
 
             return new TwiMLResult();

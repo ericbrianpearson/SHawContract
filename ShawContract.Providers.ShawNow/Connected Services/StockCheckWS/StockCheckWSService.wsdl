@@ -1,0 +1,1266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://stockcheck.csws.shaw.com" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="StockCheckWSService" targetNamespace="http://stockcheck.csws.shaw.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema xmlns:ns1="http://orderentry.csws.shaw.com" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://stockcheck.csws.shaw.com" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://orderentry.csws.shaw.com" />
+      <xs:element name="getInventory">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="stk" nillable="true" type="tns:StockCheck" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getInventoryResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="getInventoryReturn" nillable="true" type="tns:StockResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getStock">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="stk" nillable="true" type="tns:StockCheck" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getStockResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="getStockReturn" nillable="true" type="tns:StockResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="StockCheck">
+        <xs:sequence>
+          <xs:element name="subsetLines" type="xs:boolean" />
+          <xs:element name="lastLineNbr" type="xs:int" />
+          <xs:element name="samplesPrivateStyle" nillable="true" type="xs:string" />
+          <xs:element name="samplesCustNbr" nillable="true" type="xs:string" />
+          <xs:element name="delVehicle" nillable="true" type="xs:string" />
+          <xs:element name="privateCode" nillable="true" type="xs:string" />
+          <xs:element name="sequenceNbr" nillable="true" type="xs:string" />
+          <xs:element name="packageName" nillable="true" type="xs:string" />
+          <xs:element name="application" nillable="true" type="xs:string" />
+          <xs:element name="applicationId" nillable="true" type="xs:string" />
+          <xs:element name="colorNbr" nillable="true" type="xs:string" />
+          <xs:element name="custNbr" nillable="true" type="xs:string" />
+          <xs:element name="custRefNbr" nillable="true" type="xs:string" />
+          <xs:element name="cutbound" type="xs:boolean" />
+          <xs:element name="cuts" nillable="true" type="tns:ArrayOfCut" />
+          <xs:element name="discount" nillable="true" type="xs:string" />
+          <xs:element name="dyelotType" nillable="true" type="xs:string" />
+          <xs:element name="forceBackorder" type="xs:boolean" />
+          <xs:element name="grade" nillable="true" type="xs:string" />
+          <xs:element name="groupNbr" nillable="true" type="xs:string" />
+          <xs:element name="inventoryLocation" nillable="true" type="xs:string" />
+          <xs:element name="location" nillable="true" type="xs:string" />
+          <xs:element name="max" type="xs:long" />
+          <xs:element name="min" type="xs:long" />
+          <xs:element name="noShipDate" type="xs:boolean" />
+          <xs:element name="orderNbr" nillable="true" type="xs:string" />
+          <xs:element name="productType" nillable="true" type="xs:string" />
+          <xs:element name="poNbr" nillable="true" type="xs:string" />
+          <xs:element name="quantity" type="xs:double" />
+          <xs:element name="replacement" type="xs:boolean" />
+          <xs:element name="sameDyelot" type="xs:boolean" />
+          <xs:element name="shipDate" nillable="true" type="xs:string" />
+          <xs:element name="specificDyelot" nillable="true" type="xs:string" />
+          <xs:element name="styleNbr" nillable="true" type="xs:string" />
+          <xs:element name="swatch" type="xs:boolean" />
+          <xs:element name="uom" nillable="true" type="xs:string" />
+          <xs:element name="userId" nillable="true" type="xs:string" />
+          <xs:element name="viewInventory" type="xs:boolean" />
+          <xs:element name="gradeCat" nillable="true" type="xs:string" />
+          <xs:element name="roleFlag" nillable="true" type="xs:string" />
+          <xs:element name="retailInventoryFlag" nillable="true" type="xs:string" />
+          <xs:element name="function" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfCut">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Cut" nillable="true" type="tns:Cut" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Cut">
+        <xs:sequence>
+          <xs:element name="action" nillable="true" type="xs:string" />
+          <xs:element name="group" nillable="true" type="xs:string" />
+          <xs:element name="half" nillable="true" type="xs:string" />
+          <xs:element name="length" type="xs:double" />
+          <xs:element name="rollNbr" nillable="true" type="xs:string" />
+          <xs:element name="size1" type="xs:double" />
+          <xs:element name="size2" type="xs:double" />
+          <xs:element name="size3" type="xs:double" />
+          <xs:element name="sizeBal" type="xs:double" />
+          <xs:element name="quantity" type="xs:double" />
+          <xs:element name="size" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="StockResult">
+        <xs:sequence>
+          <xs:element name="smpStockResult" nillable="true" type="tns:SamplesStockResult" />
+          <xs:element name="builder" type="xs:boolean" />
+          <xs:element name="capitalReserve" nillable="true" type="xs:string" />
+          <xs:element name="carpetStockResult" nillable="true" type="tns:CarpetStockResult" />
+          <xs:element name="duplicateOrders" nillable="true" type="tns:ArrayOf_xsd_nillable_string" />
+          <xs:element name="duplicatePo" nillable="true" type="ns1:ArrayOf_tns2_nillable_DuplicatePoOrder" />
+          <xs:element name="invPoMessage" nillable="true" type="xs:string" />
+          <xs:element name="hsStockResult" nillable="true" type="tns:HSStockResult" />
+          <xs:element name="message" nillable="true" type="tns:businessMessage" />
+          <xs:element name="rugStockResult" nillable="true" type="tns:RugStockResult" />
+          <xs:element name="conversionFactor" type="xs:double" />
+          <xs:element name="uom" nillable="true" type="xs:string" />
+          <xs:element name="leadTypeDesc" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SamplesStockResult">
+        <xs:sequence>
+          <xs:element name="selectAll" type="xs:boolean" />
+          <xs:element name="packType" nillable="true" type="xs:string" />
+          <xs:element name="marketFlag" type="xs:boolean" />
+          <xs:element name="subset" type="xs:boolean" />
+          <xs:element name="swatch" type="xs:boolean" />
+          <xs:element name="result" nillable="true" type="tns:ArrayOfSamplesResultLine" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfSamplesResultLine">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="SamplesResultLine" nillable="true" type="tns:SamplesResultLine" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SamplesResultLine">
+        <xs:sequence>
+          <xs:element name="atsDate" nillable="true" type="xs:string" />
+          <xs:element name="indSelection" type="xs:boolean" />
+          <xs:element name="groupId" type="xs:int" />
+          <xs:element name="status" nillable="true" type="xs:string" />
+          <xs:element name="unitsPerSet" type="xs:double" />
+          <xs:element name="subset" nillable="true" type="xs:string" />
+          <xs:element name="privateStyleNbr" nillable="true" type="xs:string" />
+          <xs:element name="invPartNbr" nillable="true" type="xs:string" />
+          <xs:element name="cartonQty" type="xs:double" />
+          <xs:element name="height" type="xs:double" />
+          <xs:element name="length" type="xs:double" />
+          <xs:element name="weight" type="xs:double" />
+          <xs:element name="weightUom" nillable="true" type="xs:string" />
+          <xs:element name="width" type="xs:double" />
+          <xs:element name="samplesSeqNbr" nillable="true" type="xs:string" />
+          <xs:element name="seqNbr" type="xs:int" />
+          <xs:element name="availableQty" type="xs:double" />
+          <xs:element name="colorName" nillable="true" type="xs:string" />
+          <xs:element name="colorNbr" nillable="true" type="xs:string" />
+          <xs:element name="delvNbr" nillable="true" type="xs:string" />
+          <xs:element name="partNbr" nillable="true" type="xs:string" />
+          <xs:element name="styleName" nillable="true" type="xs:string" />
+          <xs:element name="styleNbr" nillable="true" type="xs:string" />
+          <xs:element name="unitPrice" type="xs:double" />
+          <xs:element name="uom" nillable="true" type="xs:string" />
+          <xs:element name="currencyCode" nillable="true" type="xs:string" />
+          <xs:element name="foreignPrice" nillable="true" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CarpetStockResult">
+        <xs:sequence>
+          <xs:element name="location3" nillable="true" type="xs:string" />
+          <xs:element name="location1" nillable="true" type="xs:string" />
+          <xs:element name="location2" nillable="true" type="xs:string" />
+          <xs:element name="inventory" nillable="true" type="tns:ArrayOfCarpetInventoryLine" />
+          <xs:element name="solutions" nillable="true" type="tns:ArrayOfSolution" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfCarpetInventoryLine">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="CarpetInventoryLine" nillable="true" type="tns:CarpetInventoryLine" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CarpetInventoryLine">
+        <xs:sequence>
+          <xs:element name="convFactor" type="xs:double" />
+          <xs:element name="action" nillable="true" type="xs:string" />
+          <xs:element name="asgLength" type="xs:double" />
+          <xs:element name="backing" nillable="true" type="xs:string" />
+          <xs:element name="balFt" type="xs:double" />
+          <xs:element name="balIn" type="xs:double" />
+          <xs:element name="cutFt1" type="xs:double" />
+          <xs:element name="cutFt2" type="xs:double" />
+          <xs:element name="cutFt3" type="xs:double" />
+          <xs:element name="cutIn1" type="xs:double" />
+          <xs:element name="cutIn2" type="xs:double" />
+          <xs:element name="cutIn3" type="xs:double" />
+          <xs:element name="cutLength" type="xs:double" />
+          <xs:element name="dyelot" nillable="true" type="xs:string" />
+          <xs:element name="finishDate" nillable="true" type="xs:dateTime" />
+          <xs:element name="flag" nillable="true" type="xs:string" />
+          <xs:element name="half" nillable="true" type="xs:string" />
+          <xs:element name="length" type="xs:double" />
+          <xs:element name="plantNbr" nillable="true" type="xs:string" />
+          <xs:element name="rackLocation" nillable="true" type="xs:string" />
+          <xs:element name="rollCode" nillable="true" type="xs:string" />
+          <xs:element name="rollNbr" nillable="true" type="xs:string" />
+          <xs:element name="rollNbrMod" nillable="true" type="xs:string" />
+          <xs:element name="sequence" nillable="true" type="xs:string" />
+          <xs:element name="status" nillable="true" type="xs:string" />
+          <xs:element name="statusFlag" nillable="true" type="xs:string" />
+          <xs:element name="width" type="xs:double" />
+          <xs:element name="grade" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfSolution">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Solution" nillable="true" type="tns:Solution" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Solution">
+        <xs:sequence>
+          <xs:element name="availableMsg" nillable="true" type="xs:string" />
+          <xs:element name="serviceDes" nillable="true" type="xs:string" />
+          <xs:element name="sameDyelot" type="xs:boolean" />
+          <xs:element name="rollNbr" nillable="true" type="xs:string" />
+          <xs:element name="solutionNbr" type="xs:int" />
+          <xs:element name="solutionDesc" nillable="true" type="xs:string" />
+          <xs:element name="uom" nillable="true" type="xs:string" />
+          <xs:element name="atsDate" nillable="true" type="xs:string" />
+          <xs:element name="availability" nillable="true" type="xs:string" />
+          <xs:element name="blockAgreement" nillable="true" type="xs:string" />
+          <xs:element name="colorName" nillable="true" type="xs:string" />
+          <xs:element name="colorNbr" nillable="true" type="xs:string" />
+          <xs:element name="dyelot" nillable="true" type="xs:string" />
+          <xs:element name="extPrice" type="xs:double" />
+          <xs:element name="location" nillable="true" type="xs:string" />
+          <xs:element name="locationName" nillable="true" type="xs:string" />
+          <xs:element name="message" nillable="true" type="xs:string" />
+          <xs:element name="priceAgree" type="xs:double" />
+          <xs:element name="priceType" nillable="true" type="xs:string" />
+          <xs:element name="rcsCode" nillable="true" type="xs:string" />
+          <xs:element name="rollWidth" type="xs:double" />
+          <xs:element name="quantity" type="xs:double" />
+          <xs:element name="solutionName" nillable="true" type="xs:string" />
+          <xs:element name="styleName" nillable="true" type="xs:string" />
+          <xs:element name="styleNbr" nillable="true" type="xs:string" />
+          <xs:element name="unitPrice" type="xs:double" />
+          <xs:element name="currencyCode" nillable="true" type="xs:string" />
+          <xs:element name="foreignPrice" nillable="true" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOf_xsd_nillable_string">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DuplicatePoOrder">
+        <xs:sequence>
+          <xs:element name="custNbr" nillable="true" type="xs:string" />
+          <xs:element name="orderDate" nillable="true" type="xs:string" />
+          <xs:element name="orderNbr" nillable="true" type="xs:string" />
+          <xs:element name="status" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="HSStockResult">
+        <xs:sequence>
+          <xs:element name="inventory" nillable="true" type="tns:ArrayOfHSInventoryLine" />
+          <xs:element name="result" nillable="true" type="tns:ArrayOfHSResultLine" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfHSInventoryLine">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="HSInventoryLine" nillable="true" type="tns:HSInventoryLine" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="HSInventoryLine">
+        <xs:sequence>
+          <xs:element name="assignedQty" type="xs:double" />
+          <xs:element name="availableQty" type="xs:double" />
+          <xs:element name="backorderQty" type="xs:double" />
+          <xs:element name="colorName" nillable="true" type="xs:string" />
+          <xs:element name="colorNbr" nillable="true" type="xs:string" />
+          <xs:element name="dyelot" nillable="true" type="xs:string" />
+          <xs:element name="grade" nillable="true" type="xs:string" />
+          <xs:element name="plant" nillable="true" type="xs:string" />
+          <xs:element name="reservedQty" type="xs:double" />
+          <xs:element name="styleName" nillable="true" type="xs:string" />
+          <xs:element name="styleNbr" nillable="true" type="xs:string" />
+          <xs:element name="transitQty" type="xs:double" />
+          <xs:element name="locationName" nillable="true" type="xs:string" />
+          <xs:element name="locationNbr" nillable="true" type="xs:string" />
+          <xs:element name="message" nillable="true" type="xs:string" />
+          <xs:element name="holdQty" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfHSResultLine">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="HSResultLine" nillable="true" type="tns:HSResultLine" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="HSResultLine">
+        <xs:sequence>
+          <xs:element name="forceBackorder" type="xs:boolean" />
+          <xs:element name="unitPrice" type="xs:double" />
+          <xs:element name="atsDate" nillable="true" type="xs:string" />
+          <xs:element name="invQty1" type="xs:double" />
+          <xs:element name="invQty2" type="xs:double" />
+          <xs:element name="invQty3" type="xs:double" />
+          <xs:element name="retailQty1" type="xs:double" />
+          <xs:element name="retailQty2" type="xs:double" />
+          <xs:element name="retailQty3" type="xs:double" />
+          <xs:element name="convFactor" type="xs:double" />
+          <xs:element name="retailInc" type="xs:double" />
+          <xs:element name="sqftBox" type="xs:double" />
+          <xs:element name="originalRequest" type="xs:boolean" />
+          <xs:element name="seqNbr" type="xs:int" />
+          <xs:element name="dyelot" nillable="true" type="xs:string" />
+          <xs:element name="grade" nillable="true" type="xs:string" />
+          <xs:element name="uom" nillable="true" type="xs:string" />
+          <xs:element name="orderedQty" type="xs:double" />
+          <xs:element name="orderedUom" nillable="true" type="xs:string" />
+          <xs:element name="colorName" nillable="true" type="xs:string" />
+          <xs:element name="colorNbr" nillable="true" type="xs:string" />
+          <xs:element name="invStyleNbr" nillable="true" type="xs:string" />
+          <xs:element name="length" type="xs:double" />
+          <xs:element name="lengthUnit" nillable="true" type="xs:string" />
+          <xs:element name="location1" nillable="true" type="xs:string" />
+          <xs:element name="location2" nillable="true" type="xs:string" />
+          <xs:element name="location3" nillable="true" type="xs:string" />
+          <xs:element name="locationName1" nillable="true" type="xs:string" />
+          <xs:element name="locationName2" nillable="true" type="xs:string" />
+          <xs:element name="locationName3" nillable="true" type="xs:string" />
+          <xs:element name="pcsCarton" type="xs:double" />
+          <xs:element name="pcsPallet" type="xs:double" />
+          <xs:element name="size" nillable="true" type="xs:string" />
+          <xs:element name="styleName" nillable="true" type="xs:string" />
+          <xs:element name="styleNbr" nillable="true" type="xs:string" />
+          <xs:element name="texture" nillable="true" type="xs:string" />
+          <xs:element name="upcCode" nillable="true" type="xs:string" />
+          <xs:element name="weight" type="xs:double" />
+          <xs:element name="width" type="xs:double" />
+          <xs:element name="widthUnit" nillable="true" type="xs:string" />
+          <xs:element name="invUom" nillable="true" type="xs:string" />
+          <xs:element name="palUom" nillable="true" type="xs:string" />
+          <xs:element name="rtlUom" nillable="true" type="xs:string" />
+          <xs:element name="priceUom" nillable="true" type="xs:string" />
+          <xs:element name="serviceDesc" nillable="true" type="xs:string" />
+          <xs:element name="currencyCode" nillable="true" type="xs:string" />
+          <xs:element name="foreignPrice" nillable="true" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="businessMessage">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="code" type="xs:string" />
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+          <xs:element minOccurs="0" name="type" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="RugStockResult">
+        <xs:sequence>
+          <xs:element name="inventory" nillable="true" type="tns:ArrayOfRugInventoryLine" />
+          <xs:element name="result" nillable="true" type="tns:ArrayOfRugResultLine" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfRugInventoryLine">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="RugInventoryLine" nillable="true" type="tns:RugInventoryLine" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="RugInventoryLine">
+        <xs:sequence>
+          <xs:element name="assignedQty" type="xs:double" />
+          <xs:element name="availableQty" type="xs:double" />
+          <xs:element name="backorderQty" type="xs:double" />
+          <xs:element name="colorName" nillable="true" type="xs:string" />
+          <xs:element name="colorNbr" nillable="true" type="xs:string" />
+          <xs:element name="dyelot" nillable="true" type="xs:string" />
+          <xs:element name="grade" nillable="true" type="xs:string" />
+          <xs:element name="location" nillable="true" type="xs:string" />
+          <xs:element name="locationName" nillable="true" type="xs:string" />
+          <xs:element name="locationNbr" nillable="true" type="xs:string" />
+          <xs:element name="message" nillable="true" type="xs:string" />
+          <xs:element name="plant" nillable="true" type="xs:string" />
+          <xs:element name="reservedQty" type="xs:double" />
+          <xs:element name="styleName" nillable="true" type="xs:string" />
+          <xs:element name="styleNbr" nillable="true" type="xs:string" />
+          <xs:element name="transitQty" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfRugResultLine">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="RugResultLine" nillable="true" type="tns:RugResultLine" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="RugResultLine">
+        <xs:sequence>
+          <xs:element name="atsdate" nillable="true" type="xs:string" />
+          <xs:element name="originalRequest" type="xs:boolean" />
+          <xs:element name="seqNbr" type="xs:int" />
+          <xs:element name="colorName" nillable="true" type="xs:string" />
+          <xs:element name="colorNbr" nillable="true" type="xs:string" />
+          <xs:element name="dyelot" nillable="true" type="xs:string" />
+          <xs:element name="forceBackorder" type="xs:boolean" />
+          <xs:element name="quantity" type="xs:double" />
+          <xs:element name="size" nillable="true" type="xs:string" />
+          <xs:element name="styleName" nillable="true" type="xs:string" />
+          <xs:element name="styleNbr" nillable="true" type="xs:string" />
+          <xs:element name="unitPrice" type="xs:double" />
+          <xs:element name="invUom" nillable="true" type="xs:string" />
+          <xs:element name="rtlUom" nillable="true" type="xs:string" />
+          <xs:element name="uom" nillable="true" type="xs:string" />
+          <xs:element name="currencyCode" nillable="true" type="xs:string" />
+          <xs:element name="foreignPrice" nillable="true" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SOAPException" type="tns:SOAPException" />
+      <xs:complexType name="SOAPException">
+        <xs:sequence />
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://orderentry.csws.shaw.com" xmlns:ns1="http://stockcheck.csws.shaw.com" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://orderentry.csws.shaw.com" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://stockcheck.csws.shaw.com" />
+      <xs:element name="addToCart">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ordHeader" nillable="true" type="tns:OrderHeader" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addToCartResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="addToCartReturn" nillable="true" type="tns:Cart" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addToOrder">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ordHeader" nillable="true" type="tns:OrderHeader" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addToOrderResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="addToOrderReturn" nillable="true" type="tns:Cart" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getADInfo">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="enduser" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getADInfoResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="getADInfoReturn" nillable="true" type="tns:ArrayOfADInfo" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getBuilderInfo">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="orderNbr" nillable="true" type="xs:string" />
+            <xs:element name="builderNbr" nillable="true" type="xs:string" />
+            <xs:element name="builderName" nillable="true" type="xs:string" />
+            <xs:element name="addr" nillable="true" type="xs:string" />
+            <xs:element name="city" nillable="true" type="xs:string" />
+            <xs:element name="state" nillable="true" type="xs:string" />
+            <xs:element name="zip" nillable="true" type="xs:string" />
+            <xs:element name="phone" nillable="true" type="xs:string" />
+            <xs:element name="sort" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getBuilderInfoResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="getBuilderInfoReturn" nillable="true" type="tns:ArrayOfBuilderInfo" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getCart">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="cartNbr" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getCartResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="getCartReturn" nillable="true" type="tns:Cart" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getDuplicatePo">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="poNbr" nillable="true" type="xs:string" />
+            <xs:element name="custNbr" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getDuplicatePoResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="getDuplicatePoReturn" nillable="true" type="tns:ArrayOf_tns2_nillable_DuplicatePoOrder" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getRoutingForInquiry">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="originLocation" nillable="true" type="xs:string" />
+            <xs:element name="destinationZipCode" nillable="true" type="xs:string" />
+            <xs:element name="custNbr" nillable="true" type="xs:string" />
+            <xs:element name="quantity" type="xs:double" />
+            <xs:element name="styleNbr" nillable="true" type="xs:string" />
+            <xs:element name="roleGroup" nillable="true" type="xs:string" />
+            <xs:element name="warehouse" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getRoutingForInquiryResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="getRoutingForInquiryReturn" nillable="true" type="tns:RoutingResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getRoutingInfo">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="zip" nillable="true" type="xs:string" />
+            <xs:element name="city" nillable="true" type="xs:string" />
+            <xs:element name="state" nillable="true" type="xs:string" />
+            <xs:element name="country" nillable="true" type="xs:string" />
+            <xs:element name="custNbr" nillable="true" type="xs:string" />
+            <xs:element name="orderNbr" nillable="true" type="xs:string" />
+            <xs:element name="roleGroup" nillable="true" type="xs:string" />
+            <xs:element name="warehouse" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getRoutingInfoResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="getRoutingInfoReturn" nillable="true" type="tns:RoutingResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getShippingInfo">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="orderNbr" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getShippingInfoResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="getShippingInfoReturn" nillable="true" type="tns:ShipInfo" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="isADFirm">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="dept" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="isADFirmResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="isADFirmReturn" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="placeOrder">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="convertToOrder" nillable="true" type="tns:ConvertToOrder" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="purge">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="cartNbr" nillable="true" type="xs:string" />
+            <xs:element name="groups" nillable="true" type="tns:ArrayOf_xsd_nillable_string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="purgeResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="purgeReturn" nillable="true" type="tns:Cart" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="reserve">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="cartNbr" nillable="true" type="xs:string" />
+            <xs:element name="userid" nillable="true" type="xs:string" />
+            <xs:element name="groups" nillable="true" type="tns:ArrayOf_xsd_nillable_string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="reserveResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="reserveReturn" nillable="true" type="tns:Cart" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="ArrayOf_tns2_nillable_DuplicatePoOrder">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="DuplicatePoOrder" nillable="true" type="ns1:DuplicatePoOrder" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Group">
+        <xs:sequence>
+          <xs:element name="inventoryLocation" nillable="true" type="xs:string" />
+          <xs:element name="priceExplain" nillable="true" type="xs:string" />
+          <xs:element name="fixUom" type="xs:boolean" />
+          <xs:element name="colorNbr" nillable="true" type="xs:string" />
+          <xs:element name="discount" type="xs:double" />
+          <xs:element name="lines" nillable="true" type="tns:ArrayOfLine" />
+          <xs:element name="max" type="xs:double" />
+          <xs:element name="min" type="xs:double" />
+          <xs:element name="reqDyelot" nillable="true" type="xs:string" />
+          <xs:element name="reqPrice" type="xs:double" />
+          <xs:element name="reqPriceUom" nillable="true" type="xs:string" />
+          <xs:element name="reqQty" type="xs:double" />
+          <xs:element name="reqUom" nillable="true" type="xs:string" />
+          <xs:element name="shipDate" nillable="true" type="xs:string" />
+          <xs:element name="sidemark1" nillable="true" type="xs:string" />
+          <xs:element name="sidemark2" nillable="true" type="xs:string" />
+          <xs:element name="sidemarkType1" nillable="true" type="xs:string" />
+          <xs:element name="sidemarkType2" nillable="true" type="xs:string" />
+          <xs:element name="styleNbr" nillable="true" type="xs:string" />
+          <xs:element name="location" nillable="true" type="xs:string" />
+          <xs:element name="cuts" nillable="true" type="tns:ArrayOf_tns2_nillable_Cut" />
+          <xs:element name="reqBy" nillable="true" type="xs:string" />
+          <xs:element name="forceBackorder" nillable="true" type="xs:string" />
+          <xs:element name="reqPriceFlag" nillable="true" type="xs:string" />
+          <xs:element name="cutBound" type="xs:boolean" />
+          <xs:element name="replacementFlag" type="xs:boolean" />
+          <xs:element name="swatchFlag" type="xs:boolean" />
+          <xs:element name="quoteNbr" nillable="true" type="xs:string" />
+          <xs:element name="sidemarkCode1" nillable="true" type="xs:string" />
+          <xs:element name="sidemarkCode2" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfLine">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Line" nillable="true" type="tns:Line" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Line">
+        <xs:sequence>
+          <xs:element name="dyelot" nillable="true" type="xs:string" />
+          <xs:element name="price" nillable="true" type="xs:string" />
+          <xs:element name="rcsCode" nillable="true" type="xs:string" />
+          <xs:element name="rollNbr" nillable="true" type="xs:string" />
+          <xs:element name="size" nillable="true" type="xs:string" />
+          <xs:element name="pricingFlag" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOf_tns2_nillable_Cut">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Cut" nillable="true" type="ns1:Cut" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Cart">
+        <xs:sequence>
+          <xs:element name="subset" type="xs:boolean" />
+          <xs:element name="swatch" type="xs:boolean" />
+          <xs:element name="cartLineErrors" nillable="true" type="tns:ArrayOfCartLineError" />
+          <xs:element name="discount" nillable="true" type="xs:string" />
+          <xs:element name="cartOrderNbr" nillable="true" type="xs:string" />
+          <xs:element name="message" nillable="true" type="xs:string" />
+          <xs:element name="messageType" nillable="true" type="xs:string" />
+          <xs:element name="cartNbr" nillable="true" type="xs:string" />
+          <xs:element name="lines" nillable="true" type="tns:ArrayOfCartLine" />
+          <xs:element name="priceExplain" type="xs:boolean" />
+          <xs:element name="pricingFlag" nillable="true" type="xs:string" />
+          <xs:element name="locCode" nillable="true" type="xs:string" />
+          <xs:element name="priceReqBy" nillable="true" type="xs:string" />
+          <xs:element name="shipDate" nillable="true" type="xs:dateTime" />
+          <xs:element name="prodType" nillable="true" type="xs:string" />
+          <xs:element name="freightCode" nillable="true" type="xs:string" />
+          <xs:element name="shipPoint" nillable="true" type="xs:string" />
+          <xs:element name="countryCode" nillable="true" type="xs:string" />
+          <xs:element name="zipcode" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfCartLineError">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="CartLineError" nillable="true" type="tns:CartLineError" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CartLineError">
+        <xs:sequence>
+          <xs:element name="colorNbr" nillable="true" type="xs:string" />
+          <xs:element name="dyelot" nillable="true" type="xs:string" />
+          <xs:element name="groupNbr" nillable="true" type="xs:string" />
+          <xs:element name="styleNbr" nillable="true" type="xs:string" />
+          <xs:element name="pricingFlag" nillable="true" type="xs:string" />
+          <xs:element name="priceExplain" type="xs:boolean" />
+          <xs:element name="errorMessage" nillable="true" type="xs:string" />
+          <xs:element name="errorType" nillable="true" type="xs:string" />
+          <xs:element name="seqNbr" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfCartLine">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="CartLine" nillable="true" type="tns:CartLine" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CartLine">
+        <xs:sequence>
+          <xs:element name="packType" nillable="true" type="xs:string" />
+          <xs:element name="demaindLine" nillable="true" type="xs:string" />
+          <xs:element name="demandOrder" nillable="true" type="xs:string" />
+          <xs:element name="statusCode" nillable="true" type="xs:string" />
+          <xs:element name="description" nillable="true" type="xs:string" />
+          <xs:element name="colorName" nillable="true" type="xs:string" />
+          <xs:element name="colorNbr" nillable="true" type="xs:string" />
+          <xs:element name="dyelot" nillable="true" type="xs:string" />
+          <xs:element name="extPrice" nillable="true" type="xs:string" />
+          <xs:element name="groupNbr" nillable="true" type="xs:string" />
+          <xs:element name="length" nillable="true" type="xs:string" />
+          <xs:element name="lineNbr" nillable="true" type="xs:string" />
+          <xs:element name="location" nillable="true" type="xs:string" />
+          <xs:element name="qty" nillable="true" type="xs:string" />
+          <xs:element name="rcsCode" nillable="true" type="xs:string" />
+          <xs:element name="shipDate" nillable="true" type="xs:string" />
+          <xs:element name="styleName" nillable="true" type="xs:string" />
+          <xs:element name="styleNbr" nillable="true" type="xs:string" />
+          <xs:element name="unitPrice" nillable="true" type="xs:string" />
+          <xs:element name="uom" nillable="true" type="xs:string" />
+          <xs:element name="width" nillable="true" type="xs:string" />
+          <xs:element name="priceUOM" nillable="true" type="xs:string" />
+          <xs:element name="builderFlag" type="xs:boolean" />
+          <xs:element name="selCo" nillable="true" type="xs:string" />
+          <xs:element name="cutBoundFlag" type="xs:boolean" />
+          <xs:element name="replacementFlag" type="xs:boolean" />
+          <xs:element name="swatchFlag" type="xs:boolean" />
+          <xs:element name="totWeight" type="xs:double" />
+          <xs:element name="smpColorNbr" nillable="true" type="xs:string" />
+          <xs:element name="smpStyleNbr" nillable="true" type="xs:string" />
+          <xs:element name="smpTypeset" nillable="true" type="xs:string" />
+          <xs:element name="smpTypesetDesc" nillable="true" type="xs:string" />
+          <xs:element name="groupId" nillable="true" type="xs:string" />
+          <xs:element name="restricted" type="xs:boolean" />
+          <xs:element name="commodity" nillable="true" type="xs:string" />
+          <xs:element name="productCode" nillable="true" type="xs:string" />
+          <xs:element name="foreignPrice" nillable="true" type="xs:string" />
+          <xs:element name="foreignCurrency" nillable="true" type="xs:string" />
+          <xs:element name="leadTimeDate" nillable="true" type="xs:string" />
+          <xs:element name="leadTimeFlag" nillable="true" type="xs:string" />
+          <xs:element name="leadTypeDesc" nillable="true" type="xs:string" />
+          <xs:element name="custStatusCode" nillable="true" type="xs:string" />
+          <xs:element name="demandStatusCode" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOf_xsd_nillable_string">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ADInfo">
+        <xs:sequence>
+          <xs:element name="addr1" nillable="true" type="xs:string" />
+          <xs:element name="addr2" nillable="true" type="xs:string" />
+          <xs:element name="firmName" nillable="true" type="xs:string" />
+          <xs:element name="firmCode" nillable="true" type="xs:string" />
+          <xs:element name="city" nillable="true" type="xs:string" />
+          <xs:element name="phoneNbr" nillable="true" type="xs:string" />
+          <xs:element name="state" nillable="true" type="xs:string" />
+          <xs:element name="zip" nillable="true" type="xs:string" />
+          <xs:element name="firmType" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Carrier">
+        <xs:sequence>
+          <xs:element name="accessorialList" nillable="true" type="tns:ArrayOfAccessorial" />
+          <xs:element name="addCollect" nillable="true" type="xs:string" />
+          <xs:element name="billingMethod" type="xs:int" />
+          <xs:element name="carrierCode" nillable="true" type="xs:string" />
+          <xs:element name="carrierName" nillable="true" type="xs:string" />
+          <xs:element name="carrierType" type="xs:int" />
+          <xs:element name="costCurrencyCode" nillable="true" type="xs:string" />
+          <xs:element name="costSizeUom" nillable="true" type="xs:string" />
+          <xs:element name="custNbr" nillable="true" type="xs:string" />
+          <xs:element name="defaultCarrier" type="xs:boolean" />
+          <xs:element name="itemDesc" nillable="true" type="xs:string" />
+          <xs:element name="linehaulCost" type="xs:double" />
+          <xs:element name="maxRate" type="xs:double" />
+          <xs:element name="minRate" type="xs:double" />
+          <xs:element name="mode" nillable="true" type="xs:string" />
+          <xs:element name="modeDesc" nillable="true" type="xs:string" />
+          <xs:element name="ratePer" type="xs:double" />
+          <xs:element name="ratingLaneDetailRate" type="xs:double" />
+          <xs:element name="serviceCode" nillable="true" type="xs:string" />
+          <xs:element name="serviceDesc" nillable="true" type="xs:string" />
+          <xs:element name="tariffRateZoneRate" type="xs:double" />
+          <xs:element name="totalAccessorialCost" type="xs:double" />
+          <xs:element name="productClass" nillable="true" type="xs:string" />
+          <xs:element name="ratingLaneDetail" nillable="true" type="xs:string" />
+          <xs:element name="ratingLaneId" nillable="true" type="xs:string" />
+          <xs:element name="billingMethodDesc" nillable="true" type="xs:string" />
+          <xs:element name="productClassDesc" nillable="true" type="xs:string" />
+          <xs:element name="rateType" nillable="true" type="xs:string" />
+          <xs:element name="dropRate" type="xs:double" />
+          <xs:element name="fuelRate" type="xs:double" />
+          <xs:element name="rateUom" nillable="true" type="xs:string" />
+          <xs:element name="fuelCalcRatePer" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfAccessorial">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Accessorial" nillable="true" type="tns:Accessorial" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Accessorial">
+        <xs:sequence>
+          <xs:element name="accessorialCode" nillable="true" type="xs:string" />
+          <xs:element name="accessorialCost" nillable="true" type="xs:double" />
+          <xs:element name="accessorialRate" nillable="true" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Order">
+        <xs:sequence>
+          <xs:element name="message" nillable="true" type="xs:string" />
+          <xs:element name="messageType" nillable="true" type="xs:string" />
+          <xs:element name="orderNbr" nillable="true" type="xs:string" />
+          <xs:element name="restricted" type="xs:boolean" />
+          <xs:element name="orderDate" nillable="true" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfUnitsLine">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="UnitsLine" nillable="true" type="tns:UnitsLine" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="UnitsLine">
+        <xs:sequence>
+          <xs:element name="forceBackOrder" nillable="true" type="xs:string" />
+          <xs:element name="collection" nillable="true" type="xs:string" />
+          <xs:element name="end1" nillable="true" type="xs:string" />
+          <xs:element name="end2" nillable="true" type="xs:string" />
+          <xs:element name="endCap1" nillable="true" type="xs:string" />
+          <xs:element name="endCap2" nillable="true" type="xs:string" />
+          <xs:element name="location" nillable="true" type="xs:string" />
+          <xs:element name="plant" nillable="true" type="xs:string" />
+          <xs:element name="shipDate" nillable="true" type="xs:string" />
+          <xs:element name="unitDiscPerc" type="xs:double" />
+          <xs:element name="unitLineSidemark1" nillable="true" type="xs:string" />
+          <xs:element name="unitLineSidemark2" nillable="true" type="xs:string" />
+          <xs:element name="unitPriceExplain" nillable="true" type="xs:string" />
+          <xs:element name="unitPriceReq" type="xs:double" />
+          <xs:element name="unitPriceUom" nillable="true" type="xs:string" />
+          <xs:element name="unitReqBy" nillable="true" type="xs:string" />
+          <xs:element name="unitSidem1gs" nillable="true" type="xs:string" />
+          <xs:element name="unitSidem2gs" nillable="true" type="xs:string" />
+          <xs:element name="seqNbr" nillable="true" type="xs:string" />
+          <xs:element name="colorNbr" nillable="true" type="xs:string" />
+          <xs:element name="discount" type="xs:double" />
+          <xs:element name="dyelot" nillable="true" type="xs:string" />
+          <xs:element name="grade" nillable="true" type="xs:string" />
+          <xs:element name="priceExplain" nillable="true" type="xs:string" />
+          <xs:element name="quantity" type="xs:double" />
+          <xs:element name="replacementFlag" type="xs:boolean" />
+          <xs:element name="reqBy" nillable="true" type="xs:string" />
+          <xs:element name="reqPrice" type="xs:double" />
+          <xs:element name="reqPriceUom" nillable="true" type="xs:string" />
+          <xs:element name="sidemark1" nillable="true" type="xs:string" />
+          <xs:element name="sidemark2" nillable="true" type="xs:string" />
+          <xs:element name="sidemarkType1" nillable="true" type="xs:string" />
+          <xs:element name="sidemarkType2" nillable="true" type="xs:string" />
+          <xs:element name="styleNbr" nillable="true" type="xs:string" />
+          <xs:element name="uom" nillable="true" type="xs:string" />
+          <xs:element name="pricingFlag" nillable="true" type="xs:string" />
+          <xs:element name="sidemarkCode1" nillable="true" type="xs:string" />
+          <xs:element name="sidemarkCode2" nillable="true" type="xs:string" />
+          <xs:element name="quoteNbr" type="xs:int" />
+          <xs:element name="poNbr" nillable="true" type="xs:string" />
+          <xs:element name="poLineNbr" type="xs:int" />
+          <xs:element name="primarySKU" nillable="true" type="xs:string" />
+          <xs:element name="rawMatOrderNbr" nillable="true" type="xs:string" />
+          <xs:element name="rawMatLineNbr" type="xs:int" />
+          <xs:element name="sqYds" type="xs:double" />
+          <xs:element name="styleNameLong" nillable="true" type="xs:string" />
+          <xs:element name="styleNameShort" nillable="true" type="xs:string" />
+          <xs:element name="colorNameLong" nillable="true" type="xs:string" />
+          <xs:element name="colorNameShort" nillable="true" type="xs:string" />
+          <xs:element name="length" type="xs:double" />
+          <xs:element name="width" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="OrderHeader">
+        <xs:sequence>
+          <xs:element name="orderStatus" nillable="true" type="xs:string" />
+          <xs:element name="unitsLines" nillable="true" type="tns:ArrayOfUnitsLine" />
+          <xs:element name="productType" nillable="true" type="xs:string" />
+          <xs:element name="builder" nillable="true" type="tns:OrderBuilder" />
+          <xs:element name="orderNbr" nillable="true" type="xs:string" />
+          <xs:element name="discType" nillable="true" type="xs:string" />
+          <xs:element name="cartNbr" nillable="true" type="xs:string" />
+          <xs:element name="custNbr" nillable="true" type="xs:string" />
+          <xs:element name="groups" nillable="true" type="tns:ArrayOfGroup" />
+          <xs:element name="poNbr" nillable="true" type="xs:string" />
+          <xs:element name="selco" nillable="true" type="xs:string" />
+          <xs:element name="userid" nillable="true" type="xs:string" />
+          <xs:element name="pricingFlag" nillable="true" type="xs:string" />
+          <xs:element name="samplesLines" nillable="true" type="tns:ArrayOfSamplesLine" />
+          <xs:element name="lid" nillable="true" type="xs:string" />
+          <xs:element name="roleFlag" nillable="true" type="xs:string" />
+          <xs:element name="manualAssignment" type="xs:boolean" />
+          <xs:element name="refNbr" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="OrderBuilder">
+        <xs:sequence>
+          <xs:element name="builderStyleFlag" type="xs:boolean" />
+          <xs:element name="builderHdrSidemark" nillable="true" type="xs:string" />
+          <xs:element name="builderId" nillable="true" type="xs:string" />
+          <xs:element name="builderName" nillable="true" type="xs:string" />
+          <xs:element name="builderStreetAddress" nillable="true" type="xs:string" />
+          <xs:element name="lot" nillable="true" type="xs:string" />
+          <xs:element name="nbrOfHomes" type="xs:int" />
+          <xs:element name="subdivisionName" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfGroup">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Group" nillable="true" type="tns:Group" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfSamplesLine">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="SamplesLine" nillable="true" type="tns:SamplesLine" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SamplesLine">
+        <xs:sequence>
+          <xs:element name="sidemarkCode1" nillable="true" type="xs:string" />
+          <xs:element name="sidemarkCode2" nillable="true" type="xs:string" />
+          <xs:element name="priceRequested" type="xs:boolean" />
+          <xs:element name="subset" nillable="true" type="xs:string" />
+          <xs:element name="subsetGroupNbr" type="xs:double" />
+          <xs:element name="unitsPerSubset" type="xs:double" />
+          <xs:element name="delVehName" nillable="true" type="xs:string" />
+          <xs:element name="collateFlag" type="xs:boolean" />
+          <xs:element name="marketFlag" type="xs:boolean" />
+          <xs:element name="carrServiceLevel" nillable="true" type="xs:string" />
+          <xs:element name="labelContact" nillable="true" type="xs:string" />
+          <xs:element name="labelDefInfo" nillable="true" type="xs:string" />
+          <xs:element name="labelProjectName" nillable="true" type="xs:string" />
+          <xs:element name="lableShiptoPhone" nillable="true" type="xs:string" />
+          <xs:element name="thirdPartyAcc" nillable="true" type="xs:string" />
+          <xs:element name="cartonQty" type="xs:double" />
+          <xs:element name="height" type="xs:double" />
+          <xs:element name="length" type="xs:double" />
+          <xs:element name="samplesPrivateStyle" nillable="true" type="xs:string" />
+          <xs:element name="weight" type="xs:double" />
+          <xs:element name="weightUom" nillable="true" type="xs:string" />
+          <xs:element name="width" type="xs:double" />
+          <xs:element name="seqNbr" type="xs:int" />
+          <xs:element name="bulkOrderNbr" nillable="true" type="xs:string" />
+          <xs:element name="colorNbr" nillable="true" type="xs:string" />
+          <xs:element name="delVehNbr" nillable="true" type="xs:string" />
+          <xs:element name="discount" type="xs:double" />
+          <xs:element name="genericLabelFlag" type="xs:boolean" />
+          <xs:element name="grade" nillable="true" type="xs:string" />
+          <xs:element name="location" nillable="true" type="xs:string" />
+          <xs:element name="miscItemDesc" nillable="true" type="xs:string" />
+          <xs:element name="packType" nillable="true" type="xs:string" />
+          <xs:element name="partNbr" nillable="true" type="xs:string" />
+          <xs:element name="priceExplain" nillable="true" type="xs:string" />
+          <xs:element name="pricingFlag" nillable="true" type="xs:string" />
+          <xs:element name="quantity" type="xs:double" />
+          <xs:element name="reqBy" nillable="true" type="xs:string" />
+          <xs:element name="reqPrice" type="xs:double" />
+          <xs:element name="reqPriceUom" nillable="true" type="xs:string" />
+          <xs:element name="samplesColorNbr" nillable="true" type="xs:string" />
+          <xs:element name="samplesCustNbr" nillable="true" type="xs:string" />
+          <xs:element name="samplesStyleNbr" nillable="true" type="xs:string" />
+          <xs:element name="samplesSeqNbr" nillable="true" type="xs:string" />
+          <xs:element name="shipDate" nillable="true" type="xs:string" />
+          <xs:element name="sidemark1" nillable="true" type="xs:string" />
+          <xs:element name="sidemark2" nillable="true" type="xs:string" />
+          <xs:element name="sidemarkType1" nillable="true" type="xs:string" />
+          <xs:element name="sidemarkType2" nillable="true" type="xs:string" />
+          <xs:element name="styleNbr" nillable="true" type="xs:string" />
+          <xs:element name="typesetDesc" nillable="true" type="xs:string" />
+          <xs:element name="uom" nillable="true" type="xs:string" />
+          <xs:element name="invPartNbr" nillable="true" type="xs:string" />
+          <xs:element name="resDelvFlag" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfADInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ADInfo" nillable="true" type="tns:ADInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ShipInfo">
+        <xs:sequence>
+          <xs:element name="ratingLaneDetail" nillable="true" type="xs:string" />
+          <xs:element name="ratingLaneId" nillable="true" type="xs:string" />
+          <xs:element name="cashBefDeliv" type="xs:boolean" />
+          <xs:element name="shipPartInv" type="xs:boolean" />
+          <xs:element name="shipWithRugs" type="xs:boolean" />
+          <xs:element name="orderStatus" nillable="true" type="xs:string" />
+          <xs:element name="message" nillable="true" type="xs:string" />
+          <xs:element name="messageType" nillable="true" type="xs:string" />
+          <xs:element name="custNbr" nillable="true" type="xs:string" />
+          <xs:element name="billtoAddr1" nillable="true" type="xs:string" />
+          <xs:element name="billtoAddr2" nillable="true" type="xs:string" />
+          <xs:element name="billtoCity" nillable="true" type="xs:string" />
+          <xs:element name="billtoName" nillable="true" type="xs:string" />
+          <xs:element name="billtoState" nillable="true" type="xs:string" />
+          <xs:element name="billtoZip" nillable="true" type="xs:string" />
+          <xs:element name="hsmChargeCode1" nillable="true" type="xs:string" />
+          <xs:element name="headerSidemark1" nillable="true" type="xs:string" />
+          <xs:element name="hsmChargeAmount1" nillable="true" type="xs:decimal" />
+          <xs:element name="hsmChargeCode2" nillable="true" type="xs:string" />
+          <xs:element name="headerSidemark2" nillable="true" type="xs:string" />
+          <xs:element name="hsmChargeAmount2" nillable="true" type="xs:decimal" />
+          <xs:element name="shipAddr1" nillable="true" type="xs:string" />
+          <xs:element name="shipAddr2" nillable="true" type="xs:string" />
+          <xs:element name="shipCity" nillable="true" type="xs:string" />
+          <xs:element name="shipCityI" nillable="true" type="xs:string" />
+          <xs:element name="shipCountry" nillable="true" type="xs:string" />
+          <xs:element name="shipName1" nillable="true" type="xs:string" />
+          <xs:element name="shipName2" nillable="true" type="xs:string" />
+          <xs:element name="shipState" nillable="true" type="xs:string" />
+          <xs:element name="shipStateI" nillable="true" type="xs:string" />
+          <xs:element name="shipToHeader" nillable="true" type="xs:string" />
+          <xs:element name="shipZip" nillable="true" type="xs:string" />
+          <xs:element name="shipZipI" nillable="true" type="xs:string" />
+          <xs:element name="specialInst1" nillable="true" type="xs:string" />
+          <xs:element name="specialInst2" nillable="true" type="xs:string" />
+          <xs:element name="specialInst3" nillable="true" type="xs:string" />
+          <xs:element name="specialInst4" nillable="true" type="xs:string" />
+          <xs:element name="shipCustNbr" nillable="true" type="xs:string" />
+          <xs:element name="addrKey" type="xs:int" />
+          <xs:element name="seqNbr" type="xs:int" />
+          <xs:element name="carrier" nillable="true" type="xs:string" />
+          <xs:element name="statusCode" nillable="true" type="xs:string" />
+          <xs:element name="discountType" nillable="true" type="xs:string" />
+          <xs:element name="airFreight" nillable="true" type="xs:string" />
+          <xs:element name="blanketOrder" nillable="true" type="xs:string" />
+          <xs:element name="callBeforeDelivery" nillable="true" type="xs:string" />
+          <xs:element name="revRollWrap" nillable="true" type="xs:string" />
+          <xs:element name="callWithRollSizes" nillable="true" type="xs:string" />
+          <xs:element name="cpu" nillable="true" type="xs:string" />
+          <xs:element name="cutBound" nillable="true" type="xs:string" />
+          <xs:element name="cutDown" nillable="true" type="xs:string" />
+          <xs:element name="holdForInstructions" nillable="true" type="xs:string" />
+          <xs:element name="peddleRush" nillable="true" type="xs:string" />
+          <xs:element name="prodRequest" nillable="true" type="xs:string" />
+          <xs:element name="replacement" nillable="true" type="xs:string" />
+          <xs:element name="rush" nillable="true" type="xs:string" />
+          <xs:element name="shipWithRacks" nillable="true" type="xs:string" />
+          <xs:element name="specialTerms" nillable="true" type="xs:string" />
+          <xs:element name="swatchRequest" nillable="true" type="xs:string" />
+          <xs:element name="thirdPartyBilling" nillable="true" type="xs:string" />
+          <xs:element name="dept" nillable="true" type="xs:string" />
+          <xs:element name="destCountry" nillable="true" type="xs:string" />
+          <xs:element name="typeInCarrierName" nillable="true" type="xs:string" />
+          <xs:element name="freightType" nillable="true" type="xs:string" />
+          <xs:element name="orderType" nillable="true" type="xs:string" />
+          <xs:element name="requestedBy" nillable="true" type="xs:string" />
+          <xs:element name="serviceCode" nillable="true" type="xs:string" />
+          <xs:element name="shipComplete" nillable="true" type="xs:string" />
+          <xs:element name="territory" nillable="true" type="xs:string" />
+          <xs:element name="typeInCarrier" nillable="true" type="xs:string" />
+          <xs:element name="warehouseCPU" nillable="true" type="xs:string" />
+          <xs:element name="dealerName" nillable="true" type="xs:string" />
+          <xs:element name="dealerRelationship" nillable="true" type="xs:string" />
+          <xs:element name="storeAddress" nillable="true" type="xs:string" />
+          <xs:element name="storeNbr" nillable="true" type="xs:string" />
+          <xs:element name="adFlag" nillable="true" type="xs:string" />
+          <xs:element name="endUser" nillable="true" type="xs:string" />
+          <xs:element name="firmCode" nillable="true" type="xs:string" />
+          <xs:element name="firmName" nillable="true" type="xs:string" />
+          <xs:element name="projectReference" nillable="true" type="xs:string" />
+          <xs:element name="holdData" nillable="true" type="xs:string" />
+          <xs:element name="airFreightData" nillable="true" type="xs:string" />
+          <xs:element name="callBeforeDelData" nillable="true" type="xs:string" />
+          <xs:element name="callRollSizeData" nillable="true" type="xs:string" />
+          <xs:element name="cpuData" nillable="true" type="xs:string" />
+          <xs:element name="replacementData" nillable="true" type="xs:string" />
+          <xs:element name="specialTermsData" nillable="true" type="xs:string" />
+          <xs:element name="swatchData" nillable="true" type="xs:string" />
+          <xs:element name="thirdPartyData" nillable="true" type="xs:string" />
+          <xs:element name="thirdPartyAcctNbr" nillable="true" type="xs:string" />
+          <xs:element name="poNbr" nillable="true" type="xs:string" />
+          <xs:element name="shipCountryName" nillable="true" type="xs:string" />
+          <xs:element name="poNeeded" nillable="true" type="xs:string" />
+          <xs:element name="collateFlag" type="xs:boolean" />
+          <xs:element name="marketHoldFlag" type="xs:boolean" />
+          <xs:element name="labelContact" nillable="true" type="xs:string" />
+          <xs:element name="labelProjectName" nillable="true" type="xs:string" />
+          <xs:element name="labelDefvInfo" nillable="true" type="xs:string" />
+          <xs:element name="labelShipToPhone" nillable="true" type="xs:string" />
+          <xs:element name="builder" nillable="true" type="tns:OrderBuilder" />
+          <xs:element name="allowCanadianAddress" nillable="true" type="xs:string" />
+          <xs:element name="totalWeight" nillable="true" type="xs:decimal" />
+          <xs:element name="resDelvFlag" type="xs:boolean" />
+          <xs:element name="shipDate" nillable="true" type="xs:string" />
+          <xs:element name="extraFrt" nillable="true" type="xs:string" />
+          <xs:element name="insideDelFlag" nillable="true" type="xs:string" />
+          <xs:element name="jobSiteResidFlag" nillable="true" type="xs:string" />
+          <xs:element name="jobSiteResidSidemark1" nillable="true" type="xs:string" />
+          <xs:element name="jobSiteResidSidemark2" nillable="true" type="xs:string" />
+          <xs:element name="liftGateFlag" nillable="true" type="xs:string" />
+          <xs:element name="manualDrop" type="xs:double" />
+          <xs:element name="manualFreight" type="xs:double" />
+          <xs:element name="manualFuel" type="xs:double" />
+          <xs:element name="modeCode" nillable="true" type="xs:string" />
+          <xs:element name="shipPoint" nillable="true" type="xs:string" />
+          <xs:element name="residentialDelivFlag" nillable="true" type="xs:string" />
+          <xs:element name="headerSidemarkCode1" nillable="true" type="xs:string" />
+          <xs:element name="headerSidemarkCode2" nillable="true" type="xs:string" />
+          <xs:element name="district" nillable="true" type="xs:string" />
+          <xs:element name="region" nillable="true" type="xs:string" />
+          <xs:element name="endUse" nillable="true" type="xs:string" />
+          <xs:element name="incoTerms" nillable="true" type="xs:string" />
+          <xs:element name="projectName" nillable="true" type="xs:string" />
+          <xs:element name="projectNbr" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ConvertToOrder">
+        <xs:sequence>
+          <xs:element name="bulkQty" type="xs:double" />
+          <xs:element name="bulkOrderFlag" type="xs:boolean" />
+          <xs:element name="cartNbr" nillable="true" type="xs:string" />
+          <xs:element name="userId" nillable="true" type="xs:string" />
+          <xs:element name="groups" nillable="true" type="tns:ArrayOf_xsd_nillable_string" />
+          <xs:element name="poNbr" nillable="true" type="xs:string" />
+          <xs:element name="shipInfo" nillable="true" type="tns:ShipInfo" />
+          <xs:element name="overrideDupPo" nillable="true" type="xs:string" />
+          <xs:element name="orderNbr" nillable="true" type="xs:string" />
+          <xs:element name="roleFlag" nillable="true" type="xs:string" />
+          <xs:element name="custNbr" nillable="true" type="xs:string" />
+          <xs:element name="function" nillable="true" type="xs:string" />
+          <xs:element name="status" nillable="true" type="tns:ArrayOf_xsd_nillable_string" />
+          <xs:element name="ratePer" nillable="true" type="tns:ArrayOf_xsd_double" />
+          <xs:element name="parentOrder" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOf_xsd_double">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="double" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="RoutingResult">
+        <xs:sequence>
+          <xs:element name="deliverySchedule" nillable="true" type="tns:ArrayOf_xsd_boolean" />
+          <xs:element name="freightCode" nillable="true" type="xs:string" />
+          <xs:element name="drop" type="xs:double" />
+          <xs:element name="fuel" type="xs:double" />
+          <xs:element name="errors" nillable="true" type="xs:string" />
+          <xs:element name="commodity" nillable="true" type="xs:string" />
+          <xs:element name="productType" nillable="true" type="xs:string" />
+          <xs:element name="carriers" nillable="true" type="tns:ArrayOfCarrier" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOf_xsd_boolean">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="boolean" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfCarrier">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Carrier" nillable="true" type="tns:Carrier" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfBuilderInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="BuilderInfo" nillable="true" type="tns:BuilderInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="BuilderInfo">
+        <xs:sequence>
+          <xs:element name="addr1" nillable="true" type="xs:string" />
+          <xs:element name="addr2" nillable="true" type="xs:string" />
+          <xs:element name="builderName" nillable="true" type="xs:string" />
+          <xs:element name="builderNbr" nillable="true" type="xs:string" />
+          <xs:element name="city" nillable="true" type="xs:string" />
+          <xs:element name="phoneNbr" nillable="true" type="xs:string" />
+          <xs:element name="state" nillable="true" type="xs:string" />
+          <xs:element name="zip" nillable="true" type="xs:string" />
+          <xs:element name="blockNbr" nillable="true" type="xs:string" />
+          <xs:element name="hsidemark" nillable="true" type="xs:string" />
+          <xs:element name="lotNbr" nillable="true" type="xs:string" />
+          <xs:element name="subdiv" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getInventory">
+    <wsdl:part name="parameters" element="tns:getInventory" />
+  </wsdl:message>
+  <wsdl:message name="getStockResponse">
+    <wsdl:part name="parameters" element="tns:getStockResponse" />
+  </wsdl:message>
+  <wsdl:message name="getInventoryResponse">
+    <wsdl:part name="parameters" element="tns:getInventoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="SOAPException">
+    <wsdl:part name="SOAPException" element="tns:SOAPException" />
+  </wsdl:message>
+  <wsdl:message name="getStock">
+    <wsdl:part name="parameters" element="tns:getStock" />
+  </wsdl:message>
+  <wsdl:portType name="StockCheckWS">
+    <wsdl:operation name="getInventory">
+      <wsdl:input name="getInventory" message="tns:getInventory" />
+      <wsdl:output name="getInventoryResponse" message="tns:getInventoryResponse" />
+      <wsdl:fault name="SOAPException" message="tns:SOAPException" />
+    </wsdl:operation>
+    <wsdl:operation name="getStock">
+      <wsdl:input name="getStock" message="tns:getStock" />
+      <wsdl:output name="getStockResponse" message="tns:getStockResponse" />
+      <wsdl:fault name="SOAPException" message="tns:SOAPException" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="StockCheckWSServiceSoapBinding" type="tns:StockCheckWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getInventory">
+      <soap:operation soapAction="getInventory" style="document" />
+      <wsdl:input name="getInventory">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getInventoryResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SOAPException">
+        <soap:fault use="literal" name="SOAPException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getStock">
+      <soap:operation soapAction="getStock" style="document" />
+      <wsdl:input name="getStock">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getStockResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SOAPException">
+        <soap:fault use="literal" name="SOAPException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="StockCheckWSService">
+    <wsdl:port name="StockCheckWS" binding="tns:StockCheckWSServiceSoapBinding">
+      <soap:address location="http://sw72cswsprd4.shaw.shawinc.com:8080/CSWS/services/StockCheckWS" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

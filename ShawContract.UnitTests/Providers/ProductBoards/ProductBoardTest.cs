@@ -67,13 +67,13 @@ namespace Shaw.Contract.UnitTests.Providers.ProductBoards
         {
             await this.ProductBoardGateway.CreateProductBoardAsync(this.Board);
             var boardNewName = "UpdatedName";
-            var allBoards = await this.ProductBoardGateway.GetProductBoardsAsync("TestUser@gmail.com");
+            var allBoards = this.ProductBoardGateway.GetProductBoards("TestUser@gmail.com");
             var firstBoard = allBoards.FirstOrDefault();
 
             firstBoard.BoardName = boardNewName;
 
             await this.ProductBoardGateway.UpdateProductBoardAsync(firstBoard);
-            var updatedBoard = await this.ProductBoardGateway.GetProductBoardAsync(firstBoard.ID);
+            var updatedBoard =  this.ProductBoardGateway.GetProductBoard(firstBoard.ID);
 
             Assert.IsTrue(updatedBoard.BoardName == boardNewName);
         }
@@ -82,7 +82,7 @@ namespace Shaw.Contract.UnitTests.Providers.ProductBoards
         public async Task AddBoardItemAssert()
         {
             await this.ProductBoardGateway.CreateProductBoardAsync(this.Board);
-            var allBoards = await this.ProductBoardGateway.GetProductBoardsAsync("TestUser@gmail.com");
+            var allBoards = this.ProductBoardGateway.GetProductBoards("TestUser@gmail.com");
             var firstBoard = allBoards.FirstOrDefault();
             var productCount = firstBoard.ProductBoardItems.Count;
 
@@ -92,7 +92,7 @@ namespace Shaw.Contract.UnitTests.Providers.ProductBoards
                 StyleName = "Style",
                 Notes = "Notes"
             });
-            var updatedBoard = await this.ProductBoardGateway.GetProductBoardAsync(firstBoard.ID);
+            var updatedBoard = this.ProductBoardGateway.GetProductBoard(firstBoard.ID);
             Assert.IsTrue(updatedBoard.ProductBoardItems.Count() == (productCount + 1));
         }
 
@@ -100,13 +100,13 @@ namespace Shaw.Contract.UnitTests.Providers.ProductBoards
         public async Task RemoveBoardItemAssert()
         {
             await this.ProductBoardGateway.CreateProductBoardAsync(this.Board);
-            var allBoards = await this.ProductBoardGateway.GetProductBoardsAsync("TestUser@gmail.com");
+            var allBoards = this.ProductBoardGateway.GetProductBoards("TestUser@gmail.com");
             var firstBoard = allBoards.FirstOrDefault();
             var productCount = firstBoard.ProductBoardItems.Count;
 
             await this.ProductBoardGateway.RemoveProductBoardItemAsync(firstBoard.ID, firstBoard.ProductBoardItems.First().ID);
 
-            var updatedBoard = await this.ProductBoardGateway.GetProductBoardAsync(firstBoard.ID);
+            var updatedBoard = this.ProductBoardGateway.GetProductBoard(firstBoard.ID);
             Assert.IsTrue(updatedBoard.ProductBoardItems.Count() == (productCount - 1));
         }
 
@@ -114,13 +114,13 @@ namespace Shaw.Contract.UnitTests.Providers.ProductBoards
         public async Task DeleteAllBoardsAssert()
         {
             await this.ProductBoardGateway.CreateProductBoardAsync(this.Board);
-            var allBoards = await this.ProductBoardGateway.GetProductBoardsAsync("TestUser@gmail.com");
+            var allBoards = this.ProductBoardGateway.GetProductBoards("TestUser@gmail.com");
 
             foreach (var item in allBoards)
             {
                 await this.ProductBoardGateway.DeleteProductBoardAsync(item.ID);
             }
-            var noBoards = await this.ProductBoardGateway.GetProductBoardsAsync("TestUser@gmail.com");
+            var noBoards = this.ProductBoardGateway.GetProductBoards("TestUser@gmail.com");
 
             Assert.IsTrue(noBoards.Count() == 0);
         }

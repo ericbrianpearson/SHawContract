@@ -1,256 +1,300 @@
-﻿@{
+﻿@using ShawContract.Models.ContactUs
+
+@model ShawContract.Models.PageViewModel<ContactViewModel>
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
+@{ 
+    var jobRoles = Model.Data.Menus.Where(m => m.MenuType == 1).FirstOrDefault();
+    var assistance = Model.Data.Menus.Where(m => m.MenuType == 2).FirstOrDefault();
+}
 <main role="main" class="contact-us mt-6 text-size-normal">
     <section class="top-section container mb-3 mb-md-5">
-      <section class=" title-section mb-3 mb-md-5">
-        <div class="mark"></div>
-        <div class="row">
-          <div class="col-sm-8 offset-sm-2 text-center">
-            <h1 class="title heading-1">Contact Us</h1>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-8 offset-sm-2 text-center">
-            <p class="description">
-              Help us connect you to the appropriate party by answering three quick questions:
-            </p>
-          </div>
-        </div>
-      </section>
-      <div class="row justify-content-center mb-6">
-        <div class="col-12 col-md-5 text-center">
-          <div class="form-group">
-            <label for="job-role" class="heading-4 medium mb-3 mb-md-4">
-              What is your primary job role?
-            </label>
-            <select id="job-role" value="" class="selectpicker form-control-lg d-block w-100"
-              data-style="select-style blue-text" required aria-required="true" title="Select your primary job role">
-              <option value="" class="px-5">Project Manager</option>
-              <option value="" class="px-5">Tech Lead</option>
-              <option value="" class="px-5">Solutions Architect</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="row justify-content-center mb-6">
-        <div class="col-12 col-md-5 text-center">
-          <div class="form-group">
-            <label for="customer-need" class="heading-4 medium mb-3 mb-md-4">
-              How can we be of assistance?
-            </label>
-            <select id="customer-need" value="" class="selectpicker form-control-lg d-block w-100"
-              data-style="select-style blue-text" required aria-required="true" title="Select a contact reason">
-              <option value="" class="px-5">I want to learn more about a product</option>
-              <option value="" class="px-5">I want to delete my account</option>
-              <option value="" class="px-5">I didn't receive an order</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="row justify-content-center mb-6">
-        <div class="col-12 col-md-5 text-center">
-          <div class="form-group">
-            <h4 class="heading-4 medium mb-3 mb-md-4">
-              How would you like to get in touch?
-            </h4>
-            <div class="radio-tile-group">
-              <div class="input-container">
-                <input id="emailRadioBtn" class="radio-button" type="radio" name="means-of-connection" />
-                <div class="radio-tile">
-                  <label for="emailRadioBtn" class="radio-tile-label">Email</label>
+        <section class=" title-section mb-3 mb-md-5">
+            <div class="mark"></div>
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2 text-center">
+                    <h1 class="title heading-1">Contact Us</h1>
                 </div>
-              </div>
-              <div class="input-container">
-                <input id="phoneRadioBtn" class="radio-button" type="radio" name="means-of-connection" />
-                <div class="radio-tile">
-                  <label for="phoneRadioBtn" class="radio-tile-label">Phone</label>
-                </div>
-              </div>
             </div>
-          </div>
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2 text-center">
+                    <p class="description">
+                        Help us connect you to the appropriate party by answering three quick questions:
+                    </p>
+                </div>
+            </div>
+        </section>
+        <div class="row justify-content-center mb-6">
+            <div class="col-12 col-md-5 text-center">
+                <div class="form-group">
+                    <label for="job-role" class="heading-4 medium mb-3 mb-md-4">
+                        What is your primary job role?
+                    </label>
+                    <select id="job-role" class="selectpicker form-control-lg d-block w-100"
+                            data-style="select-style blue-text" required aria-required="true" title="Select your primary job role">
+                        @if (jobRoles != null && jobRoles.Items.ToList().Count > 0)
+                        {
+                            foreach (var item in jobRoles.Items)
+                            {
+                                <option value="@item.Title" class="px-5">@item.Title</option>
+                            }
+                        }
+
+                    </select>
+
+                </div>
+            </div>
         </div>
-      </div>
+        <div class="row justify-content-center mb-6">
+            <div class="col-12 col-md-5 text-center">
+                <div class="form-group">
+                    <label for="customer-need" class="heading-4 medium mb-3 mb-md-4">
+                        How can we be of assistance?
+                    </label>
+                    <select id="customer-need" class="selectpicker form-control-lg d-block w-100"
+                            data-style="select-style blue-text" required aria-required="true" title="Select a contact reason">
+                        @if (assistance != null && assistance.Items.ToList().Count > 0)
+                        {
+                            foreach (var item in assistance.Items)
+                            {
+                                <option value="@item.Title" class="px-5">@item.Title</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-6">
+            <div class="col-12 col-md-5 text-center">
+                <div class="form-group">
+                    <h4 class="heading-4 medium mb-3 mb-md-4">
+                        How would you like to get in touch?
+                    </h4>
+                    <div class="radio-tile-group">
+                        <div class="input-container">
+                            <input id="emailRadioBtn" class="radio-button" type="radio" name="means-of-connection" />
+                            <div class="radio-tile">
+                                <label for="emailRadioBtn" class="radio-tile-label">Email</label>
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <input id="phoneRadioBtn" class="radio-button" type="radio" name="means-of-connection" />
+                            <div class="radio-tile">
+                                <label for="phoneRadioBtn" class="radio-tile-label">Phone</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- email section -->
     <section class="email-section">
-
-      <section class="email-form-section show animate pt-6 pb-6">
-        <div class="container white">
-          <section class=" title-section mb-3 mb-md-5">
-            <div class="mark bg-white"></div>
-            <div class="row">
-              <div class="col-sm-8 offset-sm-2 text-center">
-                <h1 class="title heading-1 white">Let's Connect</h1>
-              </div>
-            </div>
-          </section>
-
-          <!-- form -->
-          <form action="" method="POST" id="emailForm" role="form">
-            <div class="form-group">
-              <div class="row mb-0 mb-md-5">
-                <div class="col-12 col-md-4 mb-3 mb-md-0">
-                  <label for="firstName">First Name<span> *</span></label>
-                  <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" required
-                    aria-required="true">
-                </div>
-                <div class="col-12 col-md-4 mb-3 mb-md-0">
-                  <label for="lastName">Last Name<span> *</span></label>
-                  <input type="text" id="lastName" name="lastName" class="form-control form-control-lg" required
-                    aria-required="true">
-                </div>
-                <div class="col-12 col-md-4 mb-3 mb-md-0">
-                  <label for="email">Email Address<span> *</span></label>
-                  <input type="email" id="email" name="email" class="form-control form-control-lg" autocomplete="email"
-                    required aria-required="true">
-                </div>
-              </div>
-              <div class="row mb-0 mb-md-5">
-                <div class="col mb-4 mb-md-0">
-                  <label for="helpReason" class="heading-5">How can we help?<span> *</span></label>
-                  <textarea class="form-control form-control-lg" id="helpReason" name="helpReason" rows="5" required
-                    aria-required="true"></textarea>
-                </div>
-              </div>
-              <div class="row position-relative">
-                <div class="col-12 mb-4 required-fields-text">
-                  <span class="float-md-right"><span>*</span> = Required Fields</span>
-                </div>
-                <div class="col-12">
-                  <div class="row justify-content-center">
-                    <div class="col-12 col-md-3">
-                      <button class="btn btn-secondary text-size-large w-100 p-3" type="submit">
-                        SUBMIT
-                      </button>
+        <section class="email-form-section show animate pt-6 pb-6">
+            <div class="container white">
+                <section class=" title-section mb-3 mb-md-5">
+                    <div class="mark bg-white"></div>
+                    <div class="row">
+                        <div class="col-sm-8 offset-sm-2 text-center">
+                            <h1 class="title heading-1 white">Let's Connect</h1>
+                        </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-          <!-- form end -->
-        </div>
-      </section>
-      <!-- email section end -->
+                </section>
 
-      <!-- email success section -->
-      <section class="email-success-section bg-gray-semilight pt-6 pb-6">
-        <div class="container">
-          <section class=" title-section mb-3 mb-md-5">
-            <div class="mark bg-dark"></div>
-            <div class="row">
-              <div class="col-sm-8 offset-sm-2 text-center">
-                <h1 class="title heading-1">Let's Connect</h1>
-              </div>
+                <!-- form -->
+                <form action="" method="POST" id="emailForm" role="form">
+                    <div class="form-group">
+                        <div class="row mb-0 mb-md-5">
+                            <div class="col-12 col-md-4 mb-3 mb-md-0">
+                                <label for="firstName">First Name<span> *</span></label>
+                                <input type="text" id="firstName" name="firstName" class="form-control form-control-lg" required
+                                       aria-required="true">
+                            </div>
+                            <div class="col-12 col-md-4 mb-3 mb-md-0">
+                                <label for="lastName">Last Name<span> *</span></label>
+                                <input type="text" id="lastName" name="lastName" class="form-control form-control-lg" required
+                                       aria-required="true">
+                            </div>
+                            <div class="col-12 col-md-4 mb-3 mb-md-0">
+                                <label for="email">Email Address<span> *</span></label>
+                                <input type="email" id="email" name="email" class="form-control form-control-lg" autocomplete="email"
+                                       required aria-required="true">
+                            </div>
+                        </div>
+                        <div class="row mb-0 mb-md-5">
+                            <div class="col mb-4 mb-md-0">
+                                <label for="helpReason" class="heading-5">How can we help?<span> *</span></label>
+                                <textarea class="form-control form-control-lg" id="helpReason" name="helpReason" rows="5" required
+                                          aria-required="true"></textarea>
+                            </div>
+                        </div>
+                        <div class="row position-relative">
+                            <div class="col-12 mb-4 required-fields-text">
+                                <span class="float-md-right"><span>*</span> = Required Fields</span>
+                            </div>
+                            <div class="col-12">
+                                <div class="row justify-content-center">
+                                    <div class="col-12 col-md-3">
+                                        <button class="btn btn-secondary text-size-large w-100 p-3" type="submit">
+                                            SUBMIT
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- form end -->
             </div>
-            <div class="row">
-              <div class="col-sm-8 offset-sm-2 text-center">
-                <p class="description">
-                  Thank you for reaching out. A Shaw Contract specialist will be in touch soon.
-                </p>
-              </div>
-            </div>
-          </section>
-          <div class="row justify-content-center">
-            <div class="col-12 col-md-7 col-lg-5 bg-white">
-              <div class="row p-5">
-                <div class="col-12">
-                  <span class="medium mr-2">Name: </span>
-                  <span>Robert Frost</span>
+        </section>
+
+        <!-- email section end -->
+        <!-- email success section -->
+        <section class="email-success-section bg-gray-semilight pt-6 pb-6">
+            <div class="container">
+                <section class=" title-section mb-3 mb-md-5">
+                    <div class="mark bg-dark"></div>
+                    <div class="row">
+                        <div class="col-sm-8 offset-sm-2 text-center">
+                            <h1 class="title heading-1">Let's Connect</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8 offset-sm-2 text-center">
+                            <p class="description">
+                                Thank you for reaching out. A Shaw Contract specialist will be in touch soon.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-7 col-lg-5 bg-white">
+                        <div class="row p-5">
+                            <div class="col-12 user-names">
+                                <span class="medium mr-2">Name: </span>
+                                <span id="user-whole-name"></span>
+                            </div>
+                            <div class="col-12 user-mail">
+                                <span class="medium mr-2">Email: </span>
+                                <span id="mail"> </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-12">
-                  <span class="medium mr-2">Email: </span>
-                  <span>robert.frost@poet-talk.com</span>
-                </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </section>
-      <!-- email success end -->
+        </section>
+        <!-- email success end -->
     </section>
 
 
 
     <!-- phone section -->
     <section class="phone-section pt-6 pb-6">
-      <div class="container">
-        <section class=" title-section mb-3 mb-md-5">
-          <div class="mark"></div>
-          <div class="row">
-            <div class="col-sm-8 offset-sm-2 text-center">
-              <h1 class="title heading-1">Let's Connect</h1>
-            </div>
-          </div>
-        </section>
+        <div class="container">
+            <section class=" title-section mb-3 mb-md-5">
+                <div class="mark"></div>
+                <div class="row">
+                    <div class="col-sm-8 offset-sm-2 text-center">
+                        <h1 class="title heading-1">Let's Connect</h1>
+                    </div>
+                </div>
+            </section>
 
-        <!-- phone form -->
-        <form action="" method="POST" id="phoneForm">
-            <div class="form-group mb-6">
-                <div class="radio-tile-group white-bg">
-                    <div class="input-container">
-                        <input id="callNowBtn" class="radio-button" value="now" type="radio" name="call-when" />
-                        <div class="radio-tile">
-                            <label for="callNowBtn"
-                                   class="radio-tile-label letter-spacing-large text-uppercase medium text-size-large">
-                                CALL ME NOW
-                            </label>
+            <!-- phone form -->
+            <form action="" method="POST" id="phoneForm">
+                <div class="form-group mb-6">
+                    <div class="radio-tile-group white-bg">
+                        <div class="input-container">
+                            <input id="callNowBtn" class="radio-button" value="now" type="radio" name="call-when" />
+                            <div class="radio-tile">
+                                <label for="callNowBtn"
+                                       class="radio-tile-label letter-spacing-large text-uppercase medium text-size-large">
+                                    CALL ME NOW
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="input-container">
-                        <input id="callLaterBtn" class="radio-button" value="later" type="radio" name="call-when" />
-                        <div class="radio-tile">
-                            <label for="callLaterBtn"
-                                   class="radio-tile-label letter-spacing-large text-uppercase medium text-size-large">
-                                I'LL CALL LATER
-                            </label>
+                        <div class="input-container">
+                            <input id="callLaterBtn" class="radio-button" value="later" type="radio" name="call-when" />
+                            <div class="radio-tile">
+                                <label for="callLaterBtn"
+                                       class="radio-tile-label letter-spacing-large text-uppercase medium text-size-large">
+                                    I'LL CALL LATER
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- user phone number input -->
-            <div class="call-me-now-section">
-                <div class="row mt-6 mb-6 justify-content-center">
-                    <div class="col-12 col-md-7 col-lg-6 col-xl-5">
-                        <label for="customerPhone">What number would you like to be reached at?</label>
-                        <input type="tel" id="customerPhone" name="customerPhone" class="form-control form-control-lg"
-                               placeholder="U.S. numbers only" autocomplete="tel" required aria-required="true">
+                <!-- user phone number input -->
+                <div class="call-me-now-section">
+                    <div class="row mt-6 mb-6 justify-content-center">
+                        <div class="col-12 col-md-7 col-lg-6 col-xl-5">
+                            <label for="customerPhone">What number would you like to be reached at?</label>
+                            <input type="tel" id="customerPhone" name="customerPhone" class="form-control form-control-lg text-size-small font-weight-normal"
+                                   placeholder="U.S. numbers only" autocomplete="tel" required aria-required="true">
+                        </div>
                     </div>
-                </div>
-                <div class="row mt-6">
-                    <div class="col">
-                        <div class="d-flex justify-content-center">
-                            <button class="btn btn-secondary text-size-large py-3 px-5 " type="submit">
-                                CONNECT CALL
-                            </button>
+                    <div class="row mt-6">
+                        <div class="col">
+                            <div class="d-flex justify-content-center">
+                                <button class="btn btn-secondary text-size-large py-3 px-5 " type="submit">
+                                    CONNECT CALL
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- -->
-            <!-- calling user success block-->
-            <div class="calling-customer-section">
+                <!-- -->
+                <!-- calling user success block-->
+                <div class="calling-customer-section">
+                    <div class="row mb-4">
+                        <div class="col text-center">
+                            <h4 class="heading-4">
+                                Connecting you to Shaw Contract Customer Support
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-7 col-lg-5 bg-white">
+                            <div class="row text-size-small p-5">
+                                <div class="col-12">
+                                    <span class="medium mr-2">Phone: </span>
+                                    <span>1.800.257.7429</span>
+                                </div>
+                                <div class="col-12">
+                                    <span class="medium mr-2">Hours: </span>
+                                    <span>Monday - Friday, 9:00am to 6:00pm EST</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--  -->
+
+            </form>
+
+
+            <!-- call later - customer support block-->
+            <div class="customer-support-section">
                 <div class="row mb-4">
                     <div class="col text-center">
                         <h4 class="heading-4">
-                            Connecting you to Shaw Contract Customer Support
+                            Shaw Contract Customer Support
                         </h4>
                     </div>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-12 col-md-7 col-lg-5 bg-white">
-                        <div class="row p-5">
+                        <div class="row text-size-small p-5">
                             <div class="col-12">
                                 <span class="medium mr-2">Phone: </span>
-                                <span>1.800.123.4567</span>
+                                <span>1.800.257.7429</span>
                             </div>
                             <div class="col-12">
-                                <span class="medium mr-2">Hours:: </span>
+                                <span class="medium mr-2">Hours: </span>
                                 <span>Monday - Friday, 9:00am to 6:00pm EST</span>
                             </div>
                         </div>
@@ -259,323 +303,326 @@
             </div>
             <!--  -->
 
-        </form>
-
-
-        <!-- call later - customer support block-->
-        <div class="customer-support-section">
-          <div class="row mb-4">
-            <div class="col text-center">
-              <h4 class="heading-4">
-                Shaw Contract Customer Support
-              </h4>
-            </div>
-          </div>
-          <div class="row justify-content-center">
-            <div class="col-12 col-md-7 col-lg-5 bg-white">
-              <div class="row p-5">
-                <div class="col-12">
-                  <span class="medium mr-2">Phone: </span>
-                  <span>1.800.257.7429</span>
-                </div>
-                <div class="col-12">
-                  <span class="medium mr-2">Hours:: </span>
-                  <span>Monday - Friday, 9:00am to 6:00pm EST</span>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-        <!--  -->
-
-      </div>
     </section>
 
-  </main>
+</main>
 
-
-
-@section Scripts {
+@section ViewScript {
     <script type="text/javascript">
+
         (function () {
 
-          // get the main tag
-          var contactUsPage = document.querySelector('main.contact-us');
+            // get the main tag
+            var contactUsPage = document.querySelector('main.contact-us');
 
-          // check if we are on the contact us page
-          if (!contactUsPage) {
-            return;
-          }
+            // check if we are on the contact us page
+            if (!contactUsPage) {
+                return;
+            }
 
-          // Validation for the email section
-          $(document).ready(function () {
-            $("#emailForm").validate({
-              rules: {
-                firstName: {
-                  required: true,
-                  minlength: 2,
-                  maxlength: 100,
-                  regex: $.__nameRegex,
-                  normalizer: function (value) {
-                    return $.trim(value);
-                  }
-                },
-                lastName: {
-                  required: true,
-                  minlength: 2,
-                  maxlength: 100,
-                  regex: $.__nameRegex,
-                  normalizer: function (value) {
-                    return $.trim(value);
-                  }
-                },
-                email: {
-                  required: true,
-                  email: true,
-                  normalizer: function (value) {
-                    return $.trim(value);
-                  }
-                },
-                helpReason: {
-                  required: true,
-                  maxlength: 500,
-                  normalizer: function (value) {
-                    return $.trim(value);
-                  }
-                },
-              },
-              messages: {
-                firstName: {
-                  required: "Please enter a first name",
-                  minlength: "Please enter at least {0} characters",
-                  maxlength: "Maximum character length: {0}",
-                  regex: "Only letters and the following symbols: -,'.  are accepted",
-                },
-                lastName: {
-                  required: "Please enter a last name",
-                  minlength: "Please enter at least {0} characters",
-                  maxlength: "Maximum character length: {0}",
-                  regex: "Only letters and the following symbols: -,'.  are accepted",
-                },
-                email: {
-                  required: "Please enter an email address",
-                  email: "Invalid email address",
-                },
-                helpReason: {
-                  required: "Please tell us how we can help",
-                  maxlength: "Maximum character length: {0}",
-                },
-              },
-              submitHandler: function (form) {
-                alert("valid form submitted");
+            // Validation for the email section
+            $(document).ready(function () {
 
-                // server request here
-                onEmailFormSuccess(); // perform this only on a successful request
-                return false;
-              }
+                $("#emailForm").validate({
+                    errorClass: "error jquery-error",
+                    rules: {
+                        firstName: {
+                            required: true,
+                            minlength: 2,
+                            maxlength: 100,
+                            regex: $.__nameRegex,
+                            normalizer: function (value) {
+                                return $.trim(value);
+                            }
+                        },
+                        lastName: {
+                            required: true,
+                            minlength: 2,
+                            maxlength: 100,
+                            regex: $.__nameRegex,
+                            normalizer: function (value) {
+                                return $.trim(value);
+                            }
+                        },
+                        email: {
+                            required: true,
+                            email: true,
+                            normalizer: function (value) {
+                                return $.trim(value);
+                            }
+                        },
+                        helpReason: {
+                            required: true,
+                            maxlength: 500,
+                            normalizer: function (value) {
+                                return $.trim(value);
+                            }
+                        },
+                    },
+                    messages: {
+                        firstName: {
+                            required: "Please enter a first name",
+                            minlength: "Please enter at least {0} characters",
+                            maxlength: "Maximum character length: {0}",
+                            regex: "Only letters and the following symbols: -,'.  are accepted",
+                        },
+                        lastName: {
+                            required: "Please enter a last name",
+                            minlength: "Please enter at least {0} characters",
+                            maxlength: "Maximum character length: {0}",
+                            regex: "Only letters and the following symbols: -,'.  are accepted",
+                        },
+                        email: {
+                            required: "Please enter an email address",
+                            email: "Invalid email address",
+                        },
+                        helpReason: {
+                            required: "Please tell us how we can help",
+                            maxlength: "Maximum character length: {0}",
+                        },
+                    },
+                    submitHandler: function (form) {
+
+                        var mailObj = new Object();
+                        mailObj.FirstName = $(form["firstName"]).val();
+                        mailObj.LastName = $(form["lastName"]).val();
+                        mailObj.Description = $(form["helpReason"]).val();
+                        mailObj.Sender = $(form["email"]).val();
+                        mailObj.JobRole = $("#job-role").val();
+                        mailObj.AssistanceNeeded = $("#customer-need").val();
+
+                        var wholeName = mailObj.FirstName + ' ' + mailObj.LastName;
+                        $(".user-names").data("user-info", {
+                            user: wholeName,
+                            email: mailObj.Sender
+                           });
+                                $("#user-whole-name").text($(".user-names").data("user-info").user);
+                                $("#mail").text($(".user-names").data("user-info").email);
+
+                       var dataToPost = { email: mailObj, alias: "@Model.Metadata.Title" };
+
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("SendMail", "ContactUs")',
+                            data: dataToPost,
+                            success: function () {
+
+                                onEmailFormSuccess();
+
+                            }
+                        });
+                        return false;
+                    }
+                });
+
+
+                /**
+                 * Phone Form validation
+                 */
+                $("#phoneForm").validate({
+                    errorClass: "error jquery-error",
+                    rules: {
+                        customerPhone: {
+                            required: true,
+                            regex: $.__phoneRegex,
+                            normalizer: function (value) {
+                                return $.trim(value);
+                            }
+                        },
+                    },
+                    messages: {
+                        customerPhone: {
+                            required: "Please enter a phone number",
+                            regex: "Only US numbers are allowed",
+                        },
+                    },
+                    submitHandler: function (form) {
+                        var number = $(form["customerPhone"]).val();
+
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("CallCustomer", "TwilioIntegration")',
+                            data: { phoneNumber: number },
+                            success: function () {
+                                onPhoneFormSuccess();
+                            }
+                        });
+                        return false;
+                    }
+                });
             });
 
 
-            /**
-             * Phone Form validation 
-             */
-            $("#phoneForm").validate({
-              rules: {
-                customerPhone: {
-                  required: true,
-                  regex: $.__phoneRegex,
-                  normalizer: function (value) {
-                    return $.trim(value);
-                  }
-                },
-              },
-              messages: {
-                customerPhone: {
-                  required: "Please enter a phone number",
-                  regex: "Only US numbers are allowed",
-                },
-              },
-              submitHandler: function (form) {
-                alert("valid form submitted");
-
-                // strip away the phone number to only digits  - suggestion 
-
-                // server request here 
-                onPhoneFormSuccess(); // perform this only on a successful request
-                return false;
-              }
-            });
-          });
-
-
-
-
-          /**
-           *  Displaying and hiding the different sections 
-           */
-
-          try {
-
-            var emailRadioBtn = document.getElementById('emailRadioBtn');
-            var phoneRadioBtn = document.getElementById('phoneRadioBtn');
-            var callMeNowBtn = document.getElementById('callNowBtn');
-            var callLaterBtn = document.getElementById('callLaterBtn');
-            var emailSection = document.querySelector('section.email-section');
-            var emailFormSection = emailSection.querySelector('section.email-form-section');
-            var emailSuccessSection = emailSection.querySelector('.email-success-section');
-            var phonetSection = document.querySelector('section.phone-section');
-            var customerSupportSection = phonetSection.querySelector('.customer-support-section');
-            var callMeNowSection = phonetSection.querySelector('.call-me-now-section');
-            var callingCustomerSection = phonetSection.querySelector('.calling-customer-section');
-
-            // Wait until the css animation is complete, before doing something that would end it. 
-            var standardAnimationDuration = 300;
-            // State
-            var hasUserSubmittedCallNowForm = false;
 
 
             /**
-             * Returns the value of a matching parameter name
-             * param {String} parameterName 
+             *  Displaying and hiding the different sections
              */
-            function findGetParameter(parameterName) {
-              var result = null;
-              var tmp = [];
-              var items = location.search.substr(1).split("&");
-              for (var index = 0; index < items.length; index++) {
-                tmp = items[index].split("=");
-                if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
-              }
-              return result;
-            }
+
+            try {
+
+                var emailRadioBtn = document.getElementById('emailRadioBtn');
+                var phoneRadioBtn = document.getElementById('phoneRadioBtn');
+                var callMeNowBtn = document.getElementById('callNowBtn');
+                var callLaterBtn = document.getElementById('callLaterBtn');
+                var emailSection = document.querySelector('section.email-section');
+                var emailFormSection = emailSection.querySelector('section.email-form-section');
+                var emailSuccessSection = emailSection.querySelector('.email-success-section');
+                var phonetSection = document.querySelector('section.phone-section');
+                var customerSupportSection = phonetSection.querySelector('.customer-support-section');
+                var callMeNowSection = phonetSection.querySelector('.call-me-now-section');
+                var callingCustomerSection = phonetSection.querySelector('.calling-customer-section');
+
+                // Wait until the css animation is complete, before doing something that would end it.
+                var standardAnimationDuration = 300;
+                // State
+                var hasUserSubmittedCallNowForm = false;
+
+
+                /**
+                 * Returns the value of a matching parameter name
+                 * param {String} parameterName
+                 */
+                function findGetParameter(parameterName) {
+                    var result = null;
+                    var tmp = [];
+                    var items = location.search.substr(1).split("&");
+                    for (var index = 0; index < items.length; index++) {
+                        tmp = items[index].split("=");
+                        if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+                    }
+                    return result;
+                }
 
 
 
-            //Check query params
-            // Display Email
-            if ( findGetParameter('email-section') === 'show' ) {
-              emailRadioBtn.checked = true;
-              showEmailSection();
-            }
+                //Check query params
+                // Display Email
+                if (findGetParameter('email-section') === 'show') {
+                    emailRadioBtn.checked = true;
+                    showEmailSection();
+                }
 
-            // Display phone
-            if (findGetParameter('phone-section-call-me-now') === 'show') {
-              phoneRadioBtn.checked = true;
-              callMeNowBtn.checked = true;
-              showPhoneSection();
-              showCallMeNowSection();
-            }
-
-
-
-            function showEmailSection() {
-              phonetSection.classList.remove('show');
-              emailSection.classList.add('show');
-              emailSection.scrollIntoView({ behavior: "smooth", block: "start" });
-
-              setTimeout(function () {
-                phonetSection.classList.remove('animate');
-                emailSection.classList.add('animate');
-              }, 0);
-
-              setTimeout(function () {
-                var firstName = document.getElementById('firstName');
-                firstName.focus();
-              }, standardAnimationDuration);
-            };
-
-
-            function showPhoneSection() {
-              emailSection.classList.remove('show');
-              phonetSection.classList.add('show');
-              phonetSection.scrollIntoView({ behavior: "smooth", block: "start" });
-
-
-              setTimeout(function () {
-                emailSection.classList.remove('animate');
-                phonetSection.classList.add('animate');
-              }, 0);
-            };
-
-
-            function showCallMeNowSection() {
-              if (hasUserSubmittedCallNowForm) {
-                customerSupportSection.classList.remove('show');
-                phonetSection.classList.add('success');
-                callingCustomerSection.classList.add('show');
-
-                setTimeout(function () {
-                  customerSupportSection.classList.remove('animate');
-                  callingCustomerSection.classList.add('animate');
-                }, 0);
-              }
-              else {
-
-                phonetSection.classList.remove('success');
-                customerSupportSection.classList.remove('show');
-                callingCustomerSection.classList.remove('show');
-                callMeNowSection.classList.add('show');
-
-                setTimeout(function () {
-                  customerSupportSection.classList.remove('animate');
-                  callingCustomerSection.classList.remove('animate');
-                  callMeNowSection.classList.add('animate');
-                }, 0);
-              }
-            };
-
-
-            function showCallMeLaterSection () {
-              callMeNowSection.classList.remove('show');
-              callingCustomerSection.classList.remove('show');
-              phonetSection.classList.add('success');
-              customerSupportSection.classList.add('show');
-
-              setTimeout(function () {
-                callMeNowSection.classList.remove('animate');
-                callingCustomerSection.classList.remove('animate');
-                customerSupportSection.classList.add('animate');
-              }, 0);
-            }
-
-
-            // Email form -> submit
-            // Called only after jquery validation is valid
-            function onEmailFormSuccess() {
-              emailFormSection.classList.remove('show');
-              emailSuccessSection.classList.add('show');
-              emailSection.classList.add('success');
-
-              setTimeout(function () {
-                emailFormSection.classList.remove('animate');
-                emailSuccessSection.classList.add('animate');
-              }, 0);
-            }
-
-
-            // Phone form -> submit
-            // Called only after jquery validation is valid
-            function onPhoneFormSuccess() {
-              hasUserSubmittedCallNowForm = true;
-              callMeNowSection.classList.remove('show');
-              phonetSection.classList.add('success');
-              callingCustomerSection.classList.add('show');
-
-              setTimeout(function () {
-                callMeNowSection.classList.remove('animate');
-                callingCustomerSection.classList.add('animate');
-              }, 0);
-            }
+                // Display phone
+                if (findGetParameter('phone-section-call-me-now') === 'show') {
+                    phoneRadioBtn.checked = true;
+                    callMeNowBtn.checked = true;
+                    showPhoneSection();
+                    showCallMeNowSection();
+                }
 
 
 
-            // Event Listeners
-            emailRadioBtn.addEventListener('change', showEmailSection);
-            phoneRadioBtn.addEventListener('change', showPhoneSection);
-            callMeNowBtn.addEventListener('change', showCallMeNowSection);
-            callLaterBtn.addEventListener('change', showCallMeLaterSection);
+                function showEmailSection() {
+                    phonetSection.classList.remove('show');
+                    emailSection.classList.add('show');
+                    emailSection.scrollIntoView({ behavior: "smooth", block: "start" });
 
-          } catch (e) { console.warn(e) };
+                    setTimeout(function () {
+                        phonetSection.classList.remove('animate');
+                        emailSection.classList.add('animate');
+                    }, 0);
+
+                    setTimeout(function () {
+                        var firstName = document.getElementById('firstName');
+                        firstName.focus();
+                    }, standardAnimationDuration);
+                };
+
+
+                function showPhoneSection() {
+                    emailSection.classList.remove('show');
+                    phonetSection.classList.add('show');
+                    phonetSection.scrollIntoView({ behavior: "smooth", block: "start" });
+
+
+                    setTimeout(function () {
+                        emailSection.classList.remove('animate');
+                        phonetSection.classList.add('animate');
+                    }, 0);
+                };
+
+
+                function showCallMeNowSection() {
+                    if (hasUserSubmittedCallNowForm) {
+                        customerSupportSection.classList.remove('show');
+                        phonetSection.classList.add('success');
+                        callingCustomerSection.classList.add('show');
+
+                        setTimeout(function () {
+                            customerSupportSection.classList.remove('animate');
+                            callingCustomerSection.classList.add('animate');
+                        }, 0);
+                    }
+                    else {
+
+                        phonetSection.classList.remove('success');
+                        customerSupportSection.classList.remove('show');
+                        callingCustomerSection.classList.remove('show');
+                        callMeNowSection.classList.add('show');
+
+                        setTimeout(function () {
+                            customerSupportSection.classList.remove('animate');
+                            callingCustomerSection.classList.remove('animate');
+                            callMeNowSection.classList.add('animate');
+                        }, 0);
+                    }
+                };
+
+
+                function showCallMeLaterSection() {
+                    callMeNowSection.classList.remove('show');
+                    callingCustomerSection.classList.remove('show');
+                    phonetSection.classList.add('success');
+                    customerSupportSection.classList.add('show');
+
+                    setTimeout(function () {
+                        callMeNowSection.classList.remove('animate');
+                        callingCustomerSection.classList.remove('animate');
+                        customerSupportSection.classList.add('animate');
+                    }, 0);
+                }
+
+
+                // Email form -> submit
+                // Called only after jquery validation is valid
+                function onEmailFormSuccess() {
+                    emailFormSection.classList.remove('show');
+                    emailSuccessSection.classList.add('show');
+                    emailSection.classList.add('success');
+
+
+                    setTimeout(function () {
+                        emailFormSection.classList.remove('animate');
+                        emailSuccessSection.classList.add('animate');
+                    }, 0);
+                }
+
+
+                // Phone form -> submit
+                // Called only after jquery validation is valid
+                function onPhoneFormSuccess() {
+                    hasUserSubmittedCallNowForm = true;
+                    callMeNowSection.classList.remove('show');
+                    phonetSection.classList.add('success');
+                    callingCustomerSection.classList.add('show');
+
+                    setTimeout(function () {
+                        callMeNowSection.classList.remove('animate');
+                        callingCustomerSection.classList.add('animate');
+                    }, 0);
+                }
+
+
+
+                // Event Listeners
+                emailRadioBtn.addEventListener('change', showEmailSection);
+                phoneRadioBtn.addEventListener('change', showPhoneSection);
+                callMeNowBtn.addEventListener('change', showCallMeNowSection);
+                callLaterBtn.addEventListener('change', showCallMeLaterSection);
+
+            } catch (e) { console.warn(e) };
 
         })();
     </script>

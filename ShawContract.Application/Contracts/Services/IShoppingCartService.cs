@@ -1,4 +1,7 @@
-﻿using ShawContract.Application.Models;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using ShawContract.Application.Models;
+using ShawContract.Application.Models.Product;
 
 namespace ShawContract.Application.Contracts.Services
 {
@@ -6,14 +9,21 @@ namespace ShawContract.Application.Contracts.Services
     {
         ShoppingCart GetCurrentShoppingCart();
 
-        ShoppingCart GetDropDownShoppingCart();
+        ShoppingCartPage GetShoppingCartPage();
 
-        void AddItemToCart(int skuId, int quantity);
+        ShoppingCartPage GetFinalizeSubmitPage();
+
+        IEnumerable<CollectionProduct> GetCartSimilarProducts(ShoppingCart cart);
+
+        Task<IEnumerable<Order>> GetHOrderHistory(int userId);
+
+        Task SaveOrder(Order order);
+
+        void AddItemToCart(int variantSkuId, int quantity);
+        void UpdateItemQuantity(int itemId, int quantity);
 
         void RemoveItemFromCart(int id);
 
         void RemoveAllFromCart();
-
-        void LoadFakeCart();
     }
 }

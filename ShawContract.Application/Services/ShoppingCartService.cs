@@ -1,6 +1,9 @@
-﻿using ShawContract.Application.Contracts.Gateways;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using ShawContract.Application.Contracts.Gateways;
 using ShawContract.Application.Contracts.Services;
 using ShawContract.Application.Models;
+using ShawContract.Application.Models.Product;
 
 namespace ShawContract.Application.Services
 {
@@ -13,19 +16,29 @@ namespace ShawContract.Application.Services
             ShoppingCartGateway = shoppingCartGateway;
         }
 
-        public ShoppingCart GetDropDownShoppingCart()
-        {
-            return ShoppingCartGateway.GetDropDownShoppingCart();
-        }
-
         public ShoppingCart GetCurrentShoppingCart()
         {
             return ShoppingCartGateway.GetCurrentShoppingCart();
         }
 
-        public void AddItemToCart(int skuId, int quantity)
+        public ShoppingCartPage GetShoppingCartPage()
         {
-            ShoppingCartGateway.AddItemToCart(skuId, quantity);
+            return ShoppingCartGateway.GetShoppingCartPage();
+        }
+
+        public ShoppingCartPage GetFinalizeSubmitPage()
+        {
+            return ShoppingCartGateway.GetFinalizeSubmitPage();
+        }
+
+        public void AddItemToCart(int variantSkuId, int quantity)
+        {
+            ShoppingCartGateway.AddItemToCart(variantSkuId, quantity);
+        }
+        
+        public void UpdateItemQuantity(int itemId, int quantity)
+        {
+            this.ShoppingCartGateway.UpdateItemQuantity(itemId, quantity);
         }
 
         public void RemoveItemFromCart(int id)
@@ -38,9 +51,19 @@ namespace ShawContract.Application.Services
             ShoppingCartGateway.RemoveAllItemsFromCart();
         }
 
-        public void LoadFakeCart()
+        public IEnumerable<CollectionProduct> GetCartSimilarProducts(ShoppingCart cart)
         {
-            ShoppingCartGateway.LoadFakeItemsToCart();
+            return ShoppingCartGateway.GetCartSimilarProducts(cart);
+        }
+
+        public async Task<IEnumerable<Order>> GetHOrderHistory(int userId)
+        {
+            return await ShoppingCartGateway.GetOrderHistory(userId);
+        }
+
+        public async Task SaveOrder(Order order)
+        {
+            await ShoppingCartGateway.SaveOrder(order);
         }
     }
 }

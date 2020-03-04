@@ -1,0 +1,110 @@
+﻿
+
+
+
+
+
+
+
+<!-- "large" or "small" class for the 2 variants -->
+<section class="widget carousel large">
+    <div class="container">
+        <div class="title-section text-center">
+          <div class="mark"></div>
+          <div class="subtitle">
+              subtitle
+          </div>
+          <div class="title">
+            Title
+          </div>
+            <div class="col-sm-10 offset-sm-1 text-center">
+              <p class="description">
+                Community is a collective of four complementary products designed to layer and integrate with one
+                another, lending
+                themselves to a variety of flooring solutions.
+              </p>
+            </div>
+          <div class="text-center heading-3 mb-4">
+            <a href="http://google.com">
+              View Story
+            </a>
+          </div>
+          <div class="downloads letter-spacing-large text-uppercase my-5">
+            <a href="download-link" class="btn btn-tertiary text-gray borderless text-size-xsmall p-3 m-3">
+              <i class="far fa-file-download"></i>
+              RUNNING LINE BROCHURE
+            </a>
+            <a href="download-link" class="btn btn-tertiary text-gray borderless text-size-xsmall p-3 m-3">
+              <i class="far fa-file-download"></i>
+              CUSTOM BROCHURE
+            </a>
+          </div>
+        </div>
+        <!-- if this is a widget, the id will have to be different for each one on the page, in the case where you might have more than one carousel on a page -->
+        <div id="largeCarouselIndicators" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <figure>
+                        <div class="images-wrapper">
+                            <img src="https://images.wallpaperscraft.com/image/roof_rain_umbrella_131381_1080x1920.jpg"
+                                 alt="..." />
+                        </div>
+                        <figcaption class="slide-caption text-size-normal medium">
+                            image caption and other details
+                        </figcaption>
+                    </figure>
+                </div>
+                <div class="carousel-item">
+                    <figure>
+                        <div class="images-wrapper">
+                            <img src="https://images.wallpaperscraft.com/image/autumn_drawing_walking_82963_2048x1152.jpg"
+                                 alt="..." />
+                        </div>
+                        <figcaption class="slide-caption text-size-normal medium">
+                            slide 2
+                        </figcaption>
+                    </figure>
+                </div>
+                <div class="carousel-item">
+                    <figure>
+                        <!-- double-image class if there are two images -->
+                        <div class="images-wrapper double-image">
+                            <img src="https://images.wallpaperscraft.com/image/autumn_drawing_walking_82963_2048x1152.jpg"
+                                 alt="..." />
+                            <img src="https://images.wallpaperscraft.com/image/autumn_drawing_walking_82963_2048x1152.jpg"
+                                 alt="..." />
+                        </div>
+                        <figcaption class="slide-caption text-size-normal medium">
+                            It's the same image but automatically center cropped
+                        </figcaption>
+                    </figure>
+                </div>
+                <div class="carousel-item">
+                    <figure>
+                        <div class="images-wrapper">
+                            <img src="https://images.wallpaperscraft.com/image/shark_dolphin_sea_130036_1600x1200.jpg"
+                                 alt="..." />
+                        </div>
+                        <figcaption class="slide-caption text-size-normal medium">
+                            another slide
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+            <ol class="carousel-indicators">
+                <!-- data-target needs to match the carousel id -->
+                <li data-target="#largeCarouselIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#largeCarouselIndicators" data-slide-to="1"></li>
+                <li data-target="#largeCarouselIndicators" data-slide-to="2"></li>
+                <li data-target="#largeCarouselIndicators" data-slide-to="3"></li>
+            </ol>
+            <!-- the hrefs need to match the carousel id -->
+            <a class="carousel-control-prev" href="#largeCarouselIndicators" role="button" data-slide="prev">
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#largeCarouselIndicators" role="button" data-slide="next">
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</section>

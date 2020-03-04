@@ -57,25 +57,28 @@ namespace ShawContract.CMSApp.Products
                 }
 
                 EventLogProvider.LogInformation("ProductsSyncTask", "Execute", "Importing Rug Products");
-                // var resilient = ProductGateway.GetProductSpecificationsAsync<ResilientSpecification>(ProductType.Resilient.ToString()).GetAwaiter().GetResult();
-
-                EventLogProvider.LogInformation("ProductsSyncTask", "Execute", "Importing Resilient Products");
-
-                var resilients = ProductGateway.GetProductSpecificationsAsync<ResilientSpecification>(ProductType.Resilient.ToString()).GetAwaiter().GetResult();
-
-                if (resilients != null && resilients.Count() > 0)
+                var rugs = ProductGateway.GetProductSpecificationsAsync<RugSpecification>(ProductType.Rug.ToString()).GetAwaiter().GetResult();
+                if (rugs != null && rugs.Count() > 0)
                 {
-                    CreateAndUpdateProduct(resilients);
+                    CreateAndUpdateProduct(rugs);
                 }
+                //EventLogProvider.LogInformation("ProductsSyncTask", "Execute", "Importing Resilient Products");
 
-                EventLogProvider.LogInformation("ProductsSyncTask", "Execute", "Importing Hardwood Products");
+                //var resilients = ProductGateway.GetProductSpecificationsAsync<ResilientSpecification>(ProductType.Resilient.ToString()).GetAwaiter().GetResult();
 
-                var hardwoods = ProductGateway.GetProductSpecificationsAsync<HardwoodSpecification>(ProductType.Hardwood.ToString()).GetAwaiter().GetResult();
+                //if (resilients != null && resilients.Count() > 0)
+                //{
+                //    CreateAndUpdateProduct(resilients);
+                //}
 
-                if (hardwoods != null && hardwoods.Count() > 0)
-                {
-                    CreateAndUpdateProduct(hardwoods);
-                }
+                //EventLogProvider.LogInformation("ProductsSyncTask", "Execute", "Importing Hardwood Products");
+
+                //var hardwoods = ProductGateway.GetProductSpecificationsAsync<HardwoodSpecification>(ProductType.Hardwood.ToString()).GetAwaiter().GetResult();
+
+                //if (hardwoods != null && hardwoods.Count() > 0)
+                //{
+                //    CreateAndUpdateProduct(hardwoods);
+                //}
             }
             catch (Exception ex)
             {
@@ -94,16 +97,18 @@ namespace ShawContract.CMSApp.Products
                 try
                 {
                     var productSKU = SKUInfoProvider.GetSKUs()
-                   .FirstOrDefault(sk => sk.SKUName == product.StyleName && sk.SKUNumber == product.StyleNumber);
-
-                    if (productSKU == null)
-                    {
-                        productSKU = CreateProductSKU(product.StyleName, product.StyleNumber, 0);
-                    }
-                    CreateAndUpdateProductDocument(product, productSKU);
-                    AddCategoryToProduct(productSKU.SKUID);
-                    AllowOptionForProduct(productSKU.SKUID);
-                    CreateAndUpdateVariants(productSKU.SKUID, product.Colors);
+                        .FirstOrDefault(sk => sk.SKUName == product.StyleName && sk.SKUNumber == product.StyleNumber);
+                   if(productSKU!=null)
+                        productSKU.SKUShortDescription = product.InventoryType;
+                   
+                    //if (productSKU == null)
+                    //{
+                    //    productSKU = CreateProductSKU(product.StyleName, product.StyleNumber, 0, product.FeatureImage != null? product.FeatureImage.ImagePath: "", product.InventoryType);
+                    //}
+                    //CreateAndUpdateProductDocument(product, productSKU);
+                    //AddCategoryToProduct(productSKU.SKUID);
+                    //AllowOptionForProduct(productSKU.SKUID);
+                    //CreateAndUpdateVariants(productSKU.SKUID, product.StyleNumber, product.Colors);
                 }
                 catch (Exception ex)
                 {
@@ -119,14 +124,16 @@ namespace ShawContract.CMSApp.Products
         /// <param name="styleNumber"></param>
         /// <param name="price"></param>
         /// <returns></returns>
-        private SKUInfo CreateProductSKU(string styleName, string styleNumber, decimal price)
+        private SKUInfo CreateProductSKU(string styleName, string styleNumber, decimal price, string imagePath, string productType)
         {
             // Create new product object
             SKUInfo newProduct = new SKUInfo
             {
+                SKUShortDescription = productType,
                 SKUName = styleName,
                 SKUNumber = styleNumber,
                 SKUPrice = price,
+                SKUImagePath = imagePath,
                 SKUEnabled = true,
                 SKUSiteID = SiteContext.CurrentSiteID
             };
@@ -189,7 +196,6 @@ namespace ShawContract.CMSApp.Products
                 node.SetValue("Backing", carpet.Backing);
                 node.SetValue("Fiber", carpet.Fiber);
                 node.SetValue("TuftedWeight", JsonConvert.SerializeObject(carpet.TuftedWeight, _jsonSettings));
-                node.SetValue("CombinedWarantyLink", carpet.CombinedWarantyLink);
 
                 node.NodeSKUID = skuID;
 
@@ -202,7 +208,6 @@ namespace ShawContract.CMSApp.Products
             node.SetValue("Backing", carpet.Backing);
             node.SetValue("Fiber", carpet.Fiber);
             node.SetValue("TuftedWeight", JsonConvert.SerializeObject(carpet.TuftedWeight, _jsonSettings));
-            node.SetValue("CombinedWarantyLink", carpet.CombinedWarantyLink);
 
             DocumentHelper.UpdateDocument(node, tree);
         }
@@ -225,7 +230,6 @@ namespace ShawContract.CMSApp.Products
                 node.SetValue("Backing", rug.Backing);
                 node.SetValue("Fiber", rug.Fiber);
                 node.SetValue("TuftedWeight", JsonConvert.SerializeObject(rug.TuftedWeight, _jsonSettings));
-                node.SetValue("CombinedWarantyLink", rug.CombinedWarantyLink);
 
                 node.NodeSKUID = skuID;
 
@@ -238,7 +242,6 @@ namespace ShawContract.CMSApp.Products
             node.SetValue("Backing", rug.Backing);
             node.SetValue("Fiber", rug.Fiber);
             node.SetValue("TuftedWeight", JsonConvert.SerializeObject(rug.TuftedWeight, _jsonSettings));
-            node.SetValue("CombinedWarantyLink", rug.CombinedWarantyLink);
 
             DocumentHelper.UpdateDocument(node, tree);
         }
@@ -258,9 +261,11 @@ namespace ShawContract.CMSApp.Products
                 node = (SKUTreeNode)TreeNode.New("ShawContract.Resilient", tree);
                 CreateAndUpdateBaseNode(resilient, node);
 
+                node.SetValue("ProductSize", JsonConvert.SerializeObject(resilient.ActualDimensions, _jsonSettings));
                 node.SetValue("Finish", resilient.Finish);
                 node.SetValue("OverallThickness", JsonConvert.SerializeObject(resilient.OverallThickness, _jsonSettings));
                 node.SetValue("Installation", JsonConvert.SerializeObject(resilient.Installation, _jsonSettings));
+                node.SetValue("ProductType", resilient.ProductSubType);
 
                 node.NodeSKUID = skuID;
 
@@ -315,6 +320,7 @@ namespace ShawContract.CMSApp.Products
 
         private void CreateAndUpdateBaseNode(BaseSpecification baseProduct, SKUTreeNode node)
         {
+            var featureImage = baseProduct.FeatureImage != null ? baseProduct.FeatureImage.ImagePath ?? "" : "";
             // Set the document properties
             node.DocumentName = baseProduct.StyleName;
             node.DocumentSKUName = baseProduct.StyleName;
@@ -325,14 +331,16 @@ namespace ShawContract.CMSApp.Products
             node.SetValue("StyleNumber", baseProduct.StyleNumber);
             node.SetValue("ProductSize", JsonConvert.SerializeObject(baseProduct.ProductSize, _jsonSettings));
             node.SetValue("Construction", baseProduct.Construction);
-            node.SetValue("ProductType", baseProduct.ProductType);
+            node.SetValue("ProductType", baseProduct.ProductType ?? "");
             node.SetValue("InventoryType", baseProduct.InventoryType);
             node.SetValue("Warranty", JsonConvert.SerializeObject(baseProduct.Warranty, _jsonSettings));
             node.SetValue("WarrantyLink", baseProduct.WarrantyLink);
             node.SetValue("LinkFullSpecs", baseProduct.LinkToFullSpec);
+            node.SetValue("FeatureImage", featureImage);
             node.SetValue("AreaPerCarton", JsonConvert.SerializeObject(baseProduct.AreaPerCarton, _jsonSettings));
             node.SetValue("Sustainability", JsonConvert.SerializeObject(baseProduct.Sustainability, _jsonSettings));
             node.SetValue("KontentData", JsonConvert.SerializeObject(baseProduct.KontentData, _jsonSettings));
+            node.SetValue("RecommendedInstallationMethods", JsonConvert.SerializeObject(baseProduct.RecommendedInstallationMethods, _jsonSettings));
         }
 
         //add the product option category to product
@@ -385,7 +393,7 @@ namespace ShawContract.CMSApp.Products
         }
 
         //create a variant
-        private void CreateAndUpdateVariants(int productSkuID, IEnumerable<Color> colors)
+        private void CreateAndUpdateVariants(int productSkuID, string productStyleNumber, IEnumerable<Color> colors)
         {
             if (colors == null)
             {
@@ -409,6 +417,7 @@ namespace ShawContract.CMSApp.Products
                 {
                     colorSKU = new SKUInfo
                     {
+                        
                         SKUName = color.ColorName,
                         SKUNumber = color.ColorNumber,
                         SKUPrice = 0,
@@ -425,6 +434,7 @@ namespace ShawContract.CMSApp.Products
 
             //checks what options need to be removed from the product
             var allOptions = SKUAllowedOptionInfoProvider.GetSKUOptions().Where(sk => sk.SKUID == productSkuID).ToList();
+
             foreach (var item in allOptions)
             {
                 if (!variantIDs.Any(i => i == item.OptionSKUID))
@@ -445,20 +455,33 @@ namespace ShawContract.CMSApp.Products
             // Generate variants
             List<ProductVariant> variants = VariantHelper.GetAllPossibleVariants(productSkuID, categoryIDs);
             // Set variants
-            foreach (var variant in variants)
+
+            foreach (var color in colors)
             {
-                if (variantIDs.Any(v => variant.ProductAttributes.Any(pr => pr.SKUID == v)))
+                var variantToAdd = variants.FirstOrDefault(v => v.Variant.SKUName.Contains(color.ColorName));
+                variantToAdd.Variant.SKUImagePath = GetImagePath(productStyleNumber, color.ColorNumber);
+                variantToAdd.Variant.SKUNumber = color.ColorNumber;
+                variantToAdd.Variant.SKUShortDescription = color.ColorName;
+
+                if (variantIDs.Any(v => variantToAdd.ProductAttributes.Any(pr => pr.SKUID == v)))
                 {
-                    if (!VariantHelper.VariantExists(productSkuID, variant.ProductAttributes))
+                    if (!VariantHelper.VariantExists(productSkuID, variantToAdd.ProductAttributes))
                     {
-                        VariantHelper.SetProductVariant(variant);
+                        VariantHelper.SetProductVariant(variantToAdd);
                     }
                 }
                 else
                 {
-                    VariantHelper.DeleteVariant(variant);
+                    VariantHelper.DeleteVariant(variantToAdd);
                 }
+
             }
+                      
+        }
+
+        private string GetImagePath(string productStyleNumber, string colorNumber)
+        {
+            return string.Format("http://scrl.img.trykcloudstatic.com/designs/{0}/colors/{1}/installs/1?physWidth=0.5ft&physHeight=0.5ft&pixels=125", productStyleNumber, colorNumber);
         }
     }
 }

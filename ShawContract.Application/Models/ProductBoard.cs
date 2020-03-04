@@ -13,6 +13,9 @@ namespace ShawContract.Application.Models
 
         public List<ProductBoardItem> ProductBoardItems { get; set; }
         public List<Visitor> Visitors { get; set; }
+        public DateTime ModifiedOn { get; set; }
+        public TimeSpan LastModied { get => DateTime.UtcNow.Subtract(ModifiedOn); }
+        public string DisplayDate { get; set; }
 
         public ProductBoard()
         {
@@ -32,9 +35,4 @@ namespace ShawContract.Application.Models
         public string ImageUrl { get; set; }
     }
 
-    public class Visitor
-    {
-        public string Email { get; set; }
-        public DateTime DateVisited { get; set; }
-    }
 }

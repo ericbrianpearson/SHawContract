@@ -19,13 +19,22 @@ namespace ShawContract.Config
                 //Kentico mappings
                 cfg.CreateMap<CMS.DocumentEngine.Types.ShawContract.MenuItem, MenuItem>();
                 cfg.CreateMap<PersonaInfo, Persona>();
+                cfg.CreateMap<CMS.DocumentEngine.Types.ShawContract.CarouselSection, CarouselSection>()
+                    .ForMember(dest => dest.Title, opts => opts.MapFrom(src => src.DocumentName));
+                cfg.CreateMap<CMS.DocumentEngine.Types.ShawContract.CarouselItem, CarouselItem>();
+
+                //Drop downs in ContactUs page
+                cfg.CreateMap<CMS.DocumentEngine.Types.ShawContract.ContactPageMenuItem, ContactUsMenuItem>();
+                cfg.CreateMap<CMS.DocumentEngine.Types.ShawContract.ContactPageMenu, ContactUsMenu>();
 
                 //Product Boards
+                cfg.CreateMap<ShawContract.Application.Models.Visitor, Providers.ProductBoard.Models.Visitor>();
+                cfg.CreateMap<Providers.ProductBoard.Models.Visitor, Visitor>();
                 cfg.CreateMap<Providers.ProductBoard.Models.ProductBoardItem, ShawContract.Application.Models.ProductBoardItem>();
                 cfg.CreateMap<ProductBoardItem, Providers.ProductBoard.Models.ProductBoardItem>();
                 cfg.CreateMap<Providers.ProductBoard.Models.ProductBoard, ShawContract.Application.Models.ProductBoard>()
-                .ForMember(dest => dest.ProductBoardItems,
-                opts => opts.MapFrom(src => src.ProductBoardItems));
+                    .ForMember(dest => dest.ProductBoardItems, opts => opts.MapFrom(src => src.ProductBoardItems))
+                    .ForMember(dest => dest.Visitors, opts => opts.MapFrom(src => src.Visitors));
 
                 cfg.CreateMap<ProductBoard, Providers.ProductBoard.Models.ProductBoard>();
 
@@ -57,8 +66,21 @@ namespace ShawContract.Config
 
                 cfg.CreateMap<ShoppingCartInfo, ShoppingCart>();
                 cfg.CreateMap<ShoppingCartItemInfo, ShoppingCartItem>()
-                            .ForMember(dest => dest.CartItemName,
-                            opts => opts.MapFrom(src => src.SKU.SKUName));
+                    .ForMember(dest => dest.CartItemID, opts => opts.MapFrom(src => src.CartItemID))
+                    .ForMember(dest => dest.SKUID, opts => opts.MapFrom(src => src.VariantParent.SKUID))
+                    .ForMember(dest => dest.SKUIDColor, opts => opts.MapFrom(src => src.SKUID))
+                    .ForMember(dest => dest.ItemName, opts => opts.MapFrom(src => src.VariantParent.SKUName))
+                    .ForMember(dest => dest.ItemNumber, opts => opts.MapFrom(src => src.VariantParent.SKUNumber))
+                    .ForMember(dest => dest.ColorName, opts => opts.MapFrom(src => src.SKU.SKUShortDescription))
+                    .ForMember(dest => dest.ColorNumber, opts => opts.MapFrom(src => src.SKU.SKUNumber))
+                     .ForMember(dest => dest.ImageUrl, opts => opts.MapFrom(src => src.SKU.SKUImagePath))
+                     .ForMember(dest => dest.ProductType, opts => opts.MapFrom(src => src.VariantParent.SKUShortDescription))
+                    .ForMember(dest => dest.TotalUnits, opts => opts.MapFrom(src => src.CartItemUnits));
+
+                cfg.CreateMap<OrderInfo, Order>()
+                    .ForMember(dest => dest.OrderNumber, opts => opts.MapFrom(src => src.OrderInvoiceNumber))
+                    .ForMember(dest => dest.ProjectName, opts => opts.MapFrom(src => src.OrderNote))
+                    .ForMember(dest => dest.OrderDateSubmitted, opts => opts.MapFrom(src => src.OrderDate));
             });
 
             return config.CreateMapper();

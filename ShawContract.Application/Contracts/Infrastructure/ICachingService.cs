@@ -1,9 +1,12 @@
-﻿namespace ShawContract.Application.Contracts.Infrastructure
+﻿using System;
+using System.Threading.Tasks;
+
+namespace ShawContract.Application.Contracts.Infrastructure
 {
     public interface ICachingService
     {
-        T GetItem<T>(string key);
+        T GetOrCreateItem<T>(string key, Func<T> CreateItem, int? timeout = null);
 
-        void SetItem<T>(string key, T item, int? timeout);
+        Task<T> GetOrCreateItemAsync<T>(string key, Func<Task<T>> CreateItem, int? timeout = null);
     }
 }

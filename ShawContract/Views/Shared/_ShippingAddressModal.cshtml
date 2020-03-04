@@ -1,123 +1,134 @@
-﻿<div class="modal fade p-0" id="shippingAddressModal" tabindex="-1" role="dialog" aria-labelledby="shippingAddressModal"
-     aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-10">
-                            <h2 class="font-weight-bold">Add a new shipping address:</h2>
+﻿@model ShawContract.Models.Personalization.UserSettingsViewModel
+
+@{
+    var hideProvince = Model.AddressToEdit.Country == "US" ? "display: none;" : null;
+    var hideStates = Model.AddressToEdit.Country == "US" ? null : "display: none;";
+}
+
+<div>
+    <div class="modal-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-10">
+                    <h2 class="font-weight-bold">Add a new shipping address:</h2>
+                </div>
+                <div class="col-2 d-flex justify-content-end">
+                    <button type="button" class="close-btn" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @using (Html.BeginForm("SaveShippingInfo", "UserSettings", FormMethod.Post, new { @class = "new-address-form", @id = "new-address-form" }))
+    {
+        @Html.Hidden($"AddressToEdit.Id", Model.AddressToEdit.Id);
+        <div class="modal-body">
+            <section class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-12 col-md-6 mb-3 mb-md-0">
+                                    <label for="first-name-modal" class="mt-20">First name<span class="red-regular"> *</span></label>
+                                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control form-control-lg" })
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label for="last-name-modal" class="mt-20">Last name<span class="red-regular"> *</span></label>
+                                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control form-control-lg" })
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-2 d-flex justify-content-end">
-                            <button type="button" class="close-btn" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-12 col-md-7 mb-3 mb-md-0 mt-20">
+                                    <label for="company">Company<span class="red-regular"> *</span></label>
+                                    @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control form-control-lg", aria_required = "true" })
+                                </div>
+                                <div class="col-12 col-md-5 mt-20">
+                                    <label for="phoneNumber">Cell / SMS Alert Number<span class="red-regular">*</span></label>
+                                    @Html.TextBoxFor(m => m.AddressToEdit.SmsAlertNumber, new { @class = "form-control form-control-lg" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-12 col-md-7 mb-3 mb-md-0">
+                                    <label for="country" class="mt-20">Country<span class="red-regular"> *</span></label>
+                                    @Html.DropDownListFor(m => m.AddressToEdit.Country, new SelectList(Model.Countries, "Key", "Value"), "Select country", new { @class = "selectpicker form-control-lg", data_style = "select-style white-text", aria_required = "true", onchange = "countryChanged()" })
+                                </div>
+                                <div class="col-12 col-md-5">
+                                    <label for="zipCode" class="mt-20">Zip / Postal Code<span class="red-regular"> *</span></label>
+                                    @Html.TextBoxFor(m => m.AddressToEdit.PostalCode, new { @class = "form-control form-control-lg" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="addressLineOne" class="mt-20">Address Line 1<span class="red-regular"> *</span></label>
+                            @Html.TextBoxFor(m => m.AddressToEdit.StreetLine1, new { @class = "form-control form-control-lg" })
+                        </div>
+                        <div class="form-group">
+                            <label for="addressLineTwo" class="mt-20">Address Line 2</label>
+                            @Html.TextBoxFor(m => m.AddressToEdit.StreetLine2, new { @class = "form-control form-control-lg" })
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-12 col-md-7 mb-3 mb-md-0">
+                                    <label for="city" class="mt-20">City<span class="red-regular"> *</span></label>
+                                    @Html.TextBoxFor(m => m.AddressToEdit.City, new { @class = "form-control form-control-lg" })
+                                </div>
+                                <div class="col-12 col-md-5">
+                                    <label for="state" class="mt-20">State / Province<span class="red-regular"> *</span></label>
+
+                                    <div id="province" style="@hideProvince">
+
+                                        @Html.TextBoxFor(m => m.AddressToEdit.Province, new { @class = "form-control form-control-lg" })
+                                    </div>
+
+                                    <div id="states" style="@hideStates">
+
+                                        @Html.DropDownListFor(m => m.AddressToEdit.State, new SelectList(Model.States, "Key", "Value"), "Select state", new { @class = "selectpicker form-control-lg", data_style = "select-style white-text", aria_required = "true" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="modal-footer">
+            <div class="container">
+                <div class="row d-flex justify-content-end">
+                    <div class="col-lg-5 col-md-5 col-sm-12 pb-4 pb-lg-0">
+                        <span class="float-md-left"><span class="red-regular">*</span> = Required Fields</span>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-sm-12">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 pb-4">
+                                <button class="btn btn-tertiary w-100 letter-spacing-normal" data-dismiss="modal">Cancel</button>
+                            </div>
+                            <div class="col-lg-6 col-md-6 pb-4">
+                                <button type="submit" id="submit-btn" class="btn btn-primary w-100 letter-spacing-normal">Save</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <form id="new-address-form">
-                <div class="modal-body">
-                    <section class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-12 col-md-6 mb-3 mb-md-0">
-                                            <label for="first-name-modal" class="mt-20">First name<span class="text-danger"> *</span></label>
-                                            <input type="text" id="first-name-modal" name="firstName" class="form-control form-control-lg" aria-required="true">
-                                        </div>
-                                        <div class="col-12 col-md-6">
-                                            <label for="last-name-modal" class="mt-20">Last name<span class="text-danger"> *</span></label>
-                                            <input type="text" id="last-name-modal" name="lastName" class="form-control form-control-lg" aria-required="true">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-12 col-md-7 mb-3 mb-md-0 mt-20">
-                                            <label for="company">Company<span class="text-danger"> *</span></label>
-                                            <input type="text" id="company" name="company" class="form-control form-control-lg" aria-required="true">
-                                        </div>
-                                        <div class="col-12 col-md-5 mt-20">
-                                            <label for="phoneNumber">Cell / SMS Alert Number<span class="text-danger">*</span></label>
-                                            <input type="text" id="phone-number" name="phoneNumber" class="form-control form-control-lg" aria-required="true">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-12 col-md-7 mb-3 mb-md-0">
-                                            <label for="country" class="mt-20">Country<span class="text-danger"> *</span></label>
-                                            <select id="country" id="company" name="country" title="Select country"
-                                                    class="selectpicker form-control-lg" data-style="select-style white-text" aria-required="true">
-                                                <option value="Canada">Sort alphabetically</option>
-                                                <option value="Canada">Canada</option>
-                                                <option value="Bulgaria">Bulgaria</option>
-                                                <option value="Bulgaria">France</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-12 col-md-5">
-                                            <label for="zipCode" class="mt-20">Zip / Postal Code<span class="text-danger"> *</span></label>
-                                            <input type="text" id="zip-code" name="zipCode" class="form-control form-control-lg" aria-required="true">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="addressLineOne" class="mt-20">Address Line 1<span class="text-danger"> *</span></label>
-                                    <input type="text" id="address-line-one" name="addressLineOne" class="form-control form-control-lg" aria-required="true">
-                                </div>
-                                <div class="form-group">
-                                    <label for="addressLineTwo" class="mt-20">Address Line 2</label>
-                                    <input type="text" id="addressLineTwo" name="addressLineTwo" class="form-control form-control-lg" aria-required="true">
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-12 col-md-7 mb-3 mb-md-0">
-                                            <label for="city" class="mt-20">City<span class="text-danger"> *</span></label>
-                                            <input type="text" id="city" name="city" class="form-control form-control-lg" aria-required="true">
-                                        </div>
-                                        <div class="col-12 col-md-5">
-                                            <label for="state" class="mt-20">State / Province<span class="text-danger"> *</span></label>
-                                            <select id="state" name="state" title="Select state" class="selectpicker form-control-lg"
-                                                    data-style="select-style white-text" aria-required="true">
-                                                <option value="state 1">Sort alphabetically</option>
-                                                <option value="state 1">State 1</option>
-                                                <option value="state 1">State 1</option>
-                                                <option value="state 1">State 1</option>
-                                                <option value="state 1">State 1</option>
-                                                <option value="state 1">State 1</option>
-                                                <option value="state 1">State 1</option>
-                                                <option value="state 1">State 1</option>
-                                                <option value="state 1">State 1</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-                <div class="modal-footer">
-                    <div class="container">
-                        <div class="row d-flex justify-content-end">
-                            <div class="col-lg-5 col-md-5 col-sm-12 pb-4 pb-lg-0">
-                                <span class="float-md-left"><span class="text-danger">*</span> = Required Fields</span>
-                            </div>
-                            <div class="col-lg-7 col-md-7 col-sm-12">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 pb-4">
-                                        <button class="btn btn-tertiary w-100 letter-spacing-normal" data-dismiss="modal">Cancel</button>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 pb-4">
-                                        <button type="submit" class="btn btn-primary w-100 letter-spacing-normal">Save</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
         </div>
-    </div>
+    }
 </div>
+<script>
+    function countryChanged() {
+        var dropdown = document.getElementById("AddressToEdit_Country");
+        var value = dropdown.options[dropdown.selectedIndex].value;
+
+        if (value != "US") {
+            $("#province").show();
+            $("#states").hide();
+        } else {
+            $("#province").hide();
+            $("#states").show();
+        }
+        console.log(value);
+    }
+</script>

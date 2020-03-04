@@ -8,14 +8,15 @@
     var editMode = Context.Kentico().PageBuilder().EditMode;
     var imageSource = !string.IsNullOrEmpty(Model.ImageUrl) ? Model.ImageUrl : "https://placehold.it/1110x766/a3d1d0";
     var imagePosition = Model.TextBoxAlignment == "right" ? "right" : string.Empty;
+    var fullScreen = Model.IsFullWidth ? "full-screen" : string.Empty;
 
 }
 
-<section class="widget full-width-img  @imagePosition now-viewable">
+<section class="widget full-width-img @fullScreen @imagePosition now-viewable">
     <div class="gray-stripe"></div>
     <div class="container">
         <div class="img-box">
-            <img class="full-img" src="@imageSource" alt="description">
+            <img class="full-img" src="@imageSource" alt="description" data-object-fit />
             <div class="photo-credits">
                 @if (editMode)
                 {
@@ -65,7 +66,7 @@
                             @Html.Raw(Model.Description)
                         }
                     </p>
-                    <a href="@Model.ButtonUrl" class="btn btn-card">
+                    <a href="@Model.ButtonUrl" class="btn btn-card large-btn">
 
                         @if (editMode)
                         {

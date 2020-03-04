@@ -10,11 +10,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ShawContract.Providers.ProductBoard</RootNamespace>
     <AssemblyName>ShawContract.Providers.ProductBoard</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -63,9 +64,9 @@
     <Compile Include="Config\AutofacConfigurationExtension.cs" />
     <Compile Include="DAL\IProductBoardContext.cs" />
     <Compile Include="DAL\ProductBoardContext.cs" />
-    <Compile Include="Migrations\202001231506220_update-product-board-model-add-view-log.cs" />
-    <Compile Include="Migrations\202001231506220_update-product-board-model-add-view-log.designer.cs">
-      <DependentUpon>202001231506220_update-product-board-model-add-view-log.cs</DependentUpon>
+    <Compile Include="Migrations\202002131404480_InitialCreate.cs" />
+    <Compile Include="Migrations\202002131404480_InitialCreate.designer.cs">
+      <DependentUpon>202002131404480_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BaseModel.cs" />
@@ -90,8 +91,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202001231506220_update-product-board-model-add-view-log.resx">
-      <DependentUpon>202001231506220_update-product-board-model-add-view-log.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002131404480_InitialCreate.resx">
+      <DependentUpon>202002131404480_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

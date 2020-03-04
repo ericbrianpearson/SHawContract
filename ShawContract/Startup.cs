@@ -25,6 +25,7 @@ namespace ShawContract
     {
         public static string ProfilePolicyId = ConfigurationManager.AppSettings["ida:UserProfilePolicyId"];
         public static string redirectUri = ConfigurationManager.AppSettings["ida:RedirectUri"];
+        public static string ResetPasswordPolicyId = ConfigurationManager.AppSettings["ida:ResetPasswordPolicyId"];
         public static string SignInPolicyId = ConfigurationManager.AppSettings["ida:SignInPolicyId"];
         private const string OWIN_COOKIE_PREFIX = ".AspNet.";
         private static string aadInstance = ConfigurationManager.AppSettings["ida:AadInstance"];
@@ -75,9 +76,14 @@ namespace ShawContract
         private Task AuthenticationFailed(AuthenticationFailedNotification<OpenIdConnectMessage, OpenIdConnectAuthenticationOptions> notification)
         {
             notification.HandleResponse();
-            if (notification.Exception.Message == "access_denied")
+            //if (notification.Exception.Message == "access_denied")
+            //{
+            //    notification.Response.Redirect("/");
+            //}
+            if (notification.ProtocolMessage.ErrorDescription != null && notification.ProtocolMessage.ErrorDescription.Contains("AADB2C90118"))
             {
-                notification.Response.Redirect("/");
+                // If the user clicked the reset password link, redirect to the reset password route
+                notification.Response.Redirect("en-us/Account/ResetPassword");
             }
             else
             {

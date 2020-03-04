@@ -7,11 +7,9 @@ namespace ShawContract.Models.Cart
     {
         public int ItemId { get; set; }
         public string ItemName { get; set; }
-
         public string Color { get; set; }
-
         public int Quantity { get; set; }
-
+        public int AvailableQuantity { get; set; }
         public IEnumerable<SelectListItem> SampleTypes { get; set; }
     }
 }

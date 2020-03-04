@@ -1,6 +1,7 @@
 ﻿using System;
 using ShawContract.Application.Constants;
 using ShawContract.Application.Contracts.Infrastructure;
+using ShawContract.Infrastructure;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
 using Twilio.TwiML;
@@ -20,25 +21,25 @@ namespace ShawContract.Application.Services
 
         public void InitilizeTwilio()
         {
-            TwilioClient.Init(ConfigurationService.GetAppSetting(ConfigurationKeys.TwilioAccountSID),
-                              ConfigurationService.GetAppSetting(ConfigurationKeys.TwilioAuthToken));
+            TwilioClient.Init(CmsDataHelper.GetSetting(ConfigurationKeys.TwilioAccountSID),
+                              CmsDataHelper.GetSetting(ConfigurationKeys.TwilioAuthToken));
         }
 
         public void Call(string callNumber)
         {
-            var to = new PhoneNumber("+359883485714");
-            var from = new PhoneNumber(ConfigurationService.GetAppSetting(ConfigurationKeys.TwilioPhone));
-
-            var call = CallResource.Create(to, from,
-                url: new Uri("http://demo.twilio.com/docs/voice.xml"));
+            var twilioPhone = new PhoneNumber(ConfigurationService.GetAppSetting(ConfigurationKeys.TwilioPhone));
+            var supportPhone = ConfigurationService.GetAppSetting(ConfigurationKeys.CustomerSupportNumber);
+            var instructions = $"<Response><Say voice=\"alice\">I am now connecting you to Shaw Contract customer service.</Say><Dial>{supportPhone}</Dial></Response>";
+            var call = CallResource.Create(new PhoneNumber(callNumber), twilioPhone, twiml: instructions);
         }
 
         public TwiML ConstructVoiceResponse()
         {
-            //TODO: Possible change the response with something coming from a config file or a dictionary
-
+            var supportPhone = ConfigurationService.GetAppSetting(ConfigurationKeys.CustomerSupportNumber);
             var response = new VoiceResponse();
-            response.Say("Thank you for using our system. Call during office hours");
+            response.Say("I am now connecting you to Shaw Contract customer service.")
+                .Dial(supportPhone)
+                .Hangup();
 
             return response;
         }

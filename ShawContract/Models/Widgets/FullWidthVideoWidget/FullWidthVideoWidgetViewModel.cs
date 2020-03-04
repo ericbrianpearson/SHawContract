@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace ShawContract.Models.Widgets.FullWidthVideoWidget
+﻿namespace ShawContract.Models.Widgets.FullWidthVideoWidget
 {
     public class FullWidthVideoWidgetViewModel
     {
@@ -17,7 +12,6 @@ namespace ShawContract.Models.Widgets.FullWidthVideoWidget
         public bool HasImage { get; set; }
 
         public string ImageUrl { get; set; }
-
-        public MediaLibraryViewModel MediaLibraryViewModel { get; set; }
+ 
     }
 }

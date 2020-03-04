@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="https://webservices.shawonline.com/SampleOrderService/v1_0" elementFormDefault="qualified" targetNamespace="https://webservices.shawonline.com/SampleOrderService/v1_0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://webservices-qa.shawonline.com/SampleOrderService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Shaw.OrdersServiceBUS" />
+  <xs:element name="CreateSampleOrder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Shaw.OrdersServiceBUS" minOccurs="0" name="sampleOrder" nillable="true" type="q1:SampleOrderHeader" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateSampleOrderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Shaw.OrdersServiceBUS" minOccurs="0" name="CreateSampleOrderResult" nillable="true" type="q2:SampleOrderHeader" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

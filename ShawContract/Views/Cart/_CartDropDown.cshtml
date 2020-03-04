@@ -2,6 +2,10 @@
 
 @model  CartDropDownViewModel
 
+@{
+    var disabledbutton = Model.CartItems != null && Model.CartItems.Count() < 1 ? "disabled" : "";
+}
+
 <div class="row">
     <div class="col-sm-7">
         <p class="dropdown-title">Sample Request</p>
@@ -10,94 +14,118 @@
         <a class="dropdown-link" href='@Url.Action("Index","Cart")'>View Cart <i class="far fa-angle-right"></i></a>
     </div>
 </div>
-<form method="post">
-    <div class="cart-item-box">
-        <input id="removeItemDropDown" type="hidden" name="removeItemDropDown" />
-        @foreach (var item in Model.CartItems)
+@using (Html.BeginForm("Checkout", "CartDropDown"))
+{
+<div class="cart-item-box">
+    <input id="removeItemDropDown" type="hidden" name="removeItemDropDown" />
+    @if (Model.CartItems != null && Model.CartItems.Count() >0)
+    {
+        foreach (var item in Model.CartItems)
         {
+            var nodeAlias = !string.IsNullOrEmpty(item.ItemName) ? item.ItemName.Trim().Replace(' ', '-') : string.Empty;
+            var name = item.ItemName + " " + item.ItemNumber;
+            var colorName = item.ColorName + " " + item.ColorNumber;
+            <div class="media cart-item" id="@item.CartItemID">
+                <a class="style-img" href="@Url.Action("Details", "Product", new { inventoryType = item.ProductType, nodeAlias = nodeAlias, colorNumber = @item.ColorNumber })"><img class="mr-3" src="@item.ImageUrl" alt="@name"></a>
 
-            <div class="media cart-item">
-                <a class="style-img" href="#"><img class="mr-3" src="https://placehold.it/60x60" alt="Style Name"></a>
                 <div class="media-body">
                     <div class="row">
                         <div class="col-sm-9">
-                            <p class="style-name"><a href="#">@item.ItemName</a></p>
-                            <p class="color-name">@item.Color</p>
-                            <p class="quantity"><strong>Quantity:</strong> <span>@item.Quantity</span></p>
+                            <p class="style-name"><a href="@Url.Action("Details", "Product", new { inventoryType = item.ProductType, nodeAlias = nodeAlias, colorNumber = @item.ColorNumber })">@name </a></p>
+                            <p class="color-name">@colorName</p>
+                            <p class="quantity @item.CartItemID"><strong>Quantity:</strong> <span>@item.TotalUnits</span></p>
                         </div>
                         <div class="col-sm-2">
-                            <input type="hidden" name="itemId" value="@item.ItemId" />
-                            <button type="submit" data-id="@item.ItemId" onclick="removeItem(this)" name="RemoveFromCartDropDown" class="btn remove-style-sample"><i class="fal fa-times"></i></button>
+                            <input type="hidden" name="itemId" value="@item.CartItemID" />
+                            <button type="button" onclick="removeItemFromDropDown(@item.CartItemID)" class="btn remove-style-sample"><i class="fal fa-times"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
-
         }
-    </div>
+    }
+</div>
+}
 
-    <div class="row mb-5 mt-4">
-        <div class="col-sm-5">
-            <p class="cart-total">
-                Total: <strong>@Model.ItemCount</strong>
-            </p>
-        </div>
-        <div class="col-sm-7">
-            <button name="Checkout" type="submit" class="btn btn-primary w-100">Submit</button>
-        </div>
+<div class="row mb-5 mt-4">
+    <div class="col-5">
+        <p class="cart-total">
+            Total: <strong><span id="cartTotal">@Model.ItemCount</span> Items</strong>
+        </p>
     </div>
-</form>
+    <div class="col-7">
+        <a id="cartDropDownSubmit" href='@Url.Action("Checkout")' type="submit" class="@disabledbutton btn btn-primary w-100">Submit</a>
+    </div>
+</div>
+
 <div class="row mt-6">
     <div class="col-sm-7">
         <p class="dropdown-title">Recent Requests</p>
     </div>
     <div class="col-sm-5 text-right">
-        <a class="dropdown-link" href="#">View All <i class="far fa-angle-right"></i></a>
+        <a class="dropdown-link" href='@Url.Action("Orders", "OrderHistory")'>View All <i class="far fa-angle-right"></i></a>
     </div>
 </div>
 
 <div class="cart-item-box">
 
     <div class="media cart-item">
-        <a class="style-img" href="#"><img class="mr-3" src="https://placehold.it/60x60" alt="Style Name"></a>
+        <a class="style-img" href='@Url.Action("OrderDetails", "OrderHistory", new { orderId = 1})'><img class="mr-3" src="https://placehold.it/60x60" alt="Style Name"></a>
         <div class="media-body">
             <div class="row">
                 <div class="col-sm-9">
-                    <p class="style-name"><a href="#">Order Number <span class="regular">Date</span></a></p>
+                    <p class="style-name"><a href='@Url.Action("OrderDetails", "OrderHistory", new { orderId = 1})'>Order Number <span class="regular">Date</span></a></p>
                     <p class="quantity">Total Items: <strong>4</strong></p>
                     <p class="status positive"><i class="far fa-check-square"></i> Shipped</p>
                 </div>
                 <div class="col-sm-2">
-                    <a class="view-order" href="#"><i class="far fa-eye"></i></a>
+                    <a class="view-order" href='@Url.Action("OrderDetails", "OrderHistory", new { orderId = 1})'><i class="far fa-eye"></i></a>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="media cart-item">
-        <a class="style-img" href="#"><img class="mr-3" src="https://placehold.it/60x60" alt="Style Name"></a>
+        <a class="style-img" href='@Url.Action("OrderDetails", "OrderHistory", new { orderId = 2})'><img class="mr-3" src="https://placehold.it/60x60" alt="Style Name"></a>
         <div class="media-body">
             <div class="row">
                 <div class="col-sm-9">
-                    <p class="style-name"><a href="#">Order Number <span class="regular">Date</span></a></p>
+                    <p class="style-name"><a href='@Url.Action("OrderDetails", "OrderHistory", new { orderId = 2})'>Order Number <span class="regular">Date</span></a></p>
                     <p class="quantity">Total Items: <strong>4</strong></p>
                     <p class="status positive"><i class="far fa-check-square"></i> Shipped</p>
                 </div>
                 <div class="col-sm-2">
-                    <a class="view-order" href="#"><i class="far fa-eye"></i></a>
+                    <a class="view-order" href='@Url.Action("OrderDetails", "OrderHistory", new { orderId = 2})'><i class="far fa-eye"></i></a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
 <script>
-    function removeItem(elem) {
-        var id = elem.attributes["data-id"].value;
+    function removeItemFromDropDown(itemId) {
+        $.ajax({
+            url: '@Url.Action("RemoveFromCartDropDown", "cartDropDown")',
+                    type: "POST",
+                    dataType: "html",
+                    data: {
+                        removeItemDropDown: itemId
+                    },
+                    async: true,
+                    success: function () {
 
-        $("#removeItemDropDown").val(id);
+                        $('#' + itemId).hide();
+                        decreaseTotal();
+                }
+            });
     }
+
+    var decreaseTotal = (function() {
+        var total = document.getElementById('cartTotal');
+        return function() {
+            if (!!total) {
+                total.textContent = parseInt(total.textContent) - 1;
+            }
+        }
+    })();
 </script>

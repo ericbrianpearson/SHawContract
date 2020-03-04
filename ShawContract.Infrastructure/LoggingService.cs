@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using CMS.EventLog;
 using ShawContract.Application.Contracts.Infrastructure;
 using ShawContract.Application.Models;
 
@@ -16,6 +17,12 @@ namespace ShawContract.Infrastructure
         public void Log(LogLevel level, string message, string details, Exception ex = null)
         {
             Debug.WriteLine("Level: {0} , Message: {1}, Details {2}", level, message, details);
+
+            if (level == LogLevel.Error)
+            {
+                EventLogProvider.LogException("ShawContract", "EXCEPTION", ex);
+            }
+
         }
 
         public void Log(LogLevel level, string message, IEnumerable<BaseModel> collection, Exception ex = null)

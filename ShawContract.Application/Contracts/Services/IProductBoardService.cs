@@ -1,17 +1,15 @@
 ﻿using ShawContract.Application.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ShawContract.Application.Contracts.Services
 {
     public interface IProductBoardService
     {
-        Task<IEnumerable<ProductBoard>> GetProductBoardsAsync(string userId);
+        IEnumerable<ProductBoard> GetProductBoards(string userId);
 
-        Task<ProductBoard> GetProductBoardAsync(Guid boardID);
+        ProductBoard GetProductBoard(Guid boardID);
 
         Task<Guid> CreateProductBoardAsync(ProductBoard productBoardName);
 
@@ -22,6 +20,6 @@ namespace ShawContract.Application.Contracts.Services
         Task AddProductBoardItemAsync(Guid boardId, ProductBoardItem productBoardItem);
 
         Task RemoveProductBoardItemAsync(Guid boardId, Guid productId);
-        Task AddVisitorToLog(Guid boardId, Visitor visitor);
+        void AddVisitorToLog(Guid boardId, Visitor visitor);
     }
 }

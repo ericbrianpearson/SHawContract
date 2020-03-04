@@ -17,12 +17,11 @@ namespace ShawContract.Controllers.Widgets
 {
     public class FullWidthVideoWidgetController : WidgetController<FullWidthVideoWidgetProperties>
     {
-        public IMediaLibraryFileService MediaLibraryFileService { get; set; }
         public IMasterPageService MasterPageService { get; set; }
 
-        public FullWidthVideoWidgetController(IMediaLibraryFileService mediaLibraryFileService, IMasterPageService masterPageService)
+        public FullWidthVideoWidgetController(IMasterPageService masterPageService)
         {
-            MediaLibraryFileService = mediaLibraryFileService;
+            
             MasterPageService = masterPageService;
         }
 
@@ -30,9 +29,7 @@ namespace ShawContract.Controllers.Widgets
         public ActionResult Index()
         {
             var properties = GetProperties();
-            bool hasImage = false;
-            string imageUrl = null;
-
+            bool hasImage = false;          
             return PartialView("Widgets/_FullWidthVideoWidget", new FullWidthVideoWidgetViewModel
             {
                 HasImage = hasImage,
@@ -40,12 +37,7 @@ namespace ShawContract.Controllers.Widgets
                 Description = properties.Description,
                 VideoUrl = Regex.Replace(properties.VideoUrl ?? "", "<.*?>", string.Empty),
                 ImageUrl = properties.ImageUrl,
-                PhotoCredit = properties.PhotoCredit,
-                MediaLibraryViewModel = new MediaLibraryViewModel
-                {
-                    LibraryName = MediaLibraryFileService.MediaLibraryName,
-                    LibrarySiteName = MediaLibraryFileService.MediaLibrarySiteName
-                }
+                PhotoCredit = properties.PhotoCredit                              
             });
         }
     }

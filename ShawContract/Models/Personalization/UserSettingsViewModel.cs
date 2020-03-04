@@ -1,15 +1,21 @@
 ﻿using System.Collections.Generic;
+using ShawContract.Infrastructure;
+using ShawContract.Utils;
 
 namespace ShawContract.Models.Personalization
 {
     public class UserSettingsViewModel : IViewModel
     {
-        public IEnumerable<string> Industries = new List<string>() { "Industry1.", "Industry2" };
-        public IEnumerable<string> JobTitles = new List<string>() { "JobTitle1", "JobTitle2" };
-        public IEnumerable<string> Languages = new List<string>() { "En", "Fr", "Es" };
-        public IEnumerable<string> SegmentsOptions = new List<string>() { "Segment1", "Segment2" };
-        public IEnumerable<string> Titles = new List<string>() { "Mr.", "Mrs." };
+        public IDictionary<string, string> Countries = CmsDataHelper.GetCountriesList();
+        public IDictionary<string, string> Industries = CmsDataHelper.GetIndustries();
+        public IDictionary<string, string> JobTitles = CmsDataHelper.GetJobTitles();
+        public IDictionary<string, string> Languages = CmsDataHelper.GetLanguages();
+        public IDictionary<string, string> SegmentsOptions = CmsDataHelper.GetSegments();
+        public IDictionary<string, string> States = CmsDataHelper.GetStatesList();
+        public IDictionary<string, string> Titles = CmsDataHelper.GetTitles();
         public IList<Address> Addresses { get; set; }
+
+        public Address AddressToEdit { get; set; }
 
         public string CellPhone { get; set; }
 

@@ -10,5 +10,6 @@
         public bool HasImage { get; set; }
         public string TextBoxAlignment { get; set; }
         public string ImageUrl { get; set; }
+        public bool IsFullWidth { get; set; }
     }
 }

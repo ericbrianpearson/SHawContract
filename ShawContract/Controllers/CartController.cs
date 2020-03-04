@@ -1,6 +1,7 @@
 ﻿using ShawContract.ActionSelectors;
 using ShawContract.Application.Contracts.Services;
 using ShawContract.Models.Cart;
+using ShawContract.Models.Checkout;
 using System.Web.Mvc;
 
 namespace ShawContract.Controllers
@@ -17,51 +18,36 @@ namespace ShawContract.Controllers
         // GET: Cart
         public ActionResult Index()
         {
-            ShoppingCartService.LoadFakeCart();
-            var cartModel = GetCartViewModel();
+            var cartModel = CartViewModel.BuildCartViewModel(ShoppingCartService.GetShoppingCartPage());
             var model = GetPageViewModel(cartModel, "Cart");
 
             return View("Cart", model);
         }
 
-        [HttpPost]
-        [ButtonNameAction]
-        public ActionResult RemoveFromCart(int removeItemId)
+        public ActionResult Products()
         {
-            ShoppingCartService.RemoveItemFromCart(removeItemId);
-            var cartModel = GetCartViewModel();
-            var model = GetPageViewModel(cartModel, "Cart");
+            var model = GetPageViewModel("Products");
 
-            return View("Cart", model);
+            return View(model);
         }
 
-        [HttpPost]
-        [ButtonNameAction]
-        public ActionResult RemoveAllFromCart()
-        {
-            ShoppingCartService.RemoveAllFromCart();
-            var cartModel = GetCartViewModel();
-            var model = GetPageViewModel(cartModel, "Cart");
-
-            return View("Cart", model);
-        }
-
-        [HttpPost]
-        [ButtonNameAction]
-        public ActionResult Checkout(int quantitySum)
-        {
-            var cartModel = GetCartViewModel(quantitySum);
-            var model = GetPageViewModel(cartModel, "Cart");
-
-            return View("Cart", model);
-        }
-
-        private CartViewModel GetCartViewModel(int quantity = 0)
+        public ActionResult GetSimilarProducts()
         {
             var cart = ShoppingCartService.GetCurrentShoppingCart();
-            var cartModel = CartViewModel.BuildCartViewModel(cart, quantity);
+            if (cart.CartItems.Count == 0)
+            {
+                return new EmptyResult();
+            }
 
-            return cartModel;
+            var similarProducts = ShoppingCartService.GetCartSimilarProducts(cart);
+
+            return PartialView("SimilarProducts", new SimilarProductsViewModel(similarProducts));
+        }
+
+        [Authorize]
+        public ActionResult Checkout()
+        {
+            return RedirectToAction("Index", "Checkout");
         }
     }
 }

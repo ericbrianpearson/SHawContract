@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Shaw.OrdersServiceBUS" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Shaw.OrdersServiceBUS" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://webservices-qa.shawonline.com/SampleOrderService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Shaw.OrdersService.DTO" />
+  <xs:complexType name="SampleOrderHeader">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AcctNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="CarrierName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ContactName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HoldContact" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HoldOrder" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HoldReason" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Lines" nillable="true" type="tns:SampleOrderLines" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MessageType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PoNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProjectName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Requester" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Shaw.OrdersService.DTO" minOccurs="0" name="ShipToAddress" nillable="true" type="q1:OrderAddress" />
+      <xs:element minOccurs="0" name="Sidemark" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Territory" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TmEmail" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SampleOrderHeader" nillable="true" type="tns:SampleOrderHeader" />
+  <xs:complexType name="SampleOrderLines">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SampleOrderLine" nillable="true" type="tns:SampleOrderLine" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SampleOrderLines" nillable="true" type="tns:SampleOrderLines" />
+  <xs:complexType name="SampleOrderLine">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Color" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ColorName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LineNbr" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MessageType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PrivateCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PrivateStyle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Qty" type="xs:decimal" />
+      <xs:element minOccurs="0" name="SideMark" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Style" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StyleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SwatchFlag" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TypeSet" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SampleOrderLine" nillable="true" type="tns:SampleOrderLine" />
+</xs:schema>

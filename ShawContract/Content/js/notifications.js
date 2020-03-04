@@ -1,5 +1,5 @@
-(function () {
-  if (!toastr || !window) {
+var __addSuccessNotificationToElement = (function () {
+  if (!toastr) {
     return;
   }
 
@@ -21,14 +21,21 @@
     "hideMethod": "fadeOut"
   };
 
-  function addSuccessNotificationToElement(elm, title, description, options) {
-    if (!!elm) {
-      elm.addEventListener('click', function () {
+  return function (elem, title, description, options) {
+    if (!elem) {
+      return; 
+    }
+
+    if (elem.length) {
+      for (var i=0; i<elem.length; i++) {
+        elem[i].addEventListener('click', function() {
+          toastr.success(description, title, options);
+        })
+      }
+    } else {
+      elem.addEventListener('click', function () {
         toastr.success(description, title, options);
       });
     }
   }
-
-  var shareBtn = document.querySelector('.copy-to-clipboard');
-  addSuccessNotificationToElement(shareBtn, 'Product Board Shared', 'Board URL copied to your clipboard');
 })();
