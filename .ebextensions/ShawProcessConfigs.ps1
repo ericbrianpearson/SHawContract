@@ -37,7 +37,7 @@
 #  <add key="ida:RedirectUri" value="https://localhost:44380/" />
 #</appSettings>
 
-$configPath = "_ConfigFiles\"
+$configPath = "ConfigFiles\"
 $connectionConfig = "ConnectionStrings.config"
 
 $rdsDB = (Get-ChildItem Env:RDS_DB_NAME).Value
