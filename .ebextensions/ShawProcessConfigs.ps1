@@ -58,3 +58,4 @@ if (Test-Path -Path $configPath) {
 "  <clear />" | Add-Content -Path $configPath$connectionConfig
 "  <add name=`"CMSConnectionString`" connectionString=`"Data Source=$rdsHost;Initial Catalog=$rdsDB;Integrated Security=False;User Id=$rdsUser;Password=$rdsPass;Persist Security Info=False;Connect Timeout=60;Encrypt=False;Current Language=English;`" />" | Add-Content -Path $configPath$connectionConfig
 "</connectionStrings>" | Add-Content -Path $configPath$connectionConfig
+
