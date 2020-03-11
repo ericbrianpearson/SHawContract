@@ -725,7 +725,6 @@
     <Content Include="Content\Css\Vendors\bootstrap-select.min.css" />
     <Content Include="Content\Css\Vendors\bootstrap.css" />
     <Content Include="Content\Css\Vendors\toastr.min.css" />
-    <Content Include="Content\images\check-circle-2.svg" />
     <Content Include="Content\images\chevron-down.svg" />
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\Image 10%402x.png" />

@@ -197,3 +197,4 @@ FakesAssemblies/
 # FAKE - F# Make
 .fake/
 
+/CMS/App_Data
